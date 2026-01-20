@@ -1,0 +1,265 @@
+(footprint "Push Button 6x6mm"
+	(version 20241229)
+	(generator "pcbnew")
+	(generator_version "9.0")
+	(layer "F.Cu")
+	(descr "1571563-6-2")
+	(tags "Switch (4-Pin Push)")
+	(property "Reference" "S**"
+		(at 0 0 0)
+		(layer "F.SilkS")
+		(uuid "7da09920-bcec-4379-999b-e13c6e9fc92c")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.254)
+			)
+		)
+	)
+	(property "Value" "15715636"
+		(at 0 0 0)
+		(layer "F.SilkS")
+		(hide yes)
+		(uuid "b0106fcd-4d57-47da-a3bf-b9aadb168e01")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.254)
+			)
+		)
+	)
+	(property "Datasheet" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "059c1d9c-4373-49c6-a164-869e3a7a421a")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Description" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "cdd5ea38-8cda-4414-9495-9938529ba28f")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(attr smd)
+	(fp_line
+		(start -3 -3)
+		(end 3 -3)
+		(stroke
+			(width 0.2)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "47a87bb2-10ce-4f52-b05d-41bc34cf8d55")
+	)
+	(fp_line
+		(start -3 3)
+		(end -3 -3)
+		(stroke
+			(width 0.2)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "484120df-48be-49b1-a8af-16af7cf95ec7")
+	)
+	(fp_line
+		(start 2.25 -6.1)
+		(end 2.25 -6.1)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "b725713c-ca94-4d6d-8f63-ff33f30aeea1")
+	)
+	(fp_line
+		(start 2.25 -6)
+		(end 2.25 -6)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "91007fb7-6790-48cc-b143-c90211c7b77b")
+	)
+	(fp_line
+		(start 3 -3)
+		(end 3 3)
+		(stroke
+			(width 0.2)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "6e96b305-b519-4107-ac6a-54385030cb19")
+	)
+	(fp_line
+		(start 3 3)
+		(end -3 3)
+		(stroke
+			(width 0.2)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "8c606416-fedc-408d-9e47-bc75e2ddf0d8")
+	)
+	(fp_arc
+		(start 2.25 -6.1)
+		(mid 2.3 -6.05)
+		(end 2.25 -6)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "062ac85f-f400-4c38-b9f6-cdedd94ff9ae")
+	)
+	(fp_arc
+		(start 2.25 -6)
+		(mid 2.2 -6.05)
+		(end 2.25 -6.1)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "4742c7c5-41a5-4470-9bd8-665bae254be5")
+	)
+	(fp_line
+		(start -4 -6.6)
+		(end 4 -6.6)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "78f0dff0-488d-402c-b415-0aa56657b4ac")
+	)
+	(fp_line
+		(start -4 6.6)
+		(end -4 -6.6)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "2fe7c29d-0d40-4328-97a2-bcc18913b362")
+	)
+	(fp_line
+		(start 4 -6.6)
+		(end 4 6.6)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "9f794f3e-0063-4e0c-bf43-1fe04a2bf073")
+	)
+	(fp_line
+		(start 4 6.6)
+		(end -4 6.6)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "06499a76-34fd-400e-b5d1-bf095664c52c")
+	)
+	(fp_line
+		(start -3 -3)
+		(end -3 3)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "759ca242-85de-4aee-a71f-5ea13a475e5c")
+	)
+	(fp_line
+		(start -3 3)
+		(end 3 3)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "9d84aab0-4185-4cb6-8915-29ba63161480")
+	)
+	(fp_line
+		(start 3 -3)
+		(end -3 -3)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "4e06ebea-12fb-49f5-b56c-5abf8edfdb57")
+	)
+	(fp_line
+		(start 3 3)
+		(end 3 -3)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "d220995e-bfe3-48fb-8be2-d6fe7b4d69f5")
+	)
+	(fp_text user "${REFERENCE}"
+		(at 0 0 0)
+		(layer "F.Fab")
+		(uuid "b1c00eb4-594a-4171-a277-fcd21c752eef")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.254)
+			)
+		)
+	)
+	(pad "1" smd rect
+		(at 2.25 -4.55)
+		(size 1.4 2.1)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(uuid "d3795484-6bca-4a12-8a3b-4d65c25c3330")
+	)
+	(pad "2" smd rect
+		(at 2.25 4.55)
+		(size 1.4 2.1)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(uuid "cd91d043-d206-4d60-8d60-f642a61fc133")
+	)
+	(pad "3" smd rect
+		(at -2.25 -4.55)
+		(size 1.4 2.1)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(uuid "2da81378-7097-4b0b-ad82-210d043859a0")
+	)
+	(pad "4" smd rect
+		(at -2.25 4.55)
+		(size 1.4 2.1)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(uuid "a9e1ebe7-9ea6-4029-9bff-1b793a972a9c")
+	)
+	(embedded_fonts no)
+	(model "C:/Users/jiaxi/Downloads/LIB_1571563-6/1571563-6/3D/1571563-6.stp"
+		(offset
+			(xyz 0 0 3.5)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz -0 -0 -0)
+		)
+	)
+)
