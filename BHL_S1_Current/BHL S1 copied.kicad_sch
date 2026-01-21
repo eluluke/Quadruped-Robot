@@ -9,7 +9,7 @@
 		(date "2026-01-08")
 	)
 	(lib_symbols
-		(symbol "Buck converter:AS5600"
+		(symbol "BHL_S1_Components:AS5600"
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
@@ -124,7 +124,7 @@
 						)
 					)
 				)
-				(pin output line
+				(pin power_in line
 					(at -10.16 -3.81 0)
 					(length 2.54)
 					(name "GND"
@@ -217,7 +217,7 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "Buck converter:Header_2X2H"
+		(symbol "BHL_S1_Components:Header_2X2H"
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
@@ -353,7 +353,7 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "Buck converter:IR2136STRPBF"
+		(symbol "BHL_S1_Components:IR2136STRPBF"
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
@@ -522,7 +522,7 @@
 						)
 					)
 				)
-				(pin output line
+				(pin input line
 					(at -7.62 16.51 270)
 					(length 2.54)
 					(name "EP"
@@ -867,7 +867,7 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "Buck converter:ME3116"
+		(symbol "BHL_S1_Components:ME3116"
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
@@ -1031,7 +1031,7 @@
 						)
 					)
 				)
-				(pin output line
+				(pin power_in line
 					(at -10.16 0 0)
 					(length 2.54)
 					(name "GND"
@@ -1124,7 +1124,7 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "Buck converter:SOLDERPAD_BLDC"
+		(symbol "BHL_S1_Components:SOLDERPAD_BLDC"
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
@@ -1288,7 +1288,7 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "Buck converter:TCAN1051HGVDR"
+		(symbol "BHL_S1_Components:TCAN1051HGVDR"
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
@@ -1421,7 +1421,7 @@
 						)
 					)
 				)
-				(pin output line
+				(pin input line
 					(at 15.24 3.81 180)
 					(length 2.54)
 					(name "STB"
@@ -1475,7 +1475,7 @@
 						)
 					)
 				)
-				(pin output line
+				(pin power_in line
 					(at 15.24 -3.81 180)
 					(length 2.54)
 					(name "VIO"
@@ -5254,6 +5254,131 @@
 			)
 			(embedded_fonts no)
 		)
+		(symbol "VCC_1"
+			(power)
+			(pin_numbers
+				(hide yes)
+			)
+			(pin_names
+				(offset 0)
+				(hide yes)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "#PWR010"
+				(at 0 -3.81 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Value" "VCC_12V"
+				(at 0 6.858 90)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" "Power symbol creates a global label with name \"VCC\""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_keywords" "global power"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "VCC_1_0_1"
+				(polyline
+					(pts
+						(xy -0.762 1.27) (xy 0 2.54)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0 2.54) (xy 0.762 1.27)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0 0) (xy 0 2.54)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "VCC_1_1_1"
+				(pin power_in line
+					(at 0 0 90)
+					(length 0)
+					(name "~"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
 		(symbol "power:+3.3V"
 			(power)
 			(pin_numbers
@@ -5917,6 +6042,18 @@
 		(uuid 785784f8-b026-42b6-8623-7c50b4014ad1)
 	)
 	(rectangle
+		(start 86.36 233.68)
+		(end 175.26 279.4)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(fill
+			(type none)
+		)
+		(uuid 7a44ffda-85af-4cb0-9ab8-b38cf380fd5d)
+	)
+	(rectangle
 		(start 241.3 233.68)
 		(end 297.18 279.4)
 		(stroke
@@ -6057,6 +6194,20 @@
 			)
 		)
 		(uuid "7c3a5828-b580-40ba-b1dc-b8e2d0609971")
+	)
+	(text "TEMPERATURE \nSENSING"
+		(exclude_from_sim no)
+		(at 159.512 240.03 0)
+		(effects
+			(font
+				(face "KiCad Font")
+				(size 3 3)
+				(thickness 2)
+				(bold yes)
+				(color 194 0 0 1)
+			)
+		)
+		(uuid "9f37ccc7-6a49-41c1-988c-41e8ce8691bf")
 	)
 	(text "LOGIC\nPOWER\n"
 		(exclude_from_sim no)
@@ -6949,12 +7100,6 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "edff042d-a03f-4600-8695-58b6d063b337")
-	)
-	(junction
-		(at 330.2 237.49)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "ef20e654-6bd8-4d97-8f5b-00171a470688")
 	)
 	(junction
 		(at 223.52 200.66)
@@ -8364,16 +8509,6 @@
 	)
 	(wire
 		(pts
-			(xy 330.2 234.95) (xy 330.2 237.49)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "3924ebfc-ac5c-40c2-aa7b-4ce097840976")
-	)
-	(wire
-		(pts
 			(xy 361.95 88.9) (xy 364.49 88.9)
 		)
 		(stroke
@@ -8804,7 +8939,7 @@
 	)
 	(wire
 		(pts
-			(xy 340.36 237.49) (xy 330.2 237.49)
+			(xy 320.04 237.49) (xy 340.36 237.49)
 		)
 		(stroke
 			(width 0)
@@ -11531,16 +11666,6 @@
 			(type default)
 		)
 		(uuid "da9d09d6-8b98-42d1-a83e-559b1f041518")
-	)
-	(wire
-		(pts
-			(xy 330.2 237.49) (xy 320.04 237.49)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "dacef1b8-5a5e-474b-983b-515e2f224361")
 	)
 	(wire
 		(pts
@@ -16191,7 +16316,7 @@
 		)
 	)
 	(symbol
-		(lib_id "Buck converter:Header_2X2H")
+		(lib_id "BHL_S1_Components:Header_2X2H")
 		(at 347.98 240.03 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -16622,6 +16747,7 @@
 		)
 	)
 	(symbol
+		(lib_name "VCC_1")
 		(lib_id "power:VCC")
 		(at 127 186.69 90)
 		(unit 1)
@@ -17252,7 +17378,7 @@
 		)
 	)
 	(symbol
-		(lib_id "Buck converter:IR2136STRPBF")
+		(lib_id "BHL_S1_Components:IR2136STRPBF")
 		(at 370.84 139.7 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -18329,7 +18455,7 @@
 		)
 	)
 	(symbol
-		(lib_id "Buck converter:ME3116")
+		(lib_id "BHL_S1_Components:ME3116")
 		(at 259.08 205.74 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -18338,7 +18464,7 @@
 		(dnp no)
 		(uuid "652e0373-a7d7-42b4-8e09-196a6676229c")
 		(property "Reference" "ME3116"
-			(at 259.334 211.074 0)
+			(at 259.08 212.09 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -18475,7 +18601,7 @@
 		)
 	)
 	(symbol
-		(lib_id "Buck converter:SOLDERPAD_BLDC")
+		(lib_id "BHL_S1_Components:SOLDERPAD_BLDC")
 		(at 389.89 52.07 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -18815,72 +18941,6 @@
 		)
 	)
 	(symbol
-		(lib_id "power:VBUS")
-		(at 330.2 234.95 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "6fc7e74c-501e-4262-8e31-f6ee291f4bc1")
-		(property "Reference" "#PWR067"
-			(at 330.2 238.76 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "DCBUS"
-			(at 330.2 229.87 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 330.2 234.95 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 330.2 234.95 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"VBUS\""
-			(at 330.2 234.95 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "b686791f-0c1f-458d-8f7f-5f7f9803115f")
-		)
-		(instances
-			(project "BHL S1 copied"
-				(path "/0363b2da-c10c-4051-b2e0-f0863b63e8b4"
-					(reference "#PWR067")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "Diode:ESD5Zxx")
 		(at 299.72 149.86 270)
 		(unit 1)
@@ -19151,17 +19211,16 @@
 		)
 	)
 	(symbol
-		(lib_id "Buck converter:TCAN1051HGVDR")
+		(lib_id "BHL_S1_Components:TCAN1051HGVDR")
 		(at 257.81 143.51 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(fields_autoplaced yes)
 		(uuid "749ee924-f30f-4bbb-b4e8-4762597e2f2a")
 		(property "Reference" "TCAN1051HGVDR1"
-			(at 257.81 133.35 0)
+			(at 257.81 134.366 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -22165,7 +22224,7 @@
 		)
 	)
 	(symbol
-		(lib_id "Buck converter:Header_2X2H")
+		(lib_id "BHL_S1_Components:Header_2X2H")
 		(at 346.71 220.98 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -25548,7 +25607,7 @@
 		)
 	)
 	(symbol
-		(lib_id "Buck converter:AS5600")
+		(lib_id "BHL_S1_Components:AS5600")
 		(at 207.01 259.08 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -25558,7 +25617,7 @@
 		(fields_autoplaced yes)
 		(uuid "f957e1f6-68e8-4b70-bddd-cf0aa0e927bb")
 		(property "Reference" "AS5600"
-			(at 207.01 266.192 0)
+			(at 207.01 251.46 0)
 			(effects
 				(font
 					(size 1.27 1.27)

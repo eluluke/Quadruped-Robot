@@ -1,0 +1,211 @@
+(footprint "CAPAE1280X1400N_Electrolytic Capacitor"
+	(version 20241229)
+	(generator "pcbnew")
+	(generator_version "9.0")
+	(layer "F.Cu")
+	(descr "12.5*13")
+	(tags "Capacitor Polarised")
+	(property "Reference" "C**"
+		(at 0 0 0)
+		(layer "F.SilkS")
+		(uuid "40647b41-c0ad-4502-8ca1-cd026254c362")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.254)
+			)
+		)
+	)
+	(property "Value" "CAPAE1280X1400N"
+		(at 0 0 0)
+		(layer "F.SilkS")
+		(hide yes)
+		(uuid "f4904b4d-1ae7-47b6-807f-e143fa5f86df")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.254)
+			)
+		)
+	)
+	(property "Datasheet" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "41e784e2-419a-4239-aa98-d3bb8e379e58")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Description" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "114a558e-d504-46bd-a888-40bdab005b93")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(attr smd)
+	(fp_line
+		(start -8.375 -6.4)
+		(end 6.4 -6.4)
+		(stroke
+			(width 0.2)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "79aa8ffc-9a77-4f2b-8c3e-218ec3efa619")
+	)
+	(fp_line
+		(start -3.2 6.4)
+		(end 6.4 6.4)
+		(stroke
+			(width 0.2)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "d7c1b324-dd9d-495b-909a-4547ad3b54a9")
+	)
+	(fp_line
+		(start -8.875 -7)
+		(end 8.875 -7)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "8b50e276-a6fe-442a-94b9-4c4a5b2a6a56")
+	)
+	(fp_line
+		(start -8.875 7)
+		(end -8.875 -7)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "e08e065f-92d9-421e-bb98-f973de798084")
+	)
+	(fp_line
+		(start 8.875 -7)
+		(end 8.875 7)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "51c3a7db-0cb3-4f3f-9873-f6153a3e48c1")
+	)
+	(fp_line
+		(start 8.875 7)
+		(end -8.875 7)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "547250cb-e138-4705-b5f2-ea9ed88202cd")
+	)
+	(fp_line
+		(start -6.4 -3.2)
+		(end -6.4 3.2)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "d02ee427-db87-4eeb-ae64-4145a0289f56")
+	)
+	(fp_line
+		(start -6.4 3.2)
+		(end -3.2 6.4)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "a02b989f-3b82-405d-9c13-24a46ed7f529")
+	)
+	(fp_line
+		(start -3.2 -6.4)
+		(end -6.4 -3.2)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "4172b1a6-1093-49a3-baee-ee140223b475")
+	)
+	(fp_line
+		(start -3.2 6.4)
+		(end 6.4 6.4)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "2f699582-8b30-4eee-8f1c-365b98ffa111")
+	)
+	(fp_line
+		(start 6.4 -6.4)
+		(end -3.2 -6.4)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "287e7c03-6cd0-4192-99cf-72808e773b75")
+	)
+	(fp_line
+		(start 6.4 6.4)
+		(end 6.4 -6.4)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "c7f7ac71-9adb-4e2a-bc66-29e3a4e16969")
+	)
+	(fp_text user "${REFERENCE}"
+		(at 0 0 0)
+		(layer "F.Fab")
+		(uuid "d6deae16-ac6f-4384-9655-961a67442168")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.254)
+			)
+		)
+	)
+	(pad "1" smd rect
+		(at -5.5 0 90)
+		(size 2.45 5.75)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(uuid "85e59c90-e49e-45d3-8c3e-5d970cfa6e61")
+	)
+	(pad "2" smd rect
+		(at 5.5 0 90)
+		(size 2.45 5.75)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(uuid "d69816b9-6a10-4776-ac49-18d36d7ee8f4")
+	)
+	(embedded_fonts no)
+	(model "C:/Users/jiaxi/Downloads/LIB_EDH477M035S9RAA/EDH477M035S9RAA/3D/EDH477M035S9RAA.stp"
+		(offset
+			(xyz 6.5 6.5 0.25)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz -90 -0 -180)
+		)
+	)
+)

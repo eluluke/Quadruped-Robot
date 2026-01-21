@@ -1,0 +1,4 @@
+(sym_lib_table
+  (version 7)
+  (lib (name "BHL_S1_Components")(type "KiCad")(uri "${KIPRJMOD}/Buck converter.kicad_sym")(options "")(descr ""))
+)
