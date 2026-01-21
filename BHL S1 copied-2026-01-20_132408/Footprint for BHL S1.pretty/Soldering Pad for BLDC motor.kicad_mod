@@ -1,0 +1,113 @@
+(footprint "Soldering Pad for BLDC motor"
+	(version 20241229)
+	(generator "pcbnew")
+	(generator_version "9.0")
+	(layer "F.Cu")
+	(property "Reference" "REF**"
+		(at 0 4.09 0)
+		(unlocked yes)
+		(layer "F.SilkS")
+		(uuid "b07858cd-c059-4fbf-9fbe-ae40134843cb")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.1)
+			)
+		)
+	)
+	(property "Value" "Soldering Pad for BLDC motor"
+		(at 0 5.59 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(uuid "a2fb8c97-248b-4488-b981-183156001808")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Datasheet" ""
+		(at 0 0 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "59f87254-0560-4ceb-8319-cec638318023")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Description" ""
+		(at 0 0 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "53a37068-3e24-4cc1-bba0-73f9fc21909a")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(attr smd)
+	(fp_rect
+		(start -8 -3)
+		(end 8 3)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(fill no)
+		(layer "F.SilkS")
+		(uuid "fc182634-7a5c-4a15-a47d-90d0f9da7e94")
+	)
+	(fp_rect
+		(start -8.2 -3.2)
+		(end 8.2 3.2)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(fill no)
+		(layer "F.CrtYd")
+		(uuid "530b5837-048d-491e-b0d5-948e8e315099")
+	)
+	(fp_text user "${REFERENCE}"
+		(at 0 7.09 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(uuid "d187d74c-9fd4-4aee-8da7-c3d5bb737462")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(pad "1" smd roundrect
+		(at -5 0)
+		(size 3 4)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(roundrect_rratio 0.15)
+		(uuid "362c653c-cb6e-4684-9cd2-56c8daf0e36c")
+	)
+	(pad "2" smd roundrect
+		(at 0 0)
+		(size 3 4)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(roundrect_rratio 0.15)
+		(uuid "27bd50a3-9edc-4efa-b25c-a2a94db1cb7a")
+	)
+	(pad "3" smd roundrect
+		(at 5 0)
+		(size 3 4)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(roundrect_rratio 0.15)
+		(uuid "a43271d2-cb47-4550-b782-b36e680e948d")
+	)
+	(embedded_fonts no)
+)
