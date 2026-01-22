@@ -1,4 +1,4 @@
-26799397989354477
+26820625500792246
 Audio_Module
 Reverb_BTDR-1H
 Digital Reverberation Unit, http://www.belton.co.kr/inc/downfile.php?seq=17&file=pdf (footprint from http://www.uk-electronic.de/PDF/BTDR-1.pdf)
@@ -61701,6 +61701,90 @@ Footprint for BHL S1
 Trimmer_Potentiometer
 3314J-1
 Variable Resistor
+0
+3
+3
+Footprints
+3PHASE_GATE_DRIVER
+28-LEAD SOIC
+Integrated Circuit
+0
+28
+28
+Footprints
+ABM8AAIG8000MHzV2RT3_Crystal
+ 2-SMD, No Lead
+Crystal or Oscillator
+0
+2
+2
+Footprints
+AS5600
+SOIC-8
+Integrated Circuit
+0
+8
+8
+Footprints
+CAPAE1280X1400N_Electrolytic Capacitor
+12.5*13
+Capacitor Polarised
+0
+2
+2
+Footprints
+CSD19502Q5B_MOSFET
+Q5B
+MOSFET (P-Channel)
+0
+9
+9
+Footprints
+INDPM5452X300N_Inductor
+0530CDMCCDS-R20MC
+Inductor
+0
+2
+2
+Footprints
+ME3116AM6G_Regulator
+
+
+0
+6
+6
+Footprints
+Push Button 6x6mm
+1571563-6-2
+Switch (4-Pin Push)
+0
+4
+4
+Footprints
+QFN50P700X700X60-49N
+
+
+0
+49
+49
+Footprints
+SOIC127P600X175-8N_CAN
+D
+Integrated Circuit
+0
+8
+8
+Footprints
+SOT96P237X111-3N_DIODE
+SOT-23 (TO-236) CASE 318-08 ISSUE AR
+Integrated Circuit
+0
+3
+3
+Footprints
+Soldering Pad for BLDC motor
+
+
 0
 3
 3
