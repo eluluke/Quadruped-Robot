@@ -22707,8 +22707,8 @@
 		)
 	)
 	(gr_circle
-		(center 76.52 124.01)
-		(end 78.22 124.01)
+		(center 192.5 115.57)
+		(end 194.2 115.57)
 		(stroke
 			(width 0.05)
 			(type solid)
@@ -22718,19 +22718,8 @@
 		(uuid "2d964dff-1438-4cae-8525-7fd06ecb2834")
 	)
 	(gr_circle
-		(center 192.16 87.96)
-		(end 225.46 87.96)
-		(stroke
-			(width 0.05)
-			(type solid)
-		)
-		(fill no)
-		(layer "Edge.Cuts")
-		(uuid "2d9a4adc-404c-41eb-9b4d-f87a8fe9e1b8")
-	)
-	(gr_circle
-		(center 46.77 94.26)
-		(end 48.47 94.26)
+		(center 162.75 85.82)
+		(end 164.45 85.82)
 		(stroke
 			(width 0.05)
 			(type solid)
@@ -22740,8 +22729,8 @@
 		(uuid "51b0de59-db0c-4f6d-9e06-4217413d15c8")
 	)
 	(gr_circle
-		(center 76.52 94.26)
-		(end 108.52 94.26)
+		(center 192.5 85.82)
+		(end 224.5 85.82)
 		(stroke
 			(width 0.05)
 			(type solid)
@@ -22751,8 +22740,8 @@
 		(uuid "53b1ff27-2a29-4055-8c12-a545b6850eb7")
 	)
 	(gr_circle
-		(center 76.52 64.51)
-		(end 78.22 64.51)
+		(center 192.5 56.07)
+		(end 194.2 56.07)
 		(stroke
 			(width 0.05)
 			(type solid)
@@ -22762,8 +22751,8 @@
 		(uuid "b150ff99-c910-4d5f-b9f3-d9572d7b8005")
 	)
 	(gr_circle
-		(center 106.27 94.26)
-		(end 107.97 94.26)
+		(center 222.25 85.82)
+		(end 223.95 85.82)
 		(stroke
 			(width 0.05)
 			(type solid)
