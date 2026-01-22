@@ -1,0 +1,4 @@
+(fp_lib_table
+  (version 7)
+  (lib (name "Footprint for BHL S1")(type "KiCad")(uri "${KIPRJMOD}/Footprint for BHL S1.pretty")(options "")(descr ""))
+)

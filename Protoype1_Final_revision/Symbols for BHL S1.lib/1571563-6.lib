@@ -1,0 +1,31 @@
+EESchema-LIBRARY Version 2.3
+#encoding utf-8
+#SamacSys ECAD Model 1571563-6
+#/4623107/1869004/2.50/4/2/Switch (4-Pin Push)
+DEF 1571563-6 S 0 30 Y Y 1 F N
+F0 "S" 500 250 50 H V L CNN
+F1 "1571563-6" 500 150 50 H V L CNN
+F2 "15715636" 500 50 50 H I L CNN
+F3 "https://www.te.com/commerce/DocumentDelivery/DDEController?Action=srchrtrv&DocNm=1977223&DocType=Customer%20Drawing&DocLang=English&DocFormat=pdf&PartCntxt=2-1977223-2" 500 -50 50 H I L CNN
+F4 "50 mA Tactile Switch, Round Actuator, Off (On), Phosphor Bronze, Silver Contact Plating, 24 VDC, ALCOSWITCH FSMJSMA" 500 -150 50 H I L CNN "Description"
+F5 "13.25" 500 -250 50 H I L CNN "Height"
+F6 "506-1571563-6" 500 -350 50 H I L CNN "Mouser Part Number"
+F7 "https://www.mouser.co.uk/ProductDetail/TE-Connectivity-PB/1571563-6?qs=kSbAZawwBnzmioGrnhYP0w%3D%3D" 500 -450 50 H I L CNN "Mouser Price/Stock"
+F8 "TE Connectivity" 500 -550 50 H I L CNN "Manufacturer_Name"
+F9 "1571563-6" 500 -650 50 H I L CNN "Manufacturer_Part_Number"
+DRAW
+X ~ 1 0 0 100 R 50 50 0 0 P
+X ~ 2 0 -200 100 R 50 50 0 0 P
+X ~ 3 600 0 100 L 50 50 0 0 P
+X ~ 4 600 -200 100 L 50 50 0 0 P
+P 2 0 1 6 100 -200 100 0 N
+P 2 0 1 6 100 -100 200 -100 N
+P 2 0 1 6 400 -100 500 -100 N
+P 2 0 1 6 500 -200 500 0 N
+P 2 0 1 6 240 -90 330 0 N
+C 220 -100 20 0 1 10 N
+C 380 -100 20 0 1 10 N
+ENDDRAW
+ENDDEF
+#
+#End Library
