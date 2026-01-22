@@ -1,4 +1,4 @@
-26794090976731252
+26799397989354477
 Audio_Module
 Reverb_BTDR-1H
 Digital Reverberation Unit, http://www.belton.co.kr/inc/downfile.php?seq=17&file=pdf (footprint from http://www.uk-electronic.de/PDF/BTDR-1.pdf)
@@ -61628,6 +61628,13 @@ Integrated Circuit
 8
 8
 Footprint for BHL S1
+AWSCR800CELAC10T3_Resonator
+AWSCR-8.00CELA-C10-T3-1
+Crystal or Oscillator
+0
+3
+3
+Footprint for BHL S1
 CAPAE1280X1400N_Electrolytic Capacitor
 12.5*13
 Capacitor Polarised
@@ -61677,9 +61684,23 @@ Integrated Circuit
 3
 3
 Footprint for BHL S1
+STM32G431CBU6_MCU
+UFQFPN - 48 leads, 7x7 mm, 0.5 mm pitch
+Integrated Circuit
+0
+49
+49
+Footprint for BHL S1
 Soldering Pad for BLDC motor
 
 
+0
+3
+3
+Footprint for BHL S1
+Trimmer_Potentiometer
+3314J-1
+Variable Resistor
 0
 3
 3
