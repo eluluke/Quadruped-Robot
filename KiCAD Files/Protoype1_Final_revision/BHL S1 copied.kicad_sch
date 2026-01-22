@@ -1287,25 +1287,24 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "Buck converter:AS5600"
+		(symbol "BHL_S1_CUSTOMED:AS5600"
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
-			(property "Reference" "AS5600"
-				(at 0 -7.112 0)
+			(property "Reference" "U"
+				(at 0 -7.874 0)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
 				)
 			)
-			(property "Value" "~"
-				(at 0 7.62 0)
+			(property "Value" ""
+				(at 0 0 0)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
-					(hide yes)
 				)
 			)
 			(property "Footprint" ""
@@ -1344,12 +1343,12 @@
 						(type default)
 					)
 					(fill
-						(type background)
+						(type none)
 					)
 				)
 			)
 			(symbol "AS5600_1_1"
-				(pin input line
+				(pin power_in line
 					(at -10.16 3.81 0)
 					(length 2.54)
 					(name "VDD5V"
@@ -1367,7 +1366,7 @@
 						)
 					)
 				)
-				(pin input line
+				(pin power_in line
 					(at -10.16 1.27 0)
 					(length 2.54)
 					(name "VDD3V3"
@@ -1403,7 +1402,7 @@
 						)
 					)
 				)
-				(pin output line
+				(pin power_in line
 					(at -10.16 -3.81 0)
 					(length 2.54)
 					(name "GND"
@@ -1421,7 +1420,7 @@
 						)
 					)
 				)
-				(pin output line
+				(pin input line
 					(at 10.16 3.81 180)
 					(length 2.54)
 					(name "DIR"
@@ -1479,6 +1478,471 @@
 					(at 10.16 -3.81 180)
 					(length 2.54)
 					(name "PGO"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "5"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
+		(symbol "BHL_S1_CUSTOMED:ME3116"
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "U"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "ME3116_0_1"
+				(polyline
+					(pts
+						(xy -7.62 3.81) (xy -7.62 -3.81)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -6.35 -5.08) (xy 6.35 -5.08)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(arc
+					(start -7.62 3.81)
+					(mid -7.248 4.708)
+					(end -6.35 5.08)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(arc
+					(start -6.35 -5.08)
+					(mid -7.248 -4.708)
+					(end -7.62 -3.81)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 6.35 5.08) (xy -6.35 5.08)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(arc
+					(start 6.35 5.08)
+					(mid 7.248 4.708)
+					(end 7.62 3.81)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(arc
+					(start 7.62 -3.81)
+					(mid 7.248 -4.708)
+					(end 6.35 -5.08)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 7.62 -3.81) (xy 7.62 3.81)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "ME3116_1_1"
+				(pin input line
+					(at -10.16 2.54 0)
+					(length 2.54)
+					(name "BS"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number ""
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin power_in line
+					(at -10.16 0 0)
+					(length 2.54)
+					(name "GND"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number ""
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin bidirectional line
+					(at -10.16 -2.54 0)
+					(length 2.54)
+					(name "FB"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number ""
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin bidirectional line
+					(at 10.16 2.54 180)
+					(length 2.54)
+					(name "SW"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number ""
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin input line
+					(at 10.16 0 180)
+					(length 2.54)
+					(name "IN"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number ""
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin input line
+					(at 10.16 -2.54 180)
+					(length 2.54)
+					(name "EN"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number ""
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
+		(symbol "BHL_S1_CUSTOMED:TCAN1051HGVDR"
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "TCAN1051HGVDR"
+				(at 4.318 8.89 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "TCAN1051HGVDR_0_1"
+				(rectangle
+					(start -3.81 7.62)
+					(end 12.7 -6.35)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type background)
+					)
+				)
+			)
+			(symbol "TCAN1051HGVDR_1_1"
+				(pin power_in line
+					(at -6.35 3.81 0)
+					(length 2.54)
+					(name "VCC"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "3"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin input line
+					(at -6.35 1.27 0)
+					(length 2.54)
+					(name "RXD"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "4"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin output line
+					(at -6.35 -1.27 0)
+					(length 2.54)
+					(name "TXD"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin power_in line
+					(at -6.35 -3.81 0)
+					(length 2.54)
+					(name "GND"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin power_in line
+					(at 15.24 3.81 180)
+					(length 2.54)
+					(name "STB"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "8"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin output line
+					(at 15.24 1.27 180)
+					(length 2.54)
+					(name "CANH"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "7"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin output line
+					(at 15.24 -1.27 180)
+					(length 2.54)
+					(name "CANL"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "6"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin output line
+					(at 15.24 -3.81 180)
+					(length 2.54)
+					(name "VIO"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -1616,179 +2080,6 @@
 					(at 7.62 -2.54 180)
 					(length 2.54)
 					(name "4"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "4"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-			)
-			(embedded_fonts no)
-		)
-		(symbol "Buck converter:ME3116"
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(property "Reference" "ME3116"
-				(at 0.254 -5.334 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Value" "~"
-				(at 0 -1.27 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Footprint" ""
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Datasheet" ""
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Description" ""
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(symbol "ME3116_0_1"
-				(rectangle
-					(start -7.62 3.81)
-					(end 7.62 -3.81)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type background)
-					)
-				)
-			)
-			(symbol "ME3116_1_1"
-				(pin input line
-					(at -10.16 2.54 0)
-					(length 2.54)
-					(name "BS"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin output line
-					(at -10.16 0 0)
-					(length 2.54)
-					(name "GND"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin bidirectional line
-					(at -10.16 -2.54 0)
-					(length 2.54)
-					(name "FB"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "3"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin bidirectional line
-					(at 10.16 2.54 180)
-					(length 2.54)
-					(name "SW"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "6"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin input line
-					(at 10.16 0 180)
-					(length 2.54)
-					(name "IN"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "5"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin input line
-					(at 10.16 -2.54 180)
-					(length 2.54)
-					(name "EN"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -1960,214 +2251,6 @@
 						)
 					)
 					(number "3"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-			)
-			(embedded_fonts no)
-		)
-		(symbol "Buck converter:TCAN1051HGVDR"
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(property "Reference" "TCAN1051HGVDR1"
-				(at 0 8.89 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Value" "~"
-				(at 0 10.16 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Footprint" ""
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Datasheet" ""
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Description" ""
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(symbol "TCAN1051HGVDR_0_1"
-				(rectangle
-					(start -7.62 7.62)
-					(end 7.62 -7.62)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type background)
-					)
-				)
-			)
-			(symbol "TCAN1051HGVDR_1_1"
-				(pin output line
-					(at -10.16 3.81 0)
-					(length 2.54)
-					(name "VCC"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "3"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin input line
-					(at -10.16 1.27 0)
-					(length 2.54)
-					(name "RXD"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "4"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin input line
-					(at -10.16 -1.27 0)
-					(length 2.54)
-					(name "TXD"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin output line
-					(at -10.16 -3.81 0)
-					(length 2.54)
-					(name "GND"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin output line
-					(at 10.16 3.81 180)
-					(length 2.54)
-					(name "STB"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "8"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin output line
-					(at 10.16 1.27 180)
-					(length 2.54)
-					(name "CANH"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "7"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin output line
-					(at 10.16 -1.27 180)
-					(length 2.54)
-					(name "CANL"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "6"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin output line
-					(at 10.16 -3.81 180)
-					(length 2.54)
-					(name "VIO"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "5"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -6805,6 +6888,12 @@
 		(uuid "4a9736b2-48e8-4495-a19e-e7e294a971cc")
 	)
 	(junction
+		(at 288.29 142.24)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "4be74b28-ca8b-476e-be22-be4e6b773101")
+	)
+	(junction
 		(at 151.13 254)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -7063,12 +7152,6 @@
 		(uuid "9da8e0c8-9f08-43aa-a838-ce1f05d5bbc0")
 	)
 	(junction
-		(at 288.29 142.24)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "9dcf038e-39b9-4e3b-9c80-497dbc716b86")
-	)
-	(junction
 		(at 307.34 55.88)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -7093,6 +7176,12 @@
 		(uuid "add86af3-49f3-4674-8e4b-1df416da03e7")
 	)
 	(junction
+		(at 284.48 144.78)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "af12b302-5500-4f8d-89f3-d1b15af57e8e")
+	)
+	(junction
 		(at 228.6 245.11)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -7115,12 +7204,6 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "bb954454-af59-4560-8e1e-57181200e703")
-	)
-	(junction
-		(at 284.48 144.78)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "bc12bbb4-6455-4d7a-a632-a05b9b50548d")
 	)
 	(junction
 		(at 307.34 78.74)
@@ -7594,16 +7677,6 @@
 	)
 	(wire
 		(pts
-			(xy 267.97 144.78) (xy 284.48 144.78)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "03d6af36-1797-422d-9e6f-7cbdf645fc00")
-	)
-	(wire
-		(pts
 			(xy 274.32 69.85) (xy 274.32 72.39)
 		)
 		(stroke
@@ -7611,6 +7684,16 @@
 			(type default)
 		)
 		(uuid "0482acb3-7e86-4d76-a11f-1b036b415dd8")
+	)
+	(wire
+		(pts
+			(xy 269.24 139.7) (xy 274.32 139.7)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "04e73da1-9296-49c9-b617-0799e22616db")
 	)
 	(wire
 		(pts
@@ -7794,6 +7877,16 @@
 	)
 	(wire
 		(pts
+			(xy 229.87 142.24) (xy 247.65 142.24)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "0d476d39-3ebc-49ea-b8e4-a52a34ec26c7")
+	)
+	(wire
+		(pts
 			(xy 120.65 110.49) (xy 114.3 110.49)
 		)
 		(stroke
@@ -7841,6 +7934,16 @@
 			(type default)
 		)
 		(uuid "10292124-ec0c-4cb1-8ef6-ac5635309cdc")
+	)
+	(wire
+		(pts
+			(xy 269.24 147.32) (xy 280.67 147.32)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "10b127f5-3983-401c-8b0e-fc9eb365d2b8")
 	)
 	(wire
 		(pts
@@ -8394,16 +8497,6 @@
 	)
 	(wire
 		(pts
-			(xy 267.97 142.24) (xy 288.29 142.24)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "2dfdfc55-d9f7-4931-87c5-60b843315a70")
-	)
-	(wire
-		(pts
 			(xy 78.74 64.77) (xy 64.77 64.77)
 		)
 		(stroke
@@ -8514,16 +8607,6 @@
 	)
 	(wire
 		(pts
-			(xy 267.97 139.7) (xy 274.32 139.7)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "36ec4a0b-2c72-4069-a236-9fa8c598cd8a")
-	)
-	(wire
-		(pts
 			(xy 332.74 101.6) (xy 314.96 101.6)
 		)
 		(stroke
@@ -8551,16 +8634,6 @@
 			(type default)
 		)
 		(uuid "3924ebfc-ac5c-40c2-aa7b-4ce097840976")
-	)
-	(wire
-		(pts
-			(xy 217.17 255.27) (xy 217.17 252.73)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "39bfb65c-ace0-4b96-9195-f4036c9663ad")
 	)
 	(wire
 		(pts
@@ -8804,6 +8877,16 @@
 	)
 	(wire
 		(pts
+			(xy 238.76 147.32) (xy 247.65 147.32)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "47ab746e-196d-40a6-9a7d-982283f78dc9")
+	)
+	(wire
+		(pts
 			(xy 316.23 185.42) (xy 339.09 185.42)
 		)
 		(stroke
@@ -8871,16 +8954,6 @@
 			(type default)
 		)
 		(uuid "4be3b349-f77d-4f24-b400-204388dd6c5e")
-	)
-	(wire
-		(pts
-			(xy 238.76 147.32) (xy 247.65 147.32)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "4c0998eb-7538-4a88-8a56-55420c20ea28")
 	)
 	(wire
 		(pts
@@ -8961,6 +9034,16 @@
 			(type default)
 		)
 		(uuid "5066c173-ad94-4fe9-9966-71f6bd7265cd")
+	)
+	(wire
+		(pts
+			(xy 229.87 144.78) (xy 247.65 144.78)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "50b57d02-0b0b-4495-aa4b-3db2abff0375")
 	)
 	(wire
 		(pts
@@ -9454,16 +9537,6 @@
 	)
 	(wire
 		(pts
-			(xy 280.67 147.32) (xy 267.97 147.32)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "6aa33d64-3e2d-4be2-b89d-dcf89aaef347")
-	)
-	(wire
-		(pts
 			(xy 147.32 186.69) (xy 153.67 186.69)
 		)
 		(stroke
@@ -9674,6 +9747,16 @@
 	)
 	(wire
 		(pts
+			(xy 218.44 255.27) (xy 217.17 255.27)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "766a1615-719b-4acd-b767-f83a5ce3fafb")
+	)
+	(wire
+		(pts
 			(xy 372.11 31.75) (xy 372.11 36.83)
 		)
 		(stroke
@@ -9851,16 +9934,6 @@
 			(type default)
 		)
 		(uuid "7d07f3f6-e917-44ba-995d-e34c87e5965c")
-	)
-	(wire
-		(pts
-			(xy 229.87 142.24) (xy 247.65 142.24)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "7d9a74b7-d1b0-4ca9-92c1-3b866946b6f2")
 	)
 	(wire
 		(pts
@@ -10104,6 +10177,16 @@
 	)
 	(wire
 		(pts
+			(xy 231.14 139.7) (xy 247.65 139.7)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "8a61d5c9-c981-4343-8bcd-8f2fd01f16b2")
+	)
+	(wire
+		(pts
 			(xy 269.24 250.19) (xy 275.59 250.19)
 		)
 		(stroke
@@ -10184,7 +10267,7 @@
 	)
 	(wire
 		(pts
-			(xy 217.17 252.73) (xy 182.88 252.73)
+			(xy 182.88 252.73) (xy 218.44 252.73)
 		)
 		(stroke
 			(width 0)
@@ -10421,6 +10504,16 @@
 			(type default)
 		)
 		(uuid "99ad73f5-22c2-4f5e-b20a-3fe881d36eb0")
+	)
+	(wire
+		(pts
+			(xy 269.24 142.24) (xy 288.29 142.24)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "9ac1c9a8-e576-42e7-b9ff-c87171683e6e")
 	)
 	(wire
 		(pts
@@ -10874,6 +10967,16 @@
 	)
 	(wire
 		(pts
+			(xy 269.24 144.78) (xy 284.48 144.78)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b0aa581b-4d8e-4aa2-b223-548a0822387a")
+	)
+	(wire
+		(pts
 			(xy 269.24 265.43) (xy 281.94 265.43)
 		)
 		(stroke
@@ -11284,16 +11387,6 @@
 	)
 	(wire
 		(pts
-			(xy 231.14 139.7) (xy 247.65 139.7)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "c70573f5-c5e4-40ff-a3e3-dd5996c38e12")
-	)
-	(wire
-		(pts
 			(xy 381 81.28) (xy 381 86.36)
 		)
 		(stroke
@@ -11481,6 +11574,16 @@
 			(type default)
 		)
 		(uuid "d04a316f-0b7a-486c-ae8e-97904259e7aa")
+	)
+	(wire
+		(pts
+			(xy 218.44 252.73) (xy 218.44 255.27)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d1e4c354-5596-41b6-9bd1-ca67f0626c38")
 	)
 	(wire
 		(pts
@@ -12141,16 +12244,6 @@
 			(type default)
 		)
 		(uuid "f1cbe961-52d3-48a6-b5b4-1b6492ee2f7a")
-	)
-	(wire
-		(pts
-			(xy 229.87 144.78) (xy 247.65 144.78)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "f25c7d2c-aeb0-4e30-a138-1afa64c04308")
 	)
 	(wire
 		(pts
@@ -19109,7 +19202,7 @@
 		)
 	)
 	(symbol
-		(lib_id "Buck converter:ME3116")
+		(lib_id "BHL_S1_CUSTOMED:ME3116")
 		(at 259.08 205.74 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -19118,7 +19211,7 @@
 		(dnp no)
 		(uuid "652e0373-a7d7-42b4-8e09-196a6676229c")
 		(property "Reference" "ME3116"
-			(at 259.334 211.074 0)
+			(at 259.08 212.09 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -19161,22 +19254,22 @@
 				(hide yes)
 			)
 		)
-		(pin "6"
+		(pin ""
 			(uuid "54302c4b-b5bb-4813-871f-898156321df6")
 		)
-		(pin "3"
+		(pin ""
 			(uuid "926f3cc1-4afb-492d-b098-7e09cf491634")
 		)
-		(pin "2"
+		(pin ""
 			(uuid "4495b020-c72c-45f7-a9ec-b713462ebef7")
 		)
-		(pin "1"
+		(pin ""
 			(uuid "267a7064-9700-41c7-876b-b8c8fe829bb5")
 		)
-		(pin "5"
+		(pin ""
 			(uuid "40bd9fb9-7937-4f94-85b2-7b363a3a910c")
 		)
-		(pin "4"
+		(pin ""
 			(uuid "5ccc8d52-d0b1-4038-a3ef-5fb6de3f8be5")
 		)
 		(instances
@@ -19934,17 +20027,16 @@
 		)
 	)
 	(symbol
-		(lib_id "Buck converter:TCAN1051HGVDR")
-		(at 257.81 143.51 0)
+		(lib_id "BHL_S1_CUSTOMED:TCAN1051HGVDR")
+		(at 254 143.51 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(fields_autoplaced yes)
 		(uuid "749ee924-f30f-4bbb-b4e8-4762597e2f2a")
 		(property "Reference" "TCAN1051HGVDR1"
-			(at 257.81 133.35 0)
+			(at 258.064 134.62 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -19952,7 +20044,7 @@
 			)
 		)
 		(property "Value" "~"
-			(at 257.81 133.35 0)
+			(at 254 133.35 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -19961,7 +20053,7 @@
 			)
 		)
 		(property "Footprint" "Footprint for BHL S1:SOIC127P600X175-8N_CAN"
-			(at 257.81 143.51 0)
+			(at 254 143.51 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -19970,7 +20062,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 257.81 143.51 0)
+			(at 254 143.51 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -19979,7 +20071,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 257.81 143.51 0)
+			(at 254 143.51 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -26231,7 +26323,7 @@
 		)
 	)
 	(symbol
-		(lib_id "Buck converter:AS5600")
+		(lib_id "BHL_S1_CUSTOMED:AS5600")
 		(at 207.01 259.08 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -26241,7 +26333,7 @@
 		(fields_autoplaced yes)
 		(uuid "f957e1f6-68e8-4b70-bddd-cf0aa0e927bb")
 		(property "Reference" "AS5600"
-			(at 207.01 266.192 0)
+			(at 207.01 251.46 0)
 			(effects
 				(font
 					(size 1.27 1.27)

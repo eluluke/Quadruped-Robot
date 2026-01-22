@@ -63,7 +63,7 @@
 			)
 		)
 		(symbol "AS5600_1_1"
-			(pin input line
+			(pin power_in line
 				(at -10.16 3.81 0)
 				(length 2.54)
 				(name "VDD5V"
@@ -81,7 +81,7 @@
 					)
 				)
 			)
-			(pin input line
+			(pin power_in line
 				(at -10.16 1.27 0)
 				(length 2.54)
 				(name "VDD3V3"
@@ -117,7 +117,7 @@
 					)
 				)
 			)
-			(pin output line
+			(pin power_in line
 				(at -10.16 -3.81 0)
 				(length 2.54)
 				(name "GND"
@@ -135,7 +135,7 @@
 					)
 				)
 			)
-			(pin no_connect line
+			(pin input line
 				(at 10.16 3.81 180)
 				(length 2.54)
 				(name "DIR"
@@ -200,6 +200,142 @@
 					)
 				)
 				(number "5"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+		)
+		(embedded_fonts no)
+	)
+	(symbol "Header_2X2H"
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(property "Reference" "Header2X2H"
+			(at 0.254 -5.08 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" ""
+			(at 0 0 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 0 0 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 0 0 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 0 0 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(symbol "Header_2X2H_0_1"
+			(rectangle
+				(start -5.08 3.81)
+				(end 5.08 -3.81)
+				(stroke
+					(width 0)
+					(type default)
+				)
+				(fill
+					(type background)
+				)
+			)
+		)
+		(symbol "Header_2X2H_1_1"
+			(pin input line
+				(at -7.62 2.54 0)
+				(length 2.54)
+				(name "1"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number ""
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin input line
+				(at -7.62 -2.54 0)
+				(length 2.54)
+				(name "3"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number ""
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin input line
+				(at 7.62 2.54 180)
+				(length 2.54)
+				(name "2"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number ""
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin input line
+				(at 7.62 -2.54 180)
+				(length 2.54)
+				(name "4"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number ""
 					(effects
 						(font
 							(size 1.27 1.27)
@@ -1096,7 +1232,7 @@
 					)
 				)
 			)
-			(pin output line
+			(pin power_in line
 				(at -10.16 0 0)
 				(length 2.54)
 				(name "GND"
@@ -1358,7 +1494,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(property "Reference" "TCAN1051HGVDR"
-			(at 0.254 5.334 0)
+			(at 4.318 8.89 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1402,7 +1538,7 @@
 		)
 		(symbol "TCAN1051HGVDR_0_1"
 			(rectangle
-				(start -12.7 7.62)
+				(start -3.81 7.62)
 				(end 12.7 -6.35)
 				(stroke
 					(width 0)
@@ -1414,8 +1550,8 @@
 			)
 		)
 		(symbol "TCAN1051HGVDR_1_1"
-			(pin output line
-				(at -15.24 3.81 0)
+			(pin power_in line
+				(at -6.35 3.81 0)
 				(length 2.54)
 				(name "VCC"
 					(effects
@@ -1433,7 +1569,7 @@
 				)
 			)
 			(pin input line
-				(at -15.24 1.27 0)
+				(at -6.35 1.27 0)
 				(length 2.54)
 				(name "RXD"
 					(effects
@@ -1450,8 +1586,8 @@
 					)
 				)
 			)
-			(pin input line
-				(at -15.24 -1.27 0)
+			(pin output line
+				(at -6.35 -1.27 0)
 				(length 2.54)
 				(name "TXD"
 					(effects
@@ -1468,8 +1604,8 @@
 					)
 				)
 			)
-			(pin output line
-				(at -15.24 -3.81 0)
+			(pin power_in line
+				(at -6.35 -3.81 0)
 				(length 2.54)
 				(name "GND"
 					(effects
@@ -1486,7 +1622,7 @@
 					)
 				)
 			)
-			(pin output line
+			(pin power_out line
 				(at 15.24 3.81 180)
 				(length 2.54)
 				(name "STB"
