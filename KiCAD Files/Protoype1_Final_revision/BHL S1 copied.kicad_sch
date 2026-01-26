@@ -9,6 +9,208 @@
 		(date "2026-01-08")
 	)
 	(lib_symbols
+		(symbol "39-30-1042_1"
+			(pin_names
+				(offset 0.762)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "J1"
+				(at 10.16 7.62 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "39-30-1042"
+				(at 10.16 5.08 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" "39-30-104Y"
+				(at 16.51 2.54 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" "https://www.molex.com/pdm_docs/sd/039300020_sd.pdf"
+				(at 16.51 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+					(hide yes)
+				)
+			)
+			(property "Description" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description_1" "Mini-Fit Jr. Header, Dual Row, Right-Angle, with Snap-in Plastic Peg PCB Lock, 4 Circuits, PA Polyamide Nylon 6/6 94V-0"
+				(at 16.51 -2.54 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+					(hide yes)
+				)
+			)
+			(property "Height" "10"
+				(at 16.51 -5.08 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+					(hide yes)
+				)
+			)
+			(property "Mouser Part Number" "538-39-30-1042"
+				(at 16.51 -7.62 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+					(hide yes)
+				)
+			)
+			(property "Mouser Price/Stock" "https://www.mouser.co.uk/ProductDetail/Molex/39-30-1042?qs=tRPrwvvr%2FuiS4KdYFVgguA%3D%3D"
+				(at 16.51 -10.16 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+					(hide yes)
+				)
+			)
+			(property "Manufacturer_Name" "Molex"
+				(at 16.51 -12.7 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+					(hide yes)
+				)
+			)
+			(property "Manufacturer_Part_Number" "39-30-1042"
+				(at 16.51 -15.24 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+					(hide yes)
+				)
+			)
+			(symbol "39-30-1042_1_0_0"
+				(pin passive line
+					(at 0 0 0)
+					(length 5.08)
+					(name "4"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "4"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 0 -2.54 0)
+					(length 5.08)
+					(name "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 20.32 0 180)
+					(length 5.08)
+					(name "3"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "3"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 20.32 -2.54 180)
+					(length 5.08)
+					(name "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(symbol "39-30-1042_1_0_1"
+				(polyline
+					(pts
+						(xy 5.08 2.54) (xy 15.24 2.54) (xy 15.24 -5.08) (xy 5.08 -5.08) (xy 5.08 2.54)
+					)
+					(stroke
+						(width 0.1524)
+						(type solid)
+					)
+					(fill
+						(type background)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
 		(symbol "BHLS1_3PHASE_DRIVER:IR2136STRPBF"
 			(pin_names
 				(offset 0.762)
@@ -1499,23 +1701,24 @@
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
-			(property "Reference" "U"
-				(at 0 0 0)
+			(property "Reference" "ME3116"
+				(at 0 -6.35 0)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
 				)
 			)
-			(property "Value" ""
-				(at 0 0 0)
+			(property "Value" "~"
+				(at 0 -1.27 0)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
+					(hide yes)
 				)
 			)
-			(property "Footprint" ""
+			(property "Footprint" "Footprint for BHL S1:ME3116AM6G_Regulator"
 				(at 0 0 0)
 				(effects
 					(font
@@ -1543,100 +1746,15 @@
 				)
 			)
 			(symbol "ME3116_0_1"
-				(polyline
-					(pts
-						(xy -7.62 3.81) (xy -7.62 -3.81)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy -6.35 -5.08) (xy 6.35 -5.08)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(arc
+				(rectangle
 					(start -7.62 3.81)
-					(mid -7.248 4.708)
-					(end -6.35 5.08)
+					(end 7.62 -3.81)
 					(stroke
 						(width 0)
 						(type default)
 					)
 					(fill
-						(type none)
-					)
-				)
-				(arc
-					(start -6.35 -5.08)
-					(mid -7.248 -4.708)
-					(end -7.62 -3.81)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 6.35 5.08) (xy -6.35 5.08)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(arc
-					(start 6.35 5.08)
-					(mid 7.248 4.708)
-					(end 7.62 3.81)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(arc
-					(start 7.62 -3.81)
-					(mid 7.248 -4.708)
-					(end 6.35 -5.08)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 7.62 -3.81) (xy 7.62 3.81)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
+						(type background)
 					)
 				)
 			)
@@ -1651,7 +1769,7 @@
 							)
 						)
 					)
-					(number ""
+					(number "1"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -1669,7 +1787,7 @@
 							)
 						)
 					)
-					(number ""
+					(number "2"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -1687,7 +1805,7 @@
 							)
 						)
 					)
-					(number ""
+					(number "3"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -1705,7 +1823,7 @@
 							)
 						)
 					)
-					(number ""
+					(number "6"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -1723,7 +1841,7 @@
 							)
 						)
 					)
-					(number ""
+					(number "5"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -1741,7 +1859,7 @@
 							)
 						)
 					)
-					(number ""
+					(number "4"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -2940,143 +3058,6 @@
 						)
 					)
 					(number "5"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-			)
-			(embedded_fonts no)
-		)
-		(symbol "Buck converter:Header_2X2H"
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(property "Reference" "Header2X2H1"
-				(at 0.254 -5.334 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Value" "~"
-				(at 0 6.35 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_2x02_P2.54mm_Vertical"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Datasheet" ""
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Description" ""
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(symbol "Header_2X2H_0_1"
-				(rectangle
-					(start -5.08 3.81)
-					(end 5.08 -3.81)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type background)
-					)
-				)
-			)
-			(symbol "Header_2X2H_1_1"
-				(pin input line
-					(at -7.62 2.54 0)
-					(length 2.54)
-					(name "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin input line
-					(at -7.62 -2.54 0)
-					(length 2.54)
-					(name "3"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "3"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin input line
-					(at 7.62 2.54 180)
-					(length 2.54)
-					(name "2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin input line
-					(at 7.62 -2.54 180)
-					(length 2.54)
-					(name "4"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "4"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -4737,143 +4718,6 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "Header_2X2H_1"
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(property "Reference" "Header2X2H2"
-				(at 0.254 -5.334 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Value" "~"
-				(at 0 6.35 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_2x02_P2.54mm_Vertical"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Datasheet" ""
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Description" ""
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(symbol "Header_2X2H_1_0_1"
-				(rectangle
-					(start -5.08 3.81)
-					(end 5.08 -3.81)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type background)
-					)
-				)
-			)
-			(symbol "Header_2X2H_1_1_1"
-				(pin input line
-					(at -7.62 2.54 0)
-					(length 2.54)
-					(name "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin input line
-					(at -7.62 -2.54 0)
-					(length 2.54)
-					(name "3"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "3"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin input line
-					(at 7.62 2.54 180)
-					(length 2.54)
-					(name "2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin input line
-					(at 7.62 -2.54 180)
-					(length 2.54)
-					(name "4"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "4"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-			)
-			(embedded_fonts no)
-		)
 		(symbol "NUP2105LT1G_1"
 			(pin_names
 				(offset 0.762)
@@ -5402,6 +5246,208 @@
 								(size 1.27 1.27)
 							)
 						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
+		(symbol "Terminator:39-30-1042"
+			(pin_names
+				(offset 0.762)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "J4"
+				(at 10.16 7.62 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "39-30-1042"
+				(at 10.16 5.08 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" "39-30-104Y"
+				(at 16.51 2.54 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" "https://www.molex.com/pdm_docs/sd/039300020_sd.pdf"
+				(at 16.51 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+					(hide yes)
+				)
+			)
+			(property "Description" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description_1" "Mini-Fit Jr. Header, Dual Row, Right-Angle, with Snap-in Plastic Peg PCB Lock, 4 Circuits, PA Polyamide Nylon 6/6 94V-0"
+				(at 16.51 -2.54 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+					(hide yes)
+				)
+			)
+			(property "Height" "10"
+				(at 16.51 -5.08 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+					(hide yes)
+				)
+			)
+			(property "Mouser Part Number" "538-39-30-1042"
+				(at 16.51 -7.62 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+					(hide yes)
+				)
+			)
+			(property "Mouser Price/Stock" "https://www.mouser.co.uk/ProductDetail/Molex/39-30-1042?qs=tRPrwvvr%2FuiS4KdYFVgguA%3D%3D"
+				(at 16.51 -10.16 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+					(hide yes)
+				)
+			)
+			(property "Manufacturer_Name" "Molex"
+				(at 16.51 -12.7 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+					(hide yes)
+				)
+			)
+			(property "Manufacturer_Part_Number" "39-30-1042"
+				(at 16.51 -15.24 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+					(hide yes)
+				)
+			)
+			(symbol "39-30-1042_0_0"
+				(pin passive line
+					(at 0 0 0)
+					(length 5.08)
+					(name "4"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "4"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 0 -2.54 0)
+					(length 5.08)
+					(name "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 20.32 0 180)
+					(length 5.08)
+					(name "3"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "3"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 20.32 -2.54 180)
+					(length 5.08)
+					(name "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(symbol "39-30-1042_0_1"
+				(polyline
+					(pts
+						(xy 5.08 2.54) (xy 15.24 2.54) (xy 15.24 -5.08) (xy 5.08 -5.08) (xy 5.08 2.54)
+					)
+					(stroke
+						(width 0.1524)
+						(type solid)
+					)
+					(fill
+						(type background)
 					)
 				)
 			)
@@ -7284,13 +7330,23 @@
 	)
 	(wire
 		(pts
-			(xy 387.35 224.79) (xy 387.35 226.06)
+			(xy 387.35 212.09) (xy 387.35 213.36)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
 		(uuid "08b4a6e5-8301-43dc-a195-2cbc381683ba")
+	)
+	(wire
+		(pts
+			(xy 340.36 240.03) (xy 340.36 242.57)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "0904bd45-318f-4c41-ab29-1eaf29b088ad")
 	)
 	(wire
 		(pts
@@ -7674,7 +7730,7 @@
 	)
 	(wire
 		(pts
-			(xy 382.27 222.25) (xy 387.35 222.25)
+			(xy 382.27 209.55) (xy 387.35 209.55)
 		)
 		(stroke
 			(width 0)
@@ -7894,7 +7950,7 @@
 	)
 	(wire
 		(pts
-			(xy 339.09 218.44) (xy 318.77 218.44)
+			(xy 336.55 219.71) (xy 330.2 219.71)
 		)
 		(stroke
 			(width 0)
@@ -7944,7 +8000,7 @@
 	)
 	(wire
 		(pts
-			(xy 354.33 223.52) (xy 360.68 223.52)
+			(xy 356.87 222.25) (xy 359.41 222.25)
 		)
 		(stroke
 			(width 0)
@@ -9404,7 +9460,7 @@
 	)
 	(wire
 		(pts
-			(xy 387.35 226.06) (xy 389.89 226.06)
+			(xy 387.35 213.36) (xy 389.89 213.36)
 		)
 		(stroke
 			(width 0)
@@ -9541,6 +9597,16 @@
 			(type default)
 		)
 		(uuid "89cfe145-e568-405a-b937-787015997bd4")
+	)
+	(wire
+		(pts
+			(xy 360.68 241.3) (xy 360.68 240.03)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "8a35f9bc-7d38-415d-9914-e6682b2cefbe")
 	)
 	(wire
 		(pts
@@ -10014,7 +10080,7 @@
 	)
 	(wire
 		(pts
-			(xy 354.33 218.44) (xy 361.95 218.44)
+			(xy 356.87 219.71) (xy 360.68 219.71)
 		)
 		(stroke
 			(width 0)
@@ -10604,7 +10670,7 @@
 	)
 	(wire
 		(pts
-			(xy 382.27 224.79) (xy 387.35 224.79)
+			(xy 382.27 212.09) (xy 387.35 212.09)
 		)
 		(stroke
 			(width 0)
@@ -10664,7 +10730,7 @@
 	)
 	(wire
 		(pts
-			(xy 382.27 219.71) (xy 387.35 219.71)
+			(xy 382.27 207.01) (xy 387.35 207.01)
 		)
 		(stroke
 			(width 0)
@@ -10684,7 +10750,7 @@
 	)
 	(wire
 		(pts
-			(xy 318.77 218.44) (xy 318.77 215.9)
+			(xy 330.2 219.71) (xy 330.2 218.44)
 		)
 		(stroke
 			(width 0)
@@ -10904,6 +10970,16 @@
 	)
 	(wire
 		(pts
+			(xy 367.03 241.3) (xy 360.68 241.3)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "cd99350a-4bbf-413d-85fe-4978c2036637")
+	)
+	(wire
+		(pts
 			(xy 107.95 248.92) (xy 114.3 248.92)
 		)
 		(stroke
@@ -11051,16 +11127,6 @@
 			(type default)
 		)
 		(uuid "d6eb6e64-76cc-44e5-abec-a5cf4b013806")
-	)
-	(wire
-		(pts
-			(xy 355.6 242.57) (xy 361.95 242.57)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "d6fa9751-44ee-4f51-9a7f-d98d3aeec2b4")
 	)
 	(wire
 		(pts
@@ -11234,7 +11300,7 @@
 	)
 	(wire
 		(pts
-			(xy 387.35 219.71) (xy 387.35 218.44)
+			(xy 387.35 207.01) (xy 387.35 205.74)
 		)
 		(stroke
 			(width 0)
@@ -11454,7 +11520,7 @@
 	)
 	(wire
 		(pts
-			(xy 323.85 237.49) (xy 325.12 237.49)
+			(xy 318.77 237.49) (xy 325.12 237.49)
 		)
 		(stroke
 			(width 0)
@@ -11494,7 +11560,7 @@
 	)
 	(wire
 		(pts
-			(xy 387.35 218.44) (xy 389.89 218.44)
+			(xy 387.35 205.74) (xy 389.89 205.74)
 		)
 		(stroke
 			(width 0)
@@ -11674,7 +11740,7 @@
 	)
 	(wire
 		(pts
-			(xy 355.6 237.49) (xy 363.22 237.49)
+			(xy 360.68 237.49) (xy 368.3 237.49)
 		)
 		(stroke
 			(width 0)
@@ -11804,7 +11870,7 @@
 	)
 	(wire
 		(pts
-			(xy 334.01 223.52) (xy 339.09 223.52)
+			(xy 331.47 222.25) (xy 336.55 222.25)
 		)
 		(stroke
 			(width 0)
@@ -12148,7 +12214,7 @@
 	)
 	(global_label "SWCLK"
 		(shape input)
-		(at 389.89 218.44 0)
+		(at 389.89 205.74 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -12158,7 +12224,7 @@
 		)
 		(uuid "210c8353-de1d-4550-ab33-0f108ab6ef3a")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 399.1042 218.44 0)
+			(at 399.1042 205.74 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -13006,7 +13072,7 @@
 	)
 	(global_label "CAN_L"
 		(shape input)
-		(at 360.68 223.52 0)
+		(at 359.41 222.25 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -13016,7 +13082,7 @@
 		)
 		(uuid "9bb78790-8a0a-4abf-bd5d-14056bcccbf5")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 369.35 223.52 0)
+			(at 368.08 222.25 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -13050,7 +13116,7 @@
 	)
 	(global_label "CAN_H"
 		(shape input)
-		(at 334.01 223.52 180)
+		(at 331.47 222.25 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -13060,7 +13126,7 @@
 		)
 		(uuid "a2a5cdbd-a00a-4efe-b644-a21dd8219df0")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 325.0376 223.52 0)
+			(at 322.4976 222.25 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -13248,7 +13314,7 @@
 	)
 	(global_label "CAN_L"
 		(shape input)
-		(at 361.95 242.57 0)
+		(at 367.03 241.3 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -13258,7 +13324,7 @@
 		)
 		(uuid "c55c15ca-69a8-4428-b28b-e718cfc2a9ed")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 370.62 242.57 0)
+			(at 375.7 241.3 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -13270,7 +13336,7 @@
 	)
 	(global_label "SWDIO"
 		(shape input)
-		(at 389.89 226.06 0)
+		(at 389.89 213.36 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -13280,7 +13346,7 @@
 		)
 		(uuid "ce44264e-6f49-44ce-86c9-842e70eceb58")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 398.7414 226.06 0)
+			(at 398.7414 213.36 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -14451,7 +14517,7 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 363.22 237.49 90)
+		(at 368.3 237.49 90)
 		(mirror x)
 		(unit 1)
 		(exclude_from_sim no)
@@ -14460,7 +14526,7 @@
 		(dnp no)
 		(uuid "18e6e6e0-f877-49b5-95fb-acb19c7ef8b6")
 		(property "Reference" "#PWR047"
-			(at 369.57 237.49 0)
+			(at 374.65 237.49 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -14469,7 +14535,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 366.014 237.49 90)
+			(at 371.094 237.49 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -14478,7 +14544,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 363.22 237.49 0)
+			(at 368.3 237.49 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -14487,7 +14553,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 363.22 237.49 0)
+			(at 368.3 237.49 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -14496,7 +14562,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 363.22 237.49 0)
+			(at 368.3 237.49 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -15650,7 +15716,7 @@
 	)
 	(symbol
 		(lib_id "power:VCC")
-		(at 323.85 237.49 90)
+		(at 318.77 237.49 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -15658,7 +15724,7 @@
 		(dnp no)
 		(uuid "34acc173-97eb-4aca-a0d0-5fad7077e1b2")
 		(property "Reference" "#PWR065"
-			(at 327.66 237.49 0)
+			(at 318.77 241.3 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -15667,7 +15733,7 @@
 			)
 		)
 		(property "Value" "VCC_IN_22V"
-			(at 321.31 237.49 90)
+			(at 318.77 234.95 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -15676,7 +15742,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 323.85 237.49 0)
+			(at 318.77 237.49 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -15685,7 +15751,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 323.85 237.49 0)
+			(at 318.77 237.49 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -15694,7 +15760,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"VCC\""
-			(at 323.85 237.49 0)
+			(at 318.77 237.49 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -16047,81 +16113,6 @@
 			(project "BHL S1 copied"
 				(path "/0363b2da-c10c-4051-b2e0-f0863b63e8b4"
 					(reference "R10")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_name "Header_2X2H_1")
-		(lib_id "Buck converter:Header_2X2H")
-		(at 347.98 240.03 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "3b117b64-3af1-4053-abb4-aa7740415c2c")
-		(property "Reference" "Header2X2H2"
-			(at 348.234 245.364 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "~"
-			(at 347.98 233.68 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_2x02_P2.54mm_Vertical"
-			(at 347.98 240.03 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 347.98 240.03 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" ""
-			(at 347.98 240.03 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "d6e2959d-4dc1-4704-8573-0cfc170dbefd")
-		)
-		(pin "3"
-			(uuid "51ea53f2-869e-441a-8bf5-af26fd330211")
-		)
-		(pin "4"
-			(uuid "6b87eed3-77e6-4a75-a7cf-35755303cbbb")
-		)
-		(pin "2"
-			(uuid "8d3e4ee2-3a45-4787-8427-b71b461ba7ba")
-		)
-		(instances
-			(project "BHL S1 copied"
-				(path "/0363b2da-c10c-4051-b2e0-f0863b63e8b4"
-					(reference "Header2X2H2")
 					(unit 1)
 				)
 			)
@@ -16995,7 +16986,7 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 361.95 218.44 90)
+		(at 360.68 219.71 90)
 		(mirror x)
 		(unit 1)
 		(exclude_from_sim no)
@@ -17004,7 +16995,7 @@
 		(dnp no)
 		(uuid "4e6d029e-a9fa-4340-911e-869a9ddf6c33")
 		(property "Reference" "#PWR034"
-			(at 368.3 218.44 0)
+			(at 367.03 219.71 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -17013,7 +17004,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 364.744 218.44 90)
+			(at 363.474 219.71 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -17022,7 +17013,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 361.95 218.44 0)
+			(at 360.68 219.71 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -17031,7 +17022,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 361.95 218.44 0)
+			(at 360.68 219.71 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -17040,7 +17031,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 361.95 218.44 0)
+			(at 360.68 219.71 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -17062,7 +17053,7 @@
 	)
 	(symbol
 		(lib_id "power:VCC")
-		(at 318.77 215.9 0)
+		(at 330.2 218.44 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -17071,7 +17062,7 @@
 		(fields_autoplaced yes)
 		(uuid "4e8a7d36-e52f-45cc-8a61-6ad7a021de0d")
 		(property "Reference" "#PWR063"
-			(at 318.77 219.71 0)
+			(at 330.2 222.25 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -17080,7 +17071,7 @@
 			)
 		)
 		(property "Value" "VCC_IN_22V"
-			(at 318.77 210.82 0)
+			(at 330.2 213.36 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -17088,7 +17079,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 318.77 215.9 0)
+			(at 330.2 218.44 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -17097,7 +17088,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 318.77 215.9 0)
+			(at 330.2 218.44 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -17106,7 +17097,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"VCC\""
-			(at 318.77 215.9 0)
+			(at 330.2 218.44 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -18178,22 +18169,22 @@
 				(hide yes)
 			)
 		)
-		(pin ""
+		(pin "6"
 			(uuid "54302c4b-b5bb-4813-871f-898156321df6")
 		)
-		(pin ""
+		(pin "3"
 			(uuid "926f3cc1-4afb-492d-b098-7e09cf491634")
 		)
-		(pin ""
+		(pin "1"
 			(uuid "4495b020-c72c-45f7-a9ec-b713462ebef7")
 		)
-		(pin ""
+		(pin "2"
 			(uuid "267a7064-9700-41c7-876b-b8c8fe829bb5")
 		)
-		(pin ""
+		(pin "5"
 			(uuid "40bd9fb9-7937-4f94-85b2-7b363a3a910c")
 		)
-		(pin ""
+		(pin "4"
 			(uuid "5ccc8d52-d0b1-4038-a3ef-5fb6de3f8be5")
 		)
 		(instances
@@ -19512,7 +19503,7 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 387.35 222.25 90)
+		(at 387.35 209.55 90)
 		(mirror x)
 		(unit 1)
 		(exclude_from_sim no)
@@ -19521,7 +19512,7 @@
 		(dnp no)
 		(uuid "86bbe794-3a32-446b-aa44-74a916ea80a4")
 		(property "Reference" "#PWR048"
-			(at 393.7 222.25 0)
+			(at 393.7 209.55 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -19530,7 +19521,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 390.144 222.25 90)
+			(at 390.144 209.55 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -19539,7 +19530,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 387.35 222.25 0)
+			(at 387.35 209.55 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -19548,7 +19539,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 387.35 222.25 0)
+			(at 387.35 209.55 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -19557,7 +19548,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 387.35 222.25 0)
+			(at 387.35 209.55 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -20258,7 +20249,7 @@
 	)
 	(symbol
 		(lib_id "Connector:Conn_01x03_Pin")
-		(at 377.19 222.25 0)
+		(at 377.19 209.55 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -20267,7 +20258,7 @@
 		(fields_autoplaced yes)
 		(uuid "8fb7c61a-ad92-495b-8e9e-2079716dbdcd")
 		(property "Reference" "J2"
-			(at 377.825 214.63 0)
+			(at 377.825 201.93 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -20275,7 +20266,7 @@
 			)
 		)
 		(property "Value" "Conn_01x03_Pin"
-			(at 377.825 217.17 0)
+			(at 377.825 204.47 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -20283,7 +20274,7 @@
 			)
 		)
 		(property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical"
-			(at 377.19 222.25 0)
+			(at 377.19 209.55 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -20292,7 +20283,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 377.19 222.25 0)
+			(at 377.19 209.55 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -20301,7 +20292,7 @@
 			)
 		)
 		(property "Description" "Generic connector, single row, 01x03, script generated"
-			(at 377.19 222.25 0)
+			(at 377.19 209.55 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -21066,6 +21057,142 @@
 			(project "BHL S1 copied"
 				(path "/0363b2da-c10c-4051-b2e0-f0863b63e8b4"
 					(reference "R14")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Terminator:39-30-1042")
+		(at 340.36 237.49 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "992c17a1-08cf-443d-8f30-ef161347003b")
+		(property "Reference" "J4"
+			(at 350.52 229.87 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "39-30-1042"
+			(at 350.52 232.41 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Footprint for BHL S1:Terminator"
+			(at 356.87 234.95 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "https://www.molex.com/pdm_docs/sd/039300020_sd.pdf"
+			(at 356.87 237.49 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 340.36 237.49 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description_1" "Mini-Fit Jr. Header, Dual Row, Right-Angle, with Snap-in Plastic Peg PCB Lock, 4 Circuits, PA Polyamide Nylon 6/6 94V-0"
+			(at 356.87 240.03 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "Height" "10"
+			(at 356.87 242.57 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "Mouser Part Number" "538-39-30-1042"
+			(at 356.87 245.11 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "Mouser Price/Stock" "https://www.mouser.co.uk/ProductDetail/Molex/39-30-1042?qs=tRPrwvvr%2FuiS4KdYFVgguA%3D%3D"
+			(at 356.87 247.65 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Name" "Molex"
+			(at 356.87 250.19 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "39-30-1042"
+			(at 356.87 252.73 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "50d85dbb-e6a0-49d9-bd21-c33fbf105d0b")
+		)
+		(pin "4"
+			(uuid "b8a60102-d539-42cf-8049-1861e95ba062")
+		)
+		(pin "3"
+			(uuid "6f2b6a73-f153-4d6a-88b3-d0ebe306426a")
+		)
+		(pin "1"
+			(uuid "f5125997-f231-476a-b249-71e6286c847d")
+		)
+		(instances
+			(project "BHL S1 copied"
+				(path "/0363b2da-c10c-4051-b2e0-f0863b63e8b4"
+					(reference "J4")
 					(unit 1)
 				)
 			)
@@ -22048,80 +22175,6 @@
 			(project "BHL S1 copied"
 				(path "/0363b2da-c10c-4051-b2e0-f0863b63e8b4"
 					(reference "#PWR014")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Buck converter:Header_2X2H")
-		(at 346.71 220.98 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "ae6ea66e-88af-4bed-95b9-9715c14adc5b")
-		(property "Reference" "Header2X2H1"
-			(at 346.964 226.314 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "~"
-			(at 346.71 214.63 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_2x02_P2.54mm_Vertical"
-			(at 346.71 220.98 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 346.71 220.98 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" ""
-			(at 346.71 220.98 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "2"
-			(uuid "86ea24ab-e982-4baf-b124-d69f847cb42e")
-		)
-		(pin "4"
-			(uuid "eb77ab6b-e0e1-4cba-b4ee-97787e2d35de")
-		)
-		(pin "1"
-			(uuid "2a5efe37-81ba-44fa-9b55-f924dd47c836")
-		)
-		(pin "3"
-			(uuid "7f27d96a-9b2f-49ed-bc1d-5e566d089efe")
-		)
-		(instances
-			(project ""
-				(path "/0363b2da-c10c-4051-b2e0-f0863b63e8b4"
-					(reference "Header2X2H1")
 					(unit 1)
 				)
 			)
@@ -24642,6 +24695,143 @@
 			(project "BHL S1 copied"
 				(path "/0363b2da-c10c-4051-b2e0-f0863b63e8b4"
 					(reference "C3")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_name "39-30-1042_1")
+		(lib_id "Terminator:39-30-1042")
+		(at 336.55 219.71 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "e2fc81ec-728a-4ca3-ba90-d63e15c76b14")
+		(property "Reference" "J1"
+			(at 346.71 212.09 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "39-30-1042"
+			(at 346.71 214.63 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Footprint for BHL S1:Terminator"
+			(at 353.06 217.17 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "https://www.molex.com/pdm_docs/sd/039300020_sd.pdf"
+			(at 353.06 219.71 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 336.55 219.71 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description_1" "Mini-Fit Jr. Header, Dual Row, Right-Angle, with Snap-in Plastic Peg PCB Lock, 4 Circuits, PA Polyamide Nylon 6/6 94V-0"
+			(at 353.06 222.25 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "Height" "10"
+			(at 353.06 224.79 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "Mouser Part Number" "538-39-30-1042"
+			(at 353.06 227.33 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "Mouser Price/Stock" "https://www.mouser.co.uk/ProductDetail/Molex/39-30-1042?qs=tRPrwvvr%2FuiS4KdYFVgguA%3D%3D"
+			(at 353.06 229.87 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Name" "Molex"
+			(at 353.06 232.41 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "39-30-1042"
+			(at 353.06 234.95 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "a23b5fa9-ec04-4bf5-9814-fb67f56b865b")
+		)
+		(pin "4"
+			(uuid "1b0fd7c1-47dc-4eb2-83b1-bd903139d797")
+		)
+		(pin "3"
+			(uuid "2cc188de-7fa2-4404-a3c9-a78763169528")
+		)
+		(pin "1"
+			(uuid "71c40f7d-e96c-4f17-ab78-bc295c65ff9a")
+		)
+		(instances
+			(project ""
+				(path "/0363b2da-c10c-4051-b2e0-f0863b63e8b4"
+					(reference "J1")
 					(unit 1)
 				)
 			)
