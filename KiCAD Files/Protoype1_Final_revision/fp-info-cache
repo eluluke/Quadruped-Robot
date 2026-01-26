@@ -1,4 +1,4 @@
-26740154480983724
+26740154827613998
 Audio_Module
 Reverb_BTDR-1H
 Digital Reverberation Unit, http://www.belton.co.kr/inc/downfile.php?seq=17&file=pdf (footprint from http://www.uk-electronic.de/PDF/BTDR-1.pdf)
@@ -61621,8 +61621,8 @@ MOSFET (P-Channel)
 9
 9
 Footprint for BHL S1
-CSTNE8M00G520000R0_Resonator
-CSTNE8M00G520000R0-2
+CSTNE8M00G55Z000R0_Resonator
+CSTNE8M00G55Z000R0-2
 Crystal or Oscillator
 0
 3

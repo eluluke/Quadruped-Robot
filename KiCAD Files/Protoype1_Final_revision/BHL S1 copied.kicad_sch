@@ -14743,7 +14743,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Footprint for BHL S1:CSTNE8M00G520000R0_Resonator"
+		(property "Footprint" "Footprint for BHL S1:CSTNE8M00G55Z000R0_Resonator"
 			(at 146.05 113.03 0)
 			(effects
 				(font
