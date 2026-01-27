@@ -8,10 +8,10 @@
 	)
 	(paper "A4")
 	(layers
-		(0 "F.Cu" signal)
-		(4 "In1.Cu" signal)
-		(6 "In2.Cu" signal)
-		(2 "B.Cu" signal)
+		(0 "F.Cu" mixed "Signal.Power1")
+		(4 "In1.Cu" power "GND")
+		(6 "In2.Cu" power "Power")
+		(2 "B.Cu" mixed "Signal.Power2")
 		(9 "F.Adhes" user "F.Adhesive")
 		(11 "B.Adhes" user "B.Adhesive")
 		(13 "F.Paste" user)
@@ -1966,7 +1966,7 @@
 		)
 		(fp_arc
 			(start -6.975 0)
-			(mid -6.95 -0.025001)
+			(mid -6.950001 -0.025001)
 			(end -6.925 0.000001)
 			(stroke
 				(width 0.05)
@@ -11111,11 +11111,11 @@
 	(footprint "Resistor_SMD:R_0402_1005Metric_Pad0.72x0.64mm_HandSolder"
 		(layer "F.Cu")
 		(uuid "68126364-e0b5-439a-b247-f8b08d11a0f4")
-		(at 211.3825 41.49)
+		(at 191.577504 66.422496 45)
 		(descr "Resistor SMD 0402 (1005 Metric), square (rectangular) end terminal, IPC-7351 nominal with elongated pad for handsoldering. (Body size source: IPC-SM-782 page 72, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf), generated with kicad-footprint-generator")
 		(tags "resistor handsolder")
 		(property "Reference" "R9"
-			(at 0 -1.17 0)
+			(at 0 -1.17 45)
 			(layer "F.SilkS")
 			(uuid "c68513c8-b9c8-46ff-8e18-39f82a63614f")
 			(effects
@@ -11126,7 +11126,7 @@
 			)
 		)
 		(property "Value" "1.5K"
-			(at 0 1.17 0)
+			(at 0 1.17 45)
 			(layer "F.Fab")
 			(uuid "6f221285-4a5a-489c-8d87-68ec3bf33b26")
 			(effects
@@ -11137,7 +11137,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 0 0 0)
+			(at 0 0 45)
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "b01d0acf-cf74-45e3-8200-a23d3d2414cc")
@@ -11149,7 +11149,7 @@
 			)
 		)
 		(property "Description" "Resistor"
-			(at 0 0 0)
+			(at 0 0 45)
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "0a26f31e-1710-4d33-ba34-c51a7bfa5581")
@@ -11166,8 +11166,8 @@
 		(sheetfile "BHL S1 copied.kicad_sch")
 		(attr smd)
 		(fp_line
-			(start -0.167621 -0.38)
-			(end 0.167621 -0.38)
+			(start -0.167621 -0.380001)
+			(end 0.167621 -0.380001)
 			(stroke
 				(width 0.12)
 				(type solid)
@@ -11176,8 +11176,8 @@
 			(uuid "27337f75-f43d-49d2-a1db-1ca1571047e4")
 		)
 		(fp_line
-			(start -0.167621 0.38)
-			(end 0.167621 0.38)
+			(start -0.167621 0.380001)
+			(end 0.167621 0.380001)
 			(stroke
 				(width 0.12)
 				(type solid)
@@ -11266,7 +11266,7 @@
 			(uuid "4a758f06-2c8d-45c2-ba25-538a9e367887")
 		)
 		(fp_text user "${REFERENCE}"
-			(at 0 0 0)
+			(at 0 0 45)
 			(layer "F.Fab")
 			(uuid "ff023c4a-c89e-4736-abd4-4ca404840043")
 			(effects
@@ -11277,7 +11277,7 @@
 			)
 		)
 		(pad "1" smd roundrect
-			(at -0.5975 0)
+			(at -0.5975 0 45)
 			(size 0.715 0.64)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.25)
@@ -11286,7 +11286,7 @@
 			(uuid "1abfe7e2-97eb-44e7-950c-201337f3eec3")
 		)
 		(pad "2" smd roundrect
-			(at 0.5975 0)
+			(at 0.5975 0 45)
 			(size 0.715 0.64)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.25)
@@ -13296,7 +13296,7 @@
 	(footprint "Footprint for BHL S1:3PHASE_GATE_DRIVER"
 		(layer "F.Cu")
 		(uuid "78af0675-ede0-4cc0-b5ca-52673f45c3b9")
-		(at 156.790772 57.373002 -45)
+		(at 151 58.75 -45)
 		(descr "28-LEAD SOIC")
 		(tags "Integrated Circuit")
 		(property "Reference" "IC3"
@@ -23221,7 +23221,7 @@
 			(uuid "c7c6e6c1-569f-4f0a-b2db-ced187b32f19")
 		)
 		(embedded_fonts no)
-		(model "C:/Users/jiaxi/Downloads/LIB_CSTNE8M00G55Z000R0/CSTNE8M00G55Z000R0/3D/CSTNE8M00G55Z000R0.stp"
+		(model "/Users/elijahrobinson/Documents/GitHub/Robot-Dog/KiCAD Files/3D models/CSTNE8M00G55Z000R0_Resonator.stp"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -25667,6 +25667,59 @@
 		(fill no)
 		(layer "Edge.Cuts")
 		(uuid "b8bbf7e2-28a6-464c-ab51-192529b4745f")
+	)
+	(segment
+		(start 192 66)
+		(end 192.058381 66)
+		(width 0.2)
+		(layer "F.Cu")
+		(net 37)
+		(uuid "100e0864-07c0-47f5-8102-2d0416fcb6ae")
+	)
+	(segment
+		(start 193.351974 64.706407)
+		(end 194.25 65.604433)
+		(width 0.2)
+		(layer "F.Cu")
+		(net 37)
+		(uuid "74f71dda-111d-4ab4-aa3d-d8b18b81633d")
+	)
+	(segment
+		(start 192.453949 63.808381)
+		(end 193.351974 64.706407)
+		(width 0.2)
+		(layer "F.Cu")
+		(net 37)
+		(uuid "d7f5c64d-327c-4c48-a72a-801d0e664790")
+	)
+	(segment
+		(start 192.058381 66)
+		(end 193.351974 64.706407)
+		(width 0.2)
+		(layer "F.Cu")
+		(net 37)
+		(uuid "e6bbf116-b4ff-4562-a1f0-5ce0796280b6")
+	)
+	(zone
+		(net 5)
+		(net_name "GND")
+		(layer "In1.Cu")
+		(uuid "df6fd061-43f9-462d-b228-4046d939f194")
+		(hatch edge 0.5)
+		(connect_pads
+			(clearance 0.5)
+		)
+		(min_thickness 0.25)
+		(filled_areas_thickness no)
+		(fill
+			(thermal_gap 0.5)
+			(thermal_bridge_width 0.5)
+		)
+		(polygon
+			(pts
+				(xy 160.135093 53.540419) (xy 224.635093 53.790419) (xy 224.385093 118.040419) (xy 160.385093 117.790419)
+			)
+		)
 	)
 	(group ""
 		(uuid "542b5df2-b550-476d-a784-1bac1acd2594")
