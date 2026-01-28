@@ -2121,7 +2121,7 @@
 			(uuid "3cc60e2c-9573-4239-a456-56233e5d25b9")
 		)
 		(embedded_fonts no)
-		(model "C:/Users/jiaxi/Downloads/LIB_EEE-FN1V471UP/EEE-FN1V471UP/3D/EEE-FN1V471UP.stp"
+		(model "/Users/elijahrobinson/Documents/GitHub/Robot-Dog/KiCAD Files/3D models/EEE-FN1V471UP_ECAP.stp"
 			(offset
 				(xyz 0 0 1)
 			)
@@ -2634,7 +2634,7 @@
 	(footprint "Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical"
 		(layer "F.Cu")
 		(uuid "148a3a6f-e7c9-4d2f-bedb-f478401bcf95")
-		(at 201.97 112.17 -90)
+		(at 200.79 113 -90)
 		(descr "Through hole straight pin header, 1x03, 2.54mm pitch, single row")
 		(tags "Through hole pin header THT 1x03 2.54mm single row")
 		(property "Reference" "J2"
@@ -3282,7 +3282,7 @@
 			(uuid "feb72fc3-f889-4aaa-818f-9dcc4a82320f")
 		)
 		(embedded_fonts no)
-		(model "C:/Users/jiaxi/Downloads/LIB_0530CDMCCDS-6R8MC/0530CDMCCDS-6R8MC/3D/0530CDMCCDS-6R8MC.stp"
+		(model "/Users/elijahrobinson/Documents/GitHub/Robot-Dog/KiCAD Files/3D models/0530CDMCCDS-6R8MC_Inductor.stp"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -4514,7 +4514,7 @@
 	(footprint "Footprint for BHL S1:CSD19502Q5B_MOSFET"
 		(layer "F.Cu")
 		(uuid "20c809aa-27fe-474a-8302-0aa5e32c4190")
-		(at 205.335 68.359 90)
+		(at 205.83 67.55 90)
 		(descr "Q5B")
 		(tags "MOSFET (P-Channel)")
 		(property "Reference" "Q5"
@@ -4799,7 +4799,7 @@
 			(uuid "b7f6e562-9de6-456c-ab26-123d2753c1b4")
 		)
 		(embedded_fonts no)
-		(model "C:/Users/jiaxi/Downloads/LIB_CSD19502Q5B/CSD19502Q5B/3D/CSD19502Q5B.stp"
+		(model "/Users/elijahrobinson/Documents/GitHub/Robot-Dog/KiCAD Files/3D models/CSD19502Q5B_MOS.stp"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -6126,7 +6126,7 @@
 			(uuid "314b573f-eb72-4728-a4bb-8643997a21ab")
 		)
 		(embedded_fonts no)
-		(model "C:/Users/jiaxi/Documents/GitHub/Quadraped-Robot/KiCAD Files/3D models/FD6288Q_GateDRIVER.stp"
+		(model "/Users/elijahrobinson/Documents/GitHub/Robot-Dog/KiCAD Files/3D models/FD6288Q_GateDRIVER.stp"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -7621,7 +7621,7 @@
 	(footprint "Footprint for BHL S1:CSD19502Q5B_MOSFET"
 		(layer "F.Cu")
 		(uuid "43ac8639-321a-48a0-a136-3217be9a8485")
-		(at 188.795 68.258 90)
+		(at 189.29 67.449 90)
 		(descr "Q5B")
 		(tags "MOSFET (P-Channel)")
 		(property "Reference" "Q2"
@@ -7906,7 +7906,7 @@
 			(uuid "53840db8-d0a0-4fb3-9b8c-a5b5b74e09c6")
 		)
 		(embedded_fonts no)
-		(model "C:/Users/jiaxi/Downloads/LIB_CSD19502Q5B/CSD19502Q5B/3D/CSD19502Q5B.stp"
+		(model "/Users/elijahrobinson/Documents/GitHub/Robot-Dog/KiCAD Files/3D models/CSD19502Q5B_MOS.stp"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -8120,7 +8120,7 @@
 	(footprint "Footprint for BHL S1:Terminator"
 		(layer "F.Cu")
 		(uuid "45e3d92e-cb13-4c27-a935-1ab2bdd74a2d")
-		(at 182.76 81.66 -90)
+		(at 181.9719 79.56575 -90)
 		(descr "39-30-104Y")
 		(tags "Connector")
 		(property "Reference" "J1"
@@ -8485,7 +8485,7 @@
 			(uuid "15f76602-6ef3-4dc4-8f7d-f5edc94a4181")
 		)
 		(embedded_fonts no)
-		(model "C:/Users/jiaxi/Downloads/LIB_39-30-1042/39-30-1042/3D/39-30-1042.stp"
+		(model "/Users/elijahrobinson/Documents/GitHub/Robot-Dog/KiCAD Files/3D models/39-30-1042_Terminal.stp"
 			(offset
 				(xyz -2 -14 0)
 			)
@@ -9892,7 +9892,7 @@
 	(footprint "Footprint for BHL S1:CSD19502Q5B_MOSFET"
 		(layer "F.Cu")
 		(uuid "5a1c57d8-69a0-4fc9-8337-b80e05f1d26d")
-		(at 182.87 68.329 90)
+		(at 183.365 67.52 90)
 		(descr "Q5B")
 		(tags "MOSFET (P-Channel)")
 		(property "Reference" "Q1"
@@ -10177,7 +10177,7 @@
 			(uuid "d417d419-7eaf-4d98-9e9d-cb8b3071c6fc")
 		)
 		(embedded_fonts no)
-		(model "C:/Users/jiaxi/Downloads/LIB_CSD19502Q5B/CSD19502Q5B/3D/CSD19502Q5B.stp"
+		(model "/Users/elijahrobinson/Documents/GitHub/Robot-Dog/KiCAD Files/3D models/CSD19502Q5B_MOS.stp"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -10503,7 +10503,7 @@
 			(uuid "c7812c25-3709-4ecc-9b96-a5066b0d3f19")
 		)
 		(embedded_fonts no)
-		(model "C:/Users/jiaxi/Downloads/LIB_NUP2105LT1G/NUP2105LT1G/3D/NUP2105LT1G.stp"
+		(model "/Users/elijahrobinson/Documents/GitHub/Robot-Dog/KiCAD Files/3D models/NUP2105LT1G_DIODIDE.stp"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -11109,7 +11109,7 @@
 	(footprint "Footprint for BHL S1:CSD19502Q5B_MOSFET"
 		(layer "F.Cu")
 		(uuid "6569c388-6cc1-4108-9673-1c7900a7bf20")
-		(at 199.93 68.369 90)
+		(at 200.425 67.56 90)
 		(descr "Q5B")
 		(tags "MOSFET (P-Channel)")
 		(property "Reference" "Q7"
@@ -11394,7 +11394,7 @@
 			(uuid "e996b7fe-7602-4be3-84dc-c3603b12da1b")
 		)
 		(embedded_fonts no)
-		(model "C:/Users/jiaxi/Downloads/LIB_CSD19502Q5B/CSD19502Q5B/3D/CSD19502Q5B.stp"
+		(model "/Users/elijahrobinson/Documents/GitHub/Robot-Dog/KiCAD Files/3D models/CSD19502Q5B_MOS.stp"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -12843,7 +12843,7 @@
 	(footprint "Footprint for BHL S1:Push Button 6x6mm"
 		(layer "F.Cu")
 		(uuid "7105df01-a62f-4464-b3c1-d5bab225357e")
-		(at 186.77 106.12 45)
+		(at 186.191674 105.373654 45)
 		(descr "1571563-6-2")
 		(tags "Switch (4-Pin Push)")
 		(property "Reference" "S1"
@@ -13181,7 +13181,7 @@
 			(uuid "cff80045-db50-4f10-a593-9243a441b70b")
 		)
 		(embedded_fonts no)
-		(model "C:/Users/jiaxi/Downloads/LIB_1571563-6/1571563-6/3D/Small_pushbutton_pad.stp"
+		(model "/Users/elijahrobinson/Documents/GitHub/Robot-Dog/KiCAD Files/3D models/Small_pushbutton_pad.stp"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -14957,7 +14957,7 @@
 			(uuid "3b296f10-267e-45b9-915b-269fccd9f086")
 		)
 		(embedded_fonts no)
-		(model "C:/Users/jiaxi/Documents/GitHub/Quadraped-Robot/KiCAD Files/3D models/STM32G431CBU6.step"
+		(model "/Users/elijahrobinson/Documents/GitHub/Robot-Dog/KiCAD Files/3D models/STM32G431CBU6_Newlyuploadedby_JJ.stp"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -15846,7 +15846,7 @@
 			(uuid "c4f2b837-8449-46ba-a4e3-e7a39858fa40")
 		)
 		(embedded_fonts no)
-		(model "C:/Users/jiaxi/Downloads/LIB_TCAN1051HGVDR/TCAN1051HGVDR/3D/TCAN1051HGVDR.stp"
+		(model "/Users/elijahrobinson/Documents/GitHub/Robot-Dog/KiCAD Files/3D models/TCAN1051HGVDR_CAN.stp"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -16520,7 +16520,7 @@
 			(uuid "bed06c22-3a52-4595-9eb0-6e8d9ba7e607")
 		)
 		(embedded_fonts no)
-		(model "C:/Users/jiaxi/Downloads/LIB_3314J-1-103G/3314J-1-103G/3D/3314J-1-103G.stp"
+		(model "/Users/elijahrobinson/Documents/GitHub/Robot-Dog/KiCAD Files/3D models/3314J-1-103G_Trimerpot_Forthermal.stp"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -18127,7 +18127,7 @@
 	(footprint "Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical"
 		(layer "F.Cu")
 		(uuid "adeae009-d648-4700-b514-b8e5f29ef6c1")
-		(at 201.97 108.42 -90)
+		(at 200.79 109.25 -90)
 		(descr "Through hole straight pin header, 1x03, 2.54mm pitch, single row")
 		(tags "Through hole pin header THT 1x03 2.54mm single row")
 		(property "Reference" "J3"
@@ -19782,7 +19782,7 @@
 	(footprint "Footprint for BHL S1:Terminator"
 		(layer "F.Cu")
 		(uuid "c0d391b1-578f-4346-87a8-4ac173ca0d4c")
-		(at 182.76 94.11 -90)
+		(at 181.9719 92.01575 -90)
 		(descr "39-30-104Y")
 		(tags "Connector")
 		(property "Reference" "J4"
@@ -20147,7 +20147,7 @@
 			(uuid "f856702f-f27f-4510-aee2-f109c4cdaab4")
 		)
 		(embedded_fonts no)
-		(model "C:/Users/jiaxi/Downloads/LIB_39-30-1042/39-30-1042/3D/39-30-1042.stp"
+		(model "/Users/elijahrobinson/Documents/GitHub/Robot-Dog/KiCAD Files/3D models/39-30-1042_Terminal.stp"
 			(offset
 				(xyz -2 -14 0)
 			)
@@ -21567,7 +21567,7 @@
 			(uuid "bb599e8a-7a66-479d-bf20-d9a8a42f579f")
 		)
 		(embedded_fonts no)
-		(model "C:/Users/jiaxi/Downloads/LIB_NUP2105LT1G/NUP2105LT1G/3D/NUP2105LT1G.stp"
+		(model "/Users/elijahrobinson/Documents/GitHub/Robot-Dog/KiCAD Files/3D models/NUP2105LT1G_DIODIDE.stp"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -21781,7 +21781,7 @@
 	(footprint "Footprint for BHL S1:CSD19502Q5B_MOSFET"
 		(layer "F.Cu")
 		(uuid "d8207233-7adb-4143-ac84-260ee9717004")
-		(at 194.35 68.343 90)
+		(at 194.845 67.534 90)
 		(descr "Q5B")
 		(tags "MOSFET (P-Channel)")
 		(property "Reference" "Q3"
@@ -22066,7 +22066,7 @@
 			(uuid "d82e0546-d7d3-4cf5-bb31-d92a012cb456")
 		)
 		(embedded_fonts no)
-		(model "C:/Users/jiaxi/Downloads/LIB_CSD19502Q5B/CSD19502Q5B/3D/CSD19502Q5B.stp"
+		(model "/Users/elijahrobinson/Documents/GitHub/Robot-Dog/KiCAD Files/3D models/CSD19502Q5B_MOS.stp"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -23178,7 +23178,7 @@
 			(uuid "c7c6e6c1-569f-4f0a-b2db-ced187b32f19")
 		)
 		(embedded_fonts no)
-		(model "C:/Users/jiaxi/Downloads/LIB_CSTNE8M00G55Z000R0/CSTNE8M00G55Z000R0/3D/CSTNE8M00G55Z000R0.stp"
+		(model "/Users/elijahrobinson/Documents/GitHub/Robot-Dog/KiCAD Files/3D models/CSTNE8M00G55Z000R0_Resonator.stp"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -23980,7 +23980,7 @@
 	(footprint "Footprint for BHL S1:CSD19502Q5B_MOSFET"
 		(layer "F.Cu")
 		(uuid "f318eeb1-38d7-404f-849e-cda61013d2c9")
-		(at 210.765 68.319 90)
+		(at 211.26 67.51 90)
 		(descr "Q5B")
 		(tags "MOSFET (P-Channel)")
 		(property "Reference" "Q4"
@@ -24265,7 +24265,7 @@
 			(uuid "133df0bd-6450-416d-8f5a-b8d9fe821afc")
 		)
 		(embedded_fonts no)
-		(model "C:/Users/jiaxi/Downloads/LIB_CSD19502Q5B/CSD19502Q5B/3D/CSD19502Q5B.stp"
+		(model "/Users/elijahrobinson/Documents/GitHub/Robot-Dog/KiCAD Files/3D models/CSD19502Q5B_MOS.stp"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -25558,7 +25558,7 @@
 			(uuid "4d5dcbcf-0e74-4a03-bf42-e0bc6de266c4")
 		)
 		(embedded_fonts no)
-		(model "C:/Users/jiaxi/Downloads/LIB_AS5600-ASOT/AS5600-ASOT/3D/AS5600-ASOT.stp"
+		(model "/Users/elijahrobinson/Documents/GitHub/Robot-Dog/KiCAD Files/3D models/AS5600-ASOT.stp"
 			(offset
 				(xyz 0 0 0)
 			)
