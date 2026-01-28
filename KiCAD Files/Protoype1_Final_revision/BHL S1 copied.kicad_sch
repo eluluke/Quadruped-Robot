@@ -6423,12 +6423,6 @@
 		(uuid "36e4e555-09e4-4980-838f-9858157dfb4f")
 	)
 	(junction
-		(at 334.01 237.49)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "373df3a8-3165-4132-864f-6f251b7be77d")
-	)
-	(junction
 		(at 273.05 48.26)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -6583,6 +6577,12 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "7394bc6e-149e-47c0-a794-a73b4accdfe4")
+	)
+	(junction
+		(at 220.98 257.81)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "7442dccb-8e7c-4a73-bf24-ed6ab5528e48")
 	)
 	(junction
 		(at 250.19 60.96)
@@ -6795,12 +6795,6 @@
 		(uuid "b375589c-0676-4887-83d0-f986c2508144")
 	)
 	(junction
-		(at 280.67 121.92)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "b5cadf53-196c-44e4-aeb2-8c22dfe44974")
-	)
-	(junction
 		(at 377.19 121.92)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -6943,6 +6937,12 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "e0614c8d-b487-49c9-a8d2-619aeba5e861")
+	)
+	(junction
+		(at 223.52 260.35)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "e1bd6638-241c-4ad1-9acb-15ec315914ba")
 	)
 	(junction
 		(at 265.43 20.32)
@@ -7295,6 +7295,16 @@
 			(type default)
 		)
 		(uuid "05399de0-840d-41a2-a0ee-16c2dd382571")
+	)
+	(wire
+		(pts
+			(xy 223.52 260.35) (xy 217.17 260.35)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "0559eee8-0f31-4563-8dbb-167d7e863522")
 	)
 	(wire
 		(pts
@@ -7928,7 +7938,7 @@
 	)
 	(wire
 		(pts
-			(xy 217.17 257.81) (xy 228.6 257.81)
+			(xy 217.17 257.81) (xy 220.98 257.81)
 		)
 		(stroke
 			(width 0)
@@ -8068,6 +8078,16 @@
 	)
 	(wire
 		(pts
+			(xy 220.98 256.54) (xy 220.98 257.81)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "2b237656-989c-4ef5-b698-52877c692299")
+	)
+	(wire
+		(pts
 			(xy 45.72 179.07) (xy 77.47 179.07)
 		)
 		(stroke
@@ -8128,6 +8148,16 @@
 	)
 	(wire
 		(pts
+			(xy 220.98 257.81) (xy 228.6 257.81)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "30447cc9-9ac5-45cf-97b5-01be396f972f")
+	)
+	(wire
+		(pts
 			(xy 377.19 121.92) (xy 377.19 134.62)
 		)
 		(stroke
@@ -8168,7 +8198,7 @@
 	)
 	(wire
 		(pts
-			(xy 236.22 260.35) (xy 217.17 260.35)
+			(xy 236.22 260.35) (xy 223.52 260.35)
 		)
 		(stroke
 			(width 0)
@@ -8245,16 +8275,6 @@
 			(type default)
 		)
 		(uuid "38e2a352-b9b4-4ae4-a1df-7c41a87e6449")
-	)
-	(wire
-		(pts
-			(xy 334.01 234.95) (xy 334.01 237.49)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "3924ebfc-ac5c-40c2-aa7b-4ce097840976")
 	)
 	(wire
 		(pts
@@ -8388,7 +8408,7 @@
 	)
 	(wire
 		(pts
-			(xy 340.36 95.25) (xy 340.36 104.14)
+			(xy 340.36 88.9) (xy 340.36 104.14)
 		)
 		(stroke
 			(width 0)
@@ -8548,16 +8568,6 @@
 	)
 	(wire
 		(pts
-			(xy 340.36 237.49) (xy 334.01 237.49)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "4d93e798-32ee-4b47-8145-1540c52c9509")
-	)
-	(wire
-		(pts
 			(xy 388.62 133.35) (xy 388.62 139.7)
 		)
 		(stroke
@@ -8645,16 +8655,6 @@
 			(type default)
 		)
 		(uuid "52bdf1bb-52cb-4939-84f5-0ebc99a21486")
-	)
-	(wire
-		(pts
-			(xy 45.72 194.31) (xy 95.25 194.31)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "52e7645c-f5f6-4fa1-a34e-77e6540917e7")
 	)
 	(wire
 		(pts
@@ -10398,6 +10398,16 @@
 	)
 	(wire
 		(pts
+			(xy 223.52 261.62) (xy 223.52 260.35)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "aca47991-c9c4-42b3-8668-66fc32e9364b")
+	)
+	(wire
+		(pts
 			(xy 125.73 160.02) (xy 130.81 160.02)
 		)
 		(stroke
@@ -10478,7 +10488,7 @@
 	)
 	(wire
 		(pts
-			(xy 332.74 237.49) (xy 334.01 237.49)
+			(xy 332.74 237.49) (xy 340.36 237.49)
 		)
 		(stroke
 			(width 0)
@@ -11028,7 +11038,7 @@
 	)
 	(wire
 		(pts
-			(xy 262.89 83.82) (xy 274.32 83.82)
+			(xy 257.81 83.82) (xy 274.32 83.82)
 		)
 		(stroke
 			(width 0)
@@ -11218,6 +11228,16 @@
 	)
 	(wire
 		(pts
+			(xy 45.72 194.31) (xy 95.25 194.31)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "dadfc47d-9863-4b33-988e-9ba014bfef68")
+	)
+	(wire
+		(pts
 			(xy 321.31 50.8) (xy 321.31 44.45)
 		)
 		(stroke
@@ -11395,16 +11415,6 @@
 			(type default)
 		)
 		(uuid "e5cf0727-03a5-4adf-b0e5-abaf0208a4d7")
-	)
-	(wire
-		(pts
-			(xy 280.67 119.38) (xy 280.67 121.92)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "e6976cf7-ebce-497b-913b-0c883dfdef1a")
 	)
 	(wire
 		(pts
@@ -11936,27 +11946,65 @@
 		)
 		(uuid "ffb52591-808e-4dec-a7f0-4f4fa3e0b984")
 	)
-	(global_label "Vshunt_3-"
-		(shape input)
-		(at 95.25 194.31 0)
-		(fields_autoplaced yes)
+	(label "SP3"
+		(at 88.9 194.31 180)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left)
+			(justify right bottom)
 		)
-		(uuid "0031299b-e781-495f-853f-e588a5f2db54")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 108.2741 194.31 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-				(hide yes)
+		(uuid "01f0ea8b-07d8-4b84-a402-3d1dd59d335d")
+	)
+	(label "SP1"
+		(at 257.81 83.82 0)
+		(effects
+			(font
+				(size 1.27 1.27)
 			)
+			(justify left bottom)
 		)
+		(uuid "0e7a41a7-3d75-4cdc-849b-35c9f6059307")
+	)
+	(label "SP2"
+		(at 88.9 189.23 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "37683520-9346-4c7a-aa6e-629d05deb739")
+	)
+	(label "SP3"
+		(at 340.36 88.9 270)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "5e51c26e-da0b-4ddc-b2bc-982d400851ad")
+	)
+	(label "SP2"
+		(at 318.77 96.52 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "a2d307f3-7c8a-4282-86da-1c9cb56e5d91")
+	)
+	(label "SP1"
+		(at 88.9 184.15 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "fb28e06d-2163-465c-b2e9-21d375ec0739")
 	)
 	(global_label "Vshunt_2+"
 		(shape input)
@@ -12178,6 +12226,28 @@
 			)
 		)
 	)
+	(global_label "Vshunt_3-"
+		(shape input)
+		(at 95.25 194.31 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "2df00c73-7c38-4956-b1e2-bc092e410c43")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 108.2741 194.31 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
 	(global_label "VB3"
 		(shape input)
 		(at 374.65 31.75 0)
@@ -12354,28 +12424,6 @@
 			)
 		)
 	)
-	(global_label "Vshunt_2-"
-		(shape input)
-		(at 318.77 96.52 180)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right)
-		)
-		(uuid "4df742c0-bf70-4328-acee-ed435a5846bb")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 305.7459 96.52 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-				(hide yes)
-			)
-		)
-	)
 	(global_label "VB1"
 		(shape input)
 		(at 267.97 31.75 0)
@@ -12532,7 +12580,7 @@
 	)
 	(global_label "SCLK"
 		(shape input)
-		(at 220.98 257.81 90)
+		(at 220.98 256.54 90)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -12542,7 +12590,7 @@
 		)
 		(uuid "6df46c7f-9a52-44a5-b815-e827bd31e59e")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 220.98 250.0472 90)
+			(at 220.98 248.7772 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -12860,31 +12908,9 @@
 			)
 		)
 	)
-	(global_label "Vshunt_1-"
-		(shape input)
-		(at 95.25 184.15 0)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "8c1eaa9b-25ce-4ef0-bcff-fb90b0aefab3")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 108.2741 184.15 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-				(hide yes)
-			)
-		)
-	)
 	(global_label "SDA"
 		(shape input)
-		(at 223.52 260.35 270)
+		(at 223.52 261.62 270)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -12894,7 +12920,7 @@
 		)
 		(uuid "8dc46365-b9cc-45ad-8e24-1074a47705a3")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 223.52 266.9033 90)
+			(at 223.52 268.1733 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -12988,28 +13014,6 @@
 					(size 1.27 1.27)
 				)
 				(justify left)
-				(hide yes)
-			)
-		)
-	)
-	(global_label "Vshunt_1-"
-		(shape input)
-		(at 262.89 83.82 180)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right)
-		)
-		(uuid "9ba0992a-ea0e-4d7a-9fcd-4aa9da8573a1")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 249.8659 83.82 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
 				(hide yes)
 			)
 		)
@@ -13190,28 +13194,6 @@
 			)
 		)
 	)
-	(global_label "Vshunt_3-"
-		(shape input)
-		(at 340.36 95.25 90)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "ad4c0442-4204-4b10-b07f-23c8afbbf935")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 340.36 82.2259 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-				(hide yes)
-			)
-		)
-	)
 	(global_label "LIN2"
 		(shape input)
 		(at 74.93 88.9 180)
@@ -13252,6 +13234,28 @@
 					(size 1.27 1.27)
 				)
 				(justify right)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "Vshunt_1-"
+		(shape input)
+		(at 95.25 184.15 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "b2f6ab93-a609-4d12-9543-20f84239fc15")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 108.2741 184.15 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
 				(hide yes)
 			)
 		)
@@ -13467,28 +13471,6 @@
 		(uuid "ce44264e-6f49-44ce-86c9-842e70eceb58")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 398.7414 213.36 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-				(hide yes)
-			)
-		)
-	)
-	(global_label "Vshunt_2-"
-		(shape input)
-		(at 95.25 189.23 0)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "cea0bffd-aa46-490e-b2b1-233ec47702fc")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 108.2741 189.23 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -13736,6 +13718,28 @@
 					(size 1.27 1.27)
 				)
 				(justify right)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "Vshunt_2-"
+		(shape input)
+		(at 95.25 189.23 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "ee3dbda3-9a72-4d4b-8faa-4fdeedfec1c6")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 108.2741 189.23 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
 				(hide yes)
 			)
 		)
@@ -15586,72 +15590,6 @@
 		)
 	)
 	(symbol
-		(lib_id "power:VCC")
-		(at 318.77 234.95 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "34acc173-97eb-4aca-a0d0-5fad7077e1b2")
-		(property "Reference" "#PWR065"
-			(at 318.77 238.76 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "VCC_IN_22V"
-			(at 313.182 230.886 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" ""
-			(at 318.77 234.95 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 318.77 234.95 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"VCC\""
-			(at 318.77 234.95 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "a2f102e8-feb6-4089-8328-4797221bf2fe")
-		)
-		(instances
-			(project "BHL S1 copied"
-				(path "/0363b2da-c10c-4051-b2e0-f0863b63e8b4"
-					(reference "#PWR065")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "power:+3.3V")
 		(at 163.83 58.42 270)
 		(unit 1)
@@ -16923,71 +16861,6 @@
 		)
 	)
 	(symbol
-		(lib_id "power:VCC")
-		(at 321.31 218.44 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "4e8a7d36-e52f-45cc-8a61-6ad7a021de0d")
-		(property "Reference" "#PWR063"
-			(at 321.31 222.25 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "VCC_IN_22V"
-			(at 321.31 213.36 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 321.31 218.44 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 321.31 218.44 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"VCC\""
-			(at 321.31 218.44 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "bd9e0250-ef83-44f5-a1df-9bd35ef3cdd2")
-		)
-		(instances
-			(project "BHL S1 copied"
-				(path "/0363b2da-c10c-4051-b2e0-f0863b63e8b4"
-					(reference "#PWR063")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "power:GND")
 		(at 281.94 267.97 0)
 		(mirror y)
@@ -17582,6 +17455,72 @@
 			(project "BHL S1 copied"
 				(path "/0363b2da-c10c-4051-b2e0-f0863b63e8b4"
 					(reference "R9")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:VBUS")
+		(at 318.77 234.95 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "5d12533b-46d2-4494-a6a6-a5a36767c6ea")
+		(property "Reference" "#PWR08"
+			(at 318.77 238.76 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "DCBUS"
+			(at 318.77 229.87 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 318.77 234.95 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 318.77 234.95 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"VBUS\""
+			(at 318.77 234.95 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "460e994f-6d92-4ab8-984c-e3b549946000")
+		)
+		(instances
+			(project "BHL S1 copied"
+				(path "/0363b2da-c10c-4051-b2e0-f0863b63e8b4"
+					(reference "#PWR08")
 					(unit 1)
 				)
 			)
@@ -18269,72 +18208,6 @@
 			(project "BHL S1 copied"
 				(path "/0363b2da-c10c-4051-b2e0-f0863b63e8b4"
 					(reference "#PWR038")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:VBUS")
-		(at 334.01 234.95 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "6fc7e74c-501e-4262-8e31-f6ee291f4bc1")
-		(property "Reference" "#PWR067"
-			(at 334.01 238.76 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "DCBUS"
-			(at 334.01 229.87 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 334.01 234.95 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 334.01 234.95 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"VBUS\""
-			(at 334.01 234.95 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "b686791f-0c1f-458d-8f7f-5f7f9803115f")
-		)
-		(instances
-			(project "BHL S1 copied"
-				(path "/0363b2da-c10c-4051-b2e0-f0863b63e8b4"
-					(reference "#PWR067")
 					(unit 1)
 				)
 			)
@@ -22136,6 +22009,71 @@
 		)
 	)
 	(symbol
+		(lib_id "power:VBUS")
+		(at 321.31 218.44 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "b477874a-b097-4d79-a81a-4e78a8cb2f56")
+		(property "Reference" "#PWR02"
+			(at 321.31 222.25 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "DCBUS"
+			(at 321.31 214.122 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 321.31 218.44 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 321.31 218.44 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"VBUS\""
+			(at 321.31 218.44 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "eacc1f69-3a94-4fed-b50a-a130f7738430")
+		)
+		(instances
+			(project "BHL S1 copied"
+				(path "/0363b2da-c10c-4051-b2e0-f0863b63e8b4"
+					(reference "#PWR02")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Regulator_Linear:ME6211C30M5")
 		(at 138.43 162.56 0)
 		(unit 1)
@@ -25292,72 +25230,6 @@
 			(project "BHL S1 copied"
 				(path "/0363b2da-c10c-4051-b2e0-f0863b63e8b4"
 					(reference "#PWR035")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:VCC")
-		(at 280.67 119.38 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "f24f7421-960b-4bfc-9ce1-068d8bd5f5ed")
-		(property "Reference" "#PWR058"
-			(at 280.67 123.19 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "VCC_5V_CAN"
-			(at 280.67 114.3 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 280.67 119.38 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 280.67 119.38 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"VCC\""
-			(at 280.67 119.38 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "3ec59d52-d98c-4831-94d8-324c43c81f8d")
-		)
-		(instances
-			(project "BHL S1 copied"
-				(path "/0363b2da-c10c-4051-b2e0-f0863b63e8b4"
-					(reference "#PWR058")
 					(unit 1)
 				)
 			)
