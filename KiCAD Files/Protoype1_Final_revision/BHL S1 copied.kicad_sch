@@ -997,280 +997,6 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "BHLS1_PUSHBUT:1571563-6"
-			(pin_names
-				(offset 0.762)
-			)
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(property "Reference" "S"
-				(at 12.7 6.35 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left)
-				)
-			)
-			(property "Value" "1571563-6"
-				(at 12.7 3.81 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left)
-				)
-			)
-			(property "Footprint" "15715636"
-				(at 12.7 1.27 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left)
-					(hide yes)
-				)
-			)
-			(property "Datasheet" "https://www.te.com/commerce/DocumentDelivery/DDEController?Action=srchrtrv&DocNm=1977223&DocType=Customer%20Drawing&DocLang=English&DocFormat=pdf&PartCntxt=2-1977223-2"
-				(at 12.7 -1.27 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left)
-					(hide yes)
-				)
-			)
-			(property "Description" ""
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Description_1" "50 mA Tactile Switch, Round Actuator, Off (On), Phosphor Bronze, Silver Contact Plating, 24 VDC, ALCOSWITCH FSMJSMA"
-				(at 12.7 -3.81 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left)
-					(hide yes)
-				)
-			)
-			(property "Height" "13.25"
-				(at 12.7 -6.35 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left)
-					(hide yes)
-				)
-			)
-			(property "Mouser Part Number" "506-1571563-6"
-				(at 12.7 -8.89 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left)
-					(hide yes)
-				)
-			)
-			(property "Mouser Price/Stock" "https://www.mouser.co.uk/ProductDetail/TE-Connectivity-PB/1571563-6?qs=kSbAZawwBnzmioGrnhYP0w%3D%3D"
-				(at 12.7 -11.43 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left)
-					(hide yes)
-				)
-			)
-			(property "Manufacturer_Name" "TE Connectivity"
-				(at 12.7 -13.97 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left)
-					(hide yes)
-				)
-			)
-			(property "Manufacturer_Part_Number" "1571563-6"
-				(at 12.7 -16.51 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left)
-					(hide yes)
-				)
-			)
-			(symbol "1571563-6_0_0"
-				(pin passive line
-					(at 0 0 0)
-					(length 2.54)
-					(name "~"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 0 -5.08 0)
-					(length 2.54)
-					(name "~"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 15.24 0 180)
-					(length 2.54)
-					(name "~"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "3"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 15.24 -5.08 180)
-					(length 2.54)
-					(name "~"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "4"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-			)
-			(symbol "1571563-6_0_1"
-				(polyline
-					(pts
-						(xy 2.54 -2.54) (xy 5.08 -2.54)
-					)
-					(stroke
-						(width 0.1524)
-						(type solid)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 2.54 -5.08) (xy 2.54 0)
-					)
-					(stroke
-						(width 0.1524)
-						(type solid)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(circle
-					(center 5.588 -2.54)
-					(radius 0.508)
-					(stroke
-						(width 0.254)
-						(type solid)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 6.096 -2.286) (xy 8.382 0)
-					)
-					(stroke
-						(width 0.1524)
-						(type solid)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(circle
-					(center 9.652 -2.54)
-					(radius 0.508)
-					(stroke
-						(width 0.254)
-						(type solid)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 10.16 -2.54) (xy 12.7 -2.54)
-					)
-					(stroke
-						(width 0.1524)
-						(type solid)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 12.7 -5.08) (xy 12.7 0)
-					)
-					(stroke
-						(width 0.1524)
-						(type solid)
-					)
-					(fill
-						(type none)
-					)
-				)
-			)
-			(embedded_fonts no)
-		)
 		(symbol "BHLS1_TRIMPOT:3314J-1-103G"
 			(pin_names
 				(offset 0.762)
@@ -3025,6 +2751,183 @@
 						)
 					)
 					(number "5"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
+		(symbol "BHL_S1_CUSTOMED:Tactile_Switch"
+			(pin_names
+				(offset 0.254)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "SW"
+				(at 7.62 3.81 0)
+				(effects
+					(font
+						(size 1.524 1.524)
+					)
+				)
+			)
+			(property "Value" "PTS636 SM50J SMTR LFS"
+				(at 2.286 -2.794 0)
+				(effects
+					(font
+						(size 1.524 1.524)
+					)
+					(hide yes)
+				)
+			)
+			(property "Footprint" "SW_PTS636_CNK"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+						(italic yes)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" "PTS636 SM50J SMTR LFS"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+						(italic yes)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_locked" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_keywords" "PTS636 SM50J SMTR LFS"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_fp_filters" "SW_PTS636_CNK"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "Tactile_Switch_0_1"
+				(polyline
+					(pts
+						(xy 2.54 0) (xy 3.81 0)
+					)
+					(stroke
+						(width 0.2032)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 4.445 0) (xy 11.43 1.905)
+					)
+					(stroke
+						(width 0.2032)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(circle
+					(center 4.445 0)
+					(radius 0.635)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(circle
+					(center 10.795 0)
+					(radius 0.635)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 12.7 0) (xy 11.43 0)
+					)
+					(stroke
+						(width 0.2032)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(pin unspecified line
+					(at 0 0 0)
+					(length 2.54)
+					(name "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin unspecified line
+					(at 15.24 0 180)
+					(length 2.54)
+					(name "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -6387,12 +6290,6 @@
 		(uuid "25e98878-56e3-4ac6-bc6a-c8b8772ebd9a")
 	)
 	(junction
-		(at 285.75 243.84)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "2a24e923-504b-4d36-aa4d-d8d165036782")
-	)
-	(junction
 		(at 165.1 196.85)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -6913,12 +6810,6 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "d8919e1a-f25c-4bb5-ade9-78b4626ac459")
-	)
-	(junction
-		(at 285.75 267.97)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "d8ed83cf-daf5-4290-9bfc-78588f858979")
 	)
 	(junction
 		(at 128.27 189.23)
@@ -7695,16 +7586,6 @@
 			(type default)
 		)
 		(uuid "169651cb-ceaf-4a0c-84a1-b28102c27cd8")
-	)
-	(wire
-		(pts
-			(xy 285.75 267.97) (xy 290.83 267.97)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "16b8232d-3ac5-4982-be67-3e36a7139147")
 	)
 	(wire
 		(pts
@@ -8928,16 +8809,6 @@
 	)
 	(wire
 		(pts
-			(xy 285.75 243.84) (xy 290.83 243.84)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "62cf5934-2b6f-499d-90fc-68d200c5451a")
-	)
-	(wire
-		(pts
 			(xy 379.73 81.28) (xy 379.73 86.36)
 		)
 		(stroke
@@ -9825,16 +9696,6 @@
 			(type default)
 		)
 		(uuid "92056342-1ce9-412d-99e6-0e342964dfcb")
-	)
-	(wire
-		(pts
-			(xy 290.83 243.84) (xy 290.83 247.65)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "922b5849-f6e6-4234-9102-0e2314252caf")
 	)
 	(wire
 		(pts
@@ -11675,16 +11536,6 @@
 			(type default)
 		)
 		(uuid "f0df627c-7a6c-465b-bc90-f5e9588d0c59")
-	)
-	(wire
-		(pts
-			(xy 290.83 267.97) (xy 290.83 262.89)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "f1cbe961-52d3-48a6-b5b4-1b6492ee2f7a")
 	)
 	(wire
 		(pts
@@ -24177,6 +24028,78 @@
 		)
 	)
 	(symbol
+		(lib_id "BHL_S1_CUSTOMED:Tactile_Switch")
+		(at 285.75 262.89 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "defece97-f627-484b-89a5-5853d6ef2065")
+		(property "Reference" "SW1"
+			(at 288.29 255.2699 90)
+			(effects
+				(font
+					(size 1.524 1.524)
+				)
+				(justify right)
+			)
+		)
+		(property "Value" "PTS636 SM50J SMTR LFS"
+			(at 288.544 260.604 0)
+			(effects
+				(font
+					(size 1.524 1.524)
+				)
+				(hide yes)
+			)
+		)
+		(property "Footprint" "Footprint for BHL S1:SW_PTS636_CNK"
+			(at 285.75 262.89 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+					(italic yes)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "PTS636 SM50J SMTR LFS"
+			(at 285.75 262.89 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+					(italic yes)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 285.75 262.89 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "de66dfbb-945b-4d6d-84a8-6704ba6a8774")
+		)
+		(pin "2"
+			(uuid "958d0e3e-5576-4876-9894-65d61dabd711")
+		)
+		(instances
+			(project ""
+				(path "/0363b2da-c10c-4051-b2e0-f0863b63e8b4"
+					(reference "SW1")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Device:R")
 		(at 77.47 201.93 180)
 		(unit 1)
@@ -25227,143 +25150,6 @@
 			(project "BHL S1 copied"
 				(path "/0363b2da-c10c-4051-b2e0-f0863b63e8b4"
 					(reference "R16")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "BHLS1_PUSHBUT:1571563-6")
-		(at 285.75 262.89 90)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "f4281ee8-11e9-494b-af43-a711ef8cbb97")
-		(property "Reference" "S1"
-			(at 292.354 259.588 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "1571563-6"
-			(at 294.894 259.588 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "Footprint for BHL S1:Push Button 6x6mm"
-			(at 284.48 250.19 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "https://www.te.com/commerce/DocumentDelivery/DDEController?Action=srchrtrv&DocNm=1977223&DocType=Customer%20Drawing&DocLang=English&DocFormat=pdf&PartCntxt=2-1977223-2"
-			(at 287.02 250.19 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-				(hide yes)
-			)
-		)
-		(property "Description" ""
-			(at 285.75 262.89 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description_1" "50 mA Tactile Switch, Round Actuator, Off (On), Phosphor Bronze, Silver Contact Plating, 24 VDC, ALCOSWITCH FSMJSMA"
-			(at 289.56 250.19 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-				(hide yes)
-			)
-		)
-		(property "Height" "13.25"
-			(at 292.1 250.19 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-				(hide yes)
-			)
-		)
-		(property "Mouser Part Number" "506-1571563-6"
-			(at 294.64 250.19 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-				(hide yes)
-			)
-		)
-		(property "Mouser Price/Stock" "https://www.mouser.co.uk/ProductDetail/TE-Connectivity-PB/1571563-6?qs=kSbAZawwBnzmioGrnhYP0w%3D%3D"
-			(at 297.18 250.19 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-				(hide yes)
-			)
-		)
-		(property "Manufacturer_Name" "TE Connectivity"
-			(at 299.72 250.19 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-				(hide yes)
-			)
-		)
-		(property "Manufacturer_Part_Number" "1571563-6"
-			(at 302.26 250.19 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "8143a3bb-1682-4b8f-a33d-7f91be881e35")
-		)
-		(pin "2"
-			(uuid "aad993ea-e651-408b-a75b-5277c5ff1532")
-		)
-		(pin "4"
-			(uuid "1b5ef6d1-761a-473f-9baa-a9f6f4d84ed9")
-		)
-		(pin "3"
-			(uuid "a5bf84dd-d674-4a78-b406-9bb2289c60c4")
-		)
-		(instances
-			(project ""
-				(path "/0363b2da-c10c-4051-b2e0-f0863b63e8b4"
-					(reference "S1")
 					(unit 1)
 				)
 			)
