@@ -1875,7 +1875,7 @@
 			(uuid "3cc60e2c-9573-4239-a456-56233e5d25b9")
 		)
 		(embedded_fonts no)
-		(model "C:/Users/jiaxi/Downloads/LIB_EEE-FN1V471UP/EEE-FN1V471UP/3D/EEE-FN1V471UP.stp"
+		(model "/Users/elijahrobinson/Documents/GitHub/Robot-Dog/KiCAD Files/3D models/EEE-FN1V471UP_ECAP.stp"
 			(offset
 				(xyz 0 0 1)
 			)
@@ -7229,7 +7229,7 @@
 			(uuid "06165c28-f09d-41dd-bfe9-04b41e60758b")
 		)
 		(embedded_fonts no)
-		(model "${KICAD9_3DMODEL_DIR}/Diode_SMD.3dshapes/D_SOD-523.step"
+		(model "${KICAD9_3DMODEL_DIR}/Diode_SMD.3dshapes/D_Powermite_AK.step"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -21083,7 +21083,7 @@
 			(uuid "c7c6e6c1-569f-4f0a-b2db-ced187b32f19")
 		)
 		(embedded_fonts no)
-		(model "C:/Users/jiaxi/Downloads/LIB_CSTNE8M00G55Z000R0/CSTNE8M00G55Z000R0/3D/CSTNE8M00G55Z000R0.stp"
+		(model "/Users/elijahrobinson/Documents/GitHub/Robot-Dog/KiCAD Files/3D models/CSTNE8M00G55Z000R0_Resonator.stp"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -22875,7 +22875,7 @@
 			(uuid "4d5dcbcf-0e74-4a03-bf42-e0bc6de266c4")
 		)
 		(embedded_fonts no)
-		(model "C:/Users/jiaxi/Downloads/LIB_AS5600-ASOT/AS5600-ASOT/3D/AS5600-ASOT.stp"
+		(model "/Users/elijahrobinson/Documents/GitHub/Robot-Dog/KiCAD Files/3D models/AS5600-ASOT.stp"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -32199,14 +32199,6 @@
 		(layer "F.Cu")
 		(net 84)
 		(uuid "5deae4a3-26a7-4f8f-80e8-483258363e7d")
-	)
-	(segment
-		(start 159.774915 106.642135)
-		(end 159.683468 106.642135)
-		(width 0.2)
-		(layer "F.Cu")
-		(net 84)
-		(uuid "7ed1a76b-5208-46a3-b074-4640cef68ca4")
 	)
 	(segment
 		(start 140.078603 116.4161)
