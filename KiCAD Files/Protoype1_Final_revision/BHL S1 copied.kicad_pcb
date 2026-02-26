@@ -3058,6 +3058,17 @@
 				(xyz 0 0 0)
 			)
 		)
+		(model "/Users/elijahrobinson/Documents/GitHub/Robot-Dog/KiCAD Files/3D models/0530CDMCCDS-6R8MC_Inductor.stp"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 0)
+			)
+		)
 	)
 	(footprint "Footprint for BHL S1:SOT95P270X145-6N_ME3116"
 		(layer "F.Cu")
@@ -3323,6 +3334,17 @@
 		)
 		(embedded_fonts no)
 		(model "C:/Users/jiaxi/Documents/GitHub/Quadraped-Robot/KiCAD Files/3D models/ME3116.stp"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 0)
+			)
+		)
+		(model "/Users/elijahrobinson/Documents/GitHub/Robot-Dog/KiCAD Files/3D models/ME3116.stp"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -4890,7 +4912,7 @@
 			(uuid "b7f6e562-9de6-456c-ab26-123d2753c1b4")
 		)
 		(embedded_fonts no)
-		(model "C:/Users/jiaxi/Downloads/LIB_CSD19502Q5B/CSD19502Q5B/3D/CSD19502Q5B.stp"
+		(model "/Users/elijahrobinson/Documents/GitHub/Robot-Dog/KiCAD Files/3D models/CSD19502Q5B_MOS.stp"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -6217,7 +6239,7 @@
 			(uuid "314b573f-eb72-4728-a4bb-8643997a21ab")
 		)
 		(embedded_fonts no)
-		(model "C:/Users/jiaxi/Documents/GitHub/Quadraped-Robot/KiCAD Files/3D models/FD6288Q_GateDRIVER.stp"
+		(model "/Users/elijahrobinson/Documents/GitHub/Robot-Dog/KiCAD Files/3D models/FD6288Q_GateDRIVER.stp"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -7236,6 +7258,17 @@
 			(uuid "06165c28-f09d-41dd-bfe9-04b41e60758b")
 		)
 		(embedded_fonts no)
+		(model "/Users/elijahrobinson/Documents/GitHub/Robot-Dog/KiCAD Files/3D models/STPS1L40M.step"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz -90 -0 -0)
+			)
+		)
 	)
 	(footprint "Resistor_SMD:R_0402_1005Metric_Pad0.72x0.64mm_HandSolder"
 		(layer "F.Cu")
@@ -8117,6 +8150,18 @@
 		)
 		(embedded_fonts no)
 		(model "C:/Users/jiaxi/Downloads/LIB_CSD19502Q5B/CSD19502Q5B/3D/CSD19502Q5B.stp"
+			(hide yes)
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 0)
+			)
+		)
+		(model "/Users/elijahrobinson/Documents/GitHub/Robot-Dog/KiCAD Files/3D models/CSD19502Q5B_MOS.stp"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -10170,6 +10215,17 @@
 				(xyz 0 0 0)
 			)
 		)
+		(model "/Users/elijahrobinson/Documents/GitHub/Robot-Dog/KiCAD Files/3D models/CSD19502Q5B_MOS.stp"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 0)
+			)
+		)
 	)
 	(footprint "Resistor_SMD:R_01005_0402Metric_Pad0.57x0.30mm_HandSolder"
 		(layer "F.Cu")
@@ -11051,6 +11107,17 @@
 		)
 		(embedded_fonts no)
 		(model "C:/Users/jiaxi/Downloads/LIB_CSD19502Q5B/CSD19502Q5B/3D/CSD19502Q5B.stp"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 0)
+			)
+		)
+		(model "/Users/elijahrobinson/Documents/GitHub/Robot-Dog/KiCAD Files/3D models/CSD19502Q5B_MOS.stp"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -12838,6 +12905,17 @@
 			(uuid "b5971404-0d4f-4eac-a31c-36e1d9136d2a")
 		)
 		(embedded_fonts no)
+		(model "/Users/elijahrobinson/Documents/GitHub/Robot-Dog/KiCAD Files/3D models/SW_PTS636_CNK.step"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 0)
+			)
+		)
 	)
 	(footprint "Capacitor_SMD:C_0402_1005Metric_Pad0.74x0.62mm_HandSolder"
 		(layer "F.Cu")
@@ -14603,7 +14681,7 @@
 			(uuid "3b296f10-267e-45b9-915b-269fccd9f086")
 		)
 		(embedded_fonts no)
-		(model "C:/Users/jiaxi/Documents/GitHub/Quadraped-Robot/KiCAD Files/3D models/STM32G431CBU6.step"
+		(model "/Users/elijahrobinson/Documents/GitHub/Robot-Dog/KiCAD Files/3D models/STM32G431CBU6.step"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -15295,6 +15373,17 @@
 		)
 		(embedded_fonts no)
 		(model "C:/Users/jiaxi/Downloads/LIB_TCAN1051HGVDR/TCAN1051HGVDR/3D/TCAN1051HGVDR.stp"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 0)
+			)
+		)
+		(model "/Users/elijahrobinson/Documents/GitHub/Robot-Dog/KiCAD Files/3D models/TCAN1051HGVDR_CAN.stp"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -19664,6 +19753,17 @@
 			(uuid "5fd5c540-ec18-4308-ba79-193030e66d54")
 		)
 		(embedded_fonts no)
+		(model "/Users/elijahrobinson/Documents/GitHub/Robot-Dog/KiCAD Files/3D models/STPS1L40M.step"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz -90 -0 -0)
+			)
+		)
 	)
 	(footprint "Capacitor_SMD:C_0603_1608Metric_Pad1.08x0.95mm_HandSolder"
 		(layer "F.Cu")
@@ -20152,7 +20252,7 @@
 			(uuid "d82e0546-d7d3-4cf5-bb31-d92a012cb456")
 		)
 		(embedded_fonts no)
-		(model "C:/Users/jiaxi/Downloads/LIB_CSD19502Q5B/CSD19502Q5B/3D/CSD19502Q5B.stp"
+		(model "/Users/elijahrobinson/Documents/GitHub/Robot-Dog/KiCAD Files/3D models/CSD19502Q5B_MOS.stp"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -21563,7 +21663,7 @@
 			(uuid "133df0bd-6450-416d-8f5a-b8d9fe821afc")
 		)
 		(embedded_fonts no)
-		(model "C:/Users/jiaxi/Downloads/LIB_CSD19502Q5B/CSD19502Q5B/3D/CSD19502Q5B.stp"
+		(model "/Users/elijahrobinson/Documents/GitHub/Robot-Dog/KiCAD Files/3D models/CSD19502Q5B_MOS.stp"
 			(offset
 				(xyz 0 0 0)
 			)
