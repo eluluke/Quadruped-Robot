@@ -1,4 +1,4 @@
-26802945066872747
+26804717151477232
 Audio_Module
 Reverb_BTDR-1H
 Digital Reverberation Unit, http://www.belton.co.kr/inc/downfile.php?seq=17&file=pdf (footprint from http://www.uk-electronic.de/PDF/BTDR-1.pdf)
@@ -61641,6 +61641,13 @@ Crystal or Oscillator
 0
 3
 3
+Footprint for BHL S1
+DIO_STPS1L40M
+
+
+0
+2
+2
 Footprint for BHL S1
 INDPM5452X300N_Inductor
 0530CDMCCDS-R20MC
