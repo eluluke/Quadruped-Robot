@@ -1,5 +1,4 @@
 # Copyright (c) 2025, The Berkeley Humanoid Lite Project Developers.
-
 from loop_rate_limiters import RateLimiter
 import berkeley_humanoid_lite_lowlevel.recoil as recoil
 
@@ -12,7 +11,7 @@ device_id = args.id
 kp = 0.2
 kd = 0.005
 
-# Fixed target position in radians
+# Fixed target position in radians,keep displacement small
 target_angle = 1.0
 
 rate = RateLimiter(frequency=200.0)
