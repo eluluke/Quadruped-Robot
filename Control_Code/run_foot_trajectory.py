@@ -12,8 +12,8 @@ bus = recoil.Bus(channel=args.channel, bitrate=1000000)
 # --------------------------------
 # Motor IDs
 # --------------------------------
-THIGH_ID = 0
-SHANK_ID = 1
+THIGH_ID = 1
+SHANK_ID = 0
 
 # --------------------------------
 # Final gains
@@ -52,7 +52,7 @@ z_ground = 300.0       # mm, nominal leg extension / ground height
 rate_hz = 200.0
 rate = RateLimiter(frequency=rate_hz)
 
-stable_velocity_threshold = 0.3
+stable_velocity_threshold = 0.2
 required_stable_samples = 30
 max_startup_time = 4.0
 

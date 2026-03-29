@@ -11,15 +11,15 @@ bus = recoil.Bus(channel=args.channel, bitrate=1000000)
 # -----------------------------
 # Device IDs
 # -----------------------------
-thigh_id = 0
-shank_id = 1
+thigh_id = 1
+shank_id = 0
 
 # -----------------------------
 # Final gains
 # -----------------------------
 kp = 0.2
 kd = 0.005
-torque_limit = 1.3
+torque_limit = 1.5
 
 # -----------------------------
 # Very soft startup gains
@@ -36,18 +36,17 @@ mid_torque_limit = 0.10
 # Relative motion commands
 # positive = CCW, negative = CW
 # -----------------------------
-delta_theta_thigh = -5.0
-delta_theta_shank = 5.0
-
+delta_theta_thigh = -15
+delta_theta_shank = -15
 # -----------------------------
 # Motion timing
 # -----------------------------
-move_duration = 2.0   # seconds
+move_duration = 1  # seconds
 
 # -----------------------------
 # Startup stability settings
 # -----------------------------
-stable_velocity_threshold = 0.3   # rad/s
+stable_velocity_threshold = 0.2   # rad/s
 required_stable_samples = 30
 max_startup_time = 4.0            # seconds
 
