@@ -84,7 +84,8 @@ while True:
     if (time.perf_counter() - t_start) > max_startup_time:
         bus.set_mode(device_id, recoil.Mode.IDLE)
         bus.stop()
-        raise RuntimeError("Could not get a stable encoder position at startup.")
+        raise RuntimeError(
+            "Could not get a stable encoder position at startup.")
 
     rate.sleep()
 
