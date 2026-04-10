@@ -13322,7 +13322,7 @@
 		(property "Reference" "U5"
 			(at 0.173241 -4.500735 135)
 			(layer "F.SilkS")
-			(uuid "6176a8fb-c86a-4b27-8fae-8fefd7327548")
+			(uuid "c3559d43-79fa-417a-8aca-50795420645a")
 			(effects
 				(font
 					(size 0.5 0.5)
@@ -13333,7 +13333,7 @@
 		(property "Value" "STM32G431CBU6"
 			(at 0.565 5.1 135)
 			(layer "F.Fab")
-			(uuid "b4bb4787-38bc-4f2e-b0f8-ed49726c51cc")
+			(uuid "e267596f-2b03-44f7-8003-a9748c7d9736")
 			(effects
 				(font
 					(size 1 1)
@@ -13345,7 +13345,7 @@
 			(at 0 0 135)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "b12b9e3f-185a-4c94-a2c1-a7a09edeecfb")
+			(uuid "d4522b98-c1b3-43c2-8466-c8a78cbbd403")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -13357,7 +13357,7 @@
 			(at 0 0 135)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "efbba4b8-e50e-4f07-b4e1-6630f6f36391")
+			(uuid "546ed825-e33f-41d9-a091-f9877064cca8")
 			(effects
 				(font
 					(size 1.27 1.27)
