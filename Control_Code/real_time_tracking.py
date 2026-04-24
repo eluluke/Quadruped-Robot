@@ -10,8 +10,8 @@ from quadruped_leg_fk import leg_fk
 # ============================================================
 # Motor IDs
 # ============================================================
-SHANK_ID = 0
-THIGH_ID = 1
+SHANK_ID = 1
+THIGH_ID = 0
 HIP_ID = 2
 
 MOTOR_IDS = [SHANK_ID, THIGH_ID, HIP_ID]
