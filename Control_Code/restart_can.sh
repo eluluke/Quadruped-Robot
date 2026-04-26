@@ -32,15 +32,14 @@ for PORT in $PORTS; do
     sudo ip link set $CAN_IFACE up
     sleep 0.5
 
-    # Check if interface came up cleanly
-    STATE=$(ip -details link show $CAN_IFACE 2>/dev/null | grep -o "state [A-Z]*" | awk '{print $2}')
+    # Check if interface came up — CAN reports UNKNOWN not UP so check for UP flag instead
+    FLAGS=$(ip link show $CAN_IFACE 2>/dev/null | grep -o "<[^>]*>")
 
-    if [ "$STATE" == "UP" ]; then
+    if echo "$FLAGS" | grep -q "UP"; then
         echo ""
         echo "Success! CAN bus restarted on $PORT"
         echo "  Interface : $CAN_IFACE"
         echo "  Bitrate   : $BITRATE"
-        echo "  State     : $STATE"
         SUCCESS=true
         break
     else
