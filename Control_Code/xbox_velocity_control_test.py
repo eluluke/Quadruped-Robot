@@ -58,7 +58,11 @@ def main():
 
             measured_vel = bus.read_velocity_measured(device_id)
             if measured_vel is not None:
-                print(f"Target vel: {velocity_target:+.3f} rad/s" f"   |   Measured vel: {measured_vel:+.3f} rad/s", end="\r")
+                print(
+                    f"Target vel: {velocity_target:+.3f} rad/s"
+                    f"   |   Measured vel: {measured_vel:+.3f} rad/s",
+                    end="\r"
+                )
 
             rate.sleep()
 
