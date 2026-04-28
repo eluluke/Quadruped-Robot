@@ -9,12 +9,12 @@ import recoil as recoil
 from helper.xbox_controller import XboxController
 
 # ── Motion scaling ────────────────────────────────────────────────────────────
-MAX_VELOCITY = 3.0   # rad/s — full trigger or full stick deflection
+MAX_VELOCITY = 2.0   # rad/s — full trigger or full stick deflection
 
 # ── Motor gains ───────────────────────────────────────────────────────────────
 # Tune these for your motor. Start low and increase until response feels crisp.
-VELOCITY_KP  = 0.1   # proportional gain
-VELOCITY_KI  = 0.01  # integral gain
+VELOCITY_KP  = 0.04   # proportional gain
+VELOCITY_KI  = 0.0  # integral gain
 TORQUE_LIMIT = 1.0   # Nm
 
 LOOP_HZ      = 200.0
@@ -41,7 +41,8 @@ def main():
     print(f"Device ID: {device_id}")
     print(f"Torque Limit: {TORQUE_LIMIT} Nm")
     print("=" * 60)
-    
+    print()
+
     print("Controls:")
     print("  Right stick Y          ->  proportional speed  (up = +, down = -)")
     print("  Right trigger          ->  spin forward")
@@ -51,14 +52,17 @@ def main():
     print("  Ctrl-C                 ->  safe shutdown")
     print()
 
-    
+
 
     try:
         while True:
             state = ctrl.read()
 
+	    rt = state.right_trigger if state.right_trigger > 0.1 else 0.0
+	    lt = state.left_trigger if state.left_trigger > 0.1 else 0.0
+
             # Combine stick and triggers — clamp to [-1, 1] before scaling
-            combined = state.right_y + (state.right_trigger - state.left_trigger)
+            combined = state.right_y + (rt - lt)
             combined = max(-1.0, min(1.0, combined))
 
             velocity_target = combined * MAX_VELOCITY
