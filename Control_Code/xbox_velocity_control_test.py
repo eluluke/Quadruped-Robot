@@ -58,8 +58,8 @@ def main():
         while True:
             state = ctrl.read()
 
-	    rt = state.right_trigger if state.right_trigger > 0.1 else 0.0
-	    lt = state.left_trigger if state.left_trigger > 0.1 else 0.0
+            rt = state.right_trigger if state.right_trigger > 0.1 else 0.0
+            lt = state.left_trigger if state.left_trigger > 0.1 else 0.0
 
             # Combine stick and triggers — clamp to [-1, 1] before scaling
             combined = state.right_y + (rt - lt)
