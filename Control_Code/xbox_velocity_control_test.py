@@ -9,12 +9,12 @@ import recoil as recoil
 from helper.xbox_controller import XboxController
 
 # ── Motion scaling ────────────────────────────────────────────────────────────
-MAX_VELOCITY = 2.0   # rad/s — full trigger or full stick deflection
+MAX_VELOCITY = 10.0   # rad/s — full trigger or full stick deflection
 
 # ── Motor gains ───────────────────────────────────────────────────────────────
 # Tune these for your motor. Start low and increase until response feels crisp.
-VELOCITY_KP  = 0.04   # proportional gain
-VELOCITY_KI  = 0.0  # integral gain
+VELOCITY_KP  = 0.016   # proportional gain
+VELOCITY_KI  = 0.0001  # integral gain
 TORQUE_LIMIT = 1.0   # Nm
 
 LOOP_HZ      = 200.0
