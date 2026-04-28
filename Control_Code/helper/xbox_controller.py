@@ -6,8 +6,8 @@ import pygame
 # ── Axis indices ──────────────────────────────────────────────────────────────
 AXIS_LEFT_X     = 0
 AXIS_LEFT_Y     = 1
-AXIS_RIGHT_X    = 3
-AXIS_RIGHT_Y    = 2
+AXIS_RIGHT_X    = 2
+AXIS_RIGHT_Y    = 3
 AXIS_LEFT_TRIG  = 5   # -1.0 released → +1.0 fully pressed
 AXIS_RIGHT_TRIG = 4   # -1.0 released → +1.0 fully pressed
 

@@ -15,7 +15,7 @@ MAX_VELOCITY = 3.0   # rad/s — full trigger or full stick deflection
 # Tune these for your motor. Start low and increase until response feels crisp.
 VELOCITY_KP  = 0.1   # proportional gain
 VELOCITY_KI  = 0.01  # integral gain
-TORQUE_LIMIT = 0.2   # Nm — safety cap
+TORQUE_LIMIT = 1.0   # Nm
 
 LOOP_HZ      = 200.0
 
@@ -27,12 +27,21 @@ def main():
     bus  = recoil.Bus(channel=args.channel, bitrate=1_000_000)
     device_id = args.id
 
+    rate = RateLimiter(frequency=LOOP_HZ)
+
     bus.write_velocity_kp(device_id, VELOCITY_KP)
     bus.write_velocity_ki(device_id, VELOCITY_KI)
     bus.write_torque_limit(device_id, TORQUE_LIMIT)
     bus.set_mode(device_id, recoil.Mode.VELOCITY)
     bus.feed(device_id)
 
+    print("+" * 60)
+    print("Single Motor Velocity Control Mode Test")
+    print(f"CAN Channel: {args.channel}")
+    print(f"Device ID: {device_id}")
+    print(f"Torque Limit: {TORQUE_LIMIT} Nm")
+    print("=" * 60)
+    
     print("Controls:")
     print("  Right stick Y          ->  proportional speed  (up = +, down = -)")
     print("  Right trigger          ->  spin forward")
@@ -42,7 +51,7 @@ def main():
     print("  Ctrl-C                 ->  safe shutdown")
     print()
 
-    rate = RateLimiter(frequency=LOOP_HZ)
+    
 
     try:
         while True:
@@ -55,6 +64,7 @@ def main():
             velocity_target = combined * MAX_VELOCITY
 
             bus.write_velocity_target(device_id, velocity_target)
+            bus.feed(device_id)
 
             measured_vel = bus.read_velocity_measured(device_id)
             if measured_vel is not None:

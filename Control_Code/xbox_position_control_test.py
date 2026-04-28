@@ -9,7 +9,7 @@ MAX_VELOCITY = 3.0 # rad/s - riggers full press
 
 KP = 0.2
 KD = 0.005
-TORQUE_LIMIT = 0.2
+TORQUE_LIMIT = 0.2  # Nm
 
 LOOP_HZ = 200.0
 
