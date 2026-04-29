@@ -1,1 +1,1 @@
-# Quadraped-Robot
+# Quadruped-Robot
