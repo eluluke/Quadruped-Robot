@@ -37,17 +37,20 @@ MOTOR_SIGN = -1.0
 
 
 # ============================================================
-# Hip biased position hold tuning
+# Hip pure position hold tuning
+# ============================================================
+# IMPORTANT:
+# This data collection script intentionally uses NO hip compensation
+# and NO hip bias. The hip target is exactly the measured startup
+# hip position.
+#
+# Later, after collecting CSV data, we can fit:
+#   hip_error = f(thigh_target_delta)
+# and create a compensation helper from that relationship.
 # ============================================================
 HIP_KP = 0.008
 HIP_KD = 0.010
 HIP_TORQUE_LIMIT = 1.50
-
-# Output-side bias in radians.
-HIP_OUTPUT_BIAS_RAD = 0.080
-
-# Flip this if bias pulls the wrong way.
-HIP_BIAS_SIGN = 1.0
 
 
 # ============================================================
@@ -109,11 +112,16 @@ def set_mode_with_spacing(motor_id, mode):
 
 
 def write_position_command(motor_id, command_pos):
-    return bus.write_read_pdo_2(
+    pos, vel = bus.write_read_pdo_2(
         motor_id,
         command_pos,
         0.0,
     )
+
+    if pos is None:
+        raise RuntimeError(f"Could not read {MOTOR_NAMES[motor_id]} position")
+
+    return pos, vel
 
 
 def read_position_while_idle(motor_id):
@@ -187,28 +195,6 @@ def raw_delta_to_output(delta_raw):
     return delta_raw / (MOTOR_SIGN * GEAR_RATIO)
 
 
-def compute_hip_biased_target(hip_start_raw):
-    hip_raw_bias = (
-        HIP_BIAS_SIGN
-        * MOTOR_SIGN
-        * HIP_OUTPUT_BIAS_RAD
-        * GEAR_RATIO
-    )
-
-    hip_target = hip_start_raw + hip_raw_bias
-
-    print("\nHip bias setup:")
-    print(f"  hip_start_raw        = {hip_start_raw:.6f}")
-    print(f"  HIP_OUTPUT_BIAS_RAD  = {HIP_OUTPUT_BIAS_RAD:.6f}")
-    print(f"  HIP_BIAS_SIGN        = {HIP_BIAS_SIGN}")
-    print(f"  MOTOR_SIGN           = {MOTOR_SIGN}")
-    print(f"  GEAR_RATIO           = {GEAR_RATIO}")
-    print(f"  hip_raw_bias         = {hip_raw_bias:.6f}")
-    print(f"  hip_target           = {hip_target:.6f}")
-
-    return hip_target, hip_raw_bias
-
-
 def setup_position_modes():
     print("\nSetting gains...")
 
@@ -235,16 +221,16 @@ def setup_position_modes():
         )
 
 
-def startup_hold(hip_target, thigh_start_raw):
+def startup_hold(hip_hold_raw, thigh_start_raw):
     print("\nStartup hold:")
-    print("  hip holds biased target")
-    print("  thigh holds start")
+    print("  hip holds its measured startup position, with NO bias and NO compensation")
+    print("  thigh holds its measured startup position")
     print("  shank is not commanded")
 
     for _ in range(int(STARTUP_HOLD_TIME * RATE_HZ)):
         write_position_command(
             HIP_ID,
-            hip_target,
+            hip_hold_raw,
         )
 
         write_position_command(
@@ -279,36 +265,52 @@ def idle_all():
 
 def make_log_file():
     stamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    filename = f"hip_thigh_coupling_log_{stamp}.csv"
+    filename = f"hip_thigh_uncompensated_coupling_log_{stamp}.csv"
 
     fieldnames = [
         "time_s",
 
-        "hip_target_raw",
+        # Hip: pure hold, no bias.
+        "hip_hold_raw",
         "hip_pos_raw",
         "hip_error_raw",
         "hip_error_wrap_raw",
         "hip_error_output_rad",
+        "hip_vel_raw",
 
+        # Thigh raw position data.
         "thigh_target_raw",
         "thigh_pos_raw",
         "thigh_error_raw",
         "thigh_error_wrap_raw",
+        "thigh_vel_raw",
 
+        # Thigh relative-to-start data.
         "thigh_target_delta_raw",
         "thigh_pos_delta_raw",
         "thigh_target_delta_output_rad",
         "thigh_pos_delta_output_rad",
         "thigh_error_output_rad",
 
+        # Sine command reference.
         "thigh_sine_command_output_rad",
+        "thigh_sine_phase_rad",
 
-        "hip_output_bias_rad",
-        "hip_bias_sign",
+        # Experiment metadata.
+        "hip_compensation_enabled",
+        "hip_bias_enabled",
+        "hip_bias_output_rad",
         "thigh_sine_amplitude_rad",
         "thigh_sine_period_s",
         "gear_ratio",
         "motor_sign",
+        "rate_hz",
+        "hip_kp",
+        "hip_kd",
+        "hip_torque_limit",
+        "thigh_kp",
+        "thigh_kd",
+        "thigh_torque_limit",
     ]
 
     f = open(filename, "w", newline="")
@@ -328,19 +330,24 @@ log_filename = None
 
 try:
     print("=" * 80)
-    print("Hip-Thigh Coupling Data Collection, No Shank")
+    print("Hip-Thigh Coupling Data Collection, NO Hip Bias, NO Compensation")
     print("=" * 80)
     print("Purpose:")
-    print("  Collect data for mapping thigh target angle to hip position error.")
+    print("  Collect uncompensated data for mapping thigh target angle to hip position error.")
     print()
     print("Behavior:")
-    print("  Hip   = biased position hold")
-    print("  Thigh = sinusoidal position motion")
+    print("  Hip   = holds measured startup position only")
+    print("  Thigh = sinusoidal position motion around measured startup position")
     print("  Shank = not commanded")
     print()
+    print("Important:")
+    print("  This script intentionally does NOT add hip bias or compensation.")
+    print("  Use this before fitting the compensation map.")
+    print()
     print("Tuning:")
-    print(f"  HIP_OUTPUT_BIAS_RAD       = {HIP_OUTPUT_BIAS_RAD}")
-    print(f"  HIP_BIAS_SIGN             = {HIP_BIAS_SIGN}")
+    print(f"  HIP_KP                    = {HIP_KP}")
+    print(f"  HIP_KD                    = {HIP_KD}")
+    print(f"  HIP_TORQUE_LIMIT          = {HIP_TORQUE_LIMIT}")
     print(f"  THIGH_SINE_AMPLITUDE_RAD  = {THIGH_SINE_AMPLITUDE_RAD}")
     print(f"  THIGH_SINE_PERIOD         = {THIGH_SINE_PERIOD} s")
     print(f"  RUN_TIME_SECONDS          = {RUN_TIME_SECONDS}")
@@ -352,24 +359,29 @@ try:
     hip_start_raw = initial_raw[HIP_ID]
     thigh_start_raw = initial_raw[THIGH_ID]
 
-    # Step 2: Compute hip biased target.
-    hip_target, hip_raw_bias = compute_hip_biased_target(
-        hip_start_raw,
-    )
+    # Step 2: Hip target is exactly startup position.
+    # No bias. No compensation. This is the baseline data collection stage.
+    hip_hold_raw = hip_start_raw
+
+    print("\nHip hold setup:")
+    print(f"  hip_start_raw = {hip_start_raw:.6f}")
+    print(f"  hip_hold_raw  = {hip_hold_raw:.6f}")
+    print("  hip bias      = DISABLED")
+    print("  compensation  = DISABLED")
 
     # Step 3: Enter position modes.
     setup_position_modes()
 
     # Step 4: Startup hold.
     startup_hold(
-        hip_target,
+        hip_hold_raw,
         thigh_start_raw,
     )
 
     # Step 5: Open CSV log.
     log_filename, log_file, log_writer = make_log_file()
 
-    print("\nStarting thigh sine data collection.")
+    print("\nStarting uncompensated thigh sine data collection.")
     print("Press Ctrl+C to stop.\n")
 
     start_time = time.time()
@@ -385,10 +397,10 @@ try:
         # ----------------------------------------------------
         # Thigh sine command in output-side radians.
         # ----------------------------------------------------
-        sine_phase = 2.0 * math.pi * t / THIGH_SINE_PERIOD
+        thigh_sine_phase = 2.0 * math.pi * t / THIGH_SINE_PERIOD
 
         thigh_sine_output = THIGH_SINE_AMPLITUDE_RAD * math.sin(
-            sine_phase
+            thigh_sine_phase
         )
 
         thigh_target_raw = thigh_start_raw + output_delta_to_raw(
@@ -397,10 +409,12 @@ try:
 
         # ----------------------------------------------------
         # Command hip and thigh.
+        # Hip command is constant baseline hold.
+        # Thigh command is sinusoidal.
         # ----------------------------------------------------
         hip_pos, hip_vel = write_position_command(
             HIP_ID,
-            hip_target,
+            hip_hold_raw,
         )
 
         thigh_pos, thigh_vel = write_position_command(
@@ -411,7 +425,7 @@ try:
         # ----------------------------------------------------
         # Compute errors.
         # ----------------------------------------------------
-        hip_error_raw = hip_target - hip_pos
+        hip_error_raw = hip_hold_raw - hip_pos
         hip_error_wrap_raw = wrap_pi(hip_error_raw)
         hip_error_output_rad = raw_delta_to_output(hip_error_raw)
 
@@ -437,16 +451,18 @@ try:
             {
                 "time_s": t,
 
-                "hip_target_raw": hip_target,
+                "hip_hold_raw": hip_hold_raw,
                 "hip_pos_raw": hip_pos,
                 "hip_error_raw": hip_error_raw,
                 "hip_error_wrap_raw": hip_error_wrap_raw,
                 "hip_error_output_rad": hip_error_output_rad,
+                "hip_vel_raw": hip_vel,
 
                 "thigh_target_raw": thigh_target_raw,
                 "thigh_pos_raw": thigh_pos,
                 "thigh_error_raw": thigh_error_raw,
                 "thigh_error_wrap_raw": thigh_error_wrap_raw,
+                "thigh_vel_raw": thigh_vel,
 
                 "thigh_target_delta_raw": thigh_target_delta_raw,
                 "thigh_pos_delta_raw": thigh_pos_delta_raw,
@@ -455,15 +471,28 @@ try:
                 "thigh_error_output_rad": thigh_error_output_rad,
 
                 "thigh_sine_command_output_rad": thigh_sine_output,
+                "thigh_sine_phase_rad": thigh_sine_phase,
 
-                "hip_output_bias_rad": HIP_OUTPUT_BIAS_RAD,
-                "hip_bias_sign": HIP_BIAS_SIGN,
+                "hip_compensation_enabled": 0,
+                "hip_bias_enabled": 0,
+                "hip_bias_output_rad": 0.0,
                 "thigh_sine_amplitude_rad": THIGH_SINE_AMPLITUDE_RAD,
                 "thigh_sine_period_s": THIGH_SINE_PERIOD,
                 "gear_ratio": GEAR_RATIO,
                 "motor_sign": MOTOR_SIGN,
+                "rate_hz": RATE_HZ,
+                "hip_kp": HIP_KP,
+                "hip_kd": HIP_KD,
+                "hip_torque_limit": HIP_TORQUE_LIMIT,
+                "thigh_kp": THIGH_KP,
+                "thigh_kd": THIGH_KD,
+                "thigh_torque_limit": THIGH_TORQUE_LIMIT,
             }
         )
+
+        # Flush every few rows so a Ctrl+C or crash still leaves usable data.
+        if counter % PRINT_EVERY == 0 and log_file is not None:
+            log_file.flush()
 
         counter += 1
 
@@ -474,7 +503,7 @@ try:
                 f"thigh_actual_out={thigh_pos_delta_output_rad:+.4f} rad | "
                 f"thigh_err_out={thigh_error_output_rad:+.4f} rad | "
                 f"hip_err_out={hip_error_output_rad:+.4f} rad | "
-                f"hip_err_raw={hip_error_raw:+.3f}"
+                f"hip_vel_raw={hip_vel:+.4f}"
             )
 
         rate.sleep()
