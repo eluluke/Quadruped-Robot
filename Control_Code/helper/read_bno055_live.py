@@ -1,51 +1,64 @@
 import time
-
 import board
 import adafruit_bno055
 
-def format_tuple(values, digits = 3):
-    if values is None:
-        return "None"
-    return "(" + ", ".join(f"{v:.{digits}f}" for v in values) + ")"
 
-def main():
-    # Raspberry Pi 4 I2C bus: SDA=GPIO2/pin 3, SCL=GPIO3/pin 5
-    i2c = board.I2C()
+class BNO055_IMU:
+    def __init__(self, address=0x28):
+        # Raspberry Pi 4 I2C bus
+        self.i2c = board.I2C()
 
-    # Most BNO055 breakouts use address 0x28.
-    # If i2cdetect shows 0x29, use: adafruit_bno055.BNO055_I2C(i2c, address=0x29)
-    sensor = adafruit_bno055.BNO055_I2C(i2c)
+        # BNO055 sensor
+        self.sensor = adafruit_bno055.BNO055_I2C(self.i2c, address=address)
 
-    print("BNO055 live IMU test")
-    print("Tilt/rotate the sensor and watch acceleration/orientation change.")
-    print("Press Ctrl+C to stop.\n")
+    def format_tuple(self, values, digits=3):
+        if values is None:
+            return "None"
+        return "(" + ", ".join(
+            "None" if v is None else f"{v:.{digits}f}"
+            for v in values
+        ) + ")"
 
-    while True:
-        # Raw accelerometer: includes gravity, units are m/s^2
-        acceleration = sensor.acceleration
+    def read_acceleration(self):
+        return self.sensor.acceleration
 
-        # Linear acceleration: acceleration with gravity removed by sensor fusion
-        linear_accel = sensor.linear_acceleration
+    def read_linear_acceleration(self):
+        return self.sensor.linear_acceleration
 
-        # Euler orientation: heading, roll, pitch in degrees
-        euler = sensor.euler
+    def read_euler(self):
+        return self.sensor.euler
 
-        # Gyroscope: angular velocity in rad/s
-        gyro = sensor.gyro
+    def read_gyro(self):
+        return self.sensor.gyro
 
-        # Calibration status tuple: system, gyro, accel, magnetometer; each 0-3
-        calib = sensor.calibration_status
+    def read_calibration(self):
+        return self.sensor.calibration_status
+
+    def print_data(self):
+        acceleration = self.read_acceleration()
+        linear_accel = self.read_linear_acceleration()
+        euler = self.read_euler()
+        gyro = self.read_gyro()
+        calib = self.read_calibration()
 
         print(
-            "accel=" + format_tuple(acceleration) + " m/s^2 | "
-            "linear=" + format_tuple(linear_accel) + " m/s^2 | "
-            "euler=" + format_tuple(euler, digits=2) + " deg | "
-            "gyro=" + format_tuple(gyro) + " rad/s | "
+            "accel=" + self.format_tuple(acceleration) + " m/s^2 | "
+            "linear=" + self.format_tuple(linear_accel) + " m/s^2 | "
+            "euler=" + self.format_tuple(euler, digits=2) + " deg | "
+            "gyro=" + self.format_tuple(gyro) + " rad/s | "
             f"calib={calib}"
         )
 
-        time.sleep(0.05)  # about 20 Hz print rate
+    def run(self, delay=0.05):
+        print("BNO055 live IMU test")
+        print("Tilt/rotate the sensor and watch acceleration/orientation change.")
+        print("Press Ctrl+C to stop.\n")
+
+        while True:
+            self.print_data()
+            time.sleep(delay)
 
 
 if __name__ == "__main__":
-    main()
+    imu = BNO055_IMU()
+    imu.run()
