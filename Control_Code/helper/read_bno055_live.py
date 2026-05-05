@@ -31,7 +31,7 @@ class BNO055_IMU:
     def read_calibration(self):
         return self.sensor.calibration_status
 
-    def get_data(self):  # 🔥 原 print_data 改名 + return
+    def get_data(self):  
         acceleration = self.read_acceleration()
         linear_accel = self.read_linear_acceleration()
         euler = self.read_euler()
@@ -52,7 +52,7 @@ class BNO055_IMU:
         print("Press Ctrl+C to stop.\n")
 
         while True:
-            print(self.get_data())  # 🔥 这里只是把返回值 print 出来
+            print(self.get_data())  
             time.sleep(delay)
 
 
