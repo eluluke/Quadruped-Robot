@@ -5,10 +5,7 @@ import adafruit_bno055
 
 class BNO055_IMU:
     def __init__(self, address=0x28):
-        # Raspberry Pi 4 I2C bus
         self.i2c = board.I2C()
-
-        # BNO055 sensor
         self.sensor = adafruit_bno055.BNO055_I2C(self.i2c, address=address)
 
     def format_tuple(self, values, digits=3):
@@ -34,14 +31,14 @@ class BNO055_IMU:
     def read_calibration(self):
         return self.sensor.calibration_status
 
-    def print_data(self):
+    def get_data(self):  # 🔥 原 print_data 改名 + return
         acceleration = self.read_acceleration()
         linear_accel = self.read_linear_acceleration()
         euler = self.read_euler()
         gyro = self.read_gyro()
         calib = self.read_calibration()
 
-        print(
+        return (
             "accel=" + self.format_tuple(acceleration) + " m/s^2 | "
             "linear=" + self.format_tuple(linear_accel) + " m/s^2 | "
             "euler=" + self.format_tuple(euler, digits=2) + " deg | "
@@ -55,7 +52,7 @@ class BNO055_IMU:
         print("Press Ctrl+C to stop.\n")
 
         while True:
-            self.print_data()
+            print(self.get_data())  # 🔥 这里只是把返回值 print 出来
             time.sleep(delay)
 
 
