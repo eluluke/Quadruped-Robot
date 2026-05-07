@@ -49,7 +49,7 @@ MOTOR_SIGN = -1.0
 # Trajectory tuning
 # ============================================================
 RATE_HZ = 80.0
-CYCLE_TIME = 2.0
+CYCLE_TIME = 1.80
 
 X_CENTER = 0.0
 Y_PLANE = 84.26
@@ -78,7 +78,7 @@ FORWARD_AXIS = "z"   # "x" or "z"
 LIFT_AXIS = "x"      # "x" or "z"
 
 FORWARD_SIGN = -1.0
-LIFT_SIGN = -1.0
+LIFT_SIGN = 1.0
 
 
 # ============================================================
@@ -339,7 +339,7 @@ def build_relative_command_table(start_raw):
     num_points = int(CYCLE_TIME * RATE_HZ)
     table = []
 
-    _, theta_t0, theta_s0 = leg_ik(X_CENTER, Y_PLANE, Z_GROUND)
+    _ , theta_t0, theta_s0, = leg_ik(X_CENTER, Y_PLANE, Z_GROUND)
 
     print("\nNominal IK reference:")
     print(f"  theta_t0 = {theta_t0:.6f}")
@@ -353,7 +353,7 @@ def build_relative_command_table(start_raw):
         phase = i / num_points
         x, y, z, forward, lift, phase_name = foot_trajectory(phase)
 
-        _, theta_t, theta_s = leg_ik(x, y, z)
+        _ , theta_t, theta_s = leg_ik(x, y, z)
 
         delta_t = theta_t - theta_t0
         delta_s = theta_s - theta_s0

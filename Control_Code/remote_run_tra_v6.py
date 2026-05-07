@@ -56,7 +56,7 @@ JOYSTICK_FILTER_ALPHA = 0.65
 
 # Full stick gives this many gait cycles per second.
 # 0.50 = 2.0 s/cycle, 0.85 = 1.18 s/cycle, 1.0 = 1 s/cycle.
-MAX_PHASE_SPEED = 0.85
+MAX_PHASE_SPEED = 0.95
 
 # How quickly phase speed can change, in cycles/s^2.
 # Higher = more responsive; lower = smoother.
@@ -83,7 +83,7 @@ Y_PLANE = 84.26
 Z_GROUND = 382.0
 
 STEP_LENGTH = 120.0
-STEP_HEIGHT = 120.0
+STEP_HEIGHT = 100.0
 STANCE_RATIO = 0.50
 
 MAX_RAW_DELTA_FROM_START = 13.0
@@ -112,7 +112,7 @@ FORWARD_AXIS = "z"   # "x" or "z"
 LIFT_AXIS = "x"      # "x" or "z"
 
 FORWARD_SIGN = -1.0
-LIFT_SIGN = -1.0
+LIFT_SIGN = 1.0
 
 
 # ============================================================
