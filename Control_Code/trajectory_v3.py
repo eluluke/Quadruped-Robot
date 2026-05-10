@@ -58,13 +58,13 @@ class TrajectoryConfig:
     y_center: float = 84.26
     z_ground: float = 382.0
 
-    step_length: float = 120.0
-    step_height: float = 100.0
+    step_length: float = 80.0
+    step_height: float = 60.0
     step_sideways: float = 0.0
 
     stance_ratio: float = 0.50
 
-    cycle_time: float = 1.80
+    cycle_time: float = 2.20
     rate_hz: float = 80.0
 
     x_forward_sign: float = 1.0

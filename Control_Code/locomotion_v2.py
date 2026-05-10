@@ -34,7 +34,7 @@ from trajectory_v3 import (
 )
 
 
-TRAJECTORY_NAME = "regular_planar"  # regular_planar, tilted_planar, vertical_jump
+TRAJECTORY_NAME = "tilted_planar"  # regular_planar, tilted_planar, vertical_jump
 
 ROLE_TO_ID: Dict[str, int] = {
     ROLE_HIP: 1,
@@ -65,13 +65,13 @@ TRAJ_CFG = TrajectoryConfig(
     step_height=70.0,
     step_sideways=0.0,
     stance_ratio=0.50,
-    cycle_time=2.0,
+    cycle_time= 2.0,
     rate_hz=80.0,
-    x_forward_sign=1.0,
+    x_forward_sign=-1.0,
     y_sideways_sign=1.0,
     z_lift_sign=-1.0,
     heading_deg=45.0,
-    z_jump_amplitude=70.0,
+    z_jump_amplitude=80.0,
 )
 
 CONVERSION = MotorConversionConfig(

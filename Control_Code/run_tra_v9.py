@@ -24,8 +24,8 @@ from quadruped_leg_ik import leg_ik
 # ============================================================
 # Motor IDs
 # ============================================================
-SHANK_ID = 2
-THIGH_ID = 0
+SHANK_ID = 3
+THIGH_ID = 2
 HIP_ID = 1
 
 DRIVE_IDS = [THIGH_ID, SHANK_ID]
@@ -74,8 +74,8 @@ MAX_RAW_DELTA_FROM_START = 13.0
 #   LIFT_AXIS    = "x"
 #
 # If your physical foot path looks rotated 90 degrees, use the swapped mode.
-FORWARD_AXIS = "z"   # "x" or "z"
-LIFT_AXIS = "x"      # "x" or "z"
+FORWARD_AXIS = "x"   # "x" or "z"
+LIFT_AXIS = "z"      # "x" or "z"
 
 FORWARD_SIGN = -1.0
 LIFT_SIGN = 1.0
