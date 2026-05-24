@@ -58,7 +58,7 @@ from statistics import median
 
 from loop_rate_limiters import RateLimiter
 import berkeley_humanoid_lite_lowlevel.recoil as recoil
-from xbox_controller import XboxController
+from xbox_config import XboxController, apply_deadband
 
 
 # ============================================================
@@ -272,15 +272,6 @@ signal.signal(signal.SIGTERM, request_stop)
 # ============================================================
 # Math helpers
 # ============================================================
-
-def apply_deadband(value, deadband):
-    """Apply joystick deadband."""
-    if abs(value) < deadband:
-        return 0.0
-
-    sign = 1.0 if value > 0.0 else -1.0
-    return sign * (abs(value) - deadband) / (1.0 - deadband)
-
 
 def limit_rate(current, target, max_delta):
     """Limit rate of change."""

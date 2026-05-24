@@ -1,7 +1,10 @@
 """
 gains_config.py
 
-Motor gain sets for each control state.
+Shared motor gain sets for high-level quadruped states.
+
+Per-joint hardware gains still live in leg_config.py. These named gain sets
+are used during startup, standing transitions, hold, and trot.
 """
 
 from __future__ import annotations
@@ -9,10 +12,10 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import Dict
 
-from trajectory_v3 import ROLE_HIP, ROLE_THIGH, ROLE_SHANK
+from leg_config import HIP, SHANK, THIGH
 
 
-@dataclass
+@dataclass(frozen=True)
 class GainSet:
     kp: Dict[str, float]
     kd: Dict[str, float]
@@ -20,31 +23,31 @@ class GainSet:
 
 
 ARM_GAINS = GainSet(
-    kp={ROLE_HIP: 0.0, ROLE_THIGH: 0.0, ROLE_SHANK: 0.0},
-    kd={ROLE_HIP: 0.0, ROLE_THIGH: 0.0, ROLE_SHANK: 0.0},
-    torque={ROLE_HIP: 0.0, ROLE_THIGH: 0.0, ROLE_SHANK: 0.0},
+    kp={HIP: 0.0, THIGH: 0.0, SHANK: 0.0},
+    kd={HIP: 0.0, THIGH: 0.0, SHANK: 0.0},
+    torque={HIP: 0.0, THIGH: 0.0, SHANK: 0.0},
 )
 
 STARTUP_GAINS = GainSet(
-    kp={ROLE_HIP: 0.003, ROLE_THIGH: 0.003, ROLE_SHANK: 0.003},
-    kd={ROLE_HIP: 0.001, ROLE_THIGH: 0.001, ROLE_SHANK: 0.001},
-    torque={ROLE_HIP: 0.03, ROLE_THIGH: 0.03, ROLE_SHANK: 0.03},
+    kp={HIP: 0.003, THIGH: 0.003, SHANK: 0.003},
+    kd={HIP: 0.001, THIGH: 0.001, SHANK: 0.001},
+    torque={HIP: 0.03, THIGH: 0.03, SHANK: 0.03},
 )
 
 MOVE_GAINS = GainSet(
-    kp={ROLE_HIP: 0.20, ROLE_THIGH: 0.20, ROLE_SHANK: 0.20},
-    kd={ROLE_HIP: 0.008, ROLE_THIGH: 0.008, ROLE_SHANK: 0.008},
-    torque={ROLE_HIP: 1.30, ROLE_THIGH: 0.75, ROLE_SHANK: 0.75},
+    kp={HIP: 0.20, THIGH: 0.20, SHANK: 0.20},
+    kd={HIP: 0.008, THIGH: 0.008, SHANK: 0.008},
+    torque={HIP: 1.30, THIGH: 0.75, SHANK: 0.75},
 )
 
 RUN_GAINS = GainSet(
-    kp={ROLE_HIP: 0.10, ROLE_THIGH: 0.20, ROLE_SHANK: 0.20},
-    kd={ROLE_HIP: 0.010, ROLE_THIGH: 0.008, ROLE_SHANK: 0.008},
-    torque={ROLE_HIP: 1.50, ROLE_THIGH: 0.80, ROLE_SHANK: 0.80},
+    kp={HIP: 0.10, THIGH: 0.20, SHANK: 0.20},
+    kd={HIP: 0.010, THIGH: 0.008, SHANK: 0.008},
+    torque={HIP: 1.50, THIGH: 0.80, SHANK: 0.80},
 )
 
 HOLD_GAINS = GainSet(
-    kp={ROLE_HIP: 0.12, ROLE_THIGH: 0.10, ROLE_SHANK: 0.10},
-    kd={ROLE_HIP: 0.010, ROLE_THIGH: 0.006, ROLE_SHANK: 0.006},
-    torque={ROLE_HIP: 1.50, ROLE_THIGH: 0.80, ROLE_SHANK: 0.80},
+    kp={HIP: 0.12, THIGH: 0.10, SHANK: 0.10},
+    kd={HIP: 0.010, THIGH: 0.006, SHANK: 0.006},
+    torque={HIP: 1.50, THIGH: 0.80, SHANK: 0.80},
 )

@@ -48,7 +48,7 @@ class BNO055_IMU:
 
     def run(self, delay=0.05):
         print("BNO055 live IMU test")
-        print("Tilt/rotate the sensor and watch acceleration/orientation change.")
+        print("Tilt/rotate the sensor and watch data change.")
         print("Press Ctrl+C to stop.\n")
 
         while True:

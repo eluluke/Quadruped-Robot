@@ -1,19 +1,25 @@
 """
 quadruped_utils.py
 
-Small shared helpers.
+Small shared helpers that are not specific to hardware, trajectory geometry,
+or Xbox input.
 """
 
+from __future__ import annotations
+
 import math
-import time
 import queue
 import sys
 import threading
+import time
+from typing import Optional
 
-TERMINAL_QUEUE = queue.Queue()
+
+TERMINAL_QUEUE: queue.Queue[str] = queue.Queue()
 
 
-def terminal_input_worker():
+def terminal_input_worker() -> None:
+    """Read terminal lines into a shared queue."""
     while True:
         try:
             line = sys.stdin.readline()
@@ -24,13 +30,15 @@ def terminal_input_worker():
             return
 
 
-def start_terminal_input_thread():
+def start_terminal_input_thread() -> threading.Thread:
+    """Start the shared nonblocking terminal input thread."""
     thread = threading.Thread(target=terminal_input_worker, daemon=True)
     thread.start()
     return thread
 
 
-def get_terminal_command():
+def get_terminal_command() -> Optional[str]:
+    """Return one queued terminal command, or None."""
     try:
         return TERMINAL_QUEUE.get_nowait()
     except queue.Empty:
@@ -38,6 +46,7 @@ def get_terminal_command():
 
 
 def wait_for_terminal_command(prompt: str) -> str:
+    """Block until the terminal input thread receives one command."""
     print(prompt, end="", flush=True)
     while True:
         cmd = get_terminal_command()
@@ -47,14 +56,8 @@ def wait_for_terminal_command(prompt: str) -> str:
         time.sleep(0.02)
 
 
-def apply_deadband(value: float, deadband: float) -> float:
-    if abs(value) < deadband:
-        return 0.0
-    sign = 1.0 if value > 0.0 else -1.0
-    return sign * (abs(value) - deadband) / (1.0 - deadband)
-
-
 def limit_rate(current: float, target: float, max_delta: float) -> float:
+    """Limit one scalar value's step toward a target."""
     delta = target - current
     if delta > max_delta:
         return current + max_delta
@@ -64,8 +67,6 @@ def limit_rate(current: float, target: float, max_delta: float) -> float:
 
 
 def smoothstep(u: float) -> float:
+    """Cosine smoothstep over u in [0, 1]."""
+    u = max(0.0, min(1.0, u))
     return 0.5 * (1.0 - math.cos(math.pi * u))
-
-
-def table_index_from_phase(phase: float, table_len: int) -> int:
-    return int((phase % 1.0) * table_len) % table_len

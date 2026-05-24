@@ -1,35 +1,44 @@
 """
 quadruped_main_slim.py
 
-Very small high-level program.
+Highest-level operator program for whole-robot locomotion.
 
-This is the file you run.
+This is the file to run when you want to:
+    1. Manually place each leg at its max-contraction homing pose.
+    2. Confirm each leg with y1/y2/y3/y4.
+    3. Move all legs to neutral standing.
+    4. Start Xbox-controlled trot.
 
-It only cares about state:
-    - Are legs homed?
-    - Did user confirm y1/y2/y3/y4?
-    - Did user type y to stand?
-    - Did Xbox command arrive to trot?
-
-All low-level details live in:
+All lower-level behavior lives in:
     leg_config.py
     gains_config.py
     xbox_config.py
+    trajectory_config.py
     leg_controller.py
     robot_controller.py
     gait_scheduler.py
-    trajectory_v3.py
 """
+
+from __future__ import annotations
 
 import signal
 
+from leg_config import get_can_channel
 from quadruped_main_state import STOP_REQUESTED_REF
-from quadruped_utils import start_terminal_input_thread, wait_for_terminal_command
-from robot_controller import RobotController
-from leg_config import LEG_CONFIGS, TRAJECTORY_NAME, COMMAND_HIP_TRAJECTORY, TRAJECTORY_START_MODE
+from quadruped_utils import (
+    start_terminal_input_thread,
+    wait_for_terminal_command,
+)
+from robot_controller import (
+    COMMAND_HIP_TRAJECTORY,
+    LEG_CONFIRM_COMMANDS,
+    TRAJECTORY_NAME,
+    TRAJECTORY_START_MODE,
+    RobotController,
+)
 
 
-def request_stop(_signum=None, _frame=None):
+def request_stop(_signum=None, _frame=None) -> None:
     STOP_REQUESTED_REF["stop"] = True
     print("\nStop requested.")
 
@@ -38,16 +47,17 @@ signal.signal(signal.SIGINT, request_stop)
 signal.signal(signal.SIGTERM, request_stop)
 
 
-def print_header():
+def print_header() -> None:
     print("=" * 80)
     print("quadruped_main_slim.py")
     print("=" * 80)
-    print("High-level state machine only.")
-    print("Startup sends NO motor commands until y1/y2/y3/y4 are typed.")
+    print("Whole-robot state machine.")
+    print("Startup sends no position commands until a leg is confirmed homed.")
     print()
-    print("Leg mapping:")
-    for name, cfg in LEG_CONFIGS.items():
-        print(f"  {name}: channel={cfg['channel']} phase_offset={cfg['phase_offset']}")
+    print("Leg confirmation mapping:")
+    for command, leg_name in LEG_CONFIRM_COMMANDS.items():
+        channel = get_can_channel(leg_name)
+        print(f"  {command}: {leg_name:11s} channel={channel}")
     print()
     print(f"TRAJECTORY_NAME={TRAJECTORY_NAME}")
     print(f"COMMAND_HIP_TRAJECTORY={COMMAND_HIP_TRAJECTORY}")
@@ -55,15 +65,15 @@ def print_header():
     print("=" * 80)
 
 
-def print_menu():
+def print_menu() -> None:
     print("\nCommands:")
-    print("  y1 / y2 / y3 / y4  = confirm that leg is manually homed")
+    print("  y1 / y2 / y3 / y4  = confirm leg at max contraction")
     print("  status             = show homing status")
     print("  y                  = stand, then start Xbox trot")
     print("  q                  = quit / idle all motors")
 
 
-def main():
+def main() -> None:
     print_header()
     start_terminal_input_thread()
 
@@ -82,8 +92,8 @@ def main():
             if cmd == "status":
                 continue
 
-            if cmd in ("y1", "y2", "y3", "y4"):
-                robot.mark_leg_homed(int(cmd[1]))
+            if cmd in LEG_CONFIRM_COMMANDS:
+                robot.mark_leg_homed(cmd)
                 continue
 
             if cmd in ("y", "yes"):
