@@ -20,7 +20,7 @@ import signal
 import time
 from typing import Dict, Iterable, List
 
-import berkeley_humanoid_lite_lowlevel.recoil as recoil  # type: ignore[import-not-found]
+import berkeley_humanoid_lite_lowlevel.recoil as recoil
 from loop_rate_limiters import RateLimiter  # type: ignore[import-not-found]
 
 from leg_config import (
@@ -29,6 +29,9 @@ from leg_config import (
     HIP,
     JOINT_ORDER,
     LEG_ORDER,
+    NEUTRAL_X,
+    NEUTRAL_Y,
+    NEUTRAL_Z,
     get_can_channel,
     get_joint_gains,
     get_motor_sign,
@@ -49,9 +52,9 @@ from trajectory_config import (
 
 TRAJECTORY_NAME = TRAJ_REGULAR_PLANAR
 TRAJ_CFG = TrajectoryConfig(
-    x_center=0.0,
-    y_center=84.26,
-    z_ground=378.0,
+    x_center=NEUTRAL_X,
+    y_center=NEUTRAL_Y,
+    z_ground=NEUTRAL_Z,
     step_length=100.0,
     step_height=70.0,
     step_sideways=0.0,
@@ -135,7 +138,13 @@ class SingleLegRunner:
             pass
         time.sleep(0.008)
 
-    def set_gains(self, motor_id: int, kp: float, kd: float, torque_limit: float) -> None:
+    def set_gains(
+        self,
+        motor_id: int,
+        kp: float,
+        kd: float,
+        torque_limit: float,
+    ) -> None:
         self.bus.write_position_kp(motor_id, kp)
         time.sleep(0.004)
         self.bus.write_position_kd(motor_id, kd)
@@ -159,11 +168,16 @@ class SingleLegRunner:
     def read_position(self, motor_id: int) -> float:
         value = self.bus.read_position_measured(motor_id)
         if value is None:
-            raise RuntimeError(f"read_position_measured returned None for ID {motor_id}")
+            raise RuntimeError(
+                f"read_position_measured returned None for ID {motor_id}"
+            )
         return float(value)
 
     def read_all_positions(self, samples: int = 15) -> Dict[int, float]:
-        values_by_id: Dict[int, List[float]] = {motor_id: [] for motor_id in self.motor_ids}
+        values_by_id: Dict[int, List[float]] = {
+            motor_id: []
+            for motor_id in self.motor_ids
+        }
 
         for _ in range(samples):
             for motor_id in self.motor_ids:
@@ -246,10 +260,17 @@ class SingleLegRunner:
 
         return targets
 
-    def move_to_targets(self, targets: Dict[int, float], move_time: float, label: str) -> None:
+    def move_to_targets(
+        self,
+        targets: Dict[int, float],
+        move_time: float,
+        label: str,
+        print_every: int = 0,
+    ) -> None:
         print(f"\n{label}")
         start_cmd = dict(self.active_cmd)
         steps = max(1, int(move_time * RATE_HZ))
+        print(f"  sending interpolated targets for {steps} control steps")
 
         for i in range(steps):
             if STOP_REQUESTED:
@@ -262,6 +283,10 @@ class SingleLegRunner:
                 for motor_id, target in targets.items()
             }
             self.command_targets(cmd)
+
+            if print_every > 0 and (i + 1) % print_every == 0:
+                self.print_feedback()
+
             self.rate.sleep()
 
     def print_feedback(self) -> None:
@@ -291,7 +316,10 @@ class SingleLegRunner:
         except Exception:
             pass
 
-def print_trajectory_summary(runner: SingleLegRunner, table: List[TrajectoryPoint]) -> None:
+def print_trajectory_summary(
+    runner: SingleLegRunner,
+    table: List[TrajectoryPoint],
+) -> None:
     summary = summarize_angle_delta_table(table)
     print("\nTrajectory table summary:")
 
@@ -334,7 +362,11 @@ def main() -> None:
 
         print("\nSwitching to leg_config.py run gains...")
         runner.set_all_config_gains()
-        runner.move_to_targets(first_targets, MOVE_TO_FIRST_TIME, "Moving to first trajectory point...")
+        runner.move_to_targets(
+            first_targets,
+            MOVE_TO_FIRST_TIME,
+            "Moving to first trajectory point...",
+        )
 
         print("\nStarting regular planar trajectory. Press Ctrl+C to stop.\n")
         index = 0

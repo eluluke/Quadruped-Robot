@@ -64,6 +64,7 @@ PRINT_EVERY = 40
 
 CONFIRM_IF_RAW_DELTA_OVER = 4.0
 ABORT_IF_RAW_DELTA_OVER = 35.0
+REQUIRE_SECOND_MOVE_CONFIRMATION = False
 
 
 def request_stop(_signum=None, _frame=None) -> None:
@@ -182,7 +183,16 @@ def maybe_confirm_large_move(max_delta: float, label: str) -> bool:
         )
 
     if max_delta > CONFIRM_IF_RAW_DELTA_OVER:
-        answer = input(f"\n{label} max raw delta is {max_delta:.3f}. Move? y/n: ")
+        print(
+            f"\n{label} max raw delta is {max_delta:.3f}, "
+            f"above warning threshold {CONFIRM_IF_RAW_DELTA_OVER:.3f}."
+        )
+
+        if not REQUIRE_SECOND_MOVE_CONFIRMATION:
+            print("Continuing automatically after homing confirmation.")
+            return True
+
+        answer = input("Move? y/n: ")
         return answer.strip().lower() in ("y", "yes")
 
     return True
@@ -246,6 +256,7 @@ def move_to_trajectory_start(
         first_targets,
         MOVE_TO_TRAJ_START_TIME,
         f"Moving to trajectory start phase {phase:.3f}...",
+        print_every=PRINT_EVERY,
     )
 
     return phase
@@ -356,6 +367,7 @@ def main() -> None:
             neutral_targets,
             STAND_MOVE_TIME,
             "Moving from max contraction to neutral standing...",
+            print_every=PRINT_EVERY,
         )
 
         neutral_raw = dict(runner.active_cmd)

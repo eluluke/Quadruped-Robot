@@ -23,6 +23,10 @@ from leg_config import (
     FRONT_LEFT,
     FRONT_RIGHT,
     LEG_ORDER,
+    NEUTRAL_STANDING_FOOT_POSITION,
+    NEUTRAL_X,
+    NEUTRAL_Y,
+    NEUTRAL_Z,
     REAR_LEFT,
     REAR_RIGHT,
 )
@@ -59,11 +63,6 @@ from xbox_config import (
 
 RATE_HZ = 80.0
 PRINT_EVERY = 40
-
-NEUTRAL_X = 0.0
-NEUTRAL_Y = 84.26
-NEUTRAL_Z = 378.0
-NEUTRAL_XYZ = (NEUTRAL_X, NEUTRAL_Y, NEUTRAL_Z)
 
 TRAJECTORY_NAME = TRAJ_REGULAR_PLANAR
 TRAJ_CFG = TrajectoryConfig(
@@ -163,7 +162,7 @@ class RobotController:
             return False
 
         neutral_targets = {
-            name: leg.compute_neutral_targets(NEUTRAL_XYZ)
+            name: leg.compute_neutral_targets(NEUTRAL_STANDING_FOOT_POSITION)
             for name, leg in self.legs.items()
         }
 

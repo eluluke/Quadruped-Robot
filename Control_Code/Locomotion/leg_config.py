@@ -61,6 +61,23 @@ LEG_ORDER = [
 
 
 # ============================================================
+# Shared neutral standing pose
+# ============================================================
+#
+# This is the nominal foot position in the IK frame used when moving from
+# the manually confirmed max-contraction pose to neutral standing.
+#
+# Units are millimeters.
+# ============================================================
+
+NEUTRAL_X = 0.0
+NEUTRAL_Y = 84.26
+NEUTRAL_Z = 378.0
+
+NEUTRAL_STANDING_FOOT_POSITION = (NEUTRAL_X, NEUTRAL_Y, NEUTRAL_Z)
+
+
+# ============================================================
 # Full robot hardware configuration
 # ============================================================
 #
