@@ -240,8 +240,8 @@ GEAR_RATIO = 17.0
 MOTOR_SIGN = {
     FRONT_LEFT: {
         HIP: 1.0,
-        THIGH: 1.0,
-        SHANK: 1.0,
+        THIGH: -1.0,
+        SHANK: -1.0,
     },
 
     FRONT_RIGHT: {
