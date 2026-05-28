@@ -67,9 +67,14 @@ ABORT_IF_RAW_DELTA_OVER = 35.0
 REQUIRE_SECOND_MOVE_CONFIRMATION = False
 
 
-def request_stop(_signum=None, _frame=None) -> None:
+def mark_stop() -> None:
     base.STOP_REQUESTED = True
     print("\nStop requested.")
+
+
+def request_stop(_signum=None, _frame=None) -> None:
+    mark_stop()
+    raise KeyboardInterrupt
 
 
 signal.signal(signal.SIGINT, request_stop)
@@ -98,6 +103,9 @@ def wait_for_homing_confirmation(leg_name: str) -> None:
     print("=" * 80)
 
     while True:
+        if base.STOP_REQUESTED:
+            raise KeyboardInterrupt
+
         answer = input("\nType y when the leg is at max contraction, or q to quit: ")
         answer = answer.strip().lower()
         if answer in ("y", "yes"):
@@ -384,9 +392,11 @@ def main() -> None:
         run_xbox_trot(runner, neutral_raw, table, phase)
 
     except KeyboardInterrupt:
-        request_stop()
+        mark_stop()
 
     finally:
+        signal.signal(signal.SIGINT, signal.SIG_IGN)
+        signal.signal(signal.SIGTERM, signal.SIG_IGN)
         runner.idle_all()
 
 
