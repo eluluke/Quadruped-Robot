@@ -1,0 +1,28 @@
+# ============================================================
+# Quadruped Robot Control_Code Python Dependencies
+# For CAN motor control, Xbox joystick, IMU, and Berkeley recoil low-level API
+# ============================================================
+
+# Core math
+numpy
+
+# Config parsing used by Berkeley low-level repo
+omegaconf
+pyaml
+
+# CAN bus communication
+python-can
+
+# Control loop rate limiter
+loop-rate-limiters
+
+# Xbox / joystick control
+pygame
+inputs
+
+# Raspberry Pi IMU / BNO055
+Adafruit-Blinka
+adafruit-circuitpython-bno055
+
+# Berkeley low-level optional UDP communication dependency
+cc.udp 
