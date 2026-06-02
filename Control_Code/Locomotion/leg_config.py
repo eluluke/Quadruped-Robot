@@ -72,7 +72,7 @@ LEG_ORDER = [
 
 NEUTRAL_X = 0.0
 NEUTRAL_Y = 84.26
-NEUTRAL_Z = 378.0
+NEUTRAL_Z = 370.0
 
 NEUTRAL_STANDING_FOOT_POSITION = (NEUTRAL_X, NEUTRAL_Y, NEUTRAL_Z)
 
@@ -178,7 +178,7 @@ LEG_CONFIG = {
             "kp": 0.20,
             "kd": 0.008,
             "torque_limit": 0.75,
-            "max_contraction_angle_rad": 1.020,
+            "max_contraction_angle_rad": 1.264,
         },
 
         SHANK: {
@@ -206,7 +206,7 @@ LEG_CONFIG = {
             "kp": 0.20,
             "kd": 0.008,
             "torque_limit": 0.75,
-            "max_contraction_angle_rad": 1.020,
+            "max_contraction_angle_rad": 1.264,
         },
 
         SHANK: {
