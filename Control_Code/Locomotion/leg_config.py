@@ -245,7 +245,7 @@ MOTOR_SIGN = {
     },
 
     FRONT_RIGHT: {
-        HIP: 1.0,
+        HIP: -1.0,
         THIGH: 1.0,
         SHANK: 1.0,
     },
