@@ -4,8 +4,8 @@ robot_controller.py
 High-level four-leg robot controller.
 
 This class coordinates:
-    - manual max-contraction confirmation for each leg
-    - simultaneous move from max contraction to neutral standing
+    - manual sleepy-pose confirmation for each leg
+    - simultaneous move from sleepy pose to neutral standing
     - neutral hold
     - Xbox-controlled diagonal trot
 """
@@ -170,11 +170,11 @@ class RobotController:
         print("\nNeutral move plan:")
         for name, leg in self.legs.items():
             print(f"  {name}:")
-            if leg.limit_raw is None:
+            if leg.home_raw is None:
                 raise RuntimeError(f"{name}: missing homed raw reference.")
 
             for motor_id, target in neutral_targets[name].items():
-                start = leg.limit_raw[motor_id]
+                start = leg.home_raw[motor_id]
                 delta = target - start
                 max_delta = max(max_delta, abs(delta))
                 role = leg.id_to_role[motor_id]
@@ -200,7 +200,7 @@ class RobotController:
             leg.set_all_gains(MOVE_GAINS)
 
         start_raw = {
-            name: dict(leg.limit_raw or {})
+            name: dict(leg.home_raw or {})
             for name, leg in self.legs.items()
         }
 

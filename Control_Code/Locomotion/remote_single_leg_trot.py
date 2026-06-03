@@ -1,11 +1,11 @@
 """
 remote_single_leg_trot.py
 
-Manual max-contraction confirmation -> neutral standing -> Xbox-controlled
+Manual sleepy-pose confirmation -> neutral standing -> Xbox-controlled
 single-leg regular planar trot.
 
 This script imports:
-    - CAN IDs, motor signs, gains, and max-contraction angles from leg_config.py
+    - CAN IDs, motor signs, gains, and sleepy homing angles from leg_config.py
     - foot trajectory and IK angle deltas from trajectory_config.py
     - Xbox controller settings and wrapper from xbox_config.py
 
@@ -26,7 +26,7 @@ from leg_config import (
     JOINT_ORDER,
     LEG_ORDER,
     get_joint_gains,
-    get_max_contraction_angles_for_leg,
+    get_sleepy_angles_for_leg,
 )
 from quadruped_utils import limit_rate
 from trajectory_config import (
@@ -98,7 +98,7 @@ def wait_for_homing_confirmation(leg_name: str) -> None:
     print("=" * 80)
     print(f"Selected leg: {leg_name}")
     print()
-    print("Put this leg manually at its max-contraction homing pose.")
+    print("Put this leg manually at its sleepy laying homing pose.")
     print("No motor commands are sent before you confirm.")
     print("=" * 80)
 
@@ -106,7 +106,7 @@ def wait_for_homing_confirmation(leg_name: str) -> None:
         if base.STOP_REQUESTED:
             raise KeyboardInterrupt
 
-        answer = input("\nType y when the leg is at max contraction, or q to quit: ")
+        answer = input("\nType y when the leg is at sleepy pose, or q to quit: ")
         answer = answer.strip().lower()
         if answer in ("y", "yes"):
             return
@@ -117,18 +117,18 @@ def wait_for_homing_confirmation(leg_name: str) -> None:
 
 def compute_neutral_targets(
     runner: base.SingleLegRunner,
-    limit_raw: Dict[int, float],
+    home_raw: Dict[int, float],
 ) -> tuple[Dict[str, float], Dict[str, float], Dict[int, float]]:
-    """Compute raw targets from configured max-contraction pose to neutral."""
+    """Compute raw targets from configured sleepy pose to neutral."""
     neutral_angles = ik_angles_for_xyz(
         TRAJ_CFG.x_center,
         TRAJ_CFG.y_center,
         TRAJ_CFG.z_ground,
     )
-    limit_angles = get_max_contraction_angles_for_leg(runner.leg_name)
+    home_angles = get_sleepy_angles_for_leg(runner.leg_name)
 
     delta_angles = {
-        role: neutral_angles[role] - limit_angles[role]
+        role: neutral_angles[role] - home_angles[role]
         for role in JOINT_ROLES
     }
 
@@ -136,27 +136,27 @@ def compute_neutral_targets(
     for role in JOINT_ROLES:
         motor_id = runner.role_to_id[role]
         raw_delta = runner.raw_delta_for_role(role, delta_angles[role])
-        targets[motor_id] = limit_raw[motor_id] + raw_delta
+        targets[motor_id] = home_raw[motor_id] + raw_delta
 
     return neutral_angles, delta_angles, targets
 
 
 def print_standing_plan(
     runner: base.SingleLegRunner,
-    limit_raw: Dict[int, float],
+    home_raw: Dict[int, float],
     neutral_angles: Dict[str, float],
     delta_angles: Dict[str, float],
     neutral_targets: Dict[int, float],
 ) -> float:
-    max_contraction_angles = get_max_contraction_angles_for_leg(runner.leg_name)
+    sleepy_angles = get_sleepy_angles_for_leg(runner.leg_name)
 
     print("\nNeutral IK angles:")
     for role in JOINT_ROLES:
         print(f"  {role:5s}: {neutral_angles[role]:+.6f} rad")
 
-    print("\nConfigured max-contraction angles from leg_config.py:")
+    print("\nConfigured sleepy homing angles from leg_config.py:")
     for role in JOINT_ROLES:
-        print(f"  {role:5s}: {max_contraction_angles[role]:+.6f} rad")
+        print(f"  {role:5s}: {sleepy_angles[role]:+.6f} rad")
 
     print("\nRelative output angle deltas to neutral:")
     for role in JOINT_ROLES:
@@ -166,11 +166,11 @@ def print_standing_plan(
     max_delta = 0.0
     for role in JOINT_ORDER:
         motor_id = runner.role_to_id[role]
-        delta_raw = neutral_targets[motor_id] - limit_raw[motor_id]
+        delta_raw = neutral_targets[motor_id] - home_raw[motor_id]
         max_delta = max(max_delta, abs(delta_raw))
         print(
             f"  {role:5s} ID {motor_id}: "
-            f"start={limit_raw[motor_id]:+.6f}, "
+            f"start={home_raw[motor_id]:+.6f}, "
             f"target={neutral_targets[motor_id]:+.6f}, "
             f"delta={delta_raw:+.6f}"
         )
@@ -350,16 +350,16 @@ def main() -> None:
     try:
         wait_for_homing_confirmation(runner.leg_name)
 
-        print("\nConfirmed. Reading max-contraction raw pose and arming position mode.")
-        limit_raw = runner.arm_at_current_pose()
+        print("\nConfirmed. Reading sleepy raw pose and arming position mode.")
+        home_raw = runner.arm_at_current_pose()
 
         neutral_angles, delta_angles, neutral_targets = compute_neutral_targets(
             runner,
-            limit_raw,
+            home_raw,
         )
         max_delta = print_standing_plan(
             runner,
-            limit_raw,
+            home_raw,
             neutral_angles,
             delta_angles,
             neutral_targets,
@@ -374,7 +374,7 @@ def main() -> None:
         runner.move_to_targets(
             neutral_targets,
             STAND_MOVE_TIME,
-            "Moving from max contraction to neutral standing...",
+            "Moving from sleepy pose to neutral standing...",
             print_every=PRINT_EVERY,
         )
 

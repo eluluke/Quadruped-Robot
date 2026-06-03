@@ -10,7 +10,7 @@ ratio, and no motor direction signs. It works only in the robot/IK frame:
 
 The hardware layer should convert these output-side angle deltas into raw
 motor commands using leg_config.py, because each physical leg can have its
-own CAN IDs, signs, and max-contraction homing angles.
+own CAN IDs, signs, and homing calibration angles.
 """
 
 from __future__ import annotations

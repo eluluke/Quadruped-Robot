@@ -22,6 +22,7 @@ Each joint explicitly defines:
     kd
     torque_limit
     max_contraction_angle_rad
+    sleepy_angle_rad
 
 Important:
     This file does NOT define trajectory.
@@ -65,7 +66,7 @@ LEG_ORDER = [
 # ============================================================
 #
 # This is the nominal foot position in the IK frame used when moving from
-# the manually confirmed max-contraction pose to neutral standing.
+# the manually confirmed sleepy pose to neutral standing.
 #
 # Units are millimeters.
 # ============================================================
@@ -97,13 +98,21 @@ NEUTRAL_STANDING_FOOT_POSITION = (NEUTRAL_X, NEUTRAL_Y, NEUTRAL_Z)
 #
 # max_contraction_angle_rad:
 #     Output-side joint angle at that leg's mechanical max-contraction
-#     homing pose.
+#     pose. Kept for reference.
+#
+# sleepy_angle_rad:
+#     Output-side joint angle at the safer manual homing pose where the robot
+#     lays flat on the ground and the knee/foot touch the ground.
 #
 #     This is NOT the raw encoder reading.
 #     The raw encoder reading is recorded at runtime when you manually put
-#     the leg at max contraction and confirm homing.
+#     the leg at the sleepy pose and confirm homing.
 #
 # ============================================================
+
+SLEEPY_HIP_ANGLE = -0.465499025237436
+SLEEPY_THIGH_ANGLE = 1.11367455104935
+SLEEPY_SHANK_ANGLE = 2.68814970801254
 
 LEG_CONFIG = {
     FRONT_LEFT: {
@@ -115,6 +124,7 @@ LEG_CONFIG = {
             "kd": 0.008,
             "torque_limit": 1.30,
             "max_contraction_angle_rad": -1.069,
+            "sleepy_angle_rad": SLEEPY_HIP_ANGLE,
         },
 
         THIGH: {
@@ -123,6 +133,7 @@ LEG_CONFIG = {
             "kd": 0.008,
             "torque_limit": 0.75,
             "max_contraction_angle_rad": 1.264,
+            "sleepy_angle_rad": SLEEPY_THIGH_ANGLE,
         },
 
         SHANK: {
@@ -131,6 +142,7 @@ LEG_CONFIG = {
             "kd": 0.008,
             "torque_limit": 0.75,
             "max_contraction_angle_rad": 2.631,
+            "sleepy_angle_rad": SLEEPY_SHANK_ANGLE,
         },
     },
 
@@ -143,6 +155,7 @@ LEG_CONFIG = {
             "kd": 0.008,
             "torque_limit": 1.30,
             "max_contraction_angle_rad": -1.069,
+            "sleepy_angle_rad": SLEEPY_HIP_ANGLE,
         },
 
         THIGH: {
@@ -151,6 +164,7 @@ LEG_CONFIG = {
             "kd": 0.008,
             "torque_limit": 0.75,
             "max_contraction_angle_rad": 1.264,
+            "sleepy_angle_rad": SLEEPY_THIGH_ANGLE,
         },
 
         SHANK: {
@@ -159,6 +173,7 @@ LEG_CONFIG = {
             "kd": 0.008,
             "torque_limit": 0.75,
             "max_contraction_angle_rad": 2.631,
+            "sleepy_angle_rad": SLEEPY_SHANK_ANGLE,
         },
     },
 
@@ -171,6 +186,7 @@ LEG_CONFIG = {
             "kd": 0.008,
             "torque_limit": 1.30,
             "max_contraction_angle_rad": -1.069,
+            "sleepy_angle_rad": SLEEPY_HIP_ANGLE,
         },
 
         THIGH: {
@@ -179,6 +195,7 @@ LEG_CONFIG = {
             "kd": 0.008,
             "torque_limit": 0.75,
             "max_contraction_angle_rad": 1.264,
+            "sleepy_angle_rad": SLEEPY_THIGH_ANGLE,
         },
 
         SHANK: {
@@ -187,6 +204,7 @@ LEG_CONFIG = {
             "kd": 0.008,
             "torque_limit": 0.75,
             "max_contraction_angle_rad": 2.631,
+            "sleepy_angle_rad": SLEEPY_SHANK_ANGLE,
         },
     },
 
@@ -199,6 +217,7 @@ LEG_CONFIG = {
             "kd": 0.008,
             "torque_limit": 1.30,
             "max_contraction_angle_rad": -1.069,
+            "sleepy_angle_rad": SLEEPY_HIP_ANGLE,
         },
 
         THIGH: {
@@ -207,6 +226,7 @@ LEG_CONFIG = {
             "kd": 0.008,
             "torque_limit": 0.75,
             "max_contraction_angle_rad": 1.264,
+            "sleepy_angle_rad": SLEEPY_THIGH_ANGLE,
         },
 
         SHANK: {
@@ -215,6 +235,7 @@ LEG_CONFIG = {
             "kd": 0.008,
             "torque_limit": 0.75,
             "max_contraction_angle_rad": 2.631,
+            "sleepy_angle_rad": SLEEPY_SHANK_ANGLE,
         },
     },
 }
@@ -308,6 +329,11 @@ def get_max_contraction_angle(leg_name, joint_name):
     return LEG_CONFIG[leg_name][joint_name]["max_contraction_angle_rad"]
 
 
+def get_sleepy_angle(leg_name, joint_name):
+    """Return sleepy-pose output-side angle in radians for one joint."""
+    return LEG_CONFIG[leg_name][joint_name]["sleepy_angle_rad"]
+
+
 def get_motor_sign(leg_name, joint_name):
     """Return motor sign for one joint."""
     return MOTOR_SIGN[leg_name][joint_name]
@@ -328,6 +354,15 @@ def get_max_contraction_angles_for_leg(leg_name):
         HIP: get_max_contraction_angle(leg_name, HIP),
         THIGH: get_max_contraction_angle(leg_name, THIGH),
         SHANK: get_max_contraction_angle(leg_name, SHANK),
+    }
+
+
+def get_sleepy_angles_for_leg(leg_name):
+    """Return all sleepy-pose homing angles for one leg."""
+    return {
+        HIP: get_sleepy_angle(leg_name, HIP),
+        THIGH: get_sleepy_angle(leg_name, THIGH),
+        SHANK: get_sleepy_angle(leg_name, SHANK),
     }
 
 
@@ -363,6 +398,8 @@ def print_config_summary():
                 f"torque_limit={joint['torque_limit']:.4f}, "
                 "max_contraction="
                 f"{joint['max_contraction_angle_rad']:.6f} rad, "
+                "sleepy="
+                f"{joint['sleepy_angle_rad']:.6f} rad, "
                 f"motor_sign={get_motor_sign(leg_name, joint_name):+.1f}"
             )
 
