@@ -1,37 +1,20 @@
 """
-leg_config_simple.py
+leg_config.py
 
-Simple, explicit hardware configuration for the quadruped robot.
+Simple hardware configuration for the quadruped robot.
 
-This file is intentionally written to be EASY TO READ, not overly abstract.
+This file defines:
+    - leg names
+    - joint names
+    - CAN channels
+    - CAN IDs
+    - position gains
+    - motor direction signs
+    - the selected manual homing angle
 
-There are 4 legs:
-    front_left
-    front_right
-    rear_left
-    rear_right
-
-Each leg has 3 joints:
-    hip
-    thigh
-    shank
-
-Each joint explicitly defines:
-    can_id
-    kp
-    kd
-    torque_limit
-    max_contraction_angle_rad
-    sleepy_angle_rad
-
-Important:
-    This file does NOT define trajectory.
-    This file does NOT define Xbox control.
-    This file does NOT define gait phase.
-    This file does NOT define IK math.
-
-It only describes the physical hardware configuration.
+Trajectory, gait phase, Xbox input, and IK math belong in other files.
 """
+
 
 # ============================================================
 # Joint role names
@@ -64,12 +47,6 @@ LEG_ORDER = [
 # ============================================================
 # Shared neutral standing pose
 # ============================================================
-#
-# This is the nominal foot position in the IK frame used when moving from
-# the manually confirmed sleepy pose to neutral standing.
-#
-# Units are millimeters.
-# ============================================================
 
 NEUTRAL_X = 0.0
 NEUTRAL_Y = 84.26
@@ -79,40 +56,40 @@ NEUTRAL_STANDING_FOOT_POSITION = (NEUTRAL_X, NEUTRAL_Y, NEUTRAL_Z)
 
 
 # ============================================================
-# Full robot hardware configuration
+# Homing angle choices
 # ============================================================
 #
-# Edit these values directly.
+# Put the robot at the selected physical homing pose, then confirm homing
+# in the terminal. The controller records the raw encoder readings at that
+# moment, and uses the selected homing angles below to move to neutral.
 #
-# can_channel:
-#     Which SocketCAN channel this leg is connected to.
-#
-# can_id:
-#     CAN ID of this exact joint motor controller.
-#     Since you have 12 boards, these should be 12 separate IDs if all boards
-#     are on the same CAN network, or they can repeat only if each leg is on
-#     a fully separate CAN bus.
-#
-# kp, kd, torque_limit:
-#     Position control settings for this exact joint.
-#
-# max_contraction_angle_rad:
-#     Output-side joint angle at that leg's mechanical max-contraction
-#     pose. Kept for reference.
-#
-# sleepy_angle_rad:
-#     Output-side joint angle at the safer manual homing pose where the robot
-#     lays flat on the ground and the knee/foot touch the ground.
-#
-#     This is NOT the raw encoder reading.
-#     The raw encoder reading is recorded at runtime when you manually put
-#     the leg at the sleepy pose and confirm homing.
-#
+# To switch homing style, comment one HOMING_ANGLE line and uncomment the
+# other one. The rest of the code only imports HOMING_ANGLE.
 # ============================================================
 
-SLEEPY_HIP_ANGLE = -0.465499025237436
-SLEEPY_THIGH_ANGLE = 1.11367455104935
-SLEEPY_SHANK_ANGLE = 2.68814970801254
+class homing_angle:
+    """Candidate output-side joint angles for manual homing poses."""
+
+    max_contraction_angle = {
+        HIP: -1.069,
+        THIGH: 1.264,
+        SHANK: 2.631,
+    }
+
+    sleepy_angle = {
+        HIP: -0.465499025237436,
+        THIGH: 1.11367455104935,
+        SHANK: 2.68814970801254,
+    }
+
+
+# HOMING_ANGLE = homing_angle.max_contraction_angle
+HOMING_ANGLE = homing_angle.sleepy_angle
+
+
+# ============================================================
+# Full robot hardware configuration
+# ============================================================
 
 LEG_CONFIG = {
     FRONT_LEFT: {
@@ -123,8 +100,7 @@ LEG_CONFIG = {
             "kp": 0.20,
             "kd": 0.008,
             "torque_limit": 1.30,
-            "max_contraction_angle_rad": -1.069,
-            "sleepy_angle_rad": SLEEPY_HIP_ANGLE,
+            "homing_angle_rad": HOMING_ANGLE[HIP],
         },
 
         THIGH: {
@@ -132,8 +108,7 @@ LEG_CONFIG = {
             "kp": 0.20,
             "kd": 0.008,
             "torque_limit": 0.75,
-            "max_contraction_angle_rad": 1.264,
-            "sleepy_angle_rad": SLEEPY_THIGH_ANGLE,
+            "homing_angle_rad": HOMING_ANGLE[THIGH],
         },
 
         SHANK: {
@@ -141,8 +116,7 @@ LEG_CONFIG = {
             "kp": 0.20,
             "kd": 0.008,
             "torque_limit": 0.75,
-            "max_contraction_angle_rad": 2.631,
-            "sleepy_angle_rad": SLEEPY_SHANK_ANGLE,
+            "homing_angle_rad": HOMING_ANGLE[SHANK],
         },
     },
 
@@ -154,8 +128,7 @@ LEG_CONFIG = {
             "kp": 0.20,
             "kd": 0.008,
             "torque_limit": 1.30,
-            "max_contraction_angle_rad": -1.069,
-            "sleepy_angle_rad": SLEEPY_HIP_ANGLE,
+            "homing_angle_rad": HOMING_ANGLE[HIP],
         },
 
         THIGH: {
@@ -163,8 +136,7 @@ LEG_CONFIG = {
             "kp": 0.20,
             "kd": 0.008,
             "torque_limit": 0.75,
-            "max_contraction_angle_rad": 1.264,
-            "sleepy_angle_rad": SLEEPY_THIGH_ANGLE,
+            "homing_angle_rad": HOMING_ANGLE[THIGH],
         },
 
         SHANK: {
@@ -172,8 +144,7 @@ LEG_CONFIG = {
             "kp": 0.20,
             "kd": 0.008,
             "torque_limit": 0.75,
-            "max_contraction_angle_rad": 2.631,
-            "sleepy_angle_rad": SLEEPY_SHANK_ANGLE,
+            "homing_angle_rad": HOMING_ANGLE[SHANK],
         },
     },
 
@@ -185,8 +156,7 @@ LEG_CONFIG = {
             "kp": 0.20,
             "kd": 0.008,
             "torque_limit": 1.30,
-            "max_contraction_angle_rad": -1.069,
-            "sleepy_angle_rad": SLEEPY_HIP_ANGLE,
+            "homing_angle_rad": HOMING_ANGLE[HIP],
         },
 
         THIGH: {
@@ -194,8 +164,7 @@ LEG_CONFIG = {
             "kp": 0.20,
             "kd": 0.008,
             "torque_limit": 0.75,
-            "max_contraction_angle_rad": 1.264,
-            "sleepy_angle_rad": SLEEPY_THIGH_ANGLE,
+            "homing_angle_rad": HOMING_ANGLE[THIGH],
         },
 
         SHANK: {
@@ -203,8 +172,7 @@ LEG_CONFIG = {
             "kp": 0.20,
             "kd": 0.008,
             "torque_limit": 0.75,
-            "max_contraction_angle_rad": 2.631,
-            "sleepy_angle_rad": SLEEPY_SHANK_ANGLE,
+            "homing_angle_rad": HOMING_ANGLE[SHANK],
         },
     },
 
@@ -216,8 +184,7 @@ LEG_CONFIG = {
             "kp": 0.20,
             "kd": 0.008,
             "torque_limit": 1.30,
-            "max_contraction_angle_rad": -1.069,
-            "sleepy_angle_rad": SLEEPY_HIP_ANGLE,
+            "homing_angle_rad": HOMING_ANGLE[HIP],
         },
 
         THIGH: {
@@ -225,8 +192,7 @@ LEG_CONFIG = {
             "kp": 0.20,
             "kd": 0.008,
             "torque_limit": 0.75,
-            "max_contraction_angle_rad": 1.264,
-            "sleepy_angle_rad": SLEEPY_THIGH_ANGLE,
+            "homing_angle_rad": HOMING_ANGLE[THIGH],
         },
 
         SHANK: {
@@ -234,29 +200,17 @@ LEG_CONFIG = {
             "kp": 0.20,
             "kd": 0.008,
             "torque_limit": 0.75,
-            "max_contraction_angle_rad": 2.631,
-            "sleepy_angle_rad": SLEEPY_SHANK_ANGLE,
+            "homing_angle_rad": HOMING_ANGLE[SHANK],
         },
     },
 }
 
 
 # ============================================================
-# Optional conversion constants
-# ============================================================
-#
-# These are not trajectory settings. They are hardware conversion settings.
-# Other control files can import these when converting output joint angle delta
-# into raw motor command delta.
+# Hardware conversion constants
 # ============================================================
 
 GEAR_RATIO = 17.0
-
-# Default direction signs.
-# If one joint moves opposite of expected, change that exact joint's sign here.
-#
-# Example:
-#     JOINT_SIGN[REAR_LEFT][HIP] = -1.0
 
 MOTOR_SIGN = {
     FRONT_LEFT: {
@@ -283,11 +237,12 @@ MOTOR_SIGN = {
         SHANK: 1.0,
     },
 }
-
+# littlemoomoo tested on 06/04/26, all motor signs are correct;
 
 # ============================================================
-# Simple accessor functions
+# Accessor functions
 # ============================================================
+
 
 def get_leg_config(leg_name):
     """Return the full config dictionary for one leg."""
@@ -324,14 +279,9 @@ def get_torque_limit(leg_name, joint_name):
     return LEG_CONFIG[leg_name][joint_name]["torque_limit"]
 
 
-def get_max_contraction_angle(leg_name, joint_name):
-    """Return max-contraction output-side angle in radians for one joint."""
-    return LEG_CONFIG[leg_name][joint_name]["max_contraction_angle_rad"]
-
-
-def get_sleepy_angle(leg_name, joint_name):
-    """Return sleepy-pose output-side angle in radians for one joint."""
-    return LEG_CONFIG[leg_name][joint_name]["sleepy_angle_rad"]
+def get_homing_angle(leg_name, joint_name):
+    """Return selected homing output-side angle in radians for one joint."""
+    return LEG_CONFIG[leg_name][joint_name]["homing_angle_rad"]
 
 
 def get_motor_sign(leg_name, joint_name):
@@ -348,21 +298,12 @@ def get_role_to_id_for_leg(leg_name):
     }
 
 
-def get_max_contraction_angles_for_leg(leg_name):
-    """Return all max-contraction angles for one leg."""
+def get_homing_angles_for_leg(leg_name):
+    """Return all selected homing angles for one leg."""
     return {
-        HIP: get_max_contraction_angle(leg_name, HIP),
-        THIGH: get_max_contraction_angle(leg_name, THIGH),
-        SHANK: get_max_contraction_angle(leg_name, SHANK),
-    }
-
-
-def get_sleepy_angles_for_leg(leg_name):
-    """Return all sleepy-pose homing angles for one leg."""
-    return {
-        HIP: get_sleepy_angle(leg_name, HIP),
-        THIGH: get_sleepy_angle(leg_name, THIGH),
-        SHANK: get_sleepy_angle(leg_name, SHANK),
+        HIP: get_homing_angle(leg_name, HIP),
+        THIGH: get_homing_angle(leg_name, THIGH),
+        SHANK: get_homing_angle(leg_name, SHANK),
     }
 
 
@@ -396,10 +337,7 @@ def print_config_summary():
                 f"kp={joint['kp']:.4f}, "
                 f"kd={joint['kd']:.4f}, "
                 f"torque_limit={joint['torque_limit']:.4f}, "
-                "max_contraction="
-                f"{joint['max_contraction_angle_rad']:.6f} rad, "
-                "sleepy="
-                f"{joint['sleepy_angle_rad']:.6f} rad, "
+                f"homing={joint['homing_angle_rad']:.6f} rad, "
                 f"motor_sign={get_motor_sign(leg_name, joint_name):+.1f}"
             )
 

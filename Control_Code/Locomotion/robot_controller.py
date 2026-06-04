@@ -4,8 +4,8 @@ robot_controller.py
 High-level four-leg robot controller.
 
 This class coordinates:
-    - manual sleepy-pose confirmation for each leg
-    - simultaneous move from sleepy pose to neutral standing
+    - manual homing-pose confirmation for each leg
+    - simultaneous move from homing pose to neutral standing
     - neutral hold
     - Xbox-controlled diagonal trot
 """

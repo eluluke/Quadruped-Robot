@@ -4,7 +4,7 @@ quadruped_main_slim.py
 Highest-level operator program for whole-robot locomotion.
 
 This is the file to run when you want to:
-    1. Manually place each leg at its sleepy laying homing pose.
+    1. Manually place each leg at its selected homing pose.
     2. Confirm each leg with y1/y2/y3/y4.
     3. Move all legs to neutral standing.
     4. Start Xbox-controlled trot.
@@ -67,7 +67,7 @@ def print_header() -> None:
 
 def print_menu() -> None:
     print("\nCommands:")
-    print("  y1 / y2 / y3 / y4  = confirm leg at sleepy laying pose")
+    print("  y1 / y2 / y3 / y4  = confirm leg at selected homing pose")
     print("  status             = show homing status")
     print("  y                  = stand, then start Xbox trot")
     print("  q                  = quit / idle all motors")

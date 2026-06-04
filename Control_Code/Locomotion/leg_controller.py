@@ -23,9 +23,9 @@ from leg_config import (
     SHANK,
     THIGH,
     get_can_channel,
+    get_homing_angles_for_leg,
     get_motor_sign,
     get_role_to_id_for_leg,
-    get_sleepy_angles_for_leg,
 )
 from trajectory_config import JOINT_ROLES, TrajectoryPoint, ik_angles_for_xyz
 
@@ -177,9 +177,9 @@ class LegController:
     # ========================================================
 
     def mark_homed_at_current_pose(self) -> None:
-        """Record current raw position as this leg's sleepy homing pose."""
+        """Record current raw position as this leg's chosen homing pose."""
         print()
-        print(f"{self.name}: marking homed at current sleepy pose...")
+        print(f"{self.name}: marking homed at current homing pose...")
 
         raw = self.read_all_positions()
         self.home_raw = raw
@@ -206,20 +206,20 @@ class LegController:
             time.sleep(1.0 / self.rate_hz)
 
         self.state = "homed"
-        print(f"{self.name}: homed and holding sleepy pose.")
+        print(f"{self.name}: homed and holding homing pose.")
 
     def compute_neutral_targets(
         self,
         neutral_xyz: tuple[float, float, float],
     ) -> Dict[int, float]:
-        """Compute raw targets from sleepy homing pose to neutral pose."""
+        """Compute raw targets from chosen homing pose to neutral pose."""
         if self.home_raw is None:
             raise RuntimeError(
                 f"{self.name}: cannot compute neutral before homing."
             )
 
         neutral_angles = ik_angles_for_xyz(*neutral_xyz)
-        home_angles = get_sleepy_angles_for_leg(self.name)
+        home_angles = get_homing_angles_for_leg(self.name)
 
         angle_delta_by_role = {
             role: neutral_angles[role] - home_angles[role]

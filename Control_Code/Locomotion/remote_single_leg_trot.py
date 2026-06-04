@@ -1,11 +1,11 @@
 """
 remote_single_leg_trot.py
 
-Manual sleepy-pose confirmation -> neutral standing -> Xbox-controlled
+Manual homing-pose confirmation -> neutral standing -> Xbox-controlled
 single-leg regular planar trot.
 
 This script imports:
-    - CAN IDs, motor signs, gains, and sleepy homing angles from leg_config.py
+    - CAN IDs, motor signs, gains, and homing angles from leg_config.py
     - foot trajectory and IK angle deltas from trajectory_config.py
     - Xbox controller settings and wrapper from xbox_config.py
 
@@ -25,8 +25,8 @@ from leg_config import (
     HIP,
     JOINT_ORDER,
     LEG_ORDER,
+    get_homing_angles_for_leg,
     get_joint_gains,
-    get_sleepy_angles_for_leg,
 )
 from quadruped_utils import limit_rate
 from trajectory_config import (
@@ -98,7 +98,7 @@ def wait_for_homing_confirmation(leg_name: str) -> None:
     print("=" * 80)
     print(f"Selected leg: {leg_name}")
     print()
-    print("Put this leg manually at its sleepy laying homing pose.")
+    print("Put this leg manually at the selected homing pose.")
     print("No motor commands are sent before you confirm.")
     print("=" * 80)
 
@@ -106,7 +106,7 @@ def wait_for_homing_confirmation(leg_name: str) -> None:
         if base.STOP_REQUESTED:
             raise KeyboardInterrupt
 
-        answer = input("\nType y when the leg is at sleepy pose, or q to quit: ")
+        answer = input("\nType y when the leg is at homing pose, or q to quit: ")
         answer = answer.strip().lower()
         if answer in ("y", "yes"):
             return
@@ -119,13 +119,13 @@ def compute_neutral_targets(
     runner: base.SingleLegRunner,
     home_raw: Dict[int, float],
 ) -> tuple[Dict[str, float], Dict[str, float], Dict[int, float]]:
-    """Compute raw targets from configured sleepy pose to neutral."""
+    """Compute raw targets from configured homing pose to neutral."""
     neutral_angles = ik_angles_for_xyz(
         TRAJ_CFG.x_center,
         TRAJ_CFG.y_center,
         TRAJ_CFG.z_ground,
     )
-    home_angles = get_sleepy_angles_for_leg(runner.leg_name)
+    home_angles = get_homing_angles_for_leg(runner.leg_name)
 
     delta_angles = {
         role: neutral_angles[role] - home_angles[role]
@@ -148,15 +148,15 @@ def print_standing_plan(
     delta_angles: Dict[str, float],
     neutral_targets: Dict[int, float],
 ) -> float:
-    sleepy_angles = get_sleepy_angles_for_leg(runner.leg_name)
+    homing_angles = get_homing_angles_for_leg(runner.leg_name)
 
     print("\nNeutral IK angles:")
     for role in JOINT_ROLES:
         print(f"  {role:5s}: {neutral_angles[role]:+.6f} rad")
 
-    print("\nConfigured sleepy homing angles from leg_config.py:")
+    print("\nSelected homing angles from leg_config.py:")
     for role in JOINT_ROLES:
-        print(f"  {role:5s}: {sleepy_angles[role]:+.6f} rad")
+        print(f"  {role:5s}: {homing_angles[role]:+.6f} rad")
 
     print("\nRelative output angle deltas to neutral:")
     for role in JOINT_ROLES:
@@ -350,7 +350,7 @@ def main() -> None:
     try:
         wait_for_homing_confirmation(runner.leg_name)
 
-        print("\nConfirmed. Reading sleepy raw pose and arming position mode.")
+        print("\nConfirmed. Reading homing raw pose and arming position mode.")
         home_raw = runner.arm_at_current_pose()
 
         neutral_angles, delta_angles, neutral_targets = compute_neutral_targets(
@@ -374,7 +374,7 @@ def main() -> None:
         runner.move_to_targets(
             neutral_targets,
             STAND_MOVE_TIME,
-            "Moving from sleepy pose to neutral standing...",
+            "Moving from homing pose to neutral standing...",
             print_every=PRINT_EVERY,
         )
 
