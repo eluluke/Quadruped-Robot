@@ -15,7 +15,7 @@ from typing import Dict, Iterable, Optional
 
 import berkeley_humanoid_lite_lowlevel.recoil as recoil
 
-from gains_config import ARM_GAINS, HOLD_GAINS, GainSet
+from gains_config import ARM_GAINS, STARTUP_GAINS, GainSet
 from leg_config import (
     GEAR_RATIO,
     HIP,
@@ -32,6 +32,7 @@ from trajectory_config import JOINT_ROLES, TrajectoryPoint, ik_angles_for_xyz
 
 
 COMMAND_ORDER_ROLES = (THIGH, SHANK, HIP)
+STARTUP_HOLD_TIME = 0.8
 
 
 class LegController:
@@ -131,6 +132,10 @@ class LegController:
         return values
 
     def command_position(self, motor_id: int, raw_target: float) -> None:
+        try:
+            self.bus.feed(motor_id)
+        except Exception:
+            pass
         self.bus.transmit_pdo_2(motor_id, raw_target, 0.0)
         self.active_cmd[motor_id] = raw_target
 
@@ -211,12 +216,12 @@ class LegController:
         for motor_id in self.motor_ids:
             self.set_mode_with_spacing(motor_id, recoil.Mode.POSITION)
 
-        for _ in range(int(0.25 * self.rate_hz)):
+        for _ in range(int(0.35 * self.rate_hz)):
             self.command_all_active()
             time.sleep(1.0 / self.rate_hz)
 
-        self.set_all_gains(HOLD_GAINS)
-        for _ in range(int(0.25 * self.rate_hz)):
+        self.set_all_gains(STARTUP_GAINS)
+        for _ in range(int(STARTUP_HOLD_TIME * self.rate_hz)):
             self.command_all_active()
             time.sleep(1.0 / self.rate_hz)
 
