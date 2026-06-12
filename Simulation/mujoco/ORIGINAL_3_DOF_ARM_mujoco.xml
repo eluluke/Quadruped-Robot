@@ -1,0 +1,38 @@
+<mujoco model="ORIGINAL_3_DOF_ARM.URDF">
+  <compiler angle="radian"/>
+
+  <option gravity="0 0 -9.81"/>
+
+  <asset>
+    <mesh name="base_link" content_type="model/stl" file="generated_meshes/base_link.STL"/>
+    <mesh name="link1" content_type="model/stl" file="generated_meshes/link1.STL"/>
+    <mesh name="link2" content_type="model/stl" file="generated_meshes/link2.STL"/>
+    <mesh name="link3" content_type="model/stl" file="generated_meshes/link3.STL"/>
+  </asset>
+
+  <worldbody>
+    <geom name="floor" type="plane" size="1 1 0.02" pos="0 0 -0.02" rgba="0.35 0.38 0.40 1"/>
+    <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" rgba="0 0 1 0.5" mesh="base_link"/>
+    <body name="link1" pos="0.00857185 0.0277891 0.0204146" quat="0.698803 -0.108049 -0.698803 -0.108049">
+      <inertial pos="0.11076 -8.4785e-12 8.4784e-12" quat="-1.65223e-05 0.707107 -1.65223e-05 0.707107" mass="0.04833" diaginertia="6.7976e-05 6.7625e-05 2.3405e-05"/>
+      <joint name="joint1" pos="0 0 0" axis="-1 0 0" range="-3.14 3.14" actuatorfrcrange="-5 5" damping="1" frictionloss="0.1"/>
+      <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" rgba="0.75294 0.75294 0.75294 1" mesh="link1"/>
+      <body name="link2" pos="0.181767 0 0" quat="0.464249 -0.464249 0.53336 -0.53336">
+        <inertial pos="0.094341 5.752e-07 -9.7056e-07" quat="0.601303 0.372076 0.601305 0.372057" mass="0.058576" diaginertia="6.9716e-05 6.9711e-05 2.3817e-05"/>
+        <joint name="joint2" pos="0 0 0" axis="0 -1 0" range="-1.57 1.57" actuatorfrcrange="-5 5" damping="1" frictionloss="0.1"/>
+        <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" rgba="0.75294 0.75294 0.75294 1" mesh="link2"/>
+        <body name="link3" pos="0.181767 0 0" quat="0.417144 -0.417144 0.570956 -0.570956">
+          <inertial pos="0.094341 4.37e-07 -3.6115e-07" quat="0.59304 0.385101 0.59304 0.385102" mass="0.058576" diaginertia="6.97207e-05 6.97103e-05 2.3817e-05"/>
+          <joint name="joint3" pos="0 0 0" axis="0 -1 0" range="-1.57 1.57" actuatorfrcrange="-5 5" damping="1" frictionloss="0.1"/>
+          <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" rgba="0.75294 0.75294 0.75294 1" mesh="link3"/>
+        </body>
+      </body>
+    </body>
+  </worldbody>
+
+  <actuator>
+    <position name="joint1_position" joint="joint1" kp="10" ctrlrange="-3.14 3.14"/>
+    <position name="joint2_position" joint="joint2" kp="10" ctrlrange="-1.57 1.57"/>
+    <position name="joint3_position" joint="joint3" kp="10" ctrlrange="-1.57 1.57"/>
+  </actuator>
+</mujoco>

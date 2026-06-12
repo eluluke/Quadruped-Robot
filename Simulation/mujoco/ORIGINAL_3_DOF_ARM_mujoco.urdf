@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<robot name="ORIGINAL_3_DOF_ARM.URDF">
+  <mujoco>
+    <compiler discardvisual="false" balanceinertia="true" strippath="false"/>
+    <option gravity="0 0 0"/>
+  </mujoco>
+
+  <link name="base_link">
+    <inertial>
+      <origin xyz="0.0085719 0.027789 0.037988" rpy="0 0 0" />
+      <mass value="0.045046" />
+      <inertia
+        ixx="3.7376E-05"
+        ixy="7.3718E-37"
+        ixz="-3.6734E-37"
+        iyy="3.7376E-05"
+        iyz="3.2169E-21"
+        izz="7.3304E-05" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="/home/littlemoomoo/Desktop/ORIGINAL_3_DOF_ARM.URDF/meshes/base_link.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0 0 1 0.5" />
+      </material>
+    </visual>
+    <!-- Collision mesh disabled for initial kinematic debugging.
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="/home/littlemoomoo/Desktop/ORIGINAL_3_DOF_ARM.URDF/meshes/base_link.STL" />
+      </geometry>
+    </collision>
+    -->
+  </link>
+
+  <link name="link1">
+    <inertial>
+      <origin xyz="0.11076 -8.4785E-12 8.4784E-12" rpy="0 0 0" />
+      <mass value="0.04833" />
+      <inertia
+        ixx="2.3405E-05"
+        ixy="-9.1247E-15"
+        ixz="-9.1247E-15"
+        iyy="6.7625E-05"
+        iyz="-1.6403E-11"
+        izz="6.7976E-05" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="/home/littlemoomoo/Desktop/ORIGINAL_3_DOF_ARM.URDF/meshes/link1.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.75294 0.75294 0.75294 1" />
+      </material>
+    </visual>
+    <!-- Collision mesh disabled for initial kinematic debugging.
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="/home/littlemoomoo/Desktop/ORIGINAL_3_DOF_ARM.URDF/meshes/link1.STL" />
+      </geometry>
+    </collision>
+    -->
+  </link>
+
+  <joint name="joint1" type="revolute">
+    <origin
+      xyz="0.00857185004749453 0.027789077031409 0.0204145814676108"
+      rpy="-1.8776081329983 -1.57079631189374 1.5707963267949" />
+    <parent link="base_link" />
+    <child link="link1" />
+    <axis xyz="-1 0 0" />
+    <limit lower="-3.14" upper="3.14" effort="5" velocity="2" />
+    <dynamics damping="1.0" friction="0.1" />
+    <safety_controller k_velocity="0" />
+  </joint>
+
+  <link name="link2">
+    <inertial>
+      <origin xyz="0.094341 5.752E-07 -9.7056E-07" rpy="0 0 0" />
+      <mass value="0.058576" />
+      <inertia
+        ixx="2.3817E-05"
+        ixy="9.642E-10"
+        ixz="7.8779E-10"
+        iyy="6.9715E-05"
+        iyz="-1.9912E-09"
+        izz="6.9712E-05" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="/home/littlemoomoo/Desktop/ORIGINAL_3_DOF_ARM.URDF/meshes/link2.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.75294 0.75294 0.75294 1" />
+      </material>
+    </visual>
+    <!-- Collision mesh disabled for initial kinematic debugging.
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="/home/littlemoomoo/Desktop/ORIGINAL_3_DOF_ARM.URDF/meshes/link2.STL" />
+      </geometry>
+    </collision>
+    -->
+  </link>
+
+  <joint name="joint2" type="revolute">
+    <origin
+      xyz="0.181766743813069 0 0"
+      rpy="-1.5707963267949 0 -1.7091290571648" />
+    <parent link="link1" />
+    <child link="link2" />
+    <axis xyz="0 -1 0" />
+    <limit lower="-1.57" upper="1.57" effort="5" velocity="2" />
+    <dynamics damping="1.0" friction="0.1" />
+    <safety_controller k_velocity="0" />
+  </joint>
+
+  <link name="link3">
+    <inertial>
+      <origin xyz="0.094341 4.37E-07 -3.6115E-07" rpy="0 0 0" />
+      <mass value="0.058576" />
+      <inertia
+        ixx="2.3817E-05"
+        ixy="-8.3373E-12"
+        ixz="-6.8056E-11"
+        iyy="6.9719E-05"
+        iyz="-3.888E-09"
+        izz="6.9712E-05" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="/home/littlemoomoo/Desktop/ORIGINAL_3_DOF_ARM.URDF/meshes/link3.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.75294 0.75294 0.75294 1" />
+      </material>
+    </visual>
+    <!-- Collision mesh disabled for initial kinematic debugging.
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="/home/littlemoomoo/Desktop/ORIGINAL_3_DOF_ARM.URDF/meshes/link3.STL" />
+      </geometry>
+    </collision>
+    -->
+  </link>
+
+  <joint name="joint3" type="revolute">
+    <origin
+      xyz="0.18176674381307 0 0"
+      rpy="-1.5707963267949 0 -1.87964671311042" />
+    <parent link="link2" />
+    <child link="link3" />
+    <axis xyz="0 -1 0" />
+    <limit lower="-1.57" upper="1.57" effort="5" velocity="2" />
+    <dynamics damping="1.0" friction="0.1" />
+    <safety_controller k_velocity="0" />
+  </joint>
+</robot>
