@@ -24,6 +24,7 @@ from leg_config import (
     THIGH,
     get_can_channel,
     get_homing_angles_for_leg,
+    get_joint_gains,
     get_motor_sign,
     get_role_to_id_for_leg,
 )
@@ -104,6 +105,15 @@ class LegController:
         for motor_id in self.motor_ids:
             self.set_role_gains(motor_id, gains)
 
+    def set_role_gains_from_config(self, role: str) -> None:
+        motor_id = self.role_to_id[role]
+        kp, kd, torque_limit = get_joint_gains(self.name, role)
+        self.set_gains(motor_id, kp, kd, torque_limit)
+
+    def set_all_config_gains(self) -> None:
+        for role in JOINT_ORDER:
+            self.set_role_gains_from_config(role)
+
     def read_position(self, motor_id: int) -> float:
         value = self.bus.read_position_measured(motor_id)
         if value is None:
@@ -180,6 +190,11 @@ class LegController:
         """Record current raw position as this leg's chosen homing pose."""
         print()
         print(f"{self.name}: marking homed at current homing pose...")
+
+        print(f"{self.name}: putting motors into IDLE before reading pose...")
+        for motor_id in self.motor_ids:
+            self.set_mode_with_spacing(motor_id, recoil.Mode.IDLE)
+        time.sleep(0.25)
 
         raw = self.read_all_positions()
         self.home_raw = raw

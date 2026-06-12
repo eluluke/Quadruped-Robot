@@ -18,7 +18,6 @@ from typing import Dict, List
 from loop_rate_limiters import RateLimiter  # type: ignore[import-not-found]
 
 from gait_scheduler import TROT_PHASE_OFFSETS, TrotGaitScheduler
-from gains_config import HOLD_GAINS, MOVE_GAINS, RUN_GAINS
 from leg_config import (
     FRONT_LEFT,
     FRONT_RIGHT,
@@ -97,6 +96,7 @@ MOVE_TO_TRAJECTORY_START_TIME = 0.8
 
 CONFIRM_IF_RAW_DELTA_OVER = 4.0
 ABORT_IF_RAW_DELTA_OVER = 35.0
+NEUTRAL_REACHED_RAW_TOLERANCE = 1.0
 
 MAX_TRAJ_RAW_DELTA_BY_ROLE = {
     ROLE_HIP: 8.0,
@@ -196,8 +196,9 @@ class RobotController:
             if answer not in ("y", "yes"):
                 return False
 
+        print("\nSwitching to leg_config.py standing gains...")
         for leg in self.legs.values():
-            leg.set_all_gains(MOVE_GAINS)
+            leg.set_all_config_gains()
 
         start_raw = {
             name: dict(leg.home_raw or {})
@@ -229,6 +230,35 @@ class RobotController:
 
             rate.sleep()
 
+        max_error = 0.0
+        print("\nNeutral final tracking check:")
+        for name, leg in self.legs.items():
+            try:
+                measured = leg.read_all_positions()
+            except Exception as exc:
+                print(f"  {name}: failed final read: {exc}")
+                return False
+
+            parts = []
+            for motor_id, target in neutral_targets[name].items():
+                error = target - measured[motor_id]
+                max_error = max(max_error, abs(error))
+                role = leg.id_to_role[motor_id]
+                parts.append(f"{role}:err={error:+.2f}")
+            print(f"  {name}: " + " ".join(parts))
+
+        if max_error > NEUTRAL_REACHED_RAW_TOLERANCE:
+            print(
+                "\nNeutral move did not track. "
+                f"Max raw error={max_error:.2f}, "
+                f"limit={NEUTRAL_REACHED_RAW_TOLERANCE:.2f}."
+            )
+            print(
+                "Stopping before Xbox trot so the robot does not continue "
+                "from a bad standing reference."
+            )
+            return False
+
         for name, leg in self.legs.items():
             leg.finish_neutral(neutral_targets[name])
 
@@ -238,7 +268,7 @@ class RobotController:
     def hold_neutral(self) -> None:
         print(f"\nHolding neutral for {NEUTRAL_HOLD_TIME:.1f}s...")
         for leg in self.legs.values():
-            leg.set_all_gains(HOLD_GAINS)
+            leg.set_all_config_gains()
 
         rate = RateLimiter(frequency=RATE_HZ)
         steps = int(NEUTRAL_HOLD_TIME * RATE_HZ)
@@ -323,7 +353,7 @@ class RobotController:
             )
 
         for leg in self.legs.values():
-            leg.set_all_gains(RUN_GAINS)
+            leg.set_all_config_gains()
 
         start_cmd = {
             name: dict(leg.active_cmd)
