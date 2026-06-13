@@ -255,6 +255,22 @@ class LegController:
             self.command_all_active()
             time.sleep(1.0 / self.rate_hz)
 
+    def arm_position_mode_at_home(self) -> None:
+        """Enter POSITION mode at the recorded homing pose without waiting."""
+        if self.home_raw is None:
+            raise RuntimeError(f"{self.name}: cannot arm before homing.")
+
+        print(f"{self.name}: arming position mode at homing pose...")
+        self.active_cmd = dict(self.home_raw)
+
+        self.set_all_gains(ARM_GAINS)
+        for motor_id in self.motor_ids:
+            self.set_mode_with_spacing(motor_id, recoil.Mode.POSITION)
+
+    def apply_startup_gains(self) -> None:
+        """Apply the same soft startup gains used by single-leg tests."""
+        self.set_all_gains(STARTUP_GAINS)
+
     def compute_neutral_targets(
         self,
         neutral_xyz: tuple[float, float, float],

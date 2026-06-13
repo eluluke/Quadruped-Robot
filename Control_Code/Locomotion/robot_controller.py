@@ -94,6 +94,8 @@ TRAJECTORY_START_MODE = "swing_start"
 STAND_MOVE_TIME = 3.50
 NEUTRAL_HOLD_TIME = 0.8
 MOVE_TO_TRAJECTORY_START_TIME = 0.8
+PRE_STAND_ARM_HOLD_TIME = 0.35
+PRE_STAND_STARTUP_HOLD_TIME = 0.8
 
 CONFIRM_IF_RAW_DELTA_OVER = 4.0
 ABORT_IF_RAW_DELTA_OVER = 35.0
@@ -199,7 +201,31 @@ class RobotController:
 
         print("\nRe-arming all legs before standing move...")
         for leg in self.legs.values():
-            leg.prepare_for_motion_from_home()
+            leg.arm_position_mode_at_home()
+
+        rate = RateLimiter(frequency=RATE_HZ)
+        steps = max(1, int(PRE_STAND_ARM_HOLD_TIME * RATE_HZ))
+        for _ in range(steps):
+            if STOP_REQUESTED_REF["stop"]:
+                return False
+
+            for leg in self.legs.values():
+                leg.command_all_active()
+
+            rate.sleep()
+
+        for leg in self.legs.values():
+            leg.apply_startup_gains()
+
+        steps = max(1, int(PRE_STAND_STARTUP_HOLD_TIME * RATE_HZ))
+        for _ in range(steps):
+            if STOP_REQUESTED_REF["stop"]:
+                return False
+
+            for leg in self.legs.values():
+                leg.command_all_active()
+
+            rate.sleep()
 
         print("\nSwitching to leg_config.py standing gains...")
         for leg in self.legs.values():
