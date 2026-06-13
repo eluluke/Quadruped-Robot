@@ -196,6 +196,10 @@ class RobotController:
             if answer not in ("y", "yes"):
                 return False
 
+        print("\nRe-arming all legs before standing move...")
+        for leg in self.legs.values():
+            leg.prepare_for_motion_from_home()
+
         print("\nSwitching to leg_config.py standing gains...")
         for leg in self.legs.values():
             leg.set_all_config_gains()

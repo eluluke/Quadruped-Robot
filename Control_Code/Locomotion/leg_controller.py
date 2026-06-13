@@ -228,6 +228,33 @@ class LegController:
         self.state = "homed"
         print(f"{self.name}: homed and holding homing pose.")
 
+    def prepare_for_motion_from_home(self) -> None:
+        """
+        Re-arm POSITION mode at the recorded homing pose.
+
+        In whole-body mode, some legs may wait while the operator confirms
+        the other legs. Re-running the same soft startup sequence immediately
+        before the standing move keeps this path close to remote_single_leg_trot.
+        """
+        if self.home_raw is None:
+            raise RuntimeError(f"{self.name}: cannot arm before homing.")
+
+        print(f"{self.name}: re-arming position mode before standing move...")
+        self.active_cmd = dict(self.home_raw)
+
+        self.set_all_gains(ARM_GAINS)
+        for motor_id in self.motor_ids:
+            self.set_mode_with_spacing(motor_id, recoil.Mode.POSITION)
+
+        for _ in range(int(0.35 * self.rate_hz)):
+            self.command_all_active()
+            time.sleep(1.0 / self.rate_hz)
+
+        self.set_all_gains(STARTUP_GAINS)
+        for _ in range(int(STARTUP_HOLD_TIME * self.rate_hz)):
+            self.command_all_active()
+            time.sleep(1.0 / self.rate_hz)
+
     def compute_neutral_targets(
         self,
         neutral_xyz: tuple[float, float, float],
