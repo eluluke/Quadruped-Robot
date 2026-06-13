@@ -126,12 +126,17 @@ class RobotController:
         }
         self.gait = TrotGaitScheduler(TROT_PHASE_OFFSETS)
         self.trajectory_table: List[TrajectoryPoint] | None = None
+        self._shutdown_complete = False
 
     # ========================================================
     # Shutdown / status
     # ========================================================
 
     def idle_all(self) -> None:
+        if self._shutdown_complete:
+            return
+
+        self._shutdown_complete = True
         STOP_REQUESTED_REF["stop"] = True
         print("\nRobot shutdown: zero gains, IDLE all motors, close buses.")
 

@@ -41,6 +41,7 @@ from robot_controller import (
 def request_stop(_signum=None, _frame=None) -> None:
     STOP_REQUESTED_REF["stop"] = True
     print("\nStop requested.")
+    raise KeyboardInterrupt
 
 
 signal.signal(signal.SIGINT, request_stop)
@@ -110,10 +111,12 @@ def main() -> None:
             print("Unknown command.")
 
     finally:
+        signal.signal(signal.SIGINT, signal.SIG_IGN)
+        signal.signal(signal.SIGTERM, signal.SIG_IGN)
         robot.idle_all()
 
 
 try:
     main()
 except KeyboardInterrupt:
-    request_stop()
+    pass
