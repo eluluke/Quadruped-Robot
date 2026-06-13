@@ -33,6 +33,7 @@ from trajectory_config import JOINT_ROLES, TrajectoryPoint, ik_angles_for_xyz
 
 COMMAND_ORDER_ROLES = (THIGH, SHANK, HIP)
 STARTUP_HOLD_TIME = 0.8
+IDLE_COMMAND_REPEATS = 3
 
 
 class LegController:
@@ -147,15 +148,33 @@ class LegController:
     def command_all_active(self) -> None:
         self.command_targets(self.active_cmd)
 
-    def idle(self) -> None:
-        print(f"\n{self.name}: IDLE")
+    def zero_gains_for_shutdown(self) -> None:
+        """Remove position torque before asking the controller to idle."""
+        try:
+            self.set_all_gains(ARM_GAINS)
+        except Exception as exc:
+            print(f"  {self.name}: failed to write zero shutdown gains: {exc}")
+
+    def idle_once(self) -> None:
+        """Send one IDLE command to each motor on this leg."""
         for motor_id in self.motor_ids:
             try:
                 self.set_mode_with_spacing(motor_id, recoil.Mode.IDLE)
-                role = self.id_to_role[motor_id]
-                print(f"  {self.name} {role} ID {motor_id} IDLE")
             except Exception as exc:
-                print(f"  {self.name}: failed to idle ID {motor_id}: {exc}")
+                role = self.id_to_role[motor_id]
+                print(f"  {self.name}: failed to idle {role} ID {motor_id}: {exc}")
+
+    def idle(self) -> None:
+        print(f"\n{self.name}: IDLE")
+        self.zero_gains_for_shutdown()
+        for _ in range(IDLE_COMMAND_REPEATS):
+            self.idle_once()
+            time.sleep(0.02)
+
+        self.active_cmd.clear()
+        for motor_id in self.motor_ids:
+            role = self.id_to_role[motor_id]
+            print(f"  {self.name} {role} ID {motor_id} IDLE")
 
     def stop_bus(self) -> None:
         try:

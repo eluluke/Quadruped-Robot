@@ -63,6 +63,7 @@ from xbox_config import (
 
 RATE_HZ = 80.0
 PRINT_EVERY = 40
+SHUTDOWN_IDLE_ROUNDS = 4
 
 TRAJECTORY_NAME = TRAJ_REGULAR_PLANAR
 TRAJ_CFG = TrajectoryConfig(
@@ -131,8 +132,21 @@ class RobotController:
     # ========================================================
 
     def idle_all(self) -> None:
+        STOP_REQUESTED_REF["stop"] = True
+        print("\nRobot shutdown: zero gains, IDLE all motors, close buses.")
+
         for leg in self.legs.values():
-            leg.idle()
+            leg.zero_gains_for_shutdown()
+
+        for round_index in range(SHUTDOWN_IDLE_ROUNDS):
+            print(f"  IDLE round {round_index + 1}/{SHUTDOWN_IDLE_ROUNDS}")
+            for leg in self.legs.values():
+                leg.idle_once()
+            time.sleep(0.05)
+
+        for leg in self.legs.values():
+            leg.active_cmd.clear()
+
         for leg in self.legs.values():
             leg.stop_bus()
 
