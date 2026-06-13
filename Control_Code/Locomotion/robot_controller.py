@@ -12,6 +12,7 @@ This class coordinates:
 
 from __future__ import annotations
 
+import math
 import time
 from typing import Dict, List
 
@@ -204,33 +205,29 @@ class RobotController:
         for leg in self.legs.values():
             leg.set_all_config_gains()
 
-        start_raw = {
-            name: dict(leg.home_raw or {})
+        start_cmd = {
+            name: dict(leg.active_cmd)
             for name, leg in self.legs.items()
         }
 
         print("\nMoving all legs to neutral together...")
         rate = RateLimiter(frequency=RATE_HZ)
         steps = max(1, int(STAND_MOVE_TIME * RATE_HZ))
+        print(f"  sending interpolated targets for {steps} control steps")
 
         for i in range(steps):
             if STOP_REQUESTED_REF["stop"]:
                 return False
 
-            s = smoothstep((i + 1) / steps)
+            u = (i + 1) / steps
+            s = 0.5 * (1.0 - math.cos(math.pi * u))
 
             for name, leg in self.legs.items():
                 leg.command_interpolated_targets(
-                    start_raw[name],
+                    start_cmd[name],
                     neutral_targets[name],
                     s,
                 )
-
-            if (i + 1) % PRINT_EVERY == 0:
-                print(" | ".join(
-                    leg.feedback_line(neutral_targets[name])
-                    for name, leg in self.legs.items()
-                ))
 
             rate.sleep()
 
