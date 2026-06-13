@@ -247,6 +247,32 @@ class LegController:
         self.state = "homed"
         print(f"{self.name}: homed and holding homing pose.")
 
+    def record_homing_pose_only(self) -> None:
+        """
+        Record current raw position as homed without entering a hold loop.
+
+        This is useful when all legs are already resting at the selected
+        homing pose and the whole robot will be armed together afterward.
+        """
+        print(f"{self.name}: recording current pose as homed...")
+
+        for motor_id in self.motor_ids:
+            self.set_mode_with_spacing(motor_id, recoil.Mode.IDLE)
+        time.sleep(0.10)
+
+        raw = self.read_all_positions()
+        self.home_raw = raw
+        self.active_cmd = dict(raw)
+
+        for role in JOINT_ORDER:
+            motor_id = self.role_to_id[role]
+            print(
+                f"  {self.name} {role:5s} ID {motor_id}: "
+                f"raw={raw[motor_id]:+.6f}"
+            )
+
+        self.state = "homed"
+
     def prepare_for_motion_from_home(self) -> None:
         """
         Re-arm POSITION mode at the recorded homing pose.

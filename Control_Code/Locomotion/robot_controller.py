@@ -169,6 +169,14 @@ class RobotController:
         leg_name = LEG_CONFIRM_COMMANDS[command]
         self.legs[leg_name].mark_homed_at_current_pose()
 
+    def record_all_homed_at_current_pose(self) -> None:
+        """Record all current leg poses as homed without per-leg hold loops."""
+        print("\nRecording all current leg poses as homed...")
+        for leg_name, leg in self.legs.items():
+            print()
+            print(f"{leg_name}:")
+            leg.record_homing_pose_only()
+
     # ========================================================
     # Standing
     # ========================================================
