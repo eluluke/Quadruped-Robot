@@ -50,7 +50,7 @@ LEG_ORDER = [
 
 NEUTRAL_X = 0.0
 NEUTRAL_Y = 84.26
-NEUTRAL_Z = 370.0
+NEUTRAL_Z = 385.0
 
 NEUTRAL_STANDING_FOOT_POSITION = (NEUTRAL_X, NEUTRAL_Y, NEUTRAL_Z)
 
@@ -97,25 +97,25 @@ LEG_CONFIG = {
 
         HIP: {
             "can_id": 6,
-            "kp": 0.20,
-            "kd": 0.008,
+            "kp": 0.24,
+            "kd": 0.010,
             "torque_limit": 1.30,
             "homing_angle_rad": HOMING_ANGLE[HIP],
         },
 
         THIGH: {
             "can_id": 5,
-            "kp": 0.20,
-            "kd": 0.008,
-            "torque_limit": 0.75,
+            "kp": 0.38,
+            "kd": 0.014,
+            "torque_limit": 1.50,
             "homing_angle_rad": HOMING_ANGLE[THIGH],
         },
 
         SHANK: {
             "can_id": 4,
-            "kp": 0.20,
-            "kd": 0.008,
-            "torque_limit": 0.75,
+            "kp": 0.38,
+            "kd": 0.014,
+            "torque_limit": 1.50,
             "homing_angle_rad": HOMING_ANGLE[SHANK],
         },
     },
@@ -125,25 +125,25 @@ LEG_CONFIG = {
 
         HIP: {
             "can_id": 3,
-            "kp": 0.20,
-            "kd": 0.008,
+            "kp": 0.24,
+            "kd": 0.010,
             "torque_limit": 1.30,
             "homing_angle_rad": HOMING_ANGLE[HIP],
         },
 
         THIGH: {
             "can_id": 2,
-            "kp": 0.20,
-            "kd": 0.008,
-            "torque_limit": 0.75,
+            "kp": 0.38,
+            "kd": 0.014,
+            "torque_limit": 1.50,
             "homing_angle_rad": HOMING_ANGLE[THIGH],
         },
 
         SHANK: {
             "can_id": 1,
-            "kp": 0.20,
-            "kd": 0.008,
-            "torque_limit": 0.75,
+            "kp": 0.38,
+            "kd": 0.014,
+            "torque_limit": 1.50,
             "homing_angle_rad": HOMING_ANGLE[SHANK],
         },
     },
@@ -153,25 +153,25 @@ LEG_CONFIG = {
 
         HIP: {
             "can_id": 12,
-            "kp": 0.20,
-            "kd": 0.008,
+            "kp": 0.24,
+            "kd": 0.010,
             "torque_limit": 1.30,
             "homing_angle_rad": HOMING_ANGLE[HIP],
         },
 
         THIGH: {
             "can_id": 11,
-            "kp": 0.20,
-            "kd": 0.008,
-            "torque_limit": 0.75,
+            "kp": 0.38,
+            "kd": 0.014,
+            "torque_limit": 1.50,
             "homing_angle_rad": HOMING_ANGLE[THIGH],
         },
 
         SHANK: {
             "can_id": 10,
-            "kp": 0.20,
-            "kd": 0.008,
-            "torque_limit": 0.75,
+            "kp": 0.38,
+            "kd": 0.014,
+            "torque_limit": 1.50,
             "homing_angle_rad": HOMING_ANGLE[SHANK],
         },
     },
@@ -181,25 +181,25 @@ LEG_CONFIG = {
 
         HIP: {
             "can_id": 9,
-            "kp": 0.20,
-            "kd": 0.008,
+            "kp": 0.24,
+            "kd": 0.010,
             "torque_limit": 1.30,
             "homing_angle_rad": HOMING_ANGLE[HIP],
         },
 
         THIGH: {
             "can_id": 8,
-            "kp": 0.20,
-            "kd": 0.008,
-            "torque_limit": 0.75,
+            "kp": 0.38,
+            "kd": 0.014,
+            "torque_limit": 1.50,
             "homing_angle_rad": HOMING_ANGLE[THIGH],
         },
 
         SHANK: {
             "can_id": 7,
-            "kp": 0.20,
-            "kd": 0.008,
-            "torque_limit": 0.75,
+            "kp": 0.38,
+            "kd": 0.014,
+            "torque_limit": 1.50,
             "homing_angle_rad": HOMING_ANGLE[SHANK],
         },
     },
