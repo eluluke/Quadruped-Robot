@@ -186,7 +186,7 @@ class RobotController:
     # Standing
     # ========================================================
 
-    def move_all_to_neutral(self) -> bool:
+    def move_all_to_neutral(self, confirm_large_move: bool = True) -> bool:
         if not self.all_homed():
             print("Not all legs are homed.")
             return False
@@ -218,13 +218,18 @@ class RobotController:
                 f"Neutral raw delta {max_delta:.3f} exceeds abort limit."
             )
 
-        if max_delta > CONFIRM_IF_RAW_DELTA_OVER:
+        if confirm_large_move and max_delta > CONFIRM_IF_RAW_DELTA_OVER:
             answer = wait_for_terminal_command(
                 "\nNeutral max raw delta is "
                 f"{max_delta:.3f}. Move all legs? y/n: "
             )
             if answer not in ("y", "yes"):
                 return False
+        elif max_delta > CONFIRM_IF_RAW_DELTA_OVER:
+            print(
+                "\nNeutral max raw delta is "
+                f"{max_delta:.3f}; continuing from ground-start confirmation."
+            )
 
         print("\nRe-arming all legs before standing move...")
         for leg in self.legs.values():

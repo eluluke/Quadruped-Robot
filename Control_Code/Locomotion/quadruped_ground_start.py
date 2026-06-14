@@ -45,6 +45,7 @@ def print_header() -> None:
 
 
 def main() -> None:
+    STOP_REQUESTED_REF["stop"] = False
     print_header()
     robot = RobotController()
 
@@ -58,7 +59,7 @@ def main() -> None:
 
         robot.record_all_homed_at_current_pose()
 
-        if robot.move_all_to_neutral():
+        if robot.move_all_to_neutral(confirm_large_move=False):
             robot.hold_neutral()
             robot.build_trajectory_table()
             robot.run_xbox_trot()
