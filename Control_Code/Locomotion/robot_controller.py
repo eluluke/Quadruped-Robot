@@ -92,7 +92,8 @@ COMMAND_ROLES = (
 
 TRAJECTORY_START_MODE = "swing_start"
 
-STAND_MOVE_TIME = 3.50
+STAND_MOVE_TIME = 6.00
+NEUTRAL_SETTLE_TIME = 2.00
 NEUTRAL_HOLD_TIME = 0.8
 MOVE_TO_TRAJECTORY_START_TIME = 0.8
 PRE_STAND_ARM_HOLD_TIME = 0.35
@@ -181,6 +182,48 @@ class RobotController:
             print()
             print(f"{leg_name}:")
             leg.record_homing_pose_only()
+
+    def neutral_tracking_error(
+        self,
+        neutral_targets: Dict[str, Dict[int, float]],
+    ) -> float | None:
+        """Print and return max raw tracking error for neutral targets."""
+        max_error = 0.0
+        for name, leg in self.legs.items():
+            try:
+                measured = leg.read_all_positions()
+            except Exception as exc:
+                print(f"  {name}: failed final read: {exc}")
+                return None
+
+            parts = []
+            for motor_id, target in neutral_targets[name].items():
+                error = target - measured[motor_id]
+                max_error = max(max_error, abs(error))
+                role = leg.id_to_role[motor_id]
+                parts.append(f"{role}:err={error:+.2f}")
+            print(f"  {name}: " + " ".join(parts))
+
+        return max_error
+
+    def settle_at_neutral(
+        self,
+        neutral_targets: Dict[str, Dict[int, float]],
+        seconds: float,
+    ) -> None:
+        """Keep commanding neutral targets so loaded legs can catch up."""
+        print(f"\nSettling at neutral target for {seconds:.1f}s...")
+        rate = RateLimiter(frequency=RATE_HZ)
+        steps = max(1, int(seconds * RATE_HZ))
+
+        for _ in range(steps):
+            if STOP_REQUESTED_REF["stop"]:
+                return
+
+            for name, leg in self.legs.items():
+                leg.command_targets(neutral_targets[name])
+
+            rate.sleep()
 
     # ========================================================
     # Standing
@@ -289,22 +332,17 @@ class RobotController:
 
             rate.sleep()
 
-        max_error = 0.0
         print("\nNeutral final tracking check:")
-        for name, leg in self.legs.items():
-            try:
-                measured = leg.read_all_positions()
-            except Exception as exc:
-                print(f"  {name}: failed final read: {exc}")
-                return False
+        max_error = self.neutral_tracking_error(neutral_targets)
+        if max_error is None:
+            return False
 
-            parts = []
-            for motor_id, target in neutral_targets[name].items():
-                error = target - measured[motor_id]
-                max_error = max(max_error, abs(error))
-                role = leg.id_to_role[motor_id]
-                parts.append(f"{role}:err={error:+.2f}")
-            print(f"  {name}: " + " ".join(parts))
+        if max_error > NEUTRAL_REACHED_RAW_TOLERANCE:
+            self.settle_at_neutral(neutral_targets, NEUTRAL_SETTLE_TIME)
+            print("\nNeutral tracking check after settle:")
+            max_error = self.neutral_tracking_error(neutral_targets)
+            if max_error is None:
+                return False
 
         if max_error > NEUTRAL_REACHED_RAW_TOLERANCE:
             print(
