@@ -138,16 +138,16 @@ class RobotController:
 
         self._shutdown_complete = True
         STOP_REQUESTED_REF["stop"] = True
-        print("\nRobot shutdown: zero gains, IDLE all motors, close buses.")
-
-        for leg in self.legs.values():
-            leg.zero_gains_for_shutdown()
+        print("\nRobot shutdown: IDLE all motors, zero gains, close buses.")
 
         for round_index in range(SHUTDOWN_IDLE_ROUNDS):
             print(f"  IDLE round {round_index + 1}/{SHUTDOWN_IDLE_ROUNDS}")
             for leg in self.legs.values():
                 leg.idle_once()
             time.sleep(0.05)
+
+        for leg in self.legs.values():
+            leg.zero_gains_for_shutdown()
 
         for leg in self.legs.values():
             leg.active_cmd.clear()

@@ -49,12 +49,12 @@ def main() -> None:
     robot = RobotController()
 
     try:
-        answer = input("\nType y to record homing pose and stand, or q to quit: ")
-        answer = answer.strip().lower()
-
-        if answer not in ("y", "yes"):
-            print("Cancelled.")
-            return
+        while True:
+            answer = input("\nType y when the robot is flat and ready: ")
+            answer = answer.strip().lower()
+            if answer in ("y", "yes"):
+                break
+            print("Waiting for y. Press Ctrl+C to abort.")
 
         robot.record_all_homed_at_current_pose()
 
