@@ -19,6 +19,8 @@ from robot_controller import (
     RobotController,
 )
 
+GROUND_START_NEUTRAL_TOLERANCE = 3.0
+
 
 def request_stop(_signum=None, _frame=None) -> None:
     STOP_REQUESTED_REF["stop"] = True
@@ -59,7 +61,10 @@ def main() -> None:
 
         robot.record_all_homed_at_current_pose()
 
-        if robot.move_all_to_neutral(confirm_large_move=False):
+        if robot.move_all_to_neutral(
+            confirm_large_move=False,
+            reached_raw_tolerance=GROUND_START_NEUTRAL_TOLERANCE,
+        ):
             robot.hold_neutral()
             robot.build_trajectory_table()
             robot.run_xbox_trot()

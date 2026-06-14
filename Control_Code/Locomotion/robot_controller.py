@@ -229,7 +229,11 @@ class RobotController:
     # Standing
     # ========================================================
 
-    def move_all_to_neutral(self, confirm_large_move: bool = True) -> bool:
+    def move_all_to_neutral(
+        self,
+        confirm_large_move: bool = True,
+        reached_raw_tolerance: float = NEUTRAL_REACHED_RAW_TOLERANCE,
+    ) -> bool:
         if not self.all_homed():
             print("Not all legs are homed.")
             return False
@@ -337,18 +341,18 @@ class RobotController:
         if max_error is None:
             return False
 
-        if max_error > NEUTRAL_REACHED_RAW_TOLERANCE:
+        if max_error > reached_raw_tolerance:
             self.settle_at_neutral(neutral_targets, NEUTRAL_SETTLE_TIME)
             print("\nNeutral tracking check after settle:")
             max_error = self.neutral_tracking_error(neutral_targets)
             if max_error is None:
                 return False
 
-        if max_error > NEUTRAL_REACHED_RAW_TOLERANCE:
+        if max_error > reached_raw_tolerance:
             print(
                 "\nNeutral move did not track. "
                 f"Max raw error={max_error:.2f}, "
-                f"limit={NEUTRAL_REACHED_RAW_TOLERANCE:.2f}."
+                f"limit={reached_raw_tolerance:.2f}."
             )
             print(
                 "Stopping before Xbox trot so the robot does not continue "
