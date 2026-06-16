@@ -3,8 +3,8 @@ gains_config.py
 
 Shared motor gain sets for high-level quadruped states.
 
-Per-joint hardware gains still live in leg_config.py. These named gain sets
-are used during startup, standing transitions, hold, and trot.
+All motor controller gains live here. The hardware file leg_config.py should
+only describe CAN IDs, motor signs, homing angles, and geometry constants.
 """
 
 from __future__ import annotations
@@ -35,19 +35,19 @@ STARTUP_GAINS = GainSet(
 )
 
 MOVE_GAINS = GainSet(
-    kp={HIP: 0.20, THIGH: 0.20, SHANK: 0.20},
-    kd={HIP: 0.008, THIGH: 0.008, SHANK: 0.008},
-    torque={HIP: 1.50, THIGH: 1.50, SHANK: 1.50},
+    kp={HIP: 0.25, THIGH: 0.25, SHANK: 0.25},
+    kd={HIP: 0.010, THIGH: 0.010, SHANK: 0.010},
+    torque={HIP: 1.80, THIGH: 1.80, SHANK: 1.80},
 )
 
 RUN_GAINS = GainSet(
-    kp={HIP: 0.10, THIGH: 0.20, SHANK: 0.20},
-    kd={HIP: 0.010, THIGH: 0.008, SHANK: 0.008},
-    torque={HIP: 1.50, THIGH: 1.50, SHANK: 1.50},
+    kp={HIP: 0.25, THIGH: 0.25, SHANK: 0.25},
+    kd={HIP: 0.010, THIGH: 0.010, SHANK: 0.010},
+    torque={HIP: 1.80, THIGH: 1.80, SHANK: 1.80},
 )
 
 HOLD_GAINS = GainSet(
-    kp={HIP: 0.12, THIGH: 0.10, SHANK: 0.10},
-    kd={HIP: 0.010, THIGH: 0.006, SHANK: 0.006},
-    torque={HIP: 1.50, THIGH: 1.50, SHANK: 1.50},
+    kp={HIP: 0.25, THIGH: 0.25, SHANK: 0.25},
+    kd={HIP: 0.010, THIGH: 0.010, SHANK: 0.010},
+    torque={HIP: 1.80, THIGH: 1.80, SHANK: 1.80},
 )

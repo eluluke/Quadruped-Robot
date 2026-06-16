@@ -5,7 +5,8 @@ Manual homing-pose confirmation -> neutral standing -> Xbox-controlled
 single-leg regular planar trot.
 
 This script imports:
-    - CAN IDs, motor signs, gains, and homing angles from leg_config.py
+    - CAN IDs, motor signs, and homing angles from leg_config.py
+    - controller gains from gains_config.py
     - foot trajectory and IK angle deltas from trajectory_config.py
     - Xbox controller settings and wrapper from xbox_config.py
 
@@ -20,13 +21,13 @@ import signal
 import time
 from typing import Dict, List
 
+from gains_config import MOVE_GAINS, RUN_GAINS
 from leg_config import (
     FRONT_RIGHT,
     HIP,
     JOINT_ORDER,
     LEG_ORDER,
     get_homing_angles_for_leg,
-    get_joint_gains,
 )
 from quadruped_utils import limit_rate
 from trajectory_config import (
@@ -175,10 +176,13 @@ def print_standing_plan(
             f"delta={delta_raw:+.6f}"
         )
 
-    print("\nGains from leg_config.py:")
+    print("\nMOVE_GAINS from gains_config.py:")
     for role in JOINT_ORDER:
-        kp, kd, torque_limit = get_joint_gains(runner.leg_name, role)
-        print(f"  {role:5s}: kp={kp:.4f}, kd={kd:.4f}, torque={torque_limit:.4f}")
+        print(
+            f"  {role:5s}: kp={MOVE_GAINS.kp[role]:.4f}, "
+            f"kd={MOVE_GAINS.kd[role]:.4f}, "
+            f"torque={MOVE_GAINS.torque[role]:.4f}"
+        )
 
     return max_delta
 
@@ -280,6 +284,8 @@ def run_xbox_trot(
 
     try:
         controller = XboxController(deadzone=JOYSTICK_DEADBAND)
+        print("\nSwitching to RUN_GAINS from gains_config.py...")
+        runner.set_all_gains(RUN_GAINS)
 
         print("\nStarting Xbox-controlled single-leg trot.")
         print("Left stick Y controls gait phase speed. Ctrl+C to stop.\n")
@@ -368,8 +374,8 @@ def main() -> None:
         if not maybe_confirm_large_move(max_delta, "Standing move"):
             raise KeyboardInterrupt
 
-        print("\nSwitching to leg_config.py standing/run gains...")
-        runner.set_all_config_gains()
+        print("\nSwitching to MOVE_GAINS from gains_config.py...")
+        runner.set_all_gains(MOVE_GAINS)
 
         runner.move_to_targets(
             neutral_targets,

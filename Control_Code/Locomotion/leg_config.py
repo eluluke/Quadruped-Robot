@@ -8,11 +8,11 @@ This file defines:
     - joint names
     - CAN channels
     - CAN IDs
-    - position gains
     - motor direction signs
     - the selected manual homing angle
 
 Trajectory, gait phase, Xbox input, and IK math belong in other files.
+Motor controller gains belong in gains_config.py.
 """
 
 
@@ -97,25 +97,16 @@ LEG_CONFIG = {
 
         HIP: {
             "can_id": 6,
-            "kp": 0.24,
-            "kd": 0.010,
-            "torque_limit": 1.30,
             "homing_angle_rad": HOMING_ANGLE[HIP],
         },
 
         THIGH: {
             "can_id": 5,
-            "kp": 0.38,
-            "kd": 0.014,
-            "torque_limit": 1.50,
             "homing_angle_rad": HOMING_ANGLE[THIGH],
         },
 
         SHANK: {
             "can_id": 4,
-            "kp": 0.38,
-            "kd": 0.014,
-            "torque_limit": 1.50,
             "homing_angle_rad": HOMING_ANGLE[SHANK],
         },
     },
@@ -125,25 +116,16 @@ LEG_CONFIG = {
 
         HIP: {
             "can_id": 3,
-            "kp": 0.24,
-            "kd": 0.010,
-            "torque_limit": 1.30,
             "homing_angle_rad": HOMING_ANGLE[HIP],
         },
 
         THIGH: {
             "can_id": 2,
-            "kp": 0.38,
-            "kd": 0.014,
-            "torque_limit": 1.50,
             "homing_angle_rad": HOMING_ANGLE[THIGH],
         },
 
         SHANK: {
             "can_id": 1,
-            "kp": 0.38,
-            "kd": 0.014,
-            "torque_limit": 1.50,
             "homing_angle_rad": HOMING_ANGLE[SHANK],
         },
     },
@@ -153,25 +135,16 @@ LEG_CONFIG = {
 
         HIP: {
             "can_id": 12,
-            "kp": 0.24,
-            "kd": 0.010,
-            "torque_limit": 1.30,
             "homing_angle_rad": HOMING_ANGLE[HIP],
         },
 
         THIGH: {
             "can_id": 11,
-            "kp": 0.38,
-            "kd": 0.014,
-            "torque_limit": 1.50,
             "homing_angle_rad": HOMING_ANGLE[THIGH],
         },
 
         SHANK: {
             "can_id": 10,
-            "kp": 0.38,
-            "kd": 0.014,
-            "torque_limit": 1.50,
             "homing_angle_rad": HOMING_ANGLE[SHANK],
         },
     },
@@ -181,25 +154,16 @@ LEG_CONFIG = {
 
         HIP: {
             "can_id": 9,
-            "kp": 0.24,
-            "kd": 0.010,
-            "torque_limit": 1.30,
             "homing_angle_rad": HOMING_ANGLE[HIP],
         },
 
         THIGH: {
             "can_id": 8,
-            "kp": 0.38,
-            "kd": 0.014,
-            "torque_limit": 1.50,
             "homing_angle_rad": HOMING_ANGLE[THIGH],
         },
 
         SHANK: {
             "can_id": 7,
-            "kp": 0.38,
-            "kd": 0.014,
-            "torque_limit": 1.50,
             "homing_angle_rad": HOMING_ANGLE[SHANK],
         },
     },
@@ -264,21 +228,6 @@ def get_can_id(leg_name, joint_name):
     return LEG_CONFIG[leg_name][joint_name]["can_id"]
 
 
-def get_kp(leg_name, joint_name):
-    """Return kp for one joint."""
-    return LEG_CONFIG[leg_name][joint_name]["kp"]
-
-
-def get_kd(leg_name, joint_name):
-    """Return kd for one joint."""
-    return LEG_CONFIG[leg_name][joint_name]["kd"]
-
-
-def get_torque_limit(leg_name, joint_name):
-    """Return torque limit for one joint."""
-    return LEG_CONFIG[leg_name][joint_name]["torque_limit"]
-
-
 def get_homing_angle(leg_name, joint_name):
     """Return selected homing output-side angle in radians for one joint."""
     return LEG_CONFIG[leg_name][joint_name]["homing_angle_rad"]
@@ -307,17 +256,6 @@ def get_homing_angles_for_leg(leg_name):
     }
 
 
-def get_joint_gains(leg_name, joint_name):
-    """
-    Return kp, kd, torque_limit for one joint.
-
-    Example:
-        kp, kd, torque = get_joint_gains(REAR_LEFT, SHANK)
-    """
-    joint = get_joint_config(leg_name, joint_name)
-    return joint["kp"], joint["kd"], joint["torque_limit"]
-
-
 def print_config_summary():
     """Print all 12 joint configurations."""
     print("=" * 80)
@@ -334,9 +272,6 @@ def print_config_summary():
             print(
                 f"  {joint_name:5s}: "
                 f"can_id={joint['can_id']:2d}, "
-                f"kp={joint['kp']:.4f}, "
-                f"kd={joint['kd']:.4f}, "
-                f"torque_limit={joint['torque_limit']:.4f}, "
                 f"homing={joint['homing_angle_rad']:.6f} rad, "
                 f"motor_sign={get_motor_sign(leg_name, joint_name):+.1f}"
             )

@@ -23,6 +23,7 @@ from typing import Dict, Iterable, List
 import berkeley_humanoid_lite_lowlevel.recoil as recoil
 from loop_rate_limiters import RateLimiter  # type: ignore[import-not-found]
 
+from gains_config import ARM_GAINS, RUN_GAINS, STARTUP_GAINS, GainSet
 from leg_config import (
     FRONT_RIGHT,
     GEAR_RATIO,
@@ -33,7 +34,6 @@ from leg_config import (
     NEUTRAL_Y,
     NEUTRAL_Z,
     get_can_channel,
-    get_joint_gains,
     get_motor_sign,
     get_role_to_id_for_leg,
 )
@@ -76,14 +76,6 @@ RATE_HZ = TRAJ_CFG.rate_hz
 PRINT_EVERY = 40
 STARTUP_HOLD_TIME = 0.8
 MOVE_TO_FIRST_TIME = 0.8
-
-ARM_KP = 0.0
-ARM_KD = 0.0
-ARM_TORQUE_LIMIT = 0.0
-
-STARTUP_KP = 0.003
-STARTUP_KD = 0.001
-STARTUP_TORQUE_LIMIT = 0.03
 
 MAX_TRAJ_RAW_DELTA_BY_ROLE = {
     ROLE_HIP: 8.0,
@@ -152,18 +144,15 @@ class SingleLegRunner:
         self.bus.write_torque_limit(motor_id, torque_limit)
         time.sleep(0.004)
 
-    def set_role_gains_from_config(self, role: str) -> None:
-        motor_id = self.role_to_id[role]
-        kp, kd, torque_limit = get_joint_gains(self.leg_name, role)
-        self.set_gains(motor_id, kp, kd, torque_limit)
-
-    def set_all_config_gains(self) -> None:
+    def set_all_gains(self, gains: GainSet) -> None:
         for role in JOINT_ORDER:
-            self.set_role_gains_from_config(role)
-
-    def set_all_soft_startup_gains(self) -> None:
-        for motor_id in self.motor_ids:
-            self.set_gains(motor_id, STARTUP_KP, STARTUP_KD, STARTUP_TORQUE_LIMIT)
+            motor_id = self.role_to_id[role]
+            self.set_gains(
+                motor_id,
+                gains.kp[role],
+                gains.kd[role],
+                gains.torque[role],
+            )
 
     def read_position(self, motor_id: int) -> float:
         value = self.bus.read_position_measured(motor_id)
@@ -222,8 +211,8 @@ class SingleLegRunner:
             print(f"  {role:5s} ID {motor_id}: raw={start_raw[motor_id]:+.6f}")
 
         print("\nArming POSITION mode at zero torque...")
+        self.set_all_gains(ARM_GAINS)
         for motor_id in self.motor_ids:
-            self.set_gains(motor_id, ARM_KP, ARM_KD, ARM_TORQUE_LIMIT)
             self.set_mode_with_spacing(motor_id, recoil.Mode.POSITION)
 
         self.active_cmd = dict(start_raw)
@@ -232,7 +221,7 @@ class SingleLegRunner:
             self.rate.sleep()
 
         print("Applying soft startup gains...")
-        self.set_all_soft_startup_gains()
+        self.set_all_gains(STARTUP_GAINS)
         for _ in range(int(STARTUP_HOLD_TIME * RATE_HZ)):
             self.command_all_active()
             self.rate.sleep()
@@ -360,8 +349,8 @@ def main() -> None:
 
         first_targets = runner.targets_from_reference(start_raw, table[0])
 
-        print("\nSwitching to leg_config.py run gains...")
-        runner.set_all_config_gains()
+        print("\nSwitching to RUN_GAINS from gains_config.py...")
+        runner.set_all_gains(RUN_GAINS)
         runner.move_to_targets(
             first_targets,
             MOVE_TO_FIRST_TIME,

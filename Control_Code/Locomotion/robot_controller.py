@@ -18,6 +18,7 @@ from typing import Dict, List
 
 from loop_rate_limiters import RateLimiter  # type: ignore[import-not-found]
 
+from gains_config import HOLD_GAINS, MOVE_GAINS, RUN_GAINS
 from gait_scheduler import TROT_PHASE_OFFSETS, TrotGaitScheduler
 from leg_config import (
     FRONT_LEFT,
@@ -306,9 +307,9 @@ class RobotController:
 
             rate.sleep()
 
-        print("\nSwitching to leg_config.py standing gains...")
+        print("\nSwitching to MOVE_GAINS from gains_config.py...")
         for leg in self.legs.values():
-            leg.set_all_config_gains()
+            leg.set_all_gains(MOVE_GAINS)
 
         start_cmd = {
             name: dict(leg.active_cmd)
@@ -369,7 +370,7 @@ class RobotController:
     def hold_neutral(self) -> None:
         print(f"\nHolding neutral for {NEUTRAL_HOLD_TIME:.1f}s...")
         for leg in self.legs.values():
-            leg.set_all_config_gains()
+            leg.set_all_gains(HOLD_GAINS)
 
         rate = RateLimiter(frequency=RATE_HZ)
         steps = int(NEUTRAL_HOLD_TIME * RATE_HZ)
@@ -382,6 +383,30 @@ class RobotController:
                 leg.command_all_active()
 
             if (i + 1) % PRINT_EVERY == 0:
+                print(
+                    " | ".join(
+                        leg.feedback_line()
+                        for leg in self.legs.values()
+                    )
+                )
+
+            rate.sleep()
+
+    def hold_neutral_until_stop(self) -> None:
+        """Hold neutral standing pose until Ctrl+C or external stop request."""
+        print("\nHolding neutral standing pose. Press Ctrl+C to stop.")
+        for leg in self.legs.values():
+            leg.set_all_gains(HOLD_GAINS)
+
+        rate = RateLimiter(frequency=RATE_HZ)
+        counter = 0
+
+        while not STOP_REQUESTED_REF["stop"]:
+            for leg in self.legs.values():
+                leg.command_all_active()
+
+            counter += 1
+            if counter % PRINT_EVERY == 0:
                 print(
                     " | ".join(
                         leg.feedback_line()
@@ -454,7 +479,7 @@ class RobotController:
             )
 
         for leg in self.legs.values():
-            leg.set_all_config_gains()
+            leg.set_all_gains(RUN_GAINS)
 
         start_cmd = {
             name: dict(leg.active_cmd)

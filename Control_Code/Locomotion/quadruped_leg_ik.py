@@ -15,14 +15,19 @@ def clamp(value, low, high):
 def leg_ik(x, y, z):
     """Return hip, thigh, and shank joint angles in radians."""
 
-    z_1 = math.sqrt(y**2 + z**2 - L_H**2)
+    z_1_sq = y**2 + z**2 - L_H**2
+    z_1 = math.sqrt(max(0.0, z_1_sq))
     l_1 = math.sqrt(x**2 + z_1**2)
+    if l_1 <= 1e-9:
+        raise ValueError("Foot target is too close to the hip offset axis.")
 
-    a_1 = math.acos((L_S**2 + L_T**2 - l_1**2) / (2 * L_S * L_T))
+    a_1_arg = (L_S**2 + L_T**2 - l_1**2) / (2 * L_S * L_T)
+    a_1 = math.acos(clamp(a_1_arg, -1.0, 1.0))
 
     a_2 = math.atan2(x, z_1)
 
-    b_1 = math.acos((L_T**2 + l_1**2 - L_S**2) / (2 * L_T * l_1))
+    b_1_arg = (L_T**2 + l_1**2 - L_S**2) / (2 * L_T * l_1)
+    b_1 = math.acos(clamp(b_1_arg, -1.0, 1.0))
 
     b_2 = math.atan2(y, z)
     b_3 = math.atan2(z_1, L_H)
