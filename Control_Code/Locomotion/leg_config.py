@@ -45,14 +45,33 @@ LEG_ORDER = [
 
 
 # ============================================================
-# Shared neutral standing pose
+# Neutral standing poses
+# ============================================================
+#
+# These coordinates target the linkage foot-end center used by IK, not the
+# ground contact patch. The physical paw/rubber shoe adds radius below that
+# point, so commanded leg height is desired body height minus paw radius.
 # ============================================================
 
-NEUTRAL_X = 0.0
+PAW_RADIUS = 26.70
+NEUTRAL_FOOT_X_OFFSET = -20.47
+
+FRONT_DESIRED_STANDING_HEIGHT = 380.0
+REAR_DESIRED_STANDING_HEIGHT = 385.0
+
+NEUTRAL_X = NEUTRAL_FOOT_X_OFFSET
 NEUTRAL_Y = 84.26
-NEUTRAL_Z = 385.0
+NEUTRAL_Z = FRONT_DESIRED_STANDING_HEIGHT - PAW_RADIUS
+REAR_NEUTRAL_Z = REAR_DESIRED_STANDING_HEIGHT - PAW_RADIUS
 
 NEUTRAL_STANDING_FOOT_POSITION = (NEUTRAL_X, NEUTRAL_Y, NEUTRAL_Z)
+
+LEG_NEUTRAL_STANDING_FOOT_POSITION = {
+    FRONT_LEFT: (NEUTRAL_X, NEUTRAL_Y, NEUTRAL_Z),
+    FRONT_RIGHT: (NEUTRAL_X, NEUTRAL_Y, NEUTRAL_Z),
+    REAR_LEFT: (NEUTRAL_X, NEUTRAL_Y, REAR_NEUTRAL_Z),
+    REAR_RIGHT: (NEUTRAL_X, NEUTRAL_Y, REAR_NEUTRAL_Z),
+}
 
 
 # ============================================================
@@ -256,6 +275,11 @@ def get_homing_angles_for_leg(leg_name):
     }
 
 
+def get_neutral_standing_foot_position(leg_name):
+    """Return neutral standing foot position for one leg."""
+    return LEG_NEUTRAL_STANDING_FOOT_POSITION[leg_name]
+
+
 def print_config_summary():
     """Print all 12 joint configurations."""
     print("=" * 80)
@@ -266,6 +290,10 @@ def print_config_summary():
         print()
         print(f"{leg_name}:")
         print(f"  can_channel = {get_can_channel(leg_name)}")
+        print(
+            "  neutral_foot = "
+            f"{get_neutral_standing_foot_position(leg_name)}"
+        )
 
         for joint_name in JOINT_ORDER:
             joint = get_joint_config(leg_name, joint_name)

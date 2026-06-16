@@ -24,12 +24,12 @@ from leg_config import (
     FRONT_LEFT,
     FRONT_RIGHT,
     LEG_ORDER,
-    NEUTRAL_STANDING_FOOT_POSITION,
     NEUTRAL_X,
     NEUTRAL_Y,
     NEUTRAL_Z,
     REAR_LEFT,
     REAR_RIGHT,
+    get_neutral_standing_foot_position,
 )
 from leg_controller import LegController
 from quadruped_main_state import STOP_REQUESTED_REF
@@ -241,7 +241,9 @@ class RobotController:
             return False
 
         neutral_targets = {
-            name: leg.compute_neutral_targets(NEUTRAL_STANDING_FOOT_POSITION)
+            name: leg.compute_neutral_targets(
+                get_neutral_standing_foot_position(name)
+            )
             for name, leg in self.legs.items()
         }
 
