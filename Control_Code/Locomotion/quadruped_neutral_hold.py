@@ -65,6 +65,7 @@ def main() -> None:
         if robot.move_all_to_neutral(
             confirm_large_move=False,
             reached_raw_tolerance=GROUND_START_NEUTRAL_TOLERANCE,
+            continue_if_tracking_error=True,
         ):
             robot.hold_neutral_until_stop()
 

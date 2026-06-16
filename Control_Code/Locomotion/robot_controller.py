@@ -234,6 +234,7 @@ class RobotController:
         self,
         confirm_large_move: bool = True,
         reached_raw_tolerance: float = NEUTRAL_REACHED_RAW_TOLERANCE,
+        continue_if_tracking_error: bool = False,
     ) -> bool:
         if not self.all_homed():
             print("Not all legs are homed.")
@@ -355,16 +356,29 @@ class RobotController:
                 f"Max raw error={max_error:.2f}, "
                 f"limit={reached_raw_tolerance:.2f}."
             )
+            if continue_if_tracking_error:
+                print(
+                    "Continuing because this is a neutral-hold diagnostic "
+                    "run. Watch the robot and stop with Ctrl+C if it sags."
+                )
+            else:
+                print(
+                    "Stopping before Xbox trot so the robot does not continue "
+                    "from a bad standing reference."
+                )
+                return False
+
+        if max_error <= reached_raw_tolerance:
+            print("\nAll legs reached neutral reference.")
+        else:
             print(
-                "Stopping before Xbox trot so the robot does not continue "
-                "from a bad standing reference."
+                "\nNeutral reference has visible tracking error, but the "
+                "neutral hold test will keep commanding the same targets."
             )
-            return False
 
         for name, leg in self.legs.items():
             leg.finish_neutral(neutral_targets[name])
 
-        print("\nAll legs reached neutral reference.")
         return True
 
     def hold_neutral(self) -> None:
