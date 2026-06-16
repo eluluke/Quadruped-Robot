@@ -1,4 +1,4 @@
-"""Quadruped leg inverse kinematics."""
+#"""Quadruped leg inverse kinematics.""" "Initial development by LittleMooMoo "
 
 import math
 

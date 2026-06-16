@@ -1,3 +1,4 @@
+# Initial Development by Samuel Shaotong
 import time
 import board
 import adafruit_bno055
@@ -31,7 +32,7 @@ class BNO055_IMU:
     def read_calibration(self):
         return self.sensor.calibration_status
 
-    def get_data(self):  
+    def get_data(self):
         acceleration = self.read_acceleration()
         linear_accel = self.read_linear_acceleration()
         euler = self.read_euler()
@@ -52,7 +53,7 @@ class BNO055_IMU:
         print("Press Ctrl+C to stop.\n")
 
         while True:
-            print(self.get_data())  
+            print(self.get_data())
             time.sleep(delay)
 
 

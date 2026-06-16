@@ -1,5 +1,5 @@
 """
-xbox_config.py
+xbox_config.py       Initial developement by Elijah Robinson;
 
 Xbox controller configuration and input wrapper.
 
@@ -123,7 +123,8 @@ class LinuxJoystickController:
         self._fd = os.open(self.device_path, os.O_RDONLY | os.O_NONBLOCK)
         self._axes = [0.0] * 8
 
-        print(f"Controller connected through Linux joystick: {self.device_path}")
+        print(
+            f"Controller connected through Linux joystick: {self.device_path}")
 
     def _read_events(self) -> None:
         while True:
