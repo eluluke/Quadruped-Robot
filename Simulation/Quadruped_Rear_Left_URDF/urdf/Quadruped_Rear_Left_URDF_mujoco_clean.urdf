@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.6.1-13-g25da24a-dirty  Build Version: 1.6.9659.2150
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot name="quadruped_rear_left_leg">
+  <link name="Leg_FR">
+    <inertial>
+      <origin xyz="-0.10815 -7.3379E-05 5.3042E-05" rpy="0 0 0" />
+      <mass value="0.42117" />
+      <inertia ixx="0.00044949" ixy="-5.7563E-08" ixz="4.042E-08" iyy="0.00023679" iyz="-5.7886E-08" izz="0.00023683" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="../meshes/Leg_FR.STL" />
+      </geometry>
+      <material name="gray">
+        <color rgba="0.75294 0.75294 0.75294 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="../meshes/Leg_FR.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link name="Hip_Link">
+    <inertial>
+      <origin xyz="-3.0301E-05 0.0045323 -0.04785" rpy="0 0 0" />
+      <mass value="0.75788" />
+      <inertia ixx="0.0012006" ixy="2.2562E-06" ixz="-9.7656E-07" iyy="0.0013158" iyz="1.6659E-06" izz="0.0010743" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="../meshes/Hip_Link.STL" />
+      </geometry>
+      <material name="white">
+        <color rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="../meshes/Hip_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="Hip_FR" type="revolute">
+    <origin xyz="-0.10814 0 0" rpy="1.5708 0.96031 -1.5708" />
+    <parent link="Leg_FR" />
+    <child link="Hip_Link" />
+    <axis xyz="0 0 1" />
+    <limit lower="-1.40" upper="1.40" effort="30" velocity="12" />
+    <dynamics damping="0.05" friction="0.0" />
+  </joint>
+  <link name="Thigh_Link">
+    <inertial>
+      <origin xyz="0.029629 0.050354 -0.10151" rpy="0 0 0" />
+      <mass value="1.0769" />
+      <inertia ixx="0.0037617" ixy="-0.0021702" ixz="-3.5742E-06" iyy="0.002318" iyz="-5.758E-06" izz="0.0060016" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="../meshes/Thigh_Link.STL" />
+      </geometry>
+      <material name="gray">
+        <color rgba="0.75294 0.75294 0.75294 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="../meshes/Thigh_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="Thigh_FR" type="revolute">
+    <origin xyz="-0.12389 0.086678 -0.10814" rpy="-1.5708 0.094043 0.96031" />
+    <parent link="Hip_Link" />
+    <child link="Thigh_Link" />
+    <axis xyz="0 0 1" />
+    <limit lower="-2.40" upper="2.40" effort="30" velocity="12" />
+    <dynamics damping="0.05" friction="0.0" />
+  </joint>
+  <link name="Shank_Link">
+    <inertial>
+      <origin xyz="-0.14054 -0.0024283 -0.1156" rpy="0 0 0" />
+      <mass value="0.89279" />
+      <inertia ixx="0.0050381" ixy="-0.0012603" ixz="-2.8881E-08" iyy="0.00073526" iyz="6.9978E-08" izz="0.0056587" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="../meshes/Shank_Link.STL" />
+      </geometry>
+      <material name="gray">
+        <color rgba="0.75294 0.75294 0.75294 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="../meshes/Shank_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="Shank_FR" type="revolute">
+    <origin xyz="0 0 -0.1508" rpy="-3.1416 0 -2.712" />
+    <parent link="Thigh_Link" />
+    <child link="Shank_Link" />
+    <axis xyz="0 0 -1" />
+    <limit lower="-2.80" upper="2.80" effort="30" velocity="12" />
+    <dynamics damping="0.05" friction="0.0" />
+  </joint>
+</robot>
