@@ -1,0 +1,66 @@
+<mujoco model="quadruped_rear_left_leg">
+  <compiler angle="radian" autolimits="true"/>
+
+  <option timestep="0.002" gravity="0 0 -9.81"/>
+
+  <default>
+    <joint frictionloss="0.0" actuatorfrcrange="-120 120"/>
+    <geom type="mesh" contype="0" conaffinity="0" group="1" density="0"/>
+  </default>
+
+  <asset>
+    <material name="gray" rgba="0.75294 0.75294 0.75294 1"/>
+    <material name="white" rgba="1 1 1 1"/>
+
+    <mesh name="Leg_FR" content_type="model/stl" file="generated_meshes/Leg_FR.STL"/>
+    <mesh name="Hip_Link" content_type="model/stl" file="generated_meshes/Hip_Link.STL"/>
+    <mesh name="Thigh_Link" content_type="model/stl" file="generated_meshes/Thigh_Link.STL"/>
+    <mesh name="Shank_Link" content_type="model/stl" file="generated_meshes/Shank_Link.STL"/>
+    <mesh name="Thigh_Actuator" content_type="model/stl" file="generated_meshes/Thigh_Actuator.STL"/>
+    <mesh name="Shank_Actuator" content_type="model/stl" file="generated_meshes/Shank_Actuator.STL"/>
+  </asset>
+
+  <worldbody>
+    <geom name="floor" type="plane" size="2 2 0.02" pos="0 0 0" rgba="0.35 0.38 0.40 1" contype="1" conaffinity="1" friction="1.2 0.01 0.001"/>
+
+    <body name="Leg_FR" pos="0 0 0.39" quat="0 0 1 0">
+      <joint name="root_z" type="slide" axis="0 0 1" range="-0.25 0.60" damping="8"/>
+      <inertial pos="-0.10815 -7.3379e-05 5.3042e-05" mass="0.42117"
+                fullinertia="0.00044949 0.00023679 0.00023683 -5.7563e-08 4.042e-08 -5.7886e-08"/>
+      <geom name="Leg_FR_visual" mesh="Leg_FR" material="gray"/>
+
+      <body name="Hip_Link" pos="-0.10814 0 0" quat="0.212500864 0.674419995 -0.212505818 -0.674419995">
+        <inertial pos="-3.0301e-05 0.0045323 -0.04785" mass="0.75788"
+                  fullinertia="0.0012006 0.0013158 0.0010743 2.2562e-06 -9.7656e-07 1.6659e-06"/>
+        <joint name="Hip_FR" pos="0 0 0" axis="0 0 1" range="-1.40 1.40" damping="3.0"/>
+        <geom name="Hip_Link_visual" mesh="Hip_Link" material="white"/>
+        <geom name="Thigh_Actuator_fixed" mesh="Thigh_Actuator" material="gray"/>
+
+        <body name="Thigh_Link" pos="-0.12389 0.086678 -0.10814" quat="0.611102424 -0.641810145 -0.296785387 0.355741478">
+          <inertial pos="0.029629 0.050354 -0.10151" mass="1.0769"
+                    fullinertia="0.0037617 0.002318 0.0060016 -0.0021702 -3.5742e-06 -5.758e-06"/>
+          <joint name="Thigh_FR" pos="-0.008126429 0.000785624 -0.150372716" axis="-0.995581843 0.093897788 0.000000345" range="-2.40 2.40" damping="2.5"/>
+          <geom name="Thigh_Link_visual" mesh="Thigh_Link" material="gray"/>
+          <geom name="Shank_Actuator_fixed" mesh="Shank_Actuator" material="gray"/>
+
+          <body name="Shank_Link" pos="0 0 -0.1508" quat="-7.82937937e-07 -0.21314844 0.977019827 3.58879421e-06">
+            <inertial pos="-0.14054 -0.0024283 -0.1156" mass="0.89279"
+                      fullinertia="0.0050381 0.00073526 0.0056587 -0.0012603 -2.8881e-08 6.9978e-08"/>
+            <joint name="Shank_FR" pos="-0.046032047 0.252142156 -0.152954138" axis="0.866010306 0.500026150 0.000003328" range="-2.80 2.80" damping="2.0"/>
+            <geom name="Shank_Link_visual" mesh="Shank_Link" material="gray"/>
+            <geom name="foot_contact" type="sphere" size="0.03" pos="0.05590885 0.07245398 -0.35946319" rgba="0.05 0.05 0.05 1" contype="1" conaffinity="1" friction="1.2 0.01 0.001"/>
+          </body>
+        </body>
+      </body>
+    </body>
+  </worldbody>
+
+  <!-- Tune joint damping here. Larger values reduce oscillation but make the leg feel slower.
+       Current damping: Hip_FR=3.0, Thigh_FR=2.5, Shank_FR=2.0. -->
+
+  <actuator>
+    <position name="Hip_FR_position" joint="Hip_FR" kp="50" ctrlrange="-1.40 1.40"/>
+    <position name="Thigh_FR_position" joint="Thigh_FR" kp="120" ctrlrange="-2.40 2.40"/>
+    <position name="Shank_FR_position" joint="Shank_FR" kp="140" ctrlrange="-2.80 2.80"/>
+  </actuator>
+</mujoco>
