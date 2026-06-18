@@ -35,19 +35,19 @@ STARTUP_GAINS = GainSet(
 )
 
 MOVE_GAINS = GainSet(
-    kp={HIP: 0.25, THIGH: 0.25, SHANK: 0.25},
-    kd={HIP: 0.010, THIGH: 0.010, SHANK: 0.010},
+    kp={HIP: 0.35, THIGH: 0.35, SHANK: 0.35},
+    kd={HIP: 0.015, THIGH: 0.015, SHANK: 0.015},
     torque={HIP: 2.50, THIGH: 2.50, SHANK: 2.50},
 )
 
 RUN_GAINS = GainSet(
-    kp={HIP: 0.25, THIGH: 0.25, SHANK: 0.25},
-    kd={HIP: 0.010, THIGH: 0.010, SHANK: 0.010},
+    kp={HIP: 0.35, THIGH: 0.35, SHANK: 0.35},
+    kd={HIP: 0.015, THIGH: 0.015, SHANK: 0.015},
     torque={HIP: 2.50, THIGH: 2.50, SHANK: 2.50},
 )
 
 HOLD_GAINS = GainSet(
-    kp={HIP: 0.25, THIGH: 0.25, SHANK: 0.25},
-    kd={HIP: 0.010, THIGH: 0.010, SHANK: 0.010},
+    kp={HIP: 0.35, THIGH: 0.35, SHANK: 0.35},
+    kd={HIP: 0.015, THIGH: 0.015, SHANK: 0.015},
     torque={HIP: 2.50, THIGH: 2.50, SHANK: 2.50},
 )
