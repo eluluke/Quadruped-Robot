@@ -53,11 +53,11 @@ LEG_ORDER = [
 # point, so commanded leg height is desired body height minus paw radius.
 # ============================================================
 
-PAW_RADIUS = 26.70
-NEUTRAL_FOOT_X_OFFSET = -20.47
+PAW_RADIUS = 29.5
+NEUTRAL_FOOT_X_OFFSET = -23.12
 
 FRONT_DESIRED_STANDING_HEIGHT = 380.0
-REAR_DESIRED_STANDING_HEIGHT = 385.0
+REAR_DESIRED_STANDING_HEIGHT = 380.0
 
 NEUTRAL_X = NEUTRAL_FOOT_X_OFFSET
 NEUTRAL_Y = 84.26
@@ -102,8 +102,8 @@ class homing_angle:
     }
 
 
-HOMING_ANGLE = homing_angle.max_contraction_angle
-# HOMING_ANGLE = homing_angle.sleepy_angle
+# HOMING_ANGLE = homing_angle.max_contraction_angle
+HOMING_ANGLE = homing_angle.sleepy_angle
 
 
 # ============================================================

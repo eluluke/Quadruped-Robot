@@ -70,7 +70,7 @@ class TrajectoryConfig:
     step_sideways: float = 0.0
     stance_ratio: float = 0.62
 
-    cycle_time: float = 1.0
+    table_cycle_time: float = 1.0
     rate_hz: float = 80.0
 
     x_forward_sign: float = 1.0
@@ -93,7 +93,7 @@ BASE_TRAJECTORY_CONFIG = TrajectoryConfig(
     step_height=70.0,
     step_sideways=0.0,
     stance_ratio=0.50,
-    cycle_time=0.80,
+    table_cycle_time=0.80,
     rate_hz=TRAJECTORY_RATE_HZ,
     x_forward_sign=1.0,
     y_sideways_sign=1.0,
@@ -420,7 +420,7 @@ def build_angle_delta_table(
     per-leg hardware data in leg_config.py.
     """
     if num_points is None:
-        num_points = round(cfg.cycle_time * cfg.rate_hz)
+        num_points = round(cfg.table_cycle_time * cfg.rate_hz)
 
     if num_points < 2:
         raise ValueError("num_points must be at least 2.")
