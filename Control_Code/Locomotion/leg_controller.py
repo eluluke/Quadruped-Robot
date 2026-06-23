@@ -95,11 +95,12 @@ class LegController:
 
     def set_role_gains(self, motor_id: int, gains: GainSet) -> None:
         role = self.id_to_role[motor_id]
+        kp, kd, torque_limit = gains.values_for(self.name, role)
         self.set_gains(
             motor_id,
-            gains.kp[role],
-            gains.kd[role],
-            gains.torque[role],
+            kp,
+            kd,
+            torque_limit,
         )
 
     def set_all_gains(self, gains: GainSet) -> None:

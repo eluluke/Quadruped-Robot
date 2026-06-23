@@ -147,11 +147,12 @@ class SingleLegRunner:
     def set_all_gains(self, gains: GainSet) -> None:
         for role in JOINT_ORDER:
             motor_id = self.role_to_id[role]
+            kp, kd, torque_limit = gains.values_for(self.leg_name, role)
             self.set_gains(
                 motor_id,
-                gains.kp[role],
-                gains.kd[role],
-                gains.torque[role],
+                kp,
+                kd,
+                torque_limit,
             )
 
     def read_position(self, motor_id: int) -> float:

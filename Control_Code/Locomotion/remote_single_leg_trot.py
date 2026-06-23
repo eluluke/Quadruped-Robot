@@ -178,10 +178,11 @@ def print_standing_plan(
 
     print("\nMOVE_GAINS from gains_config.py:")
     for role in JOINT_ORDER:
+        kp, kd, torque = MOVE_GAINS.values_for(runner.leg_name, role)
         print(
-            f"  {role:5s}: kp={MOVE_GAINS.kp[role]:.4f}, "
-            f"kd={MOVE_GAINS.kd[role]:.4f}, "
-            f"torque={MOVE_GAINS.torque[role]:.4f}"
+            f"  {role:5s}: kp={kp:.4f}, "
+            f"kd={kd:.4f}, "
+            f"torque={torque:.4f}"
         )
 
     return max_delta

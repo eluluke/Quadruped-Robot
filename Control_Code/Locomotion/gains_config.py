@@ -9,10 +9,18 @@ only describe CAN IDs, motor signs, homing angles, and geometry constants.
 
 from __future__ import annotations
 
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from typing import Dict
 
-from leg_config import HIP, SHANK, THIGH
+from leg_config import (
+    FRONT_LEFT,
+    FRONT_RIGHT,
+    HIP,
+    REAR_LEFT,
+    REAR_RIGHT,
+    SHANK,
+    THIGH,
+)
 
 
 @dataclass(frozen=True)
@@ -20,34 +28,119 @@ class GainSet:
     kp: Dict[str, float]
     kd: Dict[str, float]
     torque: Dict[str, float]
+    leg_kp: Dict[str, Dict[str, float]] = field(default_factory=dict)
+    leg_kd: Dict[str, Dict[str, float]] = field(default_factory=dict)
+    leg_torque: Dict[str, Dict[str, float]] = field(default_factory=dict)
+
+    def values_for(self, leg_name: str, role: str) -> tuple[float, float, float]:
+        """Return kp, kd, torque for one physical leg joint."""
+        kp = self.leg_kp.get(leg_name, {}).get(role, self.kp[role])
+        kd = self.leg_kd.get(leg_name, {}).get(role, self.kd[role])
+        torque = self.leg_torque.get(leg_name, {}).get(role, self.torque[role])
+        return kp, kd, torque
+
+
+def _all_legs(hip: float, thigh: float, shank: float) -> Dict[str, Dict[str, float]]:
+    """Create an explicit per-leg table that is easy to tune by hand."""
+    joint_values = {
+        HIP: hip,
+        THIGH: thigh,
+        SHANK: shank,
+    }
+    return {
+        FRONT_LEFT: dict(joint_values),
+        FRONT_RIGHT: dict(joint_values),
+        REAR_LEFT: dict(joint_values),
+        REAR_RIGHT: dict(joint_values),
+    }
 
 
 ARM_GAINS = GainSet(
     kp={HIP: 0.0, THIGH: 0.0, SHANK: 0.0},
     kd={HIP: 0.0, THIGH: 0.0, SHANK: 0.0},
     torque={HIP: 0.0, THIGH: 0.0, SHANK: 0.0},
+    leg_kp=_all_legs(0.0, 0.0, 0.0),
+    leg_kd=_all_legs(0.0, 0.0, 0.0),
+    leg_torque=_all_legs(0.0, 0.0, 0.0),
 )
 
 STARTUP_GAINS = GainSet(
     kp={HIP: 0.003, THIGH: 0.003, SHANK: 0.003},
     kd={HIP: 0.001, THIGH: 0.001, SHANK: 0.001},
     torque={HIP: 0.03, THIGH: 0.03, SHANK: 0.03},
+    leg_kp=_all_legs(0.003, 0.003, 0.003),
+    leg_kd=_all_legs(0.001, 0.001, 0.001),
+    leg_torque=_all_legs(0.03, 0.03, 0.03),
 )
 
 MOVE_GAINS = GainSet(
     kp={HIP: 0.25, THIGH: 0.25, SHANK: 0.25},
     kd={HIP: 0.015, THIGH: 0.015, SHANK: 0.015},
-    torque={HIP: 1.45, THIGH: 1.45, SHANK: 1.45},
+    torque={HIP: 1.40, THIGH: 1.40, SHANK: 1.40},
+    leg_kp={
+        FRONT_LEFT: {HIP: 0.25, THIGH: 0.25, SHANK: 0.25},
+        FRONT_RIGHT: {HIP: 0.25, THIGH: 0.25, SHANK: 0.25},
+        REAR_LEFT: {HIP: 0.25, THIGH: 0.25, SHANK: 0.25},
+        REAR_RIGHT: {HIP: 0.25, THIGH: 0.25, SHANK: 0.25},
+    },
+    leg_kd={
+        FRONT_LEFT: {HIP: 0.015, THIGH: 0.015, SHANK: 0.015},
+        FRONT_RIGHT: {HIP: 0.015, THIGH: 0.015, SHANK: 0.015},
+        REAR_LEFT: {HIP: 0.015, THIGH: 0.015, SHANK: 0.015},
+        REAR_RIGHT: {HIP: 0.015, THIGH: 0.015, SHANK: 0.015},
+    },
+    leg_torque={
+        FRONT_LEFT: {HIP: 1.40, THIGH: 1.40, SHANK: 1.40},
+        FRONT_RIGHT: {HIP: 1.40, THIGH: 1.40, SHANK: 1.40},
+        REAR_LEFT: {HIP: 1.60, THIGH: 1.60, SHANK: 1.60},
+        REAR_RIGHT: {HIP: 1.60, THIGH: 1.60, SHANK: 1.60},
+    },
 )
 
 RUN_GAINS = GainSet(
     kp={HIP: 0.25, THIGH: 0.25, SHANK: 0.25},
     kd={HIP: 0.015, THIGH: 0.015, SHANK: 0.015},
-    torque={HIP: 1.45, THIGH: 1.45, SHANK: 1.45},
+    torque={HIP: 1.40, THIGH: 1.40, SHANK: 1.40},
+    leg_kp={
+        FRONT_LEFT: {HIP: 0.25, THIGH: 0.25, SHANK: 0.25},
+        FRONT_RIGHT: {HIP: 0.25, THIGH: 0.25, SHANK: 0.25},
+        REAR_LEFT: {HIP: 0.25, THIGH: 0.25, SHANK: 0.25},
+        REAR_RIGHT: {HIP: 0.25, THIGH: 0.25, SHANK: 0.25},
+    },
+    leg_kd={
+        FRONT_LEFT: {HIP: 0.015, THIGH: 0.015, SHANK: 0.015},
+        FRONT_RIGHT: {HIP: 0.015, THIGH: 0.015, SHANK: 0.015},
+        REAR_LEFT: {HIP: 0.015, THIGH: 0.015, SHANK: 0.015},
+        REAR_RIGHT: {HIP: 0.015, THIGH: 0.015, SHANK: 0.015},
+    },
+    leg_torque={
+        FRONT_LEFT: {HIP: 1.40, THIGH: 1.40, SHANK: 1.40},
+        FRONT_RIGHT: {HIP: 1.40, THIGH: 1.40, SHANK: 1.40},
+        REAR_LEFT: {HIP: 1.60, THIGH: 1.60, SHANK: 1.60},
+        REAR_RIGHT: {HIP: 1.60, THIGH: 1.60, SHANK: 1.60},
+    },
 )
 
 HOLD_GAINS = GainSet(
     kp={HIP: 0.25, THIGH: 0.25, SHANK: 0.25},
     kd={HIP: 0.015, THIGH: 0.015, SHANK: 0.015},
-    torque={HIP: 1.45, THIGH: 1.45, SHANK: 1.45},
+    torque={HIP: 1.40, THIGH: 1.40, SHANK: 1.40},
+    leg_kp={
+        FRONT_LEFT: {HIP: 0.25, THIGH: 0.25, SHANK: 0.25},
+        FRONT_RIGHT: {HIP: 0.25, THIGH: 0.25, SHANK: 0.25},
+        REAR_LEFT: {HIP: 0.25, THIGH: 0.25, SHANK: 0.25},
+        REAR_RIGHT: {HIP: 0.25, THIGH: 0.25, SHANK: 0.25},
+    },
+    leg_kd={
+        FRONT_LEFT: {HIP: 0.015, THIGH: 0.015, SHANK: 0.015},
+        FRONT_RIGHT: {HIP: 0.015, THIGH: 0.015, SHANK: 0.015},
+        REAR_LEFT: {HIP: 0.015, THIGH: 0.015, SHANK: 0.015},
+        REAR_RIGHT: {HIP: 0.015, THIGH: 0.015, SHANK: 0.015},
+    },
+    leg_torque={
+        FRONT_LEFT: {HIP: 1.40, THIGH: 1.40, SHANK: 1.40},
+        FRONT_RIGHT: {HIP: 1.40, THIGH: 1.40, SHANK: 1.40},
+        REAR_LEFT: {HIP: 1.60, THIGH: 1.60, SHANK: 1.60},
+        REAR_RIGHT: {HIP: 1.60, THIGH: 1.60, SHANK: 1.60},
+    },
 )
