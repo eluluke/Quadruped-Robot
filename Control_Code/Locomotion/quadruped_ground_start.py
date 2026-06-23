@@ -66,7 +66,7 @@ def main() -> None:
             reached_raw_tolerance=GROUND_START_NEUTRAL_TOLERANCE,
         ):
             robot.hold_neutral()
-            robot.build_trajectory_table()
+            robot.build_trajectory_tables()
             robot.run_xbox_trot()
 
     finally:

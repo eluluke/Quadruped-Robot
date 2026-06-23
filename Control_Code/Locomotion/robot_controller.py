@@ -24,9 +24,6 @@ from leg_config import (
     FRONT_LEFT,
     FRONT_RIGHT,
     LEG_ORDER,
-    NEUTRAL_X,
-    NEUTRAL_Y,
-    NEUTRAL_Z,
     REAR_LEFT,
     REAR_RIGHT,
     get_neutral_standing_foot_position,
@@ -36,13 +33,15 @@ from quadruped_main_state import STOP_REQUESTED_REF
 from quadruped_utils import limit_rate, smoothstep, wait_for_terminal_command
 from trajectory_config import (
     JOINT_ROLES,
+    BASE_TRAJECTORY_CONFIG,
     ROLE_HIP,
     ROLE_SHANK,
     ROLE_THIGH,
-    TRAJ_REGULAR_PLANAR,
-    TrajectoryConfig,
+    TRAJECTORY_NAME,
+    TRAJECTORY_RATE_HZ,
     TrajectoryPoint,
     build_angle_delta_table,
+    get_trajectory_config_for_leg,
     summarize_angle_delta_table,
     table_index_from_phase,
 )
@@ -62,27 +61,9 @@ from xbox_config import (
 # Whole-robot locomotion settings
 # ============================================================
 
-RATE_HZ = 80.0
+RATE_HZ = TRAJECTORY_RATE_HZ
 PRINT_EVERY = 40
 SHUTDOWN_IDLE_ROUNDS = 4
-
-TRAJECTORY_NAME = TRAJ_REGULAR_PLANAR
-TRAJ_CFG = TrajectoryConfig(
-    x_center=NEUTRAL_X,
-    y_center=NEUTRAL_Y,
-    z_ground=NEUTRAL_Z,
-    step_length=40.0,
-    step_height=70.0,
-    step_sideways=0.0,
-    stance_ratio=0.62,
-    cycle_time=1.0,
-    rate_hz=RATE_HZ,
-    x_forward_sign=1.0,
-    y_sideways_sign=1.0,
-    z_lift_sign=-1.0,
-    heading_deg=45.0,
-    z_jump_amplitude=80.0,
-)
 
 COMMAND_HIP_TRAJECTORY = False
 COMMAND_ROLES = (
@@ -127,7 +108,7 @@ class RobotController:
             for leg_name in LEG_ORDER
         }
         self.gait = TrotGaitScheduler(TROT_PHASE_OFFSETS)
-        self.trajectory_table: List[TrajectoryPoint] | None = None
+        self.trajectory_tables: Dict[str, List[TrajectoryPoint]] | None = None
         self._shutdown_complete = False
 
     # ========================================================
@@ -436,46 +417,59 @@ class RobotController:
     # Trajectory / trot
     # ========================================================
 
-    def build_trajectory_table(self) -> List[TrajectoryPoint]:
-        print("\nBuilding trajectory table from trajectory_config.py...")
-        table = build_angle_delta_table(TRAJECTORY_NAME, TRAJ_CFG)
-        summary = summarize_angle_delta_table(table)
+    def build_trajectory_tables(self) -> Dict[str, List[TrajectoryPoint]]:
+        print("\nBuilding per-leg trajectory tables from trajectory_config.py...")
+        tables = {}
 
-        for role in JOINT_ROLES:
-            max_angle = summary[role]["max_abs_angle_delta"]
-            max_raw = max(
-                abs(
-                    leg.raw_delta_for_role(
-                        role,
-                        point.angle_delta_by_role[role],
-                    )
-                )
-                for leg in self.legs.values()
-                for point in table
-            )
-            limit = MAX_TRAJ_RAW_DELTA_BY_ROLE[role]
+        for name, leg in self.legs.items():
+            cfg = get_trajectory_config_for_leg(name)
+            table = build_angle_delta_table(TRAJECTORY_NAME, cfg)
+            tables[name] = table
+            summary = summarize_angle_delta_table(table)
+
             print(
-                f"  {role:5s}: max angle={max_angle:+.6f} rad, "
-                f"max raw={max_raw:+.3f}, limit={limit:.3f}"
+                f"  {name}: x_sign={cfg.x_forward_sign:+.1f}, "
+                f"z_sign={cfg.z_lift_sign:+.1f}, "
+                f"neutral=({cfg.x_center:.2f}, "
+                f"{cfg.y_center:.2f}, {cfg.z_ground:.2f})"
             )
-            if max_raw > limit:
-                raise RuntimeError(f"{role} trajectory delta too large.")
 
-        self.trajectory_table = table
-        return table
+            for role in JOINT_ROLES:
+                max_angle = summary[role]["max_abs_angle_delta"]
+                max_raw = max(
+                    abs(
+                        leg.raw_delta_for_role(
+                            role,
+                            point.angle_delta_by_role[role],
+                        )
+                    )
+                    for point in table
+                )
+                limit = MAX_TRAJ_RAW_DELTA_BY_ROLE[role]
+                print(
+                    f"    {role:5s}: max angle={max_angle:+.6f} rad, "
+                    f"max raw={max_raw:+.3f}, limit={limit:.3f}"
+                )
+                if max_raw > limit:
+                    raise RuntimeError(
+                        f"{name} {role} trajectory delta too large."
+                    )
+
+        self.trajectory_tables = tables
+        return tables
 
     def trajectory_start_phase(self) -> float:
         if TRAJECTORY_START_MODE == "neutral_mid_stance":
-            return 0.5 * TRAJ_CFG.stance_ratio
+            return 0.5 * BASE_TRAJECTORY_CONFIG.stance_ratio
         if TRAJECTORY_START_MODE == "swing_start":
-            return TRAJ_CFG.stance_ratio
+            return BASE_TRAJECTORY_CONFIG.stance_ratio
         raise RuntimeError(
             f"Unknown TRAJECTORY_START_MODE: {TRAJECTORY_START_MODE}"
         )
 
     def move_all_to_start_phase(self) -> float:
-        if self.trajectory_table is None:
-            raise RuntimeError("Trajectory table not built.")
+        if self.trajectory_tables is None:
+            raise RuntimeError("Trajectory tables not built.")
 
         global_phase = self.trajectory_start_phase()
         print()
@@ -486,10 +480,11 @@ class RobotController:
 
         targets = {}
         for name, leg in self.legs.items():
+            table = self.trajectory_tables[name]
             leg_phase = self.gait.leg_phase(name, global_phase)
-            idx = table_index_from_phase(leg_phase, len(self.trajectory_table))
+            idx = table_index_from_phase(leg_phase, len(table))
             targets[name] = leg.build_trajectory_targets(
-                self.trajectory_table[idx],
+                table[idx],
                 COMMAND_ROLES,
                 COMMAND_HIP_TRAJECTORY,
             )
@@ -523,11 +518,11 @@ class RobotController:
         return global_phase
 
     def run_xbox_trot(self) -> None:
-        if self.trajectory_table is None:
-            self.build_trajectory_table()
+        if self.trajectory_tables is None:
+            self.build_trajectory_tables()
 
-        if self.trajectory_table is None:
-            raise RuntimeError("Trajectory table failed to build.")
+        if self.trajectory_tables is None:
+            raise RuntimeError("Trajectory tables failed to build.")
 
         controller = XboxController(deadzone=JOYSTICK_DEADBAND)
         global_phase = self.move_all_to_start_phase()
@@ -575,13 +570,14 @@ class RobotController:
                     global_phase %= 1.0
 
                 for name, leg in self.legs.items():
+                    table = self.trajectory_tables[name]
                     leg_phase = self.gait.leg_phase(name, global_phase)
                     idx = table_index_from_phase(
                         leg_phase,
-                        len(self.trajectory_table),
+                        len(table),
                     )
                     leg.command_trajectory_point(
-                        self.trajectory_table[idx],
+                        table[idx],
                         COMMAND_ROLES,
                         COMMAND_HIP_TRAJECTORY,
                     )

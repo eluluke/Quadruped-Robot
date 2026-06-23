@@ -102,8 +102,8 @@ class homing_angle:
     }
 
 
-# HOMING_ANGLE = homing_angle.max_contraction_angle
-HOMING_ANGLE = homing_angle.sleepy_angle
+HOMING_ANGLE = homing_angle.max_contraction_angle
+# HOMING_ANGLE = homing_angle.sleepy_angle
 
 
 # ============================================================

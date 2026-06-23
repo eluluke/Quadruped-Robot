@@ -30,49 +30,29 @@ from leg_config import (
     HIP,
     JOINT_ORDER,
     LEG_ORDER,
-    NEUTRAL_X,
-    NEUTRAL_Y,
-    NEUTRAL_Z,
     get_can_channel,
     get_motor_sign,
     get_role_to_id_for_leg,
 )
 from trajectory_config import (
+    BASE_TRAJECTORY_CONFIG,
     JOINT_ROLES,
     ROLE_HIP,
     ROLE_SHANK,
     ROLE_THIGH,
-    TRAJ_REGULAR_PLANAR,
-    TrajectoryConfig,
+    TRAJECTORY_NAME,
     TrajectoryPoint,
     build_angle_delta_table,
+    get_trajectory_config_for_leg,
     summarize_angle_delta_table,
 )
 
-
-TRAJECTORY_NAME = TRAJ_REGULAR_PLANAR
-TRAJ_CFG = TrajectoryConfig(
-    x_center=NEUTRAL_X,
-    y_center=NEUTRAL_Y,
-    z_ground=NEUTRAL_Z,
-    step_length=40.0,
-    step_height=70.0,
-    step_sideways=0.0,
-    stance_ratio=0.62,
-    cycle_time=1.0,
-    rate_hz=80.0,
-    x_forward_sign=1.0,
-    y_sideways_sign=1.0,
-    z_lift_sign=-1.0,
-    heading_deg=45.0,
-    z_jump_amplitude=80.0,
-)
 
 COMMAND_HIP_TRAJECTORY = False
 COMMAND_ROLES = JOINT_ROLES if COMMAND_HIP_TRAJECTORY else (ROLE_THIGH, ROLE_SHANK)
 COMMAND_ORDER_ROLES = (ROLE_THIGH, ROLE_SHANK, ROLE_HIP)
 
-RATE_HZ = TRAJ_CFG.rate_hz
+RATE_HZ = BASE_TRAJECTORY_CONFIG.rate_hz
 PRINT_EVERY = 40
 STARTUP_HOLD_TIME = 0.8
 MOVE_TO_FIRST_TIME = 0.8
@@ -345,7 +325,15 @@ def main() -> None:
 
         start_raw = runner.arm_at_current_pose()
 
-        table = build_angle_delta_table(TRAJECTORY_NAME, TRAJ_CFG)
+        traj_cfg = get_trajectory_config_for_leg(runner.leg_name)
+        print(
+            "\nTrajectory config: "
+            f"x_sign={traj_cfg.x_forward_sign:+.1f}, "
+            f"z_sign={traj_cfg.z_lift_sign:+.1f}, "
+            f"neutral=({traj_cfg.x_center:.2f}, "
+            f"{traj_cfg.y_center:.2f}, {traj_cfg.z_ground:.2f})"
+        )
+        table = build_angle_delta_table(TRAJECTORY_NAME, traj_cfg)
         print_trajectory_summary(runner, table)
 
         first_targets = runner.targets_from_reference(start_raw, table[0])

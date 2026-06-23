@@ -104,7 +104,7 @@ def main() -> None:
 
                 if robot.move_all_to_neutral():
                     robot.hold_neutral()
-                    robot.build_trajectory_table()
+                    robot.build_trajectory_tables()
                     robot.run_xbox_trot()
                 break
 

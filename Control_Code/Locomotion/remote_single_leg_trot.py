@@ -32,9 +32,10 @@ from leg_config import (
 from quadruped_utils import limit_rate
 from trajectory_config import (
     JOINT_ROLES,
-    TRAJ_REGULAR_PLANAR,
+    TRAJECTORY_NAME,
     TrajectoryPoint,
     build_angle_delta_table,
+    get_trajectory_config_for_leg,
     ik_angles_for_xyz,
     table_index_from_phase,
 )
@@ -51,9 +52,6 @@ from xbox_config import (
 
 import single_leg_trot as base
 
-
-TRAJECTORY_NAME = TRAJ_REGULAR_PLANAR
-TRAJ_CFG = base.TRAJ_CFG
 
 COMMAND_HIP_TRAJECTORY = False
 TRAJECTORY_START_MODE = "swing_start"
@@ -121,10 +119,11 @@ def compute_neutral_targets(
     home_raw: Dict[int, float],
 ) -> tuple[Dict[str, float], Dict[str, float], Dict[int, float]]:
     """Compute raw targets from configured homing pose to neutral."""
+    traj_cfg = get_trajectory_config_for_leg(runner.leg_name)
     neutral_angles = ik_angles_for_xyz(
-        TRAJ_CFG.x_center,
-        TRAJ_CFG.y_center,
-        TRAJ_CFG.z_ground,
+        traj_cfg.x_center,
+        traj_cfg.y_center,
+        traj_cfg.z_ground,
     )
     home_angles = get_homing_angles_for_leg(runner.leg_name)
 
@@ -254,10 +253,12 @@ def move_to_trajectory_start(
     neutral_raw: Dict[int, float],
     table: List[TrajectoryPoint],
 ) -> float:
+    traj_cfg = get_trajectory_config_for_leg(runner.leg_name)
+
     if TRAJECTORY_START_MODE == "neutral_mid_stance":
-        phase = 0.5 * TRAJ_CFG.stance_ratio
+        phase = 0.5 * traj_cfg.stance_ratio
     elif TRAJECTORY_START_MODE == "swing_start":
-        phase = TRAJ_CFG.stance_ratio
+        phase = traj_cfg.stance_ratio
     else:
         raise RuntimeError(f"Unknown TRAJECTORY_START_MODE: {TRAJECTORY_START_MODE}")
 
@@ -393,7 +394,15 @@ def main() -> None:
             f"Holding neutral pose for {NEUTRAL_HOLD_TIME:.1f}s...",
         )
 
-        table = build_angle_delta_table(TRAJECTORY_NAME, TRAJ_CFG)
+        traj_cfg = get_trajectory_config_for_leg(runner.leg_name)
+        print(
+            "\nTrajectory config: "
+            f"x_sign={traj_cfg.x_forward_sign:+.1f}, "
+            f"z_sign={traj_cfg.z_lift_sign:+.1f}, "
+            f"neutral=({traj_cfg.x_center:.2f}, "
+            f"{traj_cfg.y_center:.2f}, {traj_cfg.z_ground:.2f})"
+        )
+        table = build_angle_delta_table(TRAJECTORY_NAME, traj_cfg)
         base.print_trajectory_summary(runner, table)
         phase = move_to_trajectory_start(runner, neutral_raw, table)
         run_xbox_trot(runner, neutral_raw, table, phase)

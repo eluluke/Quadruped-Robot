@@ -15,10 +15,17 @@ own CAN IDs, signs, and homing calibration angles.
 
 from __future__ import annotations
 
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 import math
 from typing import Callable, Dict, List, Optional, Tuple
 
+from leg_config import (
+    FRONT_LEFT,
+    FRONT_RIGHT,
+    REAR_LEFT,
+    REAR_RIGHT,
+    get_neutral_standing_foot_position,
+)
 from quadruped_leg_ik import leg_ik  # type: ignore[import-not-found]
 
 
@@ -72,6 +79,62 @@ class TrajectoryConfig:
 
     heading_deg: float = 45.0
     z_jump_amplitude: float = 80.0
+
+
+# ============================================================
+# Whole-robot trajectory settings
+# ============================================================
+
+TRAJECTORY_NAME = TRAJ_REGULAR_PLANAR
+TRAJECTORY_RATE_HZ = 80.0
+
+BASE_TRAJECTORY_CONFIG = TrajectoryConfig(
+    step_length=40.0,
+    step_height=70.0,
+    step_sideways=0.0,
+    stance_ratio=0.62,
+    cycle_time=1.0,
+    rate_hz=TRAJECTORY_RATE_HZ,
+    x_forward_sign=1.0,
+    y_sideways_sign=1.0,
+    z_lift_sign=-1.0,
+    heading_deg=45.0,
+    z_jump_amplitude=80.0,
+)
+
+LEG_TRAJECTORY_DIRECTION = {
+    FRONT_LEFT: {
+        "x_forward_sign": 1.0,
+        "z_lift_sign": -1.0,
+    },
+    FRONT_RIGHT: {
+        "x_forward_sign": 1.0,
+        "z_lift_sign": -1.0,
+    },
+    REAR_LEFT: {
+        "x_forward_sign": 1.0,
+        "z_lift_sign": -1.0,
+    },
+    REAR_RIGHT: {
+        "x_forward_sign": 1.0,
+        "z_lift_sign": -1.0,
+    },
+}
+
+
+def get_trajectory_config_for_leg(leg_name: str) -> TrajectoryConfig:
+    """Return trajectory config for one leg, including direction signs."""
+    x, y, z = get_neutral_standing_foot_position(leg_name)
+    direction = LEG_TRAJECTORY_DIRECTION[leg_name]
+
+    return replace(
+        BASE_TRAJECTORY_CONFIG,
+        x_center=x,
+        y_center=y,
+        z_ground=z,
+        x_forward_sign=direction["x_forward_sign"],
+        z_lift_sign=direction["z_lift_sign"],
+    )
 
 
 @dataclass(frozen=True)
