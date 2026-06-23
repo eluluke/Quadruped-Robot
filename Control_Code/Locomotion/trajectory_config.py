@@ -89,10 +89,10 @@ TRAJECTORY_NAME = TRAJ_REGULAR_PLANAR
 TRAJECTORY_RATE_HZ = 80.0
 
 BASE_TRAJECTORY_CONFIG = TrajectoryConfig(
-    step_length=40.0,
+    step_length=75.0,
     step_height=70.0,
     step_sideways=0.0,
-    stance_ratio=0.62,
+    stance_ratio=0.50,
     cycle_time=1.0,
     rate_hz=TRAJECTORY_RATE_HZ,
     x_forward_sign=1.0,
