@@ -59,7 +59,7 @@ class TrajectoryConfig:
     z_ground: float = 385.0
 
     step_length: float = 40.0
-    step_height: float = 50.0
+    step_height: float = 70.0
     step_sideways: float = 0.0
     stance_ratio: float = 0.62
 
