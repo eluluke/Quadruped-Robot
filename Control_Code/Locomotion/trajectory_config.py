@@ -104,7 +104,7 @@ TRAJECTORY_CONFIG = TrajectoryConfig(
 
     # Fraction of one cycle spent on the ground.
     # 0.75 means about three legs support while one leg swings.
-    stance_ratio=0.75,
+    stance_ratio=0.50,
 
     # Trajectory table resolution, not Xbox playback speed.
     table_cycle_time=0.80,
@@ -116,7 +116,7 @@ TRAJECTORY_CONFIG = TrajectoryConfig(
     heading_deg=45.0,
 
     # Used by TRAJ_VERTICAL_STEP for marching in place.
-    vertical_step_height=50.0,
+    vertical_step_height=40.0,
 )
 
 LEG_TRAJECTORY_DIRECTION = {
