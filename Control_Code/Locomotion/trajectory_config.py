@@ -50,7 +50,7 @@ JOINT_ROLES: Tuple[str, str, str] = (
 
 TRAJ_REGULAR_PLANAR = "regular_planar"
 TRAJ_TILTED_PLANAR = "tilted_planar"
-TRAJ_VERTICAL_JUMP = "vertical_jump"
+TRAJ_VERTICAL_STEP = "vertical_step"
 
 
 # ============================================================
@@ -78,31 +78,45 @@ class TrajectoryConfig:
     z_lift_sign: float
 
     heading_deg: float
-    z_jump_amplitude: float
+    vertical_step_height: float
 
 
 # ============================================================
 # Whole-robot trajectory settings
 # ============================================================
 
-TRAJECTORY_NAME = TRAJ_REGULAR_PLANAR
+# Switch active foot trajectory here:
+#   TRAJ_REGULAR_PLANAR = cycloidal forward/backward stepping
+#   TRAJ_VERTICAL_STEP  = marching in place, vertical foot lift only
+# TRAJECTORY_NAME = TRAJ_REGULAR_PLANAR
+TRAJECTORY_NAME = TRAJ_VERTICAL_STEP
 TRAJECTORY_RATE_HZ = 80.0
 
 TRAJECTORY_CONFIG = TrajectoryConfig(
     x_center=0.0,
     y_center=84.26,
     z_ground=385.0,
+
+    # Used by TRAJ_REGULAR_PLANAR.
     step_length=60.0,
-    step_height=60.0,
+    step_height=50.0,
     step_sideways=0.0,
-    stance_ratio=0.80,
+
+    # Fraction of one cycle spent on the ground.
+    # 0.75 means about three legs support while one leg swings.
+    stance_ratio=0.75,
+
+    # Trajectory table resolution, not Xbox playback speed.
     table_cycle_time=0.80,
     rate_hz=TRAJECTORY_RATE_HZ,
+
     x_forward_sign=1.0,
     y_sideways_sign=1.0,
     z_lift_sign=-1.0,
     heading_deg=45.0,
-    z_jump_amplitude=80.0,
+
+    # Used by TRAJ_VERTICAL_STEP for marching in place.
+    vertical_step_height=50.0,
 )
 
 LEG_TRAJECTORY_DIRECTION = {
@@ -320,10 +334,14 @@ def tilted_planar_xyz(phase: float, cfg: TrajectoryConfig) -> FootPoint:
     return planar_foot_point(phase, cfg, heading_deg=cfg.heading_deg)
 
 
-def vertical_jump_xyz(phase: float, cfg: TrajectoryConfig) -> FootPoint:
-    """Vertical z-axis trajectory with fixed x and y."""
-    phase = wrap_phase(phase)
-    lift = 0.5 * cfg.z_jump_amplitude * (1.0 - math.cos(2.0 * math.pi * phase))
+def vertical_step_xyz(phase: float, cfg: TrajectoryConfig) -> FootPoint:
+    """Marching-in-place trajectory with fixed x-y and vertical swing."""
+    _forward, lift, phase_name = cycloid_forward_lift(
+        phase,
+        0.0,
+        cfg.vertical_step_height,
+        cfg.stance_ratio,
+    )
 
     return FootPoint(
         x=cfg.x_center,
@@ -337,7 +355,7 @@ def vertical_jump_xyz(phase: float, cfg: TrajectoryConfig) -> FootPoint:
         sideways=0.0,
         lift=lift,
         heading_deg=None,
-        phase_name=TRAJ_VERTICAL_JUMP,
+        phase_name=phase_name,
     )
 
 
@@ -346,7 +364,7 @@ TrajectoryFunction = Callable[[float, TrajectoryConfig], FootPoint]
 TRAJECTORY_FUNCTIONS: Dict[str, TrajectoryFunction] = {
     TRAJ_REGULAR_PLANAR: regular_planar_xyz,
     TRAJ_TILTED_PLANAR: tilted_planar_xyz,
-    TRAJ_VERTICAL_JUMP: vertical_jump_xyz,
+    TRAJ_VERTICAL_STEP: vertical_step_xyz,
 }
 
 
