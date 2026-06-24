@@ -14,16 +14,20 @@ from typing import Dict
 from leg_config import FRONT_LEFT, FRONT_RIGHT, REAR_LEFT, REAR_RIGHT
 
 
-TROT_PHASE_OFFSETS: Dict[str, float] = {
-    FRONT_LEFT: 0.0,
-    REAR_RIGHT: 0.0,
-    FRONT_RIGHT: 0.5,
-    REAR_LEFT: 0.5,
+CRAWL_PHASE_OFFSETS: Dict[str, float] = {
+    FRONT_LEFT: 0.00,
+    REAR_RIGHT: 0.25,
+    FRONT_RIGHT: 0.50,
+    REAR_LEFT: 0.75,
 }
 
 
+# Keep this name for existing imports in robot_controller.py.
+TROT_PHASE_OFFSETS = CRAWL_PHASE_OFFSETS
+
+
 class TrotGaitScheduler:
-    """Diagonal-pair trot scheduler."""
+    """Phase-offset gait scheduler."""
 
     def __init__(self, phase_offsets: Dict[str, float] | None = None):
         self.phase_offsets = dict(phase_offsets or TROT_PHASE_OFFSETS)
