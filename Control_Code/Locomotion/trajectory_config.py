@@ -88,8 +88,8 @@ class TrajectoryConfig:
 # Switch active foot trajectory here:
 #   TRAJ_REGULAR_PLANAR = cycloidal forward/backward stepping
 #   TRAJ_VERTICAL_STEP  = marching in place, vertical foot lift only
-# TRAJECTORY_NAME = TRAJ_REGULAR_PLANAR
-TRAJECTORY_NAME = TRAJ_VERTICAL_STEP
+TRAJECTORY_NAME = TRAJ_REGULAR_PLANAR
+# TRAJECTORY_NAME = TRAJ_VERTICAL_STEP
 TRAJECTORY_RATE_HZ = 80.0
 
 TRAJECTORY_CONFIG = TrajectoryConfig(

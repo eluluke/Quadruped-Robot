@@ -140,7 +140,7 @@ HOLD_GAINS = GainSet(
     leg_torque={
         FRONT_LEFT: {HIP: 1.40, THIGH: 1.40, SHANK: 1.40},
         FRONT_RIGHT: {HIP: 1.40, THIGH: 1.40, SHANK: 1.40},
-        REAR_LEFT: {HIP: 1.60, THIGH: 1.60, SHANK: 1.60},
-        REAR_RIGHT: {HIP: 1.60, THIGH: 1.60, SHANK: 1.60},
+        REAR_LEFT: {HIP: 1.65, THIGH: 1.65, SHANK: 1.65},
+        REAR_RIGHT: {HIP: 1.65, THIGH: 1.65, SHANK: 1.65},
     },
 )
