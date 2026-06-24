@@ -33,10 +33,10 @@ from quadruped_main_state import STOP_REQUESTED_REF
 from quadruped_utils import limit_rate, smoothstep, wait_for_terminal_command
 from trajectory_config import (
     JOINT_ROLES,
-    BASE_TRAJECTORY_CONFIG,
     ROLE_HIP,
     ROLE_SHANK,
     ROLE_THIGH,
+    TRAJECTORY_CONFIG,
     TRAJECTORY_NAME,
     TRAJECTORY_RATE_HZ,
     TrajectoryPoint,
@@ -460,9 +460,9 @@ class RobotController:
 
     def trajectory_start_phase(self) -> float:
         if TRAJECTORY_START_MODE == "neutral_mid_stance":
-            return 0.5 * BASE_TRAJECTORY_CONFIG.stance_ratio
+            return 0.5 * TRAJECTORY_CONFIG.stance_ratio
         if TRAJECTORY_START_MODE == "swing_start":
-            return BASE_TRAJECTORY_CONFIG.stance_ratio
+            return TRAJECTORY_CONFIG.stance_ratio
         raise RuntimeError(
             f"Unknown TRAJECTORY_START_MODE: {TRAJECTORY_START_MODE}"
         )

@@ -61,24 +61,24 @@ TRAJ_VERTICAL_JUMP = "vertical_jump"
 class TrajectoryConfig:
     """Foot trajectory settings in the IK frame, with distances in mm."""
 
-    x_center: float = 0.0
-    y_center: float = 84.26
-    z_ground: float = 385.0
+    x_center: float
+    y_center: float
+    z_ground: float
 
-    step_length: float = 40.0
-    step_height: float = 40.0
-    step_sideways: float = 0.0
-    stance_ratio: float = 0.50
+    step_length: float
+    step_height: float
+    step_sideways: float
+    stance_ratio: float
 
-    table_cycle_time: float = 1.0
-    rate_hz: float = 80.0
+    table_cycle_time: float
+    rate_hz: float
 
-    x_forward_sign: float = 1.0
-    y_sideways_sign: float = 1.0
-    z_lift_sign: float = -1.0
+    x_forward_sign: float
+    y_sideways_sign: float
+    z_lift_sign: float
 
-    heading_deg: float = 45.0
-    z_jump_amplitude: float = 80.0
+    heading_deg: float
+    z_jump_amplitude: float
 
 
 # ============================================================
@@ -88,9 +88,12 @@ class TrajectoryConfig:
 TRAJECTORY_NAME = TRAJ_REGULAR_PLANAR
 TRAJECTORY_RATE_HZ = 80.0
 
-BASE_TRAJECTORY_CONFIG = TrajectoryConfig(
-    step_length=75.0,
-    step_height=70.0,
+TRAJECTORY_CONFIG = TrajectoryConfig(
+    x_center=0.0,
+    y_center=84.26,
+    z_ground=385.0,
+    step_length=40.0,
+    step_height=40.0,
     step_sideways=0.0,
     stance_ratio=0.50,
     table_cycle_time=0.80,
@@ -128,7 +131,7 @@ def get_trajectory_config_for_leg(leg_name: str) -> TrajectoryConfig:
     direction = LEG_TRAJECTORY_DIRECTION[leg_name]
 
     return replace(
-        BASE_TRAJECTORY_CONFIG,
+        TRAJECTORY_CONFIG,
         x_center=x,
         y_center=y,
         z_ground=z,

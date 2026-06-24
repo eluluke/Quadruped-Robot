@@ -35,11 +35,11 @@ from leg_config import (
     get_role_to_id_for_leg,
 )
 from trajectory_config import (
-    BASE_TRAJECTORY_CONFIG,
     JOINT_ROLES,
     ROLE_HIP,
     ROLE_SHANK,
     ROLE_THIGH,
+    TRAJECTORY_CONFIG,
     TRAJECTORY_NAME,
     TrajectoryPoint,
     build_angle_delta_table,
@@ -52,7 +52,7 @@ COMMAND_HIP_TRAJECTORY = False
 COMMAND_ROLES = JOINT_ROLES if COMMAND_HIP_TRAJECTORY else (ROLE_THIGH, ROLE_SHANK)
 COMMAND_ORDER_ROLES = (ROLE_THIGH, ROLE_SHANK, ROLE_HIP)
 
-RATE_HZ = BASE_TRAJECTORY_CONFIG.rate_hz
+RATE_HZ = TRAJECTORY_CONFIG.rate_hz
 PRINT_EVERY = 40
 STARTUP_HOLD_TIME = 0.8
 MOVE_TO_FIRST_TIME = 0.8
