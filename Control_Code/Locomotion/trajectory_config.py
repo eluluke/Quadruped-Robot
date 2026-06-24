@@ -95,7 +95,7 @@ TRAJECTORY_RATE_HZ = 80.0
 TRAJECTORY_CONFIG = TrajectoryConfig(
     x_center=0.0,
     y_center=84.26,
-    z_ground=385.0,
+    z_ground=375.0,
 
     # Used by TRAJ_REGULAR_PLANAR.
     step_length=45.0,
@@ -104,7 +104,7 @@ TRAJECTORY_CONFIG = TrajectoryConfig(
 
     # Fraction of one cycle spent on the ground.
     # 0.75 means about three legs support while one leg swings.
-    stance_ratio=0.75,
+    stance_ratio=0.50,
 
     # Trajectory table resolution, not Xbox playback speed.
     table_cycle_time=0.80,

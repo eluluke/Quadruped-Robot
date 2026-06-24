@@ -16,9 +16,9 @@ from leg_config import FRONT_LEFT, FRONT_RIGHT, REAR_LEFT, REAR_RIGHT
 
 CRAWL_PHASE_OFFSETS: Dict[str, float] = {
     FRONT_LEFT: 0.00,
-    REAR_RIGHT: 0.25,
+    REAR_RIGHT: 0.00,
     FRONT_RIGHT: 0.50,
-    REAR_LEFT: 0.75,
+    REAR_LEFT: 0.50,
 }
 
 
