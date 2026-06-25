@@ -104,7 +104,7 @@ TRAJECTORY_CONFIG = TrajectoryConfig(
 
     # Fraction of one cycle spent on the ground.
     # 0.75 means about three legs support while one leg swings.
-    stance_ratio=0.35,
+    stance_ratio=0.75,
 
     # Trajectory table resolution, not Xbox playback speed.
     table_cycle_time=0.80,
