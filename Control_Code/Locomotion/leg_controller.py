@@ -33,6 +33,7 @@ from trajectory_config import JOINT_ROLES, TrajectoryPoint, ik_angles_for_xyz
 COMMAND_ORDER_ROLES = (THIGH, SHANK, HIP)
 STARTUP_HOLD_TIME = 0.8
 IDLE_COMMAND_REPEATS = 3
+MOTOR_TORQUE_CONSTANT_NM_PER_A = 0.0616
 
 
 class LegController:
@@ -405,5 +406,54 @@ class LegController:
                 cmd = raw
 
             parts.append(f"{role}:err={cmd - raw:+.2f}")
+
+        return " ".join(parts)
+
+    def telemetry_line(
+        self,
+        gains: GainSet,
+        targets: Optional[Dict[int, float]] = None,
+    ) -> str:
+        """
+        Report tracking error and estimated effort request.
+
+        The Recoil firmware clamps the position controller torque request by
+        torque_limit. This estimate uses kp * raw_position_error because the
+        current Python command path sends zero target velocity.
+        """
+        try:
+            measured = self.read_all_positions()
+        except Exception as exc:
+            return f"{self.name}: telemetry read warning {exc}"
+
+        parts = [self.name]
+        for motor_id in self.command_order:
+            role = self.id_to_role[motor_id]
+            raw = measured[motor_id]
+
+            if targets and motor_id in targets:
+                cmd = targets[motor_id]
+            elif motor_id in self.active_cmd:
+                cmd = self.active_cmd[motor_id]
+            else:
+                cmd = raw
+
+            error = cmd - raw
+            kp, _, torque_limit = gains.values_for(self.name, role)
+            requested_torque = kp * error
+            clamped_torque = max(
+                -torque_limit,
+                min(torque_limit, requested_torque),
+            )
+            current_request = clamped_torque / (
+                MOTOR_TORQUE_CONSTANT_NM_PER_A * GEAR_RATIO
+            )
+            saturation = "*" if abs(requested_torque) > torque_limit else ""
+
+            parts.append(
+                f"{role}:err={error:+.2f},"
+                f"tq={clamped_torque:+.2f}{saturation},"
+                f"iq={current_request:+.1f}A"
+            )
 
         return " ".join(parts)

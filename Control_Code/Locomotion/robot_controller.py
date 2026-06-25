@@ -591,7 +591,7 @@ class RobotController:
                     )
                     print(
                         " | ".join(
-                            leg.feedback_line()
+                            leg.telemetry_line(RUN_GAINS)
                             for leg in self.legs.values()
                         )
                     )
