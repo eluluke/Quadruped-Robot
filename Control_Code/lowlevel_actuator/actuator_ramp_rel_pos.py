@@ -13,9 +13,9 @@ device_id = args.id
 # -----------------------------
 # Final gains
 # -----------------------------
-kp = 0.2
-kd = 0.005
-torque_limit = 0.8
+kp = 0.45
+kd = 0.015
+torque_limit = 0.3
 
 # -----------------------------
 # Very soft startup gains
@@ -38,9 +38,9 @@ delta_theta = -5
 # Motion timing
 # Use time-based smooth interpolation
 # -----------------------------
-move_duration = 2.0   # seconds
+move_duration = 5.0  # seconds
 
-rate_hz = 200.0
+rate_hz = 80.0
 rate = RateLimiter(frequency=rate_hz)
 
 # -----------------------------
