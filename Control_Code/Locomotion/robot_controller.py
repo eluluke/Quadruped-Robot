@@ -42,6 +42,7 @@ from trajectory_config import (
     TrajectoryPoint,
     build_angle_delta_table,
     get_trajectory_config_for_leg,
+    sample_angle_delta_table,
     summarize_angle_delta_table,
     table_index_from_phase,
 )
@@ -62,6 +63,7 @@ from xbox_config import (
 # ============================================================
 
 RATE_HZ = TRAJECTORY_RATE_HZ
+CONTROL_DT = 1.0 / RATE_HZ
 PRINT_EVERY = 40
 TROT_PRINT_EVERY = 160
 SHUTDOWN_IDLE_ROUNDS = 4
@@ -540,10 +542,16 @@ class RobotController:
         try:
             while not STOP_REQUESTED_REF["stop"]:
                 now = time.time()
-                dt = now - last_time
+                wall_dt = now - last_time
                 last_time = now
-                if dt <= 0.0 or dt > 0.10:
-                    dt = 1.0 / RATE_HZ
+
+                if wall_dt <= 0.0 or wall_dt > 0.10:
+                    wall_dt = CONTROL_DT
+
+                # Keep gait phase motion deterministic. Telemetry and CAN
+                # reads can make an occasional loop late; using that late
+                # wall_dt would jump several trajectory-table samples at once.
+                dt = min(wall_dt, CONTROL_DT)
 
                 state = controller.read()
                 raw_ly = max(-1.0, min(1.0, float(state.left_y)))
@@ -573,12 +581,9 @@ class RobotController:
                 for name, leg in self.legs.items():
                     table = self.trajectory_tables[name]
                     leg_phase = self.gait.leg_phase(name, global_phase)
-                    idx = table_index_from_phase(
-                        leg_phase,
-                        len(table),
-                    )
+                    point = sample_angle_delta_table(table, leg_phase)
                     leg.command_trajectory_point(
-                        table[idx],
+                        point,
                         COMMAND_ROLES,
                         COMMAND_HIP_TRAJECTORY,
                     )

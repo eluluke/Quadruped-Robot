@@ -98,8 +98,8 @@ TRAJECTORY_CONFIG = TrajectoryConfig(
     z_ground=385.0,
 
     # Used by TRAJ_REGULAR_PLANAR.
-    step_length=90.0,
-    step_height=90.0,
+    step_length=85.0,
+    step_height=85.0,
     step_sideways=0.0,
 
     # Fraction of one cycle spent on the ground.
@@ -204,6 +204,90 @@ def table_index_from_phase(phase: float, table_len: int) -> int:
     if table_len <= 0:
         raise ValueError("table_len must be positive.")
     return int(wrap_phase(phase) * table_len) % table_len
+
+
+def _lerp(start: float, end: float, alpha: float) -> float:
+    """Linear interpolation helper."""
+    return start + (end - start) * alpha
+
+
+def _lerp_role_map(
+    start: Dict[str, float],
+    end: Dict[str, float],
+    alpha: float,
+) -> Dict[str, float]:
+    """Interpolate one joint-role dictionary."""
+    return {
+        role: _lerp(start[role], end[role], alpha)
+        for role in JOINT_ROLES
+    }
+
+
+def _lerp_foot_point(
+    start: FootPoint,
+    end: FootPoint,
+    alpha: float,
+) -> FootPoint:
+    """Interpolate foot-point fields used for diagnostics."""
+    return FootPoint(
+        x=_lerp(start.x, end.x, alpha),
+        y=_lerp(start.y, end.y, alpha),
+        z=_lerp(start.z, end.z, alpha),
+        local_x=_lerp(start.local_x, end.local_x, alpha),
+        local_y=_lerp(start.local_y, end.local_y, alpha),
+        rotated_dx=_lerp(start.rotated_dx, end.rotated_dx, alpha),
+        rotated_dy=_lerp(start.rotated_dy, end.rotated_dy, alpha),
+        forward=_lerp(start.forward, end.forward, alpha),
+        sideways=_lerp(start.sideways, end.sideways, alpha),
+        lift=_lerp(start.lift, end.lift, alpha),
+        heading_deg=start.heading_deg,
+        phase_name=start.phase_name if alpha < 0.5 else end.phase_name,
+    )
+
+
+def sample_angle_delta_table(
+    table: List[TrajectoryPoint],
+    phase: float,
+) -> TrajectoryPoint:
+    """
+    Sample a trajectory table at a continuous phase.
+
+    Integer table indexing creates stair-step motor targets. Interpolating
+    between adjacent samples keeps the commanded position continuous when the
+    Xbox gait phase moves faster or a control loop runs late.
+    """
+    table_len = len(table)
+    if table_len <= 0:
+        raise ValueError("table must not be empty.")
+
+    wrapped_phase = wrap_phase(phase)
+    scaled_index = wrapped_phase * table_len
+    index_0 = int(scaled_index) % table_len
+    index_1 = (index_0 + 1) % table_len
+    alpha = scaled_index - int(scaled_index)
+
+    point_0 = table[index_0]
+    if alpha < 1e-12:
+        return point_0
+
+    point_1 = table[index_1]
+    return TrajectoryPoint(
+        phase=wrapped_phase,
+        trajectory_name=point_0.trajectory_name,
+        phase_name=point_0.phase_name if alpha < 0.5 else point_1.phase_name,
+        foot=_lerp_foot_point(point_0.foot, point_1.foot, alpha),
+        angles_by_role=_lerp_role_map(
+            point_0.angles_by_role,
+            point_1.angles_by_role,
+            alpha,
+        ),
+        reference_angles_by_role=dict(point_0.reference_angles_by_role),
+        angle_delta_by_role=_lerp_role_map(
+            point_0.angle_delta_by_role,
+            point_1.angle_delta_by_role,
+            alpha,
+        ),
+    )
 
 
 def rotate_xy(
