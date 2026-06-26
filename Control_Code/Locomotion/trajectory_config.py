@@ -85,9 +85,22 @@ class TrajectoryConfig:
 # Whole-robot trajectory settings
 # ============================================================
 
-# Switch active foot trajectory here:
-#   TRAJ_REGULAR_PLANAR = cycloidal forward/backward stepping
-#   TRAJ_VERTICAL_STEP  = marching in place, vertical foot lift only
+# Switch active foot trajectory here.
+#
+# This is also the on-stand air-test selector used by:
+#   - quadruped_ground_start.py
+#   - quadruped_main_slim.py
+#
+# Choose one:
+#   TRAJ_REGULAR_PLANAR = classic trot path:
+#                         straight-line stance + cycloidal swing
+#   TRAJ_VERTICAL_STEP  = vertical straight-line stepping in place:
+#                         x/y fixed, z moves up/down only
+#
+# With the normal Xbox trot loop, the selected trajectory advances when the
+# Xbox left stick Y command is nonzero. For an on-stand test, put the robot
+# safely on a stand, choose the trajectory below, start the program, then use
+# the Xbox stick gently to advance the foot path.
 TRAJECTORY_NAME = TRAJ_REGULAR_PLANAR
 # TRAJECTORY_NAME = TRAJ_VERTICAL_STEP
 TRAJECTORY_RATE_HZ = 80.0

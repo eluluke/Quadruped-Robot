@@ -63,6 +63,7 @@ def print_header() -> None:
     print(f"TRAJECTORY_NAME={TRAJECTORY_NAME}")
     print(f"COMMAND_HIP_TRAJECTORY={COMMAND_HIP_TRAJECTORY}")
     print(f"TRAJECTORY_START_MODE={TRAJECTORY_START_MODE}")
+    print("Edit TRAJECTORY_NAME in trajectory_config.py to switch paths.")
     print("=" * 80)
 
 

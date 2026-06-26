@@ -15,8 +15,11 @@ import signal
 from leg_config import get_can_channel
 from quadruped_main_state import STOP_REQUESTED_REF
 from robot_controller import (
+    COMMAND_HIP_TRAJECTORY,
     LEG_CONFIRM_COMMANDS,
     RobotController,
+    TRAJECTORY_NAME,
+    TRAJECTORY_START_MODE,
     WHOLE_BODY_COMMAND_ORDER,
 )
 
@@ -49,6 +52,12 @@ def print_header() -> None:
     for index, leg_name in enumerate(WHOLE_BODY_COMMAND_ORDER, start=1):
         channel = get_can_channel(leg_name)
         print(f"  {index}: {leg_name:11s} channel={channel}")
+    print()
+    print("Trajectory test selector:")
+    print(f"  TRAJECTORY_NAME={TRAJECTORY_NAME}")
+    print(f"  COMMAND_HIP_TRAJECTORY={COMMAND_HIP_TRAJECTORY}")
+    print(f"  TRAJECTORY_START_MODE={TRAJECTORY_START_MODE}")
+    print("  Edit TRAJECTORY_NAME in trajectory_config.py to switch paths.")
     print("=" * 80)
 
 
