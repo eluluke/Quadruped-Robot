@@ -63,6 +63,7 @@ from xbox_config import (
 
 RATE_HZ = TRAJECTORY_RATE_HZ
 PRINT_EVERY = 40
+TROT_PRINT_EVERY = 160
 SHUTDOWN_IDLE_ROUNDS = 4
 
 COMMAND_HIP_TRAJECTORY = False
@@ -583,7 +584,7 @@ class RobotController:
                     )
 
                 counter += 1
-                if counter % PRINT_EVERY == 0:
+                if counter % TROT_PRINT_EVERY == 0:
                     print(
                         f"LY_raw={raw_ly:+.2f} LY={ly_filtered:+.2f} "
                         f"phase_speed={phase_speed:+.3f} "
@@ -591,8 +592,8 @@ class RobotController:
                     )
                     print(
                         " | ".join(
-                            leg.telemetry_line(RUN_GAINS)
-                            for leg in self.legs.values()
+                            self.legs[leg_name].telemetry_line(RUN_GAINS)
+                            for leg_name in (REAR_LEFT, REAR_RIGHT)
                         )
                     )
 
