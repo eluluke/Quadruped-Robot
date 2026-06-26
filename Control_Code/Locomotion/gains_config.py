@@ -25,18 +25,26 @@ from leg_config import (
 
 @dataclass(frozen=True)
 class GainSet:
-    kp: Dict[str, float]
-    kd: Dict[str, float]
-    torque: Dict[str, float]
+    kp: Dict[str, float] = field(default_factory=dict)
+    kd: Dict[str, float] = field(default_factory=dict)
+    torque: Dict[str, float] = field(default_factory=dict)
     leg_kp: Dict[str, Dict[str, float]] = field(default_factory=dict)
     leg_kd: Dict[str, Dict[str, float]] = field(default_factory=dict)
     leg_torque: Dict[str, Dict[str, float]] = field(default_factory=dict)
 
     def values_for(self, leg_name: str, role: str) -> tuple[float, float, float]:
         """Return kp, kd, torque for one physical leg joint."""
-        kp = self.leg_kp.get(leg_name, {}).get(role, self.kp[role])
-        kd = self.leg_kd.get(leg_name, {}).get(role, self.kd[role])
-        torque = self.leg_torque.get(leg_name, {}).get(role, self.torque[role])
+        kp = self.leg_kp.get(leg_name, {}).get(role)
+        kd = self.leg_kd.get(leg_name, {}).get(role)
+        torque = self.leg_torque.get(leg_name, {}).get(role)
+
+        if kp is None:
+            kp = self.kp[role]
+        if kd is None:
+            kd = self.kd[role]
+        if torque is None:
+            torque = self.torque[role]
+
         return kp, kd, torque
 
 
@@ -74,14 +82,11 @@ STARTUP_GAINS = GainSet(
 )
 
 MOVE_GAINS = GainSet(
-    kp={HIP: 0.25, THIGH: 0.25, SHANK: 0.25},
-    kd={HIP: 0.015, THIGH: 0.015, SHANK: 0.015},
-    torque={HIP: 1.40, THIGH: 1.40, SHANK: 1.40},
     leg_kp={
-        FRONT_LEFT: {HIP: 0.25, THIGH: 0.25, SHANK: 0.25},
-        FRONT_RIGHT: {HIP: 0.25, THIGH: 0.25, SHANK: 0.25},
-        REAR_LEFT: {HIP: 0.25, THIGH: 0.25, SHANK: 0.25},
-        REAR_RIGHT: {HIP: 0.25, THIGH: 0.25, SHANK: 0.25},
+        FRONT_LEFT: {HIP: 0.25, THIGH: 0.35, SHANK: 0.35},
+        FRONT_RIGHT: {HIP: 0.25, THIGH: 0.35, SHANK: 0.35},
+        REAR_LEFT: {HIP: 0.25, THIGH: 0.35, SHANK: 0.35},
+        REAR_RIGHT: {HIP: 0.25, THIGH: 0.35, SHANK: 0.35},
     },
     leg_kd={
         FRONT_LEFT: {HIP: 0.015, THIGH: 0.015, SHANK: 0.015},
@@ -98,14 +103,11 @@ MOVE_GAINS = GainSet(
 )
 
 RUN_GAINS = GainSet(
-    kp={HIP: 0.25, THIGH: 0.25, SHANK: 0.25},
-    kd={HIP: 0.015, THIGH: 0.015, SHANK: 0.015},
-    torque={HIP: 1.40, THIGH: 1.40, SHANK: 1.40},
     leg_kp={
-        FRONT_LEFT: {HIP: 0.25, THIGH: 0.25, SHANK: 0.25},
-        FRONT_RIGHT: {HIP: 0.25, THIGH: 0.25, SHANK: 0.25},
-        REAR_LEFT: {HIP: 0.25, THIGH: 0.25, SHANK: 0.25},
-        REAR_RIGHT: {HIP: 0.25, THIGH: 0.25, SHANK: 0.25},
+        FRONT_LEFT: {HIP: 0.25, THIGH: 0.35, SHANK: 0.35},
+        FRONT_RIGHT: {HIP: 0.25, THIGH: 0.35, SHANK: 0.35},
+        REAR_LEFT: {HIP: 0.25, THIGH: 0.35, SHANK: 0.35},
+        REAR_RIGHT: {HIP: 0.25, THIGH: 0.35, SHANK: 0.35},
     },
     leg_kd={
         FRONT_LEFT: {HIP: 0.015, THIGH: 0.015, SHANK: 0.015},
@@ -122,9 +124,6 @@ RUN_GAINS = GainSet(
 )
 
 HOLD_GAINS = GainSet(
-    kp={HIP: 0.25, THIGH: 0.25, SHANK: 0.25},
-    kd={HIP: 0.015, THIGH: 0.015, SHANK: 0.015},
-    torque={HIP: 1.40, THIGH: 1.40, SHANK: 1.40},
     leg_kp={
         FRONT_LEFT: {HIP: 0.25, THIGH: 0.25, SHANK: 0.25},
         FRONT_RIGHT: {HIP: 0.25, THIGH: 0.25, SHANK: 0.25},
