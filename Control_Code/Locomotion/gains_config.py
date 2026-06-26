@@ -118,8 +118,8 @@ RUN_GAINS = GainSet(
     leg_torque={
         FRONT_LEFT: {HIP: 1.30, THIGH: 1.30, SHANK: 1.30},
         FRONT_RIGHT: {HIP: 1.30, THIGH: 1.30, SHANK: 1.30},
-        REAR_LEFT: {HIP: 1.72, THIGH: 1.72, SHANK: 1.72},
-        REAR_RIGHT: {HIP: 1.72, THIGH: 1.72, SHANK: 1.72},
+        REAR_LEFT: {HIP: 1.80, THIGH: 1.80, SHANK: 1.80},
+        REAR_RIGHT: {HIP: 1.80, THIGH: 1.80, SHANK: 1.80},
     },
 )
 
@@ -139,7 +139,7 @@ HOLD_GAINS = GainSet(
     leg_torque={
         FRONT_LEFT: {HIP: 1.30, THIGH: 1.30, SHANK: 1.30},
         FRONT_RIGHT: {HIP: 1.30, THIGH: 1.30, SHANK: 1.30},
-        REAR_LEFT: {HIP: 1.72, THIGH: 1.72, SHANK: 1.72},
-        REAR_RIGHT: {HIP: 1.72, THIGH: 1.72, SHANK: 1.72},
+        REAR_LEFT: {HIP: 1.80, THIGH: 1.80, SHANK: 1.80},
+        REAR_RIGHT: {HIP: 1.80, THIGH: 1.80, SHANK: 1.80},
     },
 )

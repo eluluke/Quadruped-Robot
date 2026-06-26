@@ -101,8 +101,8 @@ class TrajectoryConfig:
 # Xbox left stick Y command is nonzero. For an on-stand test, put the robot
 # safely on a stand, choose the trajectory below, start the program, then use
 # the Xbox stick gently to advance the foot path.
-# TRAJECTORY_NAME = TRAJ_REGULAR_PLANAR
-TRAJECTORY_NAME = TRAJ_VERTICAL_STEP
+TRAJECTORY_NAME = TRAJ_REGULAR_PLANAR
+# TRAJECTORY_NAME = TRAJ_VERTICAL_STEP
 TRAJECTORY_RATE_HZ = 80.0
 
 TRAJECTORY_CONFIG = TrajectoryConfig(
@@ -111,8 +111,8 @@ TRAJECTORY_CONFIG = TrajectoryConfig(
     z_ground=385.0,
 
     # Used by TRAJ_REGULAR_PLANAR.
-    step_length=60.0,
-    step_height=85.0,
+    step_length=80.0,
+    step_height=75.0,
     step_sideways=0.0,
 
     # Fraction of one cycle spent on the ground.
