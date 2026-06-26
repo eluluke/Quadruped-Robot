@@ -83,8 +83,8 @@ STARTUP_GAINS = GainSet(
 
 MOVE_GAINS = GainSet(
     leg_kp={
-        FRONT_LEFT: {HIP: 0.25, THIGH: 0.0, SHANK: 0.0},
-        FRONT_RIGHT: {HIP: 0.25, THIGH: 0.0, SHANK: 0.0},
+        FRONT_LEFT: {HIP: 0.25, THIGH: 0.25, SHANK: 0.25},
+        FRONT_RIGHT: {HIP: 0.25, THIGH: 0.25, SHANK: 0.25},
         REAR_LEFT: {HIP: 0.25, THIGH: 0.45, SHANK: 0.45},
         REAR_RIGHT: {HIP: 0.25, THIGH: 0.45, SHANK: 0.45},
     },
@@ -95,19 +95,19 @@ MOVE_GAINS = GainSet(
         REAR_RIGHT: {HIP: 0.015, THIGH: 0.015, SHANK: 0.015},
     },
     leg_torque={
-        FRONT_LEFT: {HIP: 1.40, THIGH: 1.40, SHANK: 1.40},
-        FRONT_RIGHT: {HIP: 1.40, THIGH: 1.40, SHANK: 1.40},
-        REAR_LEFT: {HIP: 1.60, THIGH: 1.60, SHANK: 1.60},
-        REAR_RIGHT: {HIP: 1.60, THIGH: 1.60, SHANK: 1.60},
+        FRONT_LEFT: {HIP: 1.30, THIGH: 1.30, SHANK: 1.30},
+        FRONT_RIGHT: {HIP: 1.30, THIGH: 1.30, SHANK: 1.30},
+        REAR_LEFT: {HIP: 1.72, THIGH: 1.72, SHANK: 1.72},
+        REAR_RIGHT: {HIP: 1.72, THIGH: 1.72, SHANK: 1.72},
     },
 )
 
 RUN_GAINS = GainSet(
     leg_kp={
-        FRONT_LEFT: {HIP: 0.25, THIGH: 0.0, SHANK: 0.0},
-        FRONT_RIGHT: {HIP: 0.25, THIGH: 0.0, SHANK: 0.0},
-        REAR_LEFT: {HIP: 0.25, THIGH: 0.0, SHANK: 0.0},
-        REAR_RIGHT: {HIP: 0.25, THIGH: 0.0, SHANK: 0.0},
+        FRONT_LEFT: {HIP: 0.25, THIGH: 0.25, SHANK: 0.25},
+        FRONT_RIGHT: {HIP: 0.25, THIGH: 0.25, SHANK: 0.25},
+        REAR_LEFT: {HIP: 0.25, THIGH: 0.45, SHANK: 0.45},
+        REAR_RIGHT: {HIP: 0.25, THIGH: 0.45, SHANK: 0.45},
     },
     leg_kd={
         FRONT_LEFT: {HIP: 0.015, THIGH: 0.015, SHANK: 0.015},
@@ -116,10 +116,10 @@ RUN_GAINS = GainSet(
         REAR_RIGHT: {HIP: 0.015, THIGH: 0.015, SHANK: 0.015},
     },
     leg_torque={
-        FRONT_LEFT: {HIP: 1.40, THIGH: 1.40, SHANK: 1.40},
-        FRONT_RIGHT: {HIP: 1.40, THIGH: 1.40, SHANK: 1.40},
-        REAR_LEFT: {HIP: 1.60, THIGH: 1.60, SHANK: 1.60},
-        REAR_RIGHT: {HIP: 1.60, THIGH: 1.60, SHANK: 1.60},
+        FRONT_LEFT: {HIP: 1.30, THIGH: 1.30, SHANK: 1.30},
+        FRONT_RIGHT: {HIP: 1.30, THIGH: 1.30, SHANK: 1.30},
+        REAR_LEFT: {HIP: 1.72, THIGH: 1.72, SHANK: 1.72},
+        REAR_RIGHT: {HIP: 1.72, THIGH: 1.72, SHANK: 1.72},
     },
 )
 
@@ -127,8 +127,8 @@ HOLD_GAINS = GainSet(
     leg_kp={
         FRONT_LEFT: {HIP: 0.25, THIGH: 0.25, SHANK: 0.25},
         FRONT_RIGHT: {HIP: 0.25, THIGH: 0.25, SHANK: 0.25},
-        REAR_LEFT: {HIP: 0.25, THIGH: 0.25, SHANK: 0.25},
-        REAR_RIGHT: {HIP: 0.25, THIGH: 0.25, SHANK: 0.25},
+        REAR_LEFT: {HIP: 0.25, THIGH: 0.45, SHANK: 0.45},
+        REAR_RIGHT: {HIP: 0.25, THIGH: 0.45, SHANK: 0.45},
     },
     leg_kd={
         FRONT_LEFT: {HIP: 0.015, THIGH: 0.015, SHANK: 0.015},
@@ -137,9 +137,9 @@ HOLD_GAINS = GainSet(
         REAR_RIGHT: {HIP: 0.015, THIGH: 0.015, SHANK: 0.015},
     },
     leg_torque={
-        FRONT_LEFT: {HIP: 1.40, THIGH: 1.40, SHANK: 1.40},
-        FRONT_RIGHT: {HIP: 1.40, THIGH: 1.40, SHANK: 1.40},
-        REAR_LEFT: {HIP: 1.65, THIGH: 1.65, SHANK: 1.65},
-        REAR_RIGHT: {HIP: 1.65, THIGH: 1.65, SHANK: 1.65},
+        FRONT_LEFT: {HIP: 1.30, THIGH: 1.30, SHANK: 1.30},
+        FRONT_RIGHT: {HIP: 1.30, THIGH: 1.30, SHANK: 1.30},
+        REAR_LEFT: {HIP: 1.72, THIGH: 1.72, SHANK: 1.72},
+        REAR_RIGHT: {HIP: 1.72, THIGH: 1.72, SHANK: 1.72},
     },
 )
