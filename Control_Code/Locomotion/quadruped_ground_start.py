@@ -17,6 +17,7 @@ from quadruped_main_state import STOP_REQUESTED_REF
 from robot_controller import (
     LEG_CONFIRM_COMMANDS,
     RobotController,
+    WHOLE_BODY_COMMAND_ORDER,
 )
 
 GROUND_START_NEUTRAL_TOLERANCE = 3.0
@@ -43,6 +44,11 @@ def print_header() -> None:
     for command, leg_name in LEG_CONFIRM_COMMANDS.items():
         channel = get_can_channel(leg_name)
         print(f"  {command}: {leg_name:11s} channel={channel}")
+    print()
+    print("Control loop command order:")
+    for index, leg_name in enumerate(WHOLE_BODY_COMMAND_ORDER, start=1):
+        channel = get_can_channel(leg_name)
+        print(f"  {index}: {leg_name:11s} channel={channel}")
     print("=" * 80)
 
 

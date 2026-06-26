@@ -101,6 +101,23 @@ LEG_CONFIRM_COMMANDS = {
     "y4": REAR_RIGHT,
 }
 
+# Tune the whole-body CAN command order here.
+#
+# Default test order commands rear legs first, then front legs:
+#     REAR_LEFT -> REAR_RIGHT -> FRONT_LEFT -> FRONT_RIGHT
+#
+# Original order was:
+#     FRONT_LEFT -> FRONT_RIGHT -> REAR_LEFT -> REAR_RIGHT
+#
+# This only changes the order in each control loop. It does not change CAN IDs,
+# leg names, gait phase offsets, or motor direction signs.
+WHOLE_BODY_COMMAND_ORDER = (
+    REAR_LEFT,
+    REAR_RIGHT,
+    FRONT_LEFT,
+    FRONT_RIGHT,
+)
+
 
 class RobotController:
     """Four-leg robot controller."""
@@ -110,9 +127,32 @@ class RobotController:
             leg_name: LegController(leg_name, rate_hz=RATE_HZ)
             for leg_name in LEG_ORDER
         }
+        self._validate_command_order()
         self.gait = TrotGaitScheduler(TROT_PHASE_OFFSETS)
         self.trajectory_tables: Dict[str, List[TrajectoryPoint]] | None = None
         self._shutdown_complete = False
+
+    def _validate_command_order(self) -> None:
+        expected = set(LEG_ORDER)
+        configured = set(WHOLE_BODY_COMMAND_ORDER)
+        if (
+            configured != expected
+            or len(WHOLE_BODY_COMMAND_ORDER) != len(LEG_ORDER)
+        ):
+            raise RuntimeError(
+                "WHOLE_BODY_COMMAND_ORDER must contain each configured leg "
+                "exactly once."
+            )
+
+    def control_items(self):
+        """Iterate legs in the configured whole-body command order."""
+        for leg_name in WHOLE_BODY_COMMAND_ORDER:
+            yield leg_name, self.legs[leg_name]
+
+    def control_legs(self):
+        """Iterate LegController objects in command order."""
+        for _leg_name, leg in self.control_items():
+            yield leg
 
     # ========================================================
     # Shutdown / status
@@ -128,17 +168,17 @@ class RobotController:
 
         for round_index in range(SHUTDOWN_IDLE_ROUNDS):
             print(f"  IDLE round {round_index + 1}/{SHUTDOWN_IDLE_ROUNDS}")
-            for leg in self.legs.values():
+            for leg in self.control_legs():
                 leg.idle_once()
             time.sleep(0.05)
 
-        for leg in self.legs.values():
+        for leg in self.control_legs():
             leg.zero_gains_for_shutdown()
 
-        for leg in self.legs.values():
+        for leg in self.control_legs():
             leg.active_cmd.clear()
 
-        for leg in self.legs.values():
+        for leg in self.control_legs():
             leg.stop_bus()
 
     def print_homing_status(self) -> None:
@@ -163,7 +203,7 @@ class RobotController:
     def record_all_homed_at_current_pose(self) -> None:
         """Record all current leg poses as homed without per-leg hold loops."""
         print("\nRecording all current leg poses as homed...")
-        for leg_name, leg in self.legs.items():
+        for leg_name, leg in self.control_items():
             print()
             print(f"{leg_name}:")
             leg.record_homing_pose_only()
@@ -174,7 +214,7 @@ class RobotController:
     ) -> float | None:
         """Print and return max raw tracking error for neutral targets."""
         max_error = 0.0
-        for name, leg in self.legs.items():
+        for name, leg in self.control_items():
             try:
                 measured = leg.read_all_positions()
             except Exception as exc:
@@ -205,7 +245,7 @@ class RobotController:
             if STOP_REQUESTED_REF["stop"]:
                 return
 
-            for name, leg in self.legs.items():
+            for name, leg in self.control_items():
                 leg.command_targets(neutral_targets[name])
 
             rate.sleep()
@@ -228,12 +268,12 @@ class RobotController:
             name: leg.compute_neutral_targets(
                 get_neutral_standing_foot_position(name)
             )
-            for name, leg in self.legs.items()
+            for name, leg in self.control_items()
         }
 
         max_delta = 0.0
         print("\nNeutral move plan:")
-        for name, leg in self.legs.items():
+        for name, leg in self.control_items():
             print(f"  {name}:")
             if leg.home_raw is None:
                 raise RuntimeError(f"{name}: missing homed raw reference.")
@@ -267,7 +307,7 @@ class RobotController:
             )
 
         print("\nRe-arming all legs before standing move...")
-        for leg in self.legs.values():
+        for leg in self.control_legs():
             leg.arm_position_mode_at_home()
 
         rate = RateLimiter(frequency=RATE_HZ)
@@ -276,12 +316,12 @@ class RobotController:
             if STOP_REQUESTED_REF["stop"]:
                 return False
 
-            for leg in self.legs.values():
+            for leg in self.control_legs():
                 leg.command_all_active()
 
             rate.sleep()
 
-        for leg in self.legs.values():
+        for leg in self.control_legs():
             leg.apply_startup_gains()
 
         steps = max(1, int(PRE_STAND_STARTUP_HOLD_TIME * RATE_HZ))
@@ -289,18 +329,18 @@ class RobotController:
             if STOP_REQUESTED_REF["stop"]:
                 return False
 
-            for leg in self.legs.values():
+            for leg in self.control_legs():
                 leg.command_all_active()
 
             rate.sleep()
 
         print("\nSwitching to MOVE_GAINS from gains_config.py...")
-        for leg in self.legs.values():
+        for leg in self.control_legs():
             leg.set_all_gains(MOVE_GAINS)
 
         start_cmd = {
             name: dict(leg.active_cmd)
-            for name, leg in self.legs.items()
+            for name, leg in self.control_items()
         }
 
         print("\nMoving all legs to neutral together...")
@@ -315,7 +355,7 @@ class RobotController:
             u = (i + 1) / steps
             s = 0.5 * (1.0 - math.cos(math.pi * u))
 
-            for name, leg in self.legs.items():
+            for name, leg in self.control_items():
                 leg.command_interpolated_targets(
                     start_cmd[name],
                     neutral_targets[name],
@@ -362,14 +402,14 @@ class RobotController:
                 "neutral hold test will keep commanding the same targets."
             )
 
-        for name, leg in self.legs.items():
+        for name, leg in self.control_items():
             leg.finish_neutral(neutral_targets[name])
 
         return True
 
     def hold_neutral(self) -> None:
         print(f"\nHolding neutral for {NEUTRAL_HOLD_TIME:.1f}s...")
-        for leg in self.legs.values():
+        for leg in self.control_legs():
             leg.set_all_gains(HOLD_GAINS)
 
         rate = RateLimiter(frequency=RATE_HZ)
@@ -379,14 +419,14 @@ class RobotController:
             if STOP_REQUESTED_REF["stop"]:
                 return
 
-            for leg in self.legs.values():
+            for leg in self.control_legs():
                 leg.command_all_active()
 
             if (i + 1) % PRINT_EVERY == 0:
                 print(
                     " | ".join(
                         leg.feedback_line()
-                        for leg in self.legs.values()
+                        for leg in self.control_legs()
                     )
                 )
 
@@ -395,14 +435,14 @@ class RobotController:
     def hold_neutral_until_stop(self) -> None:
         """Hold neutral standing pose until Ctrl+C or external stop request."""
         print("\nHolding neutral standing pose. Press Ctrl+C to stop.")
-        for leg in self.legs.values():
+        for leg in self.control_legs():
             leg.set_all_gains(HOLD_GAINS)
 
         rate = RateLimiter(frequency=RATE_HZ)
         counter = 0
 
         while not STOP_REQUESTED_REF["stop"]:
-            for leg in self.legs.values():
+            for leg in self.control_legs():
                 leg.command_all_active()
 
             counter += 1
@@ -410,7 +450,7 @@ class RobotController:
                 print(
                     " | ".join(
                         leg.feedback_line()
-                        for leg in self.legs.values()
+                        for leg in self.control_legs()
                     )
                 )
 
@@ -424,7 +464,7 @@ class RobotController:
         print("\nBuilding per-leg trajectory tables from trajectory_config.py...")
         tables = {}
 
-        for name, leg in self.legs.items():
+        for name, leg in self.control_items():
             cfg = get_trajectory_config_for_leg(name)
             table = build_angle_delta_table(TRAJECTORY_NAME, cfg)
             tables[name] = table
@@ -482,7 +522,7 @@ class RobotController:
         )
 
         targets = {}
-        for name, leg in self.legs.items():
+        for name, leg in self.control_items():
             table = self.trajectory_tables[name]
             leg_phase = self.gait.leg_phase(name, global_phase)
             idx = table_index_from_phase(leg_phase, len(table))
@@ -492,12 +532,12 @@ class RobotController:
                 COMMAND_HIP_TRAJECTORY,
             )
 
-        for leg in self.legs.values():
+        for leg in self.control_legs():
             leg.set_all_gains(RUN_GAINS)
 
         start_cmd = {
             name: dict(leg.active_cmd)
-            for name, leg in self.legs.items()
+            for name, leg in self.control_items()
         }
         rate = RateLimiter(frequency=RATE_HZ)
         steps = max(1, int(MOVE_TO_TRAJECTORY_START_TIME * RATE_HZ))
@@ -507,7 +547,7 @@ class RobotController:
                 return global_phase
 
             s = smoothstep((i + 1) / steps)
-            for name, leg in self.legs.items():
+            for name, leg in self.control_items():
                 leg.command_interpolated_targets(
                     start_cmd[name],
                     targets[name],
@@ -515,7 +555,7 @@ class RobotController:
                 )
             rate.sleep()
 
-        for name, leg in self.legs.items():
+        for name, leg in self.control_items():
             leg.active_cmd.update(targets[name])
 
         return global_phase
@@ -578,7 +618,7 @@ class RobotController:
                 elif not FREEZE_PHASE_WHEN_STOPPED:
                     global_phase %= 1.0
 
-                for name, leg in self.legs.items():
+                for name, leg in self.control_items():
                     table = self.trajectory_tables[name]
                     leg_phase = self.gait.leg_phase(name, global_phase)
                     point = sample_angle_delta_table(table, leg_phase)
