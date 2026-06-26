@@ -103,7 +103,6 @@ TRAJECTORY_CONFIG = TrajectoryConfig(
     step_sideways=0.0,
 
     # Fraction of one cycle spent on the ground.
-    # 0.75 means about three legs support while one leg swings.
     stance_ratio=0.75,
 
     # Trajectory table resolution, not Xbox playback speed.
