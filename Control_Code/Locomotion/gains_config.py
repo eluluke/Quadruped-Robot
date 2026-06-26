@@ -83,8 +83,8 @@ STARTUP_GAINS = GainSet(
 
 MOVE_GAINS = GainSet(
     leg_kp={
-        FRONT_LEFT: {HIP: 0.25, THIGH: 0.0, SHANK: 0.0},
-        FRONT_RIGHT: {HIP: 0.25, THIGH: 0.0, SHANK: 0.0},
+        FRONT_LEFT: {HIP: 0.25, THIGH: 0.25, SHANK: 0.25},
+        FRONT_RIGHT: {HIP: 0.25, THIGH: 0.25, SHANK: 0.25},
         REAR_LEFT: {HIP: 0.25, THIGH: 0.45, SHANK: 0.45},
         REAR_RIGHT: {HIP: 0.25, THIGH: 0.45, SHANK: 0.45},
     },
