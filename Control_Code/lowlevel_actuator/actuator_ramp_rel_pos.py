@@ -187,6 +187,7 @@ config["encoder"]["position_offset"] = bus.read_encoder_position_offset(device_i
 config["encoder"]["velocity_filter_alpha"] = bus.read_encoder_velocity_filter_alpha(device_id)
 config["encoder"]["flux_offset"] = bus.read_encoder_flux_offset(device_id)
 
+print(config)
 time.sleep(0.1)
 # --------------------------------
 # Smooth cosine move
