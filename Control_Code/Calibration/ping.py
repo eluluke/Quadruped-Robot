@@ -8,6 +8,7 @@ bus = recoil.Bus(channel=args.channel, bitrate=1000000)
 
 device_id = args.id
 
+
 status = bus.ping(device_id)
 
 if status:
