@@ -415,11 +415,12 @@ class LegController:
         targets: Optional[Dict[int, float]] = None,
     ) -> str:
         """
-        Report tracking error and estimated effort request.
+        Report tracking error, estimated command effort, and measured torque.
 
         The Recoil firmware clamps the position controller torque request by
-        torque_limit. This estimate uses kp * raw_position_error because the
-        current Python command path sends zero target velocity.
+        torque_limit. tq_cmd/iq_cmd estimate the position-loop demand from
+        kp * raw_position_error. tq_meas/iq_meas use read_torque_measured();
+        the Recoil Python API does not expose direct measured q-axis current.
         """
         try:
             measured = self.read_all_positions()
@@ -450,10 +451,27 @@ class LegController:
             )
             saturation = "*" if abs(requested_torque) > torque_limit else ""
 
+            try:
+                measured_torque = self.bus.read_torque_measured(motor_id)
+            except Exception:
+                measured_torque = None
+
+            if measured_torque is None:
+                measured_text = "tq_meas=na,iq_meas=na"
+            else:
+                measured_current = float(measured_torque) / (
+                    MOTOR_TORQUE_CONSTANT_NM_PER_A * GEAR_RATIO
+                )
+                measured_text = (
+                    f"tq_meas={float(measured_torque):+.2f},"
+                    f"iq_meas={measured_current:+.1f}A"
+                )
+
             parts.append(
                 f"{role}:err={error:+.2f},"
-                f"tq={clamped_torque:+.2f}{saturation},"
-                f"iq={current_request:+.1f}A"
+                f"tq_cmd={clamped_torque:+.2f}{saturation},"
+                f"iq_cmd={current_request:+.1f}A,"
+                f"{measured_text}"
             )
 
         return " ".join(parts)
