@@ -349,6 +349,38 @@ class LegController:
         self.active_cmd.update(neutral_targets)
         self.state = "standing"
 
+    def hold_current_pose_as_neutral(self) -> None:
+        """
+        Record current raw motor positions as the neutral trajectory reference.
+
+        This is for on-stand trajectory tests where homing is intentionally
+        skipped. The leg enters POSITION mode at its current pose with zero
+        gains first, so starting the test should not command a jump.
+        """
+        print(f"{self.name}: holding current pose as neutral reference...")
+
+        for motor_id in self.motor_ids:
+            self.set_mode_with_spacing(motor_id, recoil.Mode.IDLE)
+        time.sleep(0.10)
+
+        raw = self.read_all_positions()
+        self.home_raw = dict(raw)
+        self.neutral_raw = dict(raw)
+        self.active_cmd = dict(raw)
+
+        for role in JOINT_ORDER:
+            motor_id = self.role_to_id[role]
+            print(
+                f"  {self.name} {role:5s} ID {motor_id}: "
+                f"raw={raw[motor_id]:+.6f}"
+            )
+
+        self.set_all_gains(ARM_GAINS)
+        for motor_id in self.motor_ids:
+            self.set_mode_with_spacing(motor_id, recoil.Mode.POSITION)
+
+        self.state = "standing"
+
     # ========================================================
     # Trajectory
     # ========================================================

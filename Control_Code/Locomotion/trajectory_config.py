@@ -116,7 +116,7 @@ TRAJECTORY_CONFIG = TrajectoryConfig(
     step_sideways=0.0,
 
     # Fraction of one cycle spent on the ground.
-    stance_ratio=0.85,
+    stance_ratio=0.70,
 
     # Trajectory table resolution, not Xbox playback speed.
     table_cycle_time=0.80,

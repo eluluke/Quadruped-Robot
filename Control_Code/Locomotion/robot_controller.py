@@ -499,6 +499,54 @@ class RobotController:
 
             rate.sleep()
 
+    def hold_current_pose_as_neutral(self) -> None:
+        """
+        Hold all joints at their current raw positions and use that as neutral.
+
+        This is intended for on-stand trajectory tests. It skips manual homing
+        and does not move the legs before entering hold mode.
+        """
+        print("\nRecording current joint positions as neutral reference...")
+        for _name, leg in self.control_items():
+            print()
+            leg.hold_current_pose_as_neutral()
+
+        print("\nSwitching to HOLD_GAINS at current pose...")
+        for leg in self.control_legs():
+            leg.set_all_gains(HOLD_GAINS)
+
+        rate = RateLimiter(frequency=RATE_HZ)
+        steps = max(1, int(NEUTRAL_HOLD_TIME * RATE_HZ))
+        for _ in range(steps):
+            if STOP_REQUESTED_REF["stop"]:
+                return
+
+            for leg in self.control_legs():
+                leg.command_all_active()
+
+            rate.sleep()
+
+    def wait_for_xbox_trot_command(self, controller: XboxController) -> None:
+        """Hold current pose until the Xbox left stick asks to move."""
+        print("\nHolding current pose. Move Xbox left stick Y to start trot.")
+        rate = RateLimiter(frequency=RATE_HZ)
+
+        while not STOP_REQUESTED_REF["stop"]:
+            for leg in self.control_legs():
+                leg.command_all_active()
+
+            state = controller.read()
+            raw_ly = max(-1.0, min(1.0, float(state.left_y)))
+            ly = apply_deadband(raw_ly, JOYSTICK_DEADBAND)
+
+            if abs(ly) > XBOX_MOTION_THRESHOLD:
+                print(
+                    "Xbox command detected. Moving to trajectory start phase..."
+                )
+                return
+
+            rate.sleep()
+
     # ========================================================
     # Trajectory / trot
     # ========================================================
@@ -611,7 +659,7 @@ class RobotController:
 
         return global_phase
 
-    def run_xbox_trot(self) -> None:
+    def run_xbox_trot(self, wait_for_command_before_start: bool = False) -> None:
         if self.trajectory_tables is None:
             self.build_trajectory_tables()
 
@@ -619,6 +667,11 @@ class RobotController:
             raise RuntimeError("Trajectory tables failed to build.")
 
         controller = XboxController(deadzone=JOYSTICK_DEADBAND)
+        if wait_for_command_before_start:
+            self.wait_for_xbox_trot_command(controller)
+            if STOP_REQUESTED_REF["stop"]:
+                return
+
         global_phase = self.move_all_to_start_phase()
 
         print("\nStarting Xbox-controlled trot.")
