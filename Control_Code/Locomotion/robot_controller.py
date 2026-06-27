@@ -36,8 +36,6 @@ from trajectory_config import (
     ROLE_HIP,
     ROLE_SHANK,
     ROLE_THIGH,
-    TRAJ_REGULAR_PLANAR,
-    TRAJ_VERTICAL_STEP,
     TRAJECTORY_CONFIG,
     TRAJECTORY_NAME,
     TRAJECTORY_RATE_HZ,
@@ -69,9 +67,6 @@ CONTROL_DT = 1.0 / RATE_HZ
 PRINT_EVERY = 40
 TROT_PRINT_EVERY = 160
 SHUTDOWN_IDLE_ROUNDS = 4
-VERTICAL_IDLE_PHASE_SPEED = 0.60
-XBOX_MOTION_THRESHOLD = 0.08
-TRAJECTORY_BLEND_RATE = 4.0
 
 COMMAND_HIP_TRAJECTORY = False
 COMMAND_ROLES = (
@@ -122,44 +117,6 @@ WHOLE_BODY_COMMAND_ORDER = (
     FRONT_LEFT,
     FRONT_RIGHT,
 )
-
-
-def _blend_trajectory_points(
-    vertical_point: TrajectoryPoint,
-    planar_point: TrajectoryPoint,
-    planar_weight: float,
-) -> TrajectoryPoint:
-    """Blend vertical marching into planar locomotion without target jumps."""
-    if planar_weight <= 0.0:
-        return vertical_point
-    if planar_weight >= 1.0:
-        return planar_point
-
-    angle_delta_by_role = {
-        role: (
-            vertical_point.angle_delta_by_role[role]
-            + (
-                planar_point.angle_delta_by_role[role]
-                - vertical_point.angle_delta_by_role[role]
-            )
-            * planar_weight
-        )
-        for role in JOINT_ROLES
-    }
-
-    return TrajectoryPoint(
-        phase=vertical_point.phase,
-        trajectory_name="vertical_to_planar_blend",
-        phase_name=(
-            vertical_point.phase_name
-            if planar_weight < 0.5
-            else planar_point.phase_name
-        ),
-        foot=vertical_point.foot if planar_weight < 0.5 else planar_point.foot,
-        angles_by_role=dict(vertical_point.angles_by_role),
-        reference_angles_by_role=dict(vertical_point.reference_angles_by_role),
-        angle_delta_by_role=angle_delta_by_role,
-    )
 
 
 class RobotController:
@@ -499,72 +456,17 @@ class RobotController:
 
             rate.sleep()
 
-    def hold_current_pose_as_neutral(self) -> None:
-        """
-        Hold all joints at their current raw positions and use that as neutral.
-
-        This is intended for on-stand trajectory tests. It skips manual homing
-        and does not move the legs before entering hold mode.
-        """
-        print("\nRecording current joint positions as neutral reference...")
-        for _name, leg in self.control_items():
-            print()
-            leg.hold_current_pose_as_neutral()
-
-        print("\nSwitching to HOLD_GAINS at current pose...")
-        for leg in self.control_legs():
-            leg.set_all_gains(HOLD_GAINS)
-
-        rate = RateLimiter(frequency=RATE_HZ)
-        steps = max(1, int(NEUTRAL_HOLD_TIME * RATE_HZ))
-        for _ in range(steps):
-            if STOP_REQUESTED_REF["stop"]:
-                return
-
-            for leg in self.control_legs():
-                leg.command_all_active()
-
-            rate.sleep()
-
-    def wait_for_xbox_trot_command(self, controller: XboxController) -> None:
-        """Hold current pose until the Xbox left stick asks to move."""
-        print("\nHolding current pose. Move Xbox left stick Y to start trot.")
-        rate = RateLimiter(frequency=RATE_HZ)
-
-        while not STOP_REQUESTED_REF["stop"]:
-            for leg in self.control_legs():
-                leg.command_all_active()
-
-            state = controller.read()
-            raw_ly = max(-1.0, min(1.0, float(state.left_y)))
-            ly = apply_deadband(raw_ly, JOYSTICK_DEADBAND)
-
-            if abs(ly) > XBOX_MOTION_THRESHOLD:
-                print(
-                    "Xbox command detected. Moving to trajectory start phase..."
-                )
-                return
-
-            rate.sleep()
-
     # ========================================================
     # Trajectory / trot
     # ========================================================
 
-    def build_trajectory_tables(
-        self,
-        trajectory_name: str = TRAJECTORY_NAME,
-        store: bool = True,
-    ) -> Dict[str, List[TrajectoryPoint]]:
-        print(
-            "\nBuilding per-leg trajectory tables from "
-            f"trajectory_config.py: {trajectory_name}"
-        )
+    def build_trajectory_tables(self) -> Dict[str, List[TrajectoryPoint]]:
+        print("\nBuilding per-leg trajectory tables from trajectory_config.py...")
         tables = {}
 
         for name, leg in self.control_items():
             cfg = get_trajectory_config_for_leg(name)
-            table = build_angle_delta_table(trajectory_name, cfg)
+            table = build_angle_delta_table(TRAJECTORY_NAME, cfg)
             tables[name] = table
             summary = summarize_angle_delta_table(table)
 
@@ -596,8 +498,7 @@ class RobotController:
                         f"{name} {role} trajectory delta too large."
                     )
 
-        if store:
-            self.trajectory_tables = tables
+        self.trajectory_tables = tables
         return tables
 
     def trajectory_start_phase(self) -> float:
@@ -659,7 +560,7 @@ class RobotController:
 
         return global_phase
 
-    def run_xbox_trot(self, wait_for_command_before_start: bool = False) -> None:
+    def run_xbox_trot(self) -> None:
         if self.trajectory_tables is None:
             self.build_trajectory_tables()
 
@@ -667,11 +568,6 @@ class RobotController:
             raise RuntimeError("Trajectory tables failed to build.")
 
         controller = XboxController(deadzone=JOYSTICK_DEADBAND)
-        if wait_for_command_before_start:
-            self.wait_for_xbox_trot_command(controller)
-            if STOP_REQUESTED_REF["stop"]:
-                return
-
         global_phase = self.move_all_to_start_phase()
 
         print("\nStarting Xbox-controlled trot.")
@@ -735,132 +631,6 @@ class RobotController:
                 counter += 1
                 if counter % TROT_PRINT_EVERY == 0:
                     print(
-                        f"LY_raw={raw_ly:+.2f} LY={ly_filtered:+.2f} "
-                        f"phase_speed={phase_speed:+.3f} "
-                        f"global_phase={global_phase:.3f}"
-                    )
-                    print(
-                        " | ".join(
-                            self.legs[leg_name].telemetry_line(RUN_GAINS)
-                            for leg_name in (REAR_LEFT, REAR_RIGHT)
-                        )
-                    )
-
-                rate.sleep()
-
-        finally:
-            try:
-                controller.close()
-            except Exception:
-                pass
-
-    def run_vertical_idle_xbox_planar_trot(self) -> None:
-        """
-        March in place until Xbox input asks for forward/backward motion.
-
-        No stick command uses TRAJ_VERTICAL_STEP, so feet only move in z.
-        Nonzero stick command smoothly blends into TRAJ_REGULAR_PLANAR,
-        which uses straight stance and cycloidal swing for translation.
-        """
-        vertical_tables = self.build_trajectory_tables(
-            TRAJ_VERTICAL_STEP,
-            store=False,
-        )
-        planar_tables = self.build_trajectory_tables(
-            TRAJ_REGULAR_PLANAR,
-            store=False,
-        )
-
-        self.trajectory_tables = vertical_tables
-        controller = XboxController(deadzone=JOYSTICK_DEADBAND)
-        global_phase = self.move_all_to_start_phase()
-
-        print("\nStarting vertical idle / Xbox planar trot.")
-        print("No stick: vertical march in place.")
-        print("Left stick Y: blend into forward/backward planar trot.")
-        print("Ctrl+C to stop.")
-
-        ly_filtered = 0.0
-        phase_speed = 0.0
-        planar_blend = 0.0
-        last_time = time.time()
-        counter = 0
-        rate = RateLimiter(frequency=RATE_HZ)
-
-        try:
-            while not STOP_REQUESTED_REF["stop"]:
-                now = time.time()
-                wall_dt = now - last_time
-                last_time = now
-
-                if wall_dt <= 0.0 or wall_dt > 0.10:
-                    wall_dt = CONTROL_DT
-
-                dt = min(wall_dt, CONTROL_DT)
-
-                state = controller.read()
-                raw_ly = max(-1.0, min(1.0, float(state.left_y)))
-
-                ly = apply_deadband(raw_ly, JOYSTICK_DEADBAND)
-                ly_filtered = (
-                    (1.0 - JOYSTICK_FILTER_ALPHA) * ly_filtered
-                    + JOYSTICK_FILTER_ALPHA * ly
-                )
-
-                if not ALLOW_REVERSE and ly_filtered < 0.0:
-                    ly_filtered = 0.0
-
-                xbox_motion_active = abs(ly_filtered) > XBOX_MOTION_THRESHOLD
-                target_blend = 1.0 if xbox_motion_active else 0.0
-                planar_blend = limit_rate(
-                    planar_blend,
-                    target_blend,
-                    TRAJECTORY_BLEND_RATE * dt,
-                )
-
-                if xbox_motion_active:
-                    target_phase_speed = MAX_PHASE_SPEED * ly_filtered
-                else:
-                    target_phase_speed = VERTICAL_IDLE_PHASE_SPEED
-
-                max_phase_step = PHASE_ACCEL_LIMIT * dt
-                phase_speed = limit_rate(
-                    phase_speed,
-                    target_phase_speed,
-                    max_phase_step,
-                )
-
-                if abs(phase_speed) > 1e-5:
-                    global_phase = (global_phase + phase_speed * dt) % 1.0
-                elif not FREEZE_PHASE_WHEN_STOPPED:
-                    global_phase %= 1.0
-
-                for name, leg in self.control_items():
-                    leg_phase = self.gait.leg_phase(name, global_phase)
-                    vertical_point = sample_angle_delta_table(
-                        vertical_tables[name],
-                        leg_phase,
-                    )
-                    planar_point = sample_angle_delta_table(
-                        planar_tables[name],
-                        leg_phase,
-                    )
-                    point = _blend_trajectory_points(
-                        vertical_point,
-                        planar_point,
-                        planar_blend,
-                    )
-                    leg.command_trajectory_point(
-                        point,
-                        COMMAND_ROLES,
-                        COMMAND_HIP_TRAJECTORY,
-                    )
-
-                counter += 1
-                if counter % TROT_PRINT_EVERY == 0:
-                    mode = "planar" if planar_blend > 0.5 else "vertical"
-                    print(
-                        f"mode={mode} blend={planar_blend:.2f} "
                         f"LY_raw={raw_ly:+.2f} LY={ly_filtered:+.2f} "
                         f"phase_speed={phase_speed:+.3f} "
                         f"global_phase={global_phase:.3f}"
