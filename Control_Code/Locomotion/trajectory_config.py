@@ -108,7 +108,7 @@ TRAJECTORY_RATE_HZ = 80.0
 TRAJECTORY_CONFIG = TrajectoryConfig(
     x_center=0.0,
     y_center=84.26,
-    z_ground=385.0,
+    z_ground =400.0,
 
     # Used by TRAJ_REGULAR_PLANAR.
     step_length=75.0,
