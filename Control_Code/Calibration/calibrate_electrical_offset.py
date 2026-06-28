@@ -1,10 +1,7 @@
 # Copyright (c) 2025, The Berkeley Humanoid Lite Project Developers.
 
 import time
-
 import berkeley_humanoid_lite_lowlevel.recoil as recoil
-
-
 args = recoil.util.get_args()
 bus = recoil.Bus(channel=args.channel, bitrate=1000000)
 
