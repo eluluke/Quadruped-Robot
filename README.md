@@ -77,7 +77,8 @@ Quadruped-Robot/
 │
 └── README.md
 ```
-
+CAD files are maintained separately at:
+https://github.com/eluluke/Quadruped_Robot_Moo_CAD
 ## Folder Descriptions
 
 ### `3D_Model/`
