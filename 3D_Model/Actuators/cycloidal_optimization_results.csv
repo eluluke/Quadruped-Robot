@@ -1,0 +1,181 @@
+eccentricity_mm,curtate_ratio,force_per_pin_n,profile_min_curvature_radius_mm,effective_contact_radius_mm,peak_hertz_pressure_mpa,feasible,reason
+0.400000,0.144444,inf,0.000000,0.000000,inf,False,curtate ratio outside recommended range
+0.417318,0.150698,inf,0.000000,0.000000,inf,False,curtate ratio outside recommended range
+0.434637,0.156952,inf,0.000000,0.000000,inf,False,curtate ratio outside recommended range
+0.451955,0.163206,inf,0.000000,0.000000,inf,False,curtate ratio outside recommended range
+0.469274,0.169460,inf,0.000000,0.000000,inf,False,curtate ratio outside recommended range
+0.486592,0.175714,inf,0.000000,0.000000,inf,False,curtate ratio outside recommended range
+0.503911,0.181968,inf,0.000000,0.000000,inf,False,curtate ratio outside recommended range
+0.521229,0.188222,inf,0.000000,0.000000,inf,False,curtate ratio outside recommended range
+0.538547,0.194475,inf,0.000000,0.000000,inf,False,curtate ratio outside recommended range
+0.555866,0.200729,inf,0.000000,0.000000,inf,False,curtate ratio outside recommended range
+0.573184,0.206983,inf,0.000000,0.000000,inf,False,curtate ratio outside recommended range
+0.590503,0.213237,inf,0.000000,0.000000,inf,False,curtate ratio outside recommended range
+0.607821,0.219491,inf,0.000000,0.000000,inf,False,curtate ratio outside recommended range
+0.625140,0.225745,inf,0.000000,0.000000,inf,False,curtate ratio outside recommended range
+0.642458,0.231999,inf,0.000000,0.000000,inf,False,curtate ratio outside recommended range
+0.659777,0.238253,inf,0.000000,0.000000,inf,False,curtate ratio outside recommended range
+0.677095,0.244507,inf,0.000000,0.000000,inf,False,curtate ratio outside recommended range
+0.694413,0.250760,inf,0.000000,0.000000,inf,False,curtate ratio outside recommended range
+0.711732,0.257014,inf,0.000000,0.000000,inf,False,curtate ratio outside recommended range
+0.729050,0.263268,inf,0.000000,0.000000,inf,False,curtate ratio outside recommended range
+0.746369,0.269522,inf,0.000000,0.000000,inf,False,curtate ratio outside recommended range
+0.763687,0.275776,inf,0.000000,0.000000,inf,False,curtate ratio outside recommended range
+0.781006,0.282030,inf,0.000000,0.000000,inf,False,curtate ratio outside recommended range
+0.798324,0.288284,inf,0.000000,0.000000,inf,False,curtate ratio outside recommended range
+0.815642,0.294538,inf,0.000000,0.000000,inf,False,curtate ratio outside recommended range
+0.832961,0.300791,inf,0.000000,0.000000,inf,False,curtate ratio outside recommended range
+0.850279,0.307045,inf,0.000000,0.000000,inf,False,curtate ratio outside recommended range
+0.867598,0.313299,inf,0.000000,0.000000,inf,False,curtate ratio outside recommended range
+0.884916,0.319553,inf,0.000000,0.000000,inf,False,curtate ratio outside recommended range
+0.902235,0.325807,inf,0.000000,0.000000,inf,False,curtate ratio outside recommended range
+0.919553,0.332061,inf,0.000000,0.000000,inf,False,curtate ratio outside recommended range
+0.936872,0.338315,inf,0.000000,0.000000,inf,False,curtate ratio outside recommended range
+0.954190,0.344569,inf,0.000000,0.000000,inf,False,curtate ratio outside recommended range
+0.971508,0.350822,269.105150,6.404839,1.849293,136.681111,True,ok
+0.988827,0.357076,264.392009,6.260145,1.837033,135.930217,True,ok
+1.006145,0.363330,259.841119,6.121686,1.824920,135.201738,True,ok
+1.023464,0.369584,255.444245,5.989106,1.812957,134.494545,True,ok
+1.040782,0.375838,251.193696,5.862080,1.801142,133.807572,True,ok
+1.058101,0.382092,247.082289,5.740304,1.789478,133.139812,True,ok
+1.075419,0.388346,243.103302,5.623494,1.777965,132.490314,True,ok
+1.092737,0.394600,239.250438,5.511390,1.766604,131.858177,True,ok
+1.110056,0.400854,235.517794,5.403748,1.755396,131.242549,True,ok
+1.127374,0.407107,231.899830,5.300339,1.744341,130.642622,True,ok
+1.144693,0.413361,228.391340,5.200952,1.733439,130.057630,True,ok
+1.162011,0.419615,224.987431,5.105387,1.722692,129.486845,True,ok
+1.179330,0.425869,221.683494,5.013460,1.712099,128.929579,True,ok
+1.196648,0.432123,218.475190,4.924997,1.701661,128.385173,True,ok
+1.213966,0.438377,215.358424,4.839835,1.691378,127.853006,True,ok
+1.231285,0.444631,212.329336,4.757820,1.681250,127.332483,True,ok
+1.248603,0.450885,209.384276,4.678809,1.671277,126.823040,True,ok
+1.265922,0.457138,206.519795,4.602668,1.661459,126.324140,True,ok
+1.283240,0.463392,203.732632,4.529268,1.651796,125.835270,True,ok
+1.300559,0.469646,201.019698,4.458491,1.642288,125.355943,True,ok
+1.317877,0.475900,198.378065,4.390223,1.632935,124.885694,True,ok
+1.335196,0.482154,195.804961,4.324357,1.623736,124.424079,True,ok
+1.352514,0.488408,193.297751,4.260793,1.614691,123.970678,True,ok
+1.369832,0.494662,190.853938,4.199436,1.605800,123.525085,True,ok
+1.387151,0.500916,inf,0.000000,0.000000,inf,False,output pin hole does not clear eccentric orbit
+1.404469,0.507169,inf,0.000000,0.000000,inf,False,output pin hole does not clear eccentric orbit
+1.421788,0.513423,inf,0.000000,0.000000,inf,False,output pin hole does not clear eccentric orbit
+1.439106,0.519677,inf,0.000000,0.000000,inf,False,output pin hole does not clear eccentric orbit
+1.456425,0.525931,inf,0.000000,0.000000,inf,False,output pin hole does not clear eccentric orbit
+1.473743,0.532185,inf,0.000000,0.000000,inf,False,output pin hole does not clear eccentric orbit
+1.491061,0.538439,inf,0.000000,0.000000,inf,False,output pin hole does not clear eccentric orbit
+1.508380,0.544693,inf,0.000000,0.000000,inf,False,output pin hole does not clear eccentric orbit
+1.525698,0.550947,inf,0.000000,0.000000,inf,False,output pin hole does not clear eccentric orbit
+1.543017,0.557200,inf,0.000000,0.000000,inf,False,output pin hole does not clear eccentric orbit
+1.560335,0.563454,inf,0.000000,0.000000,inf,False,output pin hole does not clear eccentric orbit
+1.577654,0.569708,inf,0.000000,0.000000,inf,False,output pin hole does not clear eccentric orbit
+1.594972,0.575962,inf,0.000000,0.000000,inf,False,output pin hole does not clear eccentric orbit
+1.612291,0.582216,inf,0.000000,0.000000,inf,False,output pin hole does not clear eccentric orbit
+1.629609,0.588470,inf,0.000000,0.000000,inf,False,output pin hole does not clear eccentric orbit
+1.646927,0.594724,inf,0.000000,0.000000,inf,False,output pin hole does not clear eccentric orbit
+1.664246,0.600978,inf,0.000000,0.000000,inf,False,output pin hole does not clear eccentric orbit
+1.681564,0.607232,inf,0.000000,0.000000,inf,False,output pin hole does not clear eccentric orbit
+1.698883,0.613485,inf,0.000000,0.000000,inf,False,output pin hole does not clear eccentric orbit
+1.716201,0.619739,inf,0.000000,0.000000,inf,False,output pin hole does not clear eccentric orbit
+1.733520,0.625993,inf,0.000000,0.000000,inf,False,output pin hole does not clear eccentric orbit
+1.750838,0.632247,inf,0.000000,0.000000,inf,False,output pin hole does not clear eccentric orbit
+1.768156,0.638501,inf,0.000000,0.000000,inf,False,output pin hole does not clear eccentric orbit
+1.785475,0.644755,inf,0.000000,0.000000,inf,False,output pin hole does not clear eccentric orbit
+1.802793,0.651009,inf,0.000000,0.000000,inf,False,output pin hole does not clear eccentric orbit
+1.820112,0.657263,inf,0.000000,0.000000,inf,False,output pin hole does not clear eccentric orbit
+1.837430,0.663516,inf,0.000000,0.000000,inf,False,output pin hole does not clear eccentric orbit
+1.854749,0.669770,inf,0.000000,0.000000,inf,False,output pin hole does not clear eccentric orbit
+1.872067,0.676024,inf,0.000000,0.000000,inf,False,output pin hole does not clear eccentric orbit
+1.889385,0.682278,inf,0.000000,0.000000,inf,False,output pin hole does not clear eccentric orbit
+1.906704,0.688532,inf,0.000000,0.000000,inf,False,output pin hole does not clear eccentric orbit
+1.924022,0.694786,inf,0.000000,0.000000,inf,False,output pin hole does not clear eccentric orbit
+1.941341,0.701040,inf,0.000000,0.000000,inf,False,output pin hole does not clear eccentric orbit
+1.958659,0.707294,inf,0.000000,0.000000,inf,False,output pin hole does not clear eccentric orbit
+1.975978,0.713547,inf,0.000000,0.000000,inf,False,output pin hole does not clear eccentric orbit
+1.993296,0.719801,inf,0.000000,0.000000,inf,False,output pin hole does not clear eccentric orbit
+2.010615,0.726055,inf,0.000000,0.000000,inf,False,output pin hole does not clear eccentric orbit
+2.027933,0.732309,inf,0.000000,0.000000,inf,False,output pin hole does not clear eccentric orbit
+2.045251,0.738563,inf,0.000000,0.000000,inf,False,output pin hole does not clear eccentric orbit
+2.062570,0.744817,inf,0.000000,0.000000,inf,False,output pin hole does not clear eccentric orbit
+2.079888,0.751071,inf,0.000000,0.000000,inf,False,output pin hole does not clear eccentric orbit
+2.097207,0.757325,inf,0.000000,0.000000,inf,False,output pin hole does not clear eccentric orbit
+2.114525,0.763579,inf,0.000000,0.000000,inf,False,output pin hole does not clear eccentric orbit
+2.131844,0.769832,inf,0.000000,0.000000,inf,False,output pin hole does not clear eccentric orbit
+2.149162,0.776086,inf,0.000000,0.000000,inf,False,output pin hole does not clear eccentric orbit
+2.166480,0.782340,inf,0.000000,0.000000,inf,False,output pin hole does not clear eccentric orbit
+2.183799,0.788594,inf,0.000000,0.000000,inf,False,output pin hole does not clear eccentric orbit
+2.201117,0.794848,inf,0.000000,0.000000,inf,False,output pin hole does not clear eccentric orbit
+2.218436,0.801102,inf,0.000000,0.000000,inf,False,output pin hole does not clear eccentric orbit
+2.235754,0.807356,inf,0.000000,0.000000,inf,False,output pin hole does not clear eccentric orbit
+2.253073,0.813610,inf,0.000000,0.000000,inf,False,output pin hole does not clear eccentric orbit
+2.270391,0.819863,inf,0.000000,0.000000,inf,False,output pin hole does not clear eccentric orbit
+2.287709,0.826117,inf,0.000000,0.000000,inf,False,output pin hole does not clear eccentric orbit
+2.305028,0.832371,inf,0.000000,0.000000,inf,False,output pin hole does not clear eccentric orbit
+2.322346,0.838625,inf,0.000000,0.000000,inf,False,output pin hole does not clear eccentric orbit
+2.339665,0.844879,inf,0.000000,0.000000,inf,False,output pin hole does not clear eccentric orbit
+2.356983,0.851133,inf,0.000000,0.000000,inf,False,output pin hole does not clear eccentric orbit
+2.374302,0.857387,inf,0.000000,0.000000,inf,False,output pin hole does not clear eccentric orbit
+2.391620,0.863641,inf,0.000000,0.000000,inf,False,output pin hole does not clear eccentric orbit
+2.408939,0.869894,inf,0.000000,0.000000,inf,False,output pin hole does not clear eccentric orbit
+2.426257,0.876148,inf,0.000000,0.000000,inf,False,output pin hole does not clear eccentric orbit
+2.443575,0.882402,inf,0.000000,0.000000,inf,False,output pin hole does not clear eccentric orbit
+2.460894,0.888656,inf,0.000000,0.000000,inf,False,output pin hole does not clear eccentric orbit
+2.478212,0.894910,inf,0.000000,0.000000,inf,False,output pin hole does not clear eccentric orbit
+2.495531,0.901164,inf,0.000000,0.000000,inf,False,output pin hole does not clear eccentric orbit
+2.512849,0.907418,inf,0.000000,0.000000,inf,False,output pin hole does not clear eccentric orbit
+2.530168,0.913672,inf,0.000000,0.000000,inf,False,output pin hole does not clear eccentric orbit
+2.547486,0.919926,inf,0.000000,0.000000,inf,False,output pin hole does not clear eccentric orbit
+2.564804,0.926179,inf,0.000000,0.000000,inf,False,output pin hole does not clear eccentric orbit
+2.582123,0.932433,inf,0.000000,0.000000,inf,False,output pin hole does not clear eccentric orbit
+2.599441,0.938687,inf,0.000000,0.000000,inf,False,output pin hole does not clear eccentric orbit
+2.616760,0.944941,inf,0.000000,0.000000,inf,False,output pin hole does not clear eccentric orbit
+2.634078,0.951195,inf,0.000000,0.000000,inf,False,output pin hole does not clear eccentric orbit
+2.651397,0.957449,inf,0.000000,0.000000,inf,False,output pin hole does not clear eccentric orbit
+2.668715,0.963703,inf,0.000000,0.000000,inf,False,output pin hole does not clear eccentric orbit
+2.686034,0.969957,inf,0.000000,0.000000,inf,False,output pin hole does not clear eccentric orbit
+2.703352,0.976210,inf,0.000000,0.000000,inf,False,output pin hole does not clear eccentric orbit
+2.720670,0.982464,inf,0.000000,0.000000,inf,False,output pin hole does not clear eccentric orbit
+2.737989,0.988718,inf,0.000000,0.000000,inf,False,output pin hole does not clear eccentric orbit
+2.755307,0.994972,inf,0.000000,0.000000,inf,False,output pin hole does not clear eccentric orbit
+2.772626,1.001226,inf,0.000000,0.000000,inf,False,output pin hole does not clear eccentric orbit
+2.789944,1.007480,inf,0.000000,0.000000,inf,False,output pin hole does not clear eccentric orbit
+2.807263,1.013734,inf,0.000000,0.000000,inf,False,output pin hole does not clear eccentric orbit
+2.824581,1.019988,inf,0.000000,0.000000,inf,False,output pin hole does not clear eccentric orbit
+2.841899,1.026241,inf,0.000000,0.000000,inf,False,output pin hole does not clear eccentric orbit
+2.859218,1.032495,inf,0.000000,0.000000,inf,False,output pin hole does not clear eccentric orbit
+2.876536,1.038749,inf,0.000000,0.000000,inf,False,output pin hole does not clear eccentric orbit
+2.893855,1.045003,inf,0.000000,0.000000,inf,False,output pin hole does not clear eccentric orbit
+2.911173,1.051257,inf,0.000000,0.000000,inf,False,output pin hole does not clear eccentric orbit
+2.928492,1.057511,inf,0.000000,0.000000,inf,False,output pin hole does not clear eccentric orbit
+2.945810,1.063765,inf,0.000000,0.000000,inf,False,output pin hole does not clear eccentric orbit
+2.963128,1.070019,inf,0.000000,0.000000,inf,False,output pin hole does not clear eccentric orbit
+2.980447,1.076273,inf,0.000000,0.000000,inf,False,output pin hole does not clear eccentric orbit
+2.997765,1.082526,inf,0.000000,0.000000,inf,False,output pin hole does not clear eccentric orbit
+3.015084,1.088780,inf,0.000000,0.000000,inf,False,output pin hole does not clear eccentric orbit
+3.032402,1.095034,inf,0.000000,0.000000,inf,False,output pin hole does not clear eccentric orbit
+3.049721,1.101288,inf,0.000000,0.000000,inf,False,output pin hole does not clear eccentric orbit
+3.067039,1.107542,inf,0.000000,0.000000,inf,False,output pin hole does not clear eccentric orbit
+3.084358,1.113796,inf,0.000000,0.000000,inf,False,output pin hole does not clear eccentric orbit
+3.101676,1.120050,inf,0.000000,0.000000,inf,False,output pin hole does not clear eccentric orbit
+3.118994,1.126304,inf,0.000000,0.000000,inf,False,output pin hole does not clear eccentric orbit
+3.136313,1.132557,inf,0.000000,0.000000,inf,False,output pin hole does not clear eccentric orbit
+3.153631,1.138811,inf,0.000000,0.000000,inf,False,output pin hole does not clear eccentric orbit
+3.170950,1.145065,inf,0.000000,0.000000,inf,False,output pin hole does not clear eccentric orbit
+3.188268,1.151319,inf,0.000000,0.000000,inf,False,output pin hole does not clear eccentric orbit
+3.205587,1.157573,inf,0.000000,0.000000,inf,False,output pin hole does not clear eccentric orbit
+3.222905,1.163827,inf,0.000000,0.000000,inf,False,output pin hole does not clear eccentric orbit
+3.240223,1.170081,inf,0.000000,0.000000,inf,False,output pin hole does not clear eccentric orbit
+3.257542,1.176335,inf,0.000000,0.000000,inf,False,output pin hole does not clear eccentric orbit
+3.274860,1.182588,inf,0.000000,0.000000,inf,False,output pin hole does not clear eccentric orbit
+3.292179,1.188842,inf,0.000000,0.000000,inf,False,output pin hole does not clear eccentric orbit
+3.309497,1.195096,inf,0.000000,0.000000,inf,False,output pin hole does not clear eccentric orbit
+3.326816,1.201350,inf,0.000000,0.000000,inf,False,output pin hole does not clear eccentric orbit
+3.344134,1.207604,inf,0.000000,0.000000,inf,False,output pin hole does not clear eccentric orbit
+3.361453,1.213858,inf,0.000000,0.000000,inf,False,output pin hole does not clear eccentric orbit
+3.378771,1.220112,inf,0.000000,0.000000,inf,False,output pin hole does not clear eccentric orbit
+3.396089,1.226366,inf,0.000000,0.000000,inf,False,output pin hole does not clear eccentric orbit
+3.413408,1.232619,inf,0.000000,0.000000,inf,False,output pin hole does not clear eccentric orbit
+3.430726,1.238873,inf,0.000000,0.000000,inf,False,output pin hole does not clear eccentric orbit
+3.448045,1.245127,inf,0.000000,0.000000,inf,False,output pin hole does not clear eccentric orbit
+3.465363,1.251381,inf,0.000000,0.000000,inf,False,output pin hole does not clear eccentric orbit
+3.482682,1.257635,inf,0.000000,0.000000,inf,False,output pin hole does not clear eccentric orbit
+3.500000,1.263889,inf,0.000000,0.000000,inf,False,output pin hole does not clear eccentric orbit
