@@ -112,7 +112,7 @@ HOMING_ANGLE = homing_angle.sleepy_angle
 
 LEG_CONFIG = {
     FRONT_LEFT: {
-        "can_channel": "can2",
+        "can_channel": "can1",
 
         HIP: {
             "can_id": 6,
