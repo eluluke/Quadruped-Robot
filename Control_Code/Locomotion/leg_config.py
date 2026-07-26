@@ -56,8 +56,8 @@ LEG_ORDER = [
 PAW_RADIUS = 29.5
 NEUTRAL_FOOT_X_OFFSET = -23.12
 
-FRONT_DESIRED_STANDING_HEIGHT = 400.0
-REAR_DESIRED_STANDING_HEIGHT = 400.0
+FRONT_DESIRED_STANDING_HEIGHT = 380.0
+REAR_DESIRED_STANDING_HEIGHT = 380.0
 
 NEUTRAL_X = NEUTRAL_FOOT_X_OFFSET
 NEUTRAL_Y = 84.26
@@ -90,20 +90,28 @@ class homing_angle:
     """Candidate output-side joint angles for manual homing poses."""
 
     max_contraction_angle = {
-        HIP: -1.069,
-        THIGH: 1.264,
-        SHANK: 2.631,
+        HIP: -1.043,
+        THIGH: 1.1596,
+        SHANK: 2.7042,
     }
 
-    sleepy_angle = {
+    sleepy_angle_1 = {
+        # belly touching ground, hip moves;
         HIP: -0.465499025237436,
+        THIGH: 1.11367455104935,
+        SHANK: 2.68814970801254,
+    }
+
+    sleepy_angle_2 = {
+        # belly not touching ground, no hip move;
+        HIP: 0.00,
         THIGH: 1.11367455104935,
         SHANK: 2.68814970801254,
     }
 
 
 # HOMING_ANGLE = homing_angle.max_contraction_angle
-HOMING_ANGLE = homing_angle.sleepy_angle
+HOMING_ANGLE = homing_angle.sleepy_angle_2
 
 
 # ============================================================
