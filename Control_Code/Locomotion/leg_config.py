@@ -201,7 +201,7 @@ LEG_CONFIG = {
 # Hardware conversion constants
 # ============================================================
 
-GEAR_RATIO = 17.0
+GEAR_RATIO = 25.0
 
 MOTOR_SIGN = {
     FRONT_LEFT: {

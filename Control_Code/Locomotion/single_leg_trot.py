@@ -48,8 +48,9 @@ from trajectory_config import (
 )
 
 
-COMMAND_HIP_TRAJECTORY = False
-COMMAND_ROLES = JOINT_ROLES if COMMAND_HIP_TRAJECTORY else (ROLE_THIGH, ROLE_SHANK)
+COMMAND_HIP_TRAJECTORY = True
+COMMAND_ROLES = JOINT_ROLES if COMMAND_HIP_TRAJECTORY else (
+    ROLE_THIGH, ROLE_SHANK)
 COMMAND_ORDER_ROLES = (ROLE_THIGH, ROLE_SHANK, ROLE_HIP)
 
 RATE_HZ = TRAJECTORY_CONFIG.rate_hz
@@ -94,9 +95,11 @@ class SingleLegRunner:
         self.leg_name = leg_name
         self.channel = get_can_channel(leg_name)
         self.role_to_id = get_role_to_id_for_leg(leg_name)
-        self.id_to_role = {motor_id: role for role, motor_id in self.role_to_id.items()}
+        self.id_to_role = {motor_id: role for role,
+                           motor_id in self.role_to_id.items()}
         self.motor_ids = [self.role_to_id[role] for role in JOINT_ORDER]
-        self.command_order = [self.role_to_id[role] for role in COMMAND_ORDER_ROLES]
+        self.command_order = [self.role_to_id[role]
+                              for role in COMMAND_ORDER_ROLES]
         self.bus = recoil.Bus(channel=self.channel, bitrate=1000000)
         self.rate = RateLimiter(frequency=RATE_HZ)
         self.active_cmd: Dict[int, float] = {}
@@ -221,7 +224,8 @@ class SingleLegRunner:
         targets = {}
         for role in command_roles:
             motor_id = self.role_to_id[role]
-            raw_delta = self.raw_delta_for_role(role, point.angle_delta_by_role[role])
+            raw_delta = self.raw_delta_for_role(
+                role, point.angle_delta_by_role[role])
             targets[motor_id] = reference_raw[motor_id] + raw_delta
 
         if not COMMAND_HIP_TRAJECTORY:
@@ -249,7 +253,8 @@ class SingleLegRunner:
             u = (i + 1) / steps
             s = 0.5 * (1.0 - math.cos(math.pi * u))
             cmd = {
-                motor_id: start_cmd[motor_id] + (target - start_cmd[motor_id]) * s
+                motor_id: start_cmd[motor_id] +
+                (target - start_cmd[motor_id]) * s
                 for motor_id, target in targets.items()
             }
             self.command_targets(cmd)
@@ -286,6 +291,7 @@ class SingleLegRunner:
         except Exception:
             pass
 
+
 def print_trajectory_summary(
     runner: SingleLegRunner,
     table: List[TrajectoryPoint],
@@ -296,7 +302,8 @@ def print_trajectory_summary(
     for role in JOINT_ROLES:
         max_angle = summary[role]["max_abs_angle_delta"]
         max_raw = max(
-            abs(runner.raw_delta_for_role(role, point.angle_delta_by_role[role]))
+            abs(runner.raw_delta_for_role(
+                role, point.angle_delta_by_role[role]))
             for point in table
         )
         limit = MAX_TRAJ_RAW_DELTA_BY_ROLE[role]
@@ -305,7 +312,8 @@ def print_trajectory_summary(
             f"max raw delta={max_raw:+.3f}, limit={limit:.3f}"
         )
         if max_raw > limit:
-            raise RuntimeError(f"{role} trajectory raw delta exceeds safety limit.")
+            raise RuntimeError(
+                f"{role} trajectory raw delta exceeds safety limit.")
 
 
 def main() -> None:
@@ -317,7 +325,8 @@ def main() -> None:
         print("single_leg_trot.py")
         print("=" * 80)
         print(f"leg={runner.leg_name}, channel={runner.channel}")
-        print(f"trajectory={TRAJECTORY_NAME}, command_hip={COMMAND_HIP_TRAJECTORY}")
+        print(
+            f"trajectory={TRAJECTORY_NAME}, command_hip={COMMAND_HIP_TRAJECTORY}")
         print("role -> CAN ID:")
         for role in JOINT_ORDER:
             print(f"  {role:5s} -> ID {runner.role_to_id[role]}")
