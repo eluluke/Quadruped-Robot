@@ -120,7 +120,7 @@ HOMING_ANGLE = homing_angle.max_contraction_angle
 
 LEG_CONFIG = {
     FRONT_LEFT: {
-        "can_channel": "can1",
+        "can_channel": "can2",
 
         HIP: {
             "can_id": 6,
