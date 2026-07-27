@@ -111,7 +111,7 @@ class homing_angle:
 
 
 # HOMING_ANGLE = homing_angle.max_contraction_angle
-HOMING_ANGLE = homing_angle.sleepy_angle_2
+HOMING_ANGLE = homing_angle.max_contraction_angle
 
 
 # ============================================================
@@ -217,8 +217,8 @@ MOTOR_SIGN = {
     },
 
     REAR_LEFT: {
-        HIP: -1.0,
-        THIGH: -1.0,
+        HIP: 1.0,
+        THIGH: 1.0,
         SHANK: -1.0,
     },
 
