@@ -54,7 +54,7 @@ LEG_ORDER = [
 # ============================================================
 
 PAW_RADIUS = 29.5
-NEUTRAL_FOOT_X_OFFSET = -23.12
+NEUTRAL_FOOT_X_OFFSET = 0.0
 
 FRONT_DESIRED_STANDING_HEIGHT = 380.0
 REAR_DESIRED_STANDING_HEIGHT = 380.0
