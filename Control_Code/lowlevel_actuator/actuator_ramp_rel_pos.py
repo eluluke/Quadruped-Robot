@@ -57,7 +57,7 @@ diagnostic_timeout_s = 0.10
 telemetry_every = 20
 full_diagnostics_every = 80
 maximum_consecutive_pdo_timeouts = 5
-maximum_tracking_error_motor_rad = 1.0
+maximum_tracking_error_motor_rad = 5.0
 tracking_error_fault_samples = 10
 
 
