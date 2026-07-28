@@ -16,7 +16,7 @@ device_id = args.id
 # -----------------------------
 kp = 0.45
 kd = 0.015
-torque_limit = 0.3
+torque_limit = 0.8
 gear_ratio = 25
 
 # Integral gains are written explicitly so a value left by an earlier test
@@ -40,7 +40,7 @@ mid_torque_limit = 0.10
 # Positive = CCW, negative = CW. The firmware position command uses
 # motor-side radians, so convert exactly once before building the target.
 # -----------------------------
-joint_delta_rad = -0.20
+joint_delta_rad = -1.0
 motor_delta_rad = joint_delta_rad * gear_ratio
 
 # -----------------------------
@@ -228,6 +228,7 @@ def abort_before_motion(message):
     finally:
         bus.stop()
     raise SystemExit(1)
+
 
 # -----------------------------
 # Startup stability settings
