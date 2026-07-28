@@ -16,6 +16,7 @@ device_id = args.id
 kp = 0.45
 kd = 0.015
 torque_limit = 0.3
+gear_ratio = 25
 
 # -----------------------------
 # Very soft startup gains
@@ -32,7 +33,7 @@ mid_torque_limit = 0.10
 # Relative motion command
 # positive = CCW, negative = CW
 # -----------------------------
-delta_theta = -5
+delta_theta = -0.5
 
 # -----------------------------
 # Motion timing
@@ -159,7 +160,7 @@ try:
             command_angle = target_angle
         else:
             s = 0.5 * (1.0 - math.cos(math.pi * t / move_duration))
-            command_angle = start_position + delta_theta * s
+            command_angle = start_position + delta_theta * s * gear_ratio
 
         measured_position, measured_velocity = bus.write_read_pdo_2(
             device_id, command_angle, 0.0
