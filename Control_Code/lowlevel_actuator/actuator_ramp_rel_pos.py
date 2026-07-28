@@ -57,6 +57,8 @@ diagnostic_timeout_s = 0.10
 telemetry_every = 20
 full_diagnostics_every = 80
 maximum_consecutive_pdo_timeouts = 5
+maximum_tracking_error_motor_rad = 1.0
+tracking_error_fault_samples = 10
 
 
 ERROR_FLAGS = (
@@ -195,8 +197,8 @@ def read_runtime_diagnostics():
     mode = read_u32(recoil.Parameter.MODE)
     error = read_u32(recoil.Parameter.ERROR)
     bus_voltage = read_f32(recoil.Parameter.POWERSTAGE_BUS_VOLTAGE_MEASURED)
-    torque_target = read_f32(
-        recoil.Parameter.POSITION_CONTROLLER_TORQUE_TARGET
+    torque_setpoint = read_f32(
+        recoil.Parameter.POSITION_CONTROLLER_TORQUE_SETPOINT
     )
     torque_measured = read_f32(
         recoil.Parameter.POSITION_CONTROLLER_TORQUE_MEASURED
@@ -210,7 +212,7 @@ def read_runtime_diagnostics():
         f"mode={mode_text}, "
         f"error={format_error(error)}, "
         f"vbus={format_value(bus_voltage, 2)}V, "
-        f"tq_target={format_value(torque_target, 3)}Nm, "
+        f"tq_setpoint={format_value(torque_setpoint, 3)}Nm, "
         f"tq_measured={format_value(torque_measured, 3)}Nm, "
         f"iq_target={format_value(iq_target, 2)}A, "
         f"iq_measured={format_value(iq_measured, 2)}A"
@@ -349,6 +351,7 @@ print("Starting smooth move...")
 t0 = time.perf_counter()
 counter = 0
 consecutive_pdo_timeouts = 0
+tracking_error_count = 0
 
 try:
     while True:
@@ -367,8 +370,20 @@ try:
         counter += 1
         if measured_position is not None and measured_velocity is not None:
             consecutive_pdo_timeouts = 0
+            position_error = command_angle - measured_position
+            if abs(position_error) > maximum_tracking_error_motor_rad:
+                tracking_error_count += 1
+            else:
+                tracking_error_count = 0
+
+            if tracking_error_count >= tracking_error_fault_samples:
+                raise RuntimeError(
+                    "Position error remained above "
+                    f"{maximum_tracking_error_motor_rad:.2f} motor rad "
+                    f"for {tracking_error_fault_samples} samples."
+                )
+
             if counter % telemetry_every == 0:
-                position_error = command_angle - measured_position
                 print(
                     f"Cmd: {command_angle:.3f} \t"
                     f"Measured: {measured_position:.3f} \t"
