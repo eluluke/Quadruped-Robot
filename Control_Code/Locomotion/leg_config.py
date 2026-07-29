@@ -53,11 +53,11 @@ LEG_ORDER = [
 # point, so commanded leg height is desired body height minus paw radius.
 # ============================================================
 
-PAW_RADIUS = 29.5
-NEUTRAL_FOOT_X_OFFSET = -30.0
+PAW_RADIUS = 30.0
+NEUTRAL_FOOT_X_OFFSET = -40.0
 
-FRONT_DESIRED_STANDING_HEIGHT = 360.0
-REAR_DESIRED_STANDING_HEIGHT = 390.0
+FRONT_DESIRED_STANDING_HEIGHT = 370.0
+REAR_DESIRED_STANDING_HEIGHT = 370.0
 
 NEUTRAL_X = NEUTRAL_FOOT_X_OFFSET
 NEUTRAL_Y = 84.26
@@ -105,8 +105,8 @@ class homing_angle:
     sleepy_angle_2 = {
         # belly not touching ground, no hip move;
         HIP: 0.00,
-        THIGH: 1.11367455104935,
-        SHANK: 2.68814970801254,
+        THIGH: 1.112,
+        SHANK: 2.705,
     }
 
 
