@@ -30,12 +30,20 @@ from leg_config import (
 )
 from leg_controller import LegController
 from quadruped_main_state import STOP_REQUESTED_REF
-from quadruped_utils import limit_rate, smoothstep, wait_for_terminal_command
+from quadruped_utils import (
+    get_terminal_command,
+    limit_rate,
+    smoothstep,
+    start_terminal_input_thread,
+    wait_for_terminal_command,
+)
 from trajectory_config import (
     JOINT_ROLES,
     ROLE_HIP,
     ROLE_SHANK,
     ROLE_THIGH,
+    TRAJ_REGULAR_PLANAR,
+    TRAJ_VERTICAL_STEP,
     TRAJECTORY_CONFIG,
     TRAJECTORY_NAME,
     TRAJECTORY_RATE_HZ,
@@ -456,17 +464,64 @@ class RobotController:
 
             rate.sleep()
 
+    def confirm_standing_ready(self) -> bool:
+        """
+        Hold neutral while waiting for a post-stand safety confirmation.
+
+        Keeping the command loop alive prevents a controller watchdog timeout
+        while the operator inspects the standing pose.
+        """
+        print("\nStanding safety check:")
+        print("  Type y if the robot is standing well and may begin stepping.")
+        print("  Type q to abort and shut down.")
+        print("Command: ", end="", flush=True)
+
+        start_terminal_input_thread()
+        for leg in self.control_legs():
+            leg.set_all_gains(HOLD_GAINS)
+
+        rate = RateLimiter(frequency=RATE_HZ)
+        while not STOP_REQUESTED_REF["stop"]:
+            command = get_terminal_command()
+            if command is not None:
+                command = command.strip().lower()
+                if command in ("y", "yes"):
+                    print(command)
+                    return True
+                if command in ("q", "quit"):
+                    print(command)
+                    print("Standing check aborted by operator.")
+                    return False
+                print(command)
+                print("Type y to continue or q to abort.")
+                print("Command: ", end="", flush=True)
+
+            for leg in self.control_legs():
+                leg.command_all_active()
+
+            rate.sleep()
+
+        return False
+
     # ========================================================
     # Trajectory / trot
     # ========================================================
 
-    def build_trajectory_tables(self) -> Dict[str, List[TrajectoryPoint]]:
-        print("\nBuilding per-leg trajectory tables from trajectory_config.py...")
+    def build_trajectory_tables(
+        self,
+        trajectory_name: str = TRAJECTORY_NAME,
+        *,
+        store: bool = True,
+    ) -> Dict[str, List[TrajectoryPoint]]:
+        print(
+            "\nBuilding per-leg trajectory tables for "
+            f"{trajectory_name!r}..."
+        )
         tables = {}
 
         for name, leg in self.control_items():
             cfg = get_trajectory_config_for_leg(name)
-            table = build_angle_delta_table(TRAJECTORY_NAME, cfg)
+            table = build_angle_delta_table(trajectory_name, cfg)
             tables[name] = table
             summary = summarize_angle_delta_table(table)
 
@@ -498,7 +553,8 @@ class RobotController:
                         f"{name} {role} trajectory delta too large."
                     )
 
-        self.trajectory_tables = tables
+        if store:
+            self.trajectory_tables = tables
         return tables
 
     def trajectory_start_phase(self) -> float:
@@ -632,6 +688,186 @@ class RobotController:
                 if counter % TROT_PRINT_EVERY == 0:
                     print(
                         f"LY_raw={raw_ly:+.2f} LY={ly_filtered:+.2f} "
+                        f"phase_speed={phase_speed:+.3f} "
+                        f"global_phase={global_phase:.3f}"
+                    )
+                    print(
+                        " | ".join(
+                            self.legs[leg_name].telemetry_line(RUN_GAINS)
+                            for leg_name in (REAR_LEFT, REAR_RIGHT)
+                        )
+                    )
+
+                rate.sleep()
+
+        finally:
+            try:
+                controller.close()
+            except Exception:
+                pass
+
+    def run_vertical_idle_xbox_trot(
+        self,
+        auto_vertical_phase_speed: float = 0.5,
+        trajectory_blend_rate: float = 2.0,
+        switch_threshold: float = 0.02,
+    ) -> None:
+        """
+        Step vertically at idle and use the Xbox stick to request walking.
+
+        With the left stick centered, the robot follows the vertical stepping
+        table automatically. Moving left-stick Y outside the switch threshold
+        blends to the regular planar trajectory. Stick magnitude controls gait
+        phase speed and stick sign controls forward or reverse playback.
+        """
+        if auto_vertical_phase_speed <= 0.0:
+            raise ValueError("auto_vertical_phase_speed must be positive.")
+        if trajectory_blend_rate <= 0.0:
+            raise ValueError("trajectory_blend_rate must be positive.")
+        if switch_threshold < 0.0:
+            raise ValueError("switch_threshold must not be negative.")
+
+        vertical_tables = self.build_trajectory_tables(
+            TRAJ_VERTICAL_STEP,
+            store=False,
+        )
+        planar_tables = self.build_trajectory_tables(
+            TRAJ_REGULAR_PLANAR,
+            store=False,
+        )
+
+        # The vertical trajectory begins at the neutral standing reference.
+        self.trajectory_tables = vertical_tables
+        controller = XboxController(deadzone=JOYSTICK_DEADBAND)
+        try:
+            global_phase = self.move_all_to_start_phase()
+        except BaseException:
+            try:
+                controller.close()
+            except Exception:
+                pass
+            raise
+
+        print("\nStarting automatic vertical stepping.")
+        print(
+            "Move Xbox left-stick Y to blend into cycloidal walking. "
+            "Stick magnitude controls speed; direction controls "
+            "forward/reverse."
+        )
+        print("Release the stick to return to vertical stepping.")
+        print("Press Ctrl+C for emergency shutdown.")
+
+        ly_filtered = 0.0
+        phase_speed = auto_vertical_phase_speed
+        planar_blend = 0.0
+        walking_requested = False
+        last_time = time.time()
+        counter = 0
+        rate = RateLimiter(frequency=RATE_HZ)
+
+        try:
+            while not STOP_REQUESTED_REF["stop"]:
+                now = time.time()
+                wall_dt = now - last_time
+                last_time = now
+
+                if wall_dt <= 0.0 or wall_dt > 0.10:
+                    wall_dt = CONTROL_DT
+                dt = min(wall_dt, CONTROL_DT)
+
+                state = controller.read()
+                raw_ly = max(-1.0, min(1.0, float(state.left_y)))
+                ly = apply_deadband(raw_ly, JOYSTICK_DEADBAND)
+                ly_filtered = (
+                    (1.0 - JOYSTICK_FILTER_ALPHA) * ly_filtered
+                    + JOYSTICK_FILTER_ALPHA * ly
+                )
+
+                if not ALLOW_REVERSE and ly_filtered < 0.0:
+                    ly_filtered = 0.0
+
+                previous_mode = walking_requested
+                if walking_requested:
+                    walking_requested = (
+                        abs(ly_filtered) > 0.5 * switch_threshold
+                    )
+                else:
+                    walking_requested = (
+                        abs(ly_filtered) > switch_threshold
+                    )
+                if walking_requested != previous_mode:
+                    mode_name = (
+                        "cycloidal walking"
+                        if walking_requested
+                        else "vertical stepping"
+                    )
+                    print(f"\nTrajectory mode: {mode_name}")
+
+                blend_target = 1.0 if walking_requested else 0.0
+                planar_blend = limit_rate(
+                    planar_blend,
+                    blend_target,
+                    trajectory_blend_rate * dt,
+                )
+
+                target_phase_speed = (
+                    MAX_PHASE_SPEED * ly_filtered
+                    if walking_requested
+                    else auto_vertical_phase_speed
+                )
+                phase_speed = limit_rate(
+                    phase_speed,
+                    target_phase_speed,
+                    PHASE_ACCEL_LIMIT * dt,
+                )
+                global_phase = (
+                    global_phase + phase_speed * dt
+                ) % 1.0
+
+                for name, leg in self.control_items():
+                    leg_phase = self.gait.leg_phase(name, global_phase)
+                    vertical_point = sample_angle_delta_table(
+                        vertical_tables[name],
+                        leg_phase,
+                    )
+                    planar_point = sample_angle_delta_table(
+                        planar_tables[name],
+                        leg_phase,
+                    )
+                    vertical_targets = leg.build_trajectory_targets(
+                        vertical_point,
+                        COMMAND_ROLES,
+                        COMMAND_HIP_TRAJECTORY,
+                    )
+                    planar_targets = leg.build_trajectory_targets(
+                        planar_point,
+                        COMMAND_ROLES,
+                        COMMAND_HIP_TRAJECTORY,
+                    )
+                    blended_targets = {
+                        motor_id: vertical_target
+                        + planar_blend
+                        * (
+                            planar_targets[motor_id]
+                            - vertical_target
+                        )
+                        for motor_id, vertical_target
+                        in vertical_targets.items()
+                    }
+                    leg.command_targets(blended_targets)
+
+                counter += 1
+                if counter % TROT_PRINT_EVERY == 0:
+                    mode_name = (
+                        "cycloidal"
+                        if walking_requested
+                        else "vertical"
+                    )
+                    print(
+                        f"mode={mode_name} "
+                        f"LY_raw={raw_ly:+.2f} "
+                        f"LY={ly_filtered:+.2f} "
+                        f"blend={planar_blend:.2f} "
                         f"phase_speed={phase_speed:+.3f} "
                         f"global_phase={global_phase:.3f}"
                     )

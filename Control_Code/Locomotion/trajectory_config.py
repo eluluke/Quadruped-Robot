@@ -105,10 +105,16 @@ TRAJECTORY_NAME = TRAJ_REGULAR_PLANAR
 # TRAJECTORY_NAME = TRAJ_VERTICAL_STEP
 TRAJECTORY_RATE_HZ = 80.0
 
+_DEFAULT_NEUTRAL_FOOT_POSITION = get_neutral_standing_foot_position(
+    FRONT_LEFT
+)
+
 TRAJECTORY_CONFIG = TrajectoryConfig(
-    x_center=0.0,
-    y_center=84.26,
-    z_ground=380.0,
+    # Default values come from leg_config.py. The per-leg helper below
+    # replaces them again in case front and rear neutral heights differ.
+    x_center=_DEFAULT_NEUTRAL_FOOT_POSITION[0],
+    y_center=_DEFAULT_NEUTRAL_FOOT_POSITION[1],
+    z_ground=_DEFAULT_NEUTRAL_FOOT_POSITION[2],
 
     # Used by TRAJ_REGULAR_PLANAR.
     step_length=50.0,
@@ -128,7 +134,7 @@ TRAJECTORY_CONFIG = TrajectoryConfig(
     heading_deg=45.0,
 
     # Used by TRAJ_VERTICAL_STEP for marching in place.
-    vertical_step_height=50.0,
+    vertical_step_height=40.0,
 )
 
 LEG_TRAJECTORY_DIRECTION = {
