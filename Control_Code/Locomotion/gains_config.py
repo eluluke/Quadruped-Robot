@@ -89,10 +89,10 @@ MOVE_GAINS = GainSet(
         REAR_RIGHT: {HIP: 0.20, THIGH: 0.20, SHANK: 0.20},
     },
     leg_kd={
-        FRONT_LEFT: {HIP: 0.05, THIGH: 0.05, SHANK: 0.05},
-        FRONT_RIGHT: {HIP: 0.05, THIGH: 0.05, SHANK: 0.05},
-        REAR_LEFT: {HIP: 0.05, THIGH: 0.05, SHANK: 0.05},
-        REAR_RIGHT: {HIP: 0.05, THIGH: 0.05, SHANK: 0.05},
+        FRONT_LEFT: {HIP: 0.005, THIGH: 0.005, SHANK: 0.005},
+        FRONT_RIGHT: {HIP: 0.005, THIGH: 0.005, SHANK: 0.005},
+        REAR_LEFT: {HIP: 0.005, THIGH: 0.005, SHANK: 0.005},
+        REAR_RIGHT: {HIP: 0.005, THIGH: 0.005, SHANK: 0.005},
     },
     leg_torque={
         FRONT_LEFT: {HIP: 0.80, THIGH: 0.80, SHANK: 0.80},
@@ -110,10 +110,10 @@ RUN_GAINS = GainSet(
         REAR_RIGHT: {HIP: 0.20, THIGH: 0.20, SHANK: 0.20},
     },
     leg_kd={
-        FRONT_LEFT: {HIP: 0.05, THIGH: 0.05, SHANK: 0.05},
-        FRONT_RIGHT: {HIP: 0.05, THIGH: 0.05, SHANK: 0.05},
-        REAR_LEFT: {HIP: 0.05, THIGH: 0.05, SHANK: 0.05},
-        REAR_RIGHT: {HIP: 0.05, THIGH: 0.05, SHANK: 0.05},
+        FRONT_LEFT: {HIP: 0.005, THIGH: 0.005, SHANK: 0.005},
+        FRONT_RIGHT: {HIP: 0.005, THIGH: 0.005, SHANK: 0.005},
+        REAR_LEFT: {HIP: 0.005, THIGH: 0.005, SHANK: 0.005},
+        REAR_RIGHT: {HIP: 0.005, THIGH: 0.005, SHANK: 0.005},
     },
     leg_torque={
         FRONT_LEFT: {HIP: 0.80, THIGH: 0.80, SHANK: 0.80},
@@ -131,10 +131,10 @@ HOLD_GAINS = GainSet(
         REAR_RIGHT: {HIP: 0.20, THIGH: 0.20, SHANK: 0.20},
     },
     leg_kd={
-        FRONT_LEFT: {HIP: 0.05, THIGH: 0.05, SHANK: 0.05},
-        FRONT_RIGHT: {HIP: 0.05, THIGH: 0.05, SHANK: 0.05},
-        REAR_LEFT: {HIP: 0.05, THIGH: 0.05, SHANK: 0.05},
-        REAR_RIGHT: {HIP: 0.05, THIGH: 0.05, SHANK: 0.05},
+        FRONT_LEFT: {HIP: 0.005, THIGH: 0.005, SHANK: 0.005},
+        FRONT_RIGHT: {HIP: 0.005, THIGH: 0.005, SHANK: 0.005},
+        REAR_LEFT: {HIP: 0.005, THIGH: 0.005, SHANK: 0.005},
+        REAR_RIGHT: {HIP: 0.005, THIGH: 0.005, SHANK: 0.005},
     },
     leg_torque={
         FRONT_LEFT: {HIP: 0.80, THIGH: 0.80, SHANK: 0.80},
