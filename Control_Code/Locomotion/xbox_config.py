@@ -34,13 +34,13 @@ AXIS_RIGHT_TRIGGER = 4  # raw axis: -1.0 released, +1.0 pressed
 # ============================================================
 
 JOYSTICK_DEADBAND = 0.05
-JOYSTICK_FILTER_ALPHA = 0.65
+JOYSTICK_FILTER_ALPHA = 0.30
 
 # Full stick gives this many gait cycles per second.
-MAX_PHASE_SPEED = 0.80
+MAX_PHASE_SPEED = 0.50
 
 # Phase speed acceleration limit in cycles/s^2.
-PHASE_ACCEL_LIMIT = 4.0
+PHASE_ACCEL_LIMIT = 1.0
 
 ALLOW_REVERSE = True
 FREEZE_PHASE_WHEN_STOPPED = True

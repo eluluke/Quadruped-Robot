@@ -111,8 +111,8 @@ TRAJECTORY_CONFIG = TrajectoryConfig(
     z_ground=380.0,
 
     # Used by TRAJ_REGULAR_PLANAR.
-    step_length=60.0,
-    step_height=80.0,
+    step_length=40.0,
+    step_height=50.0,
     step_sideways=0.0,
 
     # Fraction of one cycle spent on the ground.
@@ -128,7 +128,7 @@ TRAJECTORY_CONFIG = TrajectoryConfig(
     heading_deg=45.0,
 
     # Used by TRAJ_VERTICAL_STEP for marching in place.
-    vertical_step_height=85.0,
+    vertical_step_height=50.0,
 )
 
 LEG_TRAJECTORY_DIRECTION = {

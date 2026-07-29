@@ -122,7 +122,11 @@ class SingleLegRunner:
     ) -> None:
         self.bus.write_position_kp(motor_id, kp)
         time.sleep(0.004)
+        self.bus.write_position_ki(motor_id, 0.0)
+        time.sleep(0.004)
         self.bus.write_position_kd(motor_id, kd)
+        time.sleep(0.004)
+        self.bus.write_velocity_ki(motor_id, 0.0)
         time.sleep(0.004)
         self.bus.write_torque_limit(motor_id, torque_limit)
         time.sleep(0.004)
