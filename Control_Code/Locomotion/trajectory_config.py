@@ -118,7 +118,7 @@ TRAJECTORY_CONFIG = TrajectoryConfig(
 
     # Used by TRAJ_REGULAR_PLANAR.
     step_length=50.0,
-    step_height=80.0,
+    step_height=70.0,
     step_sideways=0.0,
 
     # Fraction of one cycle spent on the ground.
