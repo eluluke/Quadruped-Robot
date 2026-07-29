@@ -105,8 +105,8 @@ class homing_angle:
     sleepy_angle_2 = {
         # belly not touching ground, no hip move;
         HIP: 0.00,
-        THIGH: 1.1596,
-        SHANK: 2.7042,
+        THIGH: 1.11367455104935,
+        SHANK: 2.68814970801254,
     }
 
 
