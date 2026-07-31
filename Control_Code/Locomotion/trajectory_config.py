@@ -117,8 +117,8 @@ TRAJECTORY_CONFIG = TrajectoryConfig(
     z_ground=_DEFAULT_NEUTRAL_FOOT_POSITION[2],
 
     # Used by TRAJ_REGULAR_PLANAR.
-    step_length=60.0,
-    step_height=80.0,
+    step_length=80.0,
+    step_height=60.0,
     step_sideways=0.0,
 
     # Fraction of one cycle spent on the ground.
