@@ -139,19 +139,19 @@ TRAJECTORY_CONFIG = TrajectoryConfig(
 
 LEG_TRAJECTORY_DIRECTION = {
     FRONT_LEFT: {
-        "x_forward_sign": 1.0,
+        "x_forward_sign": -1.0,
         "z_lift_sign": -1.0,
     },
     FRONT_RIGHT: {
-        "x_forward_sign": 1.0,
+        "x_forward_sign": -1.0,
         "z_lift_sign": -1.0,
     },
     REAR_LEFT: {
-        "x_forward_sign": 1.0,
+        "x_forward_sign": -1.0,
         "z_lift_sign": -1.0,
     },
     REAR_RIGHT: {
-        "x_forward_sign": 1.0,
+        "x_forward_sign": -1.0,
         "z_lift_sign": -1.0,
     },
 }
