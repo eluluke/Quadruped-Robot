@@ -118,11 +118,11 @@ TRAJECTORY_CONFIG = TrajectoryConfig(
 
     # Used by TRAJ_REGULAR_PLANAR.
     step_length=80.0,
-    step_height=90.0,
+    step_height=80.0,
     step_sideways=0.0,
 
     # Fraction of one cycle spent on the ground.
-    stance_ratio=0.80,
+    stance_ratio=0.50,
 
     # Trajectory table resolution, not Xbox playback speed.
     table_cycle_time=0.80,
@@ -131,7 +131,7 @@ TRAJECTORY_CONFIG = TrajectoryConfig(
     x_forward_sign=1.0,
     y_sideways_sign=1.0,
     z_lift_sign=-1.0,
-    heading_deg=45.0,
+    heading_deg=0.0,
 
     # Used by TRAJ_VERTICAL_STEP for marching in place.
     vertical_step_height=40.0,
