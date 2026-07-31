@@ -117,12 +117,12 @@ TRAJECTORY_CONFIG = TrajectoryConfig(
     z_ground=_DEFAULT_NEUTRAL_FOOT_POSITION[2],
 
     # Used by TRAJ_REGULAR_PLANAR.
-    step_length=80.0,
+    step_length=90.0,
     step_height=80.0,
     step_sideways=0.0,
 
     # Fraction of one cycle spent on the ground.
-    stance_ratio=0.70,
+    stance_ratio=0.60,
 
     # Trajectory table resolution, not Xbox playback speed.
     table_cycle_time=0.80,
