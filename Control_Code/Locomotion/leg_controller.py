@@ -383,6 +383,9 @@ class LegController:
         for motor_id in self.motor_ids:
             self.set_mode_with_spacing(motor_id, recoil.Mode.POSITION)
 
+        # Establish the measured pose as the controller target before any
+        # nonzero holding gains are applied by the whole-robot controller.
+        self.command_all_active()
         self.state = "standing"
 
     # ========================================================

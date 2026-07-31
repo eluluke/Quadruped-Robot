@@ -216,6 +216,29 @@ class RobotController:
             print(f"{leg_name}:")
             leg.record_homing_pose_only()
 
+    def hold_current_pose_as_neutral(self) -> None:
+        """Use every leg's measured pose as its on-stand neutral reference."""
+        print("\nRecording and holding all current poses as neutral...")
+
+        for leg_name, leg in self.control_items():
+            print()
+            print(f"{leg_name}:")
+            leg.hold_current_pose_as_neutral()
+
+        for leg in self.control_legs():
+            leg.set_all_gains(HOLD_GAINS)
+
+        rate = RateLimiter(frequency=RATE_HZ)
+        steps = max(1, int(PRE_STAND_ARM_HOLD_TIME * RATE_HZ))
+        for _ in range(steps):
+            if STOP_REQUESTED_REF["stop"]:
+                return
+            for leg in self.control_legs():
+                leg.command_all_active()
+            rate.sleep()
+
+        print("\nAll legs are holding their measured neutral references.")
+
     def neutral_tracking_error(
         self,
         neutral_targets: Dict[str, Dict[int, float]],
@@ -616,7 +639,11 @@ class RobotController:
 
         return global_phase
 
-    def run_xbox_trot(self) -> None:
+    def run_xbox_trot(
+        self,
+        *,
+        wait_for_command_before_start: bool = False,
+    ) -> None:
         if self.trajectory_tables is None:
             self.build_trajectory_tables()
 
@@ -624,6 +651,30 @@ class RobotController:
             raise RuntimeError("Trajectory tables failed to build.")
 
         controller = XboxController(deadzone=JOYSTICK_DEADBAND)
+
+        if wait_for_command_before_start:
+            print(
+                "\nHolding the measured pose. Move Xbox left-stick Y "
+                "to start the trajectory."
+            )
+            wait_rate = RateLimiter(frequency=RATE_HZ)
+            while not STOP_REQUESTED_REF["stop"]:
+                state = controller.read()
+                left_y = max(-1.0, min(1.0, float(state.left_y)))
+
+                for leg in self.control_legs():
+                    leg.command_all_active()
+
+                if abs(left_y) > 1e-5:
+                    print("Xbox trajectory command detected.")
+                    break
+
+                wait_rate.sleep()
+
+            if STOP_REQUESTED_REF["stop"]:
+                controller.close()
+                return
+
         global_phase = self.move_all_to_start_phase()
 
         print("\nStarting Xbox-controlled trot.")
