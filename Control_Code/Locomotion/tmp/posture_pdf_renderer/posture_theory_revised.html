@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Geometric Posture Correction for a Quadruped Robot</title>
+  <link rel="stylesheet" href="./katex-dist/katex.min.css">
+  <style>
+    @page { size: Letter; margin: 0; }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; background: #dfe5e9; }
+    body {
+      color: #17212b;
+      font-family: Calibri, Aptos, "Segoe UI", Arial, sans-serif;
+      font-size: 10.65pt;
+      line-height: 1.38;
+      letter-spacing: 0;
+    }
+    .page {
+      position: relative;
+      width: 8.5in;
+      height: 11in;
+      margin: 0 auto 12px;
+      padding: 0.72in 0.82in 0.66in;
+      overflow: hidden;
+      background: #fff;
+      page-break-after: always;
+    }
+    .page:last-child { page-break-after: auto; }
+    .page.compact {
+      font-size: 10.15pt;
+      line-height: 1.32;
+    }
+    .page.compact h2 { margin-top: 0.15in; }
+    .page.compact .subtitle { margin-bottom: 0.2in; }
+    .page.compact .eqrow { margin-top: 0.055in; margin-bottom: 0.065in; }
+    .page.compact .callout { margin-top: 0.09in; margin-bottom: 0.09in; }
+    .running-head {
+      position: absolute;
+      top: 0.34in;
+      left: 0.82in;
+      right: 0.82in;
+      padding-bottom: 0.08in;
+      border-bottom: 1px solid #c9d6df;
+      color: #5b6773;
+      font-size: 7.6pt;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+    .footer {
+      position: absolute;
+      left: 0.82in;
+      right: 0.82in;
+      bottom: 0.27in;
+      display: flex;
+      justify-content: space-between;
+      color: #5b6773;
+      font-size: 7.6pt;
+    }
+    .body { margin-top: 0.04in; }
+    .chapter-label {
+      display: inline-block;
+      margin-right: 0.12in;
+      color: #b97800;
+      font-size: 8.6pt;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+    h1 {
+      margin: 0 0 0.06in;
+      color: #2e74b5;
+      font-size: 20.5pt;
+      line-height: 1.05;
+      font-weight: 700;
+    }
+    .subtitle {
+      margin: 0 0 0.25in;
+      color: #5b6773;
+      font-size: 11.4pt;
+      font-style: italic;
+    }
+    h2 {
+      margin: 0.19in 0 0.08in;
+      color: #2e74b5;
+      font-size: 14.5pt;
+      line-height: 1.15;
+    }
+    h3 {
+      margin: 0.14in 0 0.05in;
+      color: #17324d;
+      font-size: 11.4pt;
+      line-height: 1.2;
+    }
+    p { margin: 0 0 0.095in; }
+    ul, ol { margin: 0.04in 0 0.11in 0.24in; padding: 0; }
+    li { margin: 0 0 0.045in; }
+    .lead { font-size: 11.3pt; line-height: 1.44; }
+    .small { font-size: 9.25pt; }
+    .tiny { font-size: 8.1pt; line-height: 1.3; }
+    .muted { color: #5b6773; }
+    .accent { color: #00859a; font-weight: 700; }
+    .gold { color: #b97800; font-weight: 700; }
+    .callout {
+      margin: 0.13in 0;
+      padding: 0.105in 0.13in;
+      border-left: 3px solid #2e74b5;
+      background: #eaf3f8;
+    }
+    .callout.teal { border-left-color: #00859a; background: #e8f5f5; }
+    .callout.gold { border-left-color: #b97800; background: #fbf3e5; color: #17212b; }
+    .callout strong { color: #2e74b5; }
+    .callout.teal strong { color: #00859a; }
+    .callout.gold strong { color: #9c6500; }
+    .eqrow {
+      position: relative;
+      min-height: 0.35in;
+      margin: 0.08in 0 0.09in;
+      padding: 0.02in 0.42in 0.02in 0.18in;
+      text-align: center;
+    }
+    .eqrow.shaded { background: #f3f7fa; border: 1px solid #d5e0e7; }
+    .eqno {
+      position: absolute;
+      top: 50%;
+      right: 0.05in;
+      transform: translateY(-50%);
+      color: #657585;
+      font-size: 8.8pt;
+    }
+    .math.display { font-size: 0.97em; }
+    .math.inline { white-space: nowrap; }
+    .katex-display { margin: 0.04em 0 !important; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 0.08in 0 0.13in;
+      table-layout: fixed;
+    }
+    th {
+      padding: 0.065in 0.08in;
+      background: #17324d;
+      color: #fff;
+      text-align: left;
+      font-size: 9pt;
+    }
+    td {
+      padding: 0.055in 0.08in;
+      border: 1px solid #cbd8e0;
+      vertical-align: top;
+      font-size: 8.9pt;
+      line-height: 1.3;
+    }
+    tr:nth-child(even) td { background: #f1f6f8; }
+    .symbol-table th:first-child, .symbol-table td:first-child { width: 28%; }
+    .check-table th:first-child, .check-table td:first-child { width: 25%; }
+    .flow {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 0.11in;
+      align-items: stretch;
+      margin: 0.17in 0 0.09in;
+    }
+    .flow .box {
+      position: relative;
+      min-height: 0.62in;
+      padding: 0.08in 0.05in;
+      border: 1.5px solid #17324d;
+      border-radius: 5px;
+      background: #eef4fa;
+      text-align: center;
+      font-size: 7.3pt;
+      line-height: 1.22;
+    }
+    .flow .box:nth-child(3), .flow .box:nth-child(6) { background: #e8f5f5; }
+    .flow .box:nth-child(4) { background: #fbf3e5; }
+    .flow .box:not(:last-child)::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      right: -0.105in;
+      width: 0.09in;
+      border-top: 2px solid #2e74b5;
+    }
+    .flow strong { display: block; margin-bottom: 0.025in; color: #17324d; }
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 0.18in; }
+    .three-col { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.13in; }
+    .mini-card {
+      padding: 0.1in 0.11in;
+      border: 1px solid #d2dde4;
+      border-top: 3px solid #2e74b5;
+      background: #f8fafb;
+    }
+    .mini-card h3 { margin-top: 0; color: #2e74b5; }
+    .map {
+      display: grid;
+      grid-template-columns: 1fr 0.42fr 1fr 0.42fr 1fr;
+      align-items: center;
+      margin: 0.17in 0;
+      text-align: center;
+    }
+    .map .node {
+      padding: 0.12in 0.07in;
+      border: 1.5px solid #17324d;
+      background: #f3f7fa;
+      border-radius: 5px;
+    }
+    .map .arrow { color: #2e74b5; font-size: 16pt; font-weight: 700; }
+    .algo {
+      display: grid;
+      grid-template-columns: 0.32in 1fr;
+      gap: 0.045in 0.08in;
+      margin: 0.07in 0 0.12in;
+    }
+    .algo .n {
+      width: 0.27in;
+      height: 0.27in;
+      border-radius: 50%;
+      background: #2e74b5;
+      color: #fff;
+      text-align: center;
+      line-height: 0.27in;
+      font-size: 8pt;
+      font-weight: 700;
+    }
+    .algo .step { padding-top: 0.015in; }
+    .cover {
+      padding: 0.52in 0.9in 0.55in;
+      text-align: center;
+    }
+    .cover .topline {
+      color: #5b6773;
+      font-size: 8.2pt;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+    .cover .eyebrow {
+      margin-top: 1.12in;
+      color: #b97800;
+      font-size: 10.5pt;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+    .cover h1 {
+      margin: 0.38in auto 0.22in;
+      color: #17324d;
+      font-size: 30pt;
+      line-height: 1.17;
+      max-width: 6.6in;
+    }
+    .cover .cover-sub {
+      color: #00859a;
+      font-size: 14pt;
+      line-height: 1.35;
+    }
+    .cover .cover-desc {
+      margin: 0.48in auto 0;
+      max-width: 6.25in;
+      color: #5b6773;
+      font-size: 11pt;
+      font-style: italic;
+      line-height: 1.45;
+    }
+    .cover .prepared {
+      margin-top: 1.55in;
+      color: #17324d;
+      font-weight: 700;
+    }
+    .cover .date { margin-top: 0.08in; color: #5b6773; font-size: 9pt; }
+    .cover .footer { justify-content: flex-end; }
+    .references { font-size: 8.35pt; line-height: 1.3; }
+    .references p { padding-left: 0.22in; text-indent: -0.22in; margin-bottom: 0.09in; }
+    .nowrap { white-space: nowrap; }
+    code {
+      font-family: Consolas, "Courier New", monospace;
+      font-size: 8.6pt;
+      background: #edf2f5;
+      padding: 0.01in 0.025in;
+      border-radius: 2px;
+    }
+    .codeblock {
+      margin: 0.08in 0 0.12in;
+      padding: 0.11in 0.13in;
+      border: 1px solid #ccd8df;
+      background: #f4f7f9;
+      color: #17324d;
+      font: 8.15pt/1.36 Consolas, "Courier New", monospace;
+      white-space: pre-wrap;
+    }
+    a { color: #2e74b5; text-decoration: none; }
+    @media print {
+      html, body { background: #fff; }
+      .page { margin: 0; }
+    }
+  </style>
+</head>
+<body>
+
+<section class="page cover">
+  <div class="topline">Geometric control and kinematics for quadruped robots</div>
+  <div class="eyebrow">Mathematical Guide</div>
+  <h1>Geometric Posture Correction<br>for a Quadruped Robot</h1>
+  <div class="cover-sub">Lie groups, quaternion error, angular-rate feedback,<br>stance-contact kinematics, and joint-space realization</div>
+  <div class="cover-desc">A rigorous derivation of the posture-correction layer, with explicit frame conventions, exact nonlinear geometry, local stability results, contact-dynamics limits, and a staged implementation contract.</div>
+  <div class="prepared">Prepared for the LittleMooMoo Quadruped Robot Project</div>
+  <div class="date">Revised 18 August 2026</div>
+  <div class="footer"><span>1</span></div>
+</section>
+
+<section class="page">
+  <div class="running-head">Geometric posture correction for a quadruped robot</div>
+  <div class="body">
+    <span class="chapter-label">Overview</span>
+    <h1>Purpose, scope, and central result</h1>
+    <p class="subtitle">What the controller proves, and what it deliberately does not claim</p>
+    <p class="lead">This note derives a <strong>kinematic posture-correction layer</strong>. An IMU attitude and gyroscope measurement are converted into a geometric attitude error and an angular-rate error. A virtual PD law produces a bounded corrective body twist. For each stance foot, rigid-contact kinematics determine the relative foot velocity compatible with that body motion. The leg Jacobian then maps the correction into joint motion.</p>
+
+    <div class="flow">
+      <div class="box"><strong>IMU state</strong>attitude and gyro</div>
+      <div class="box"><strong>Group error</strong>relative rotation</div>
+      <div class="box"><strong>Lie logarithm</strong>rotation vector</div>
+      <div class="box"><strong>Virtual PD</strong>bounded body twist</div>
+      <div class="box"><strong>Contact map</strong>stance-foot velocity</div>
+      <div class="box"><strong>Leg map</strong>Jacobian and joints</div>
+    </div>
+
+    <div class="callout teal">
+      <strong>Central kinematic identity.</strong> For stance foot <span class="math inline">i</span>, with body-frame contact vector <span class="math inline">r_i^B</span> and commanded body twist <span class="math inline">(v_c^B,\omega_c^B)</span>, stationary no-slip contact requires
+      <div class="eqrow"><div class="math display" data-display="true">\dot r_{i,c}^{B}=-v_c^{B}-\omega_c^{B}\times r_i^{B}.</div><div class="eqno">(1)</div></div>
+      For pure attitude correction, set <span class="math inline">v_c^B=0</span>.
+    </div>
+
+    <h2>Model boundary</h2>
+    <p>Equation (1) is exact at the velocity-kinematics level under the stated frame and contact assumptions. It does <strong>not</strong> prove that a position-controlled floating robot will realize a requested body angular acceleration. That stronger statement requires a model of ground-reaction forces, friction, contact switching, body inertia, actuator limits, compliance, and servo dynamics.</p>
+
+    <h2>Standing assumptions</h2>
+    <div class="two-col small">
+      <ul>
+        <li>All physical frames are right-handed.</li>
+        <li><span class="math inline">R_{WB}</span> maps body coordinates into world coordinates.</li>
+        <li>Quaternion and gyro conventions are mutually consistent.</li>
+        <li>The fixed IMU-to-body mounting rotation is known.</li>
+      </ul>
+      <ul>
+        <li>A stance foot is stationary and does not slip.</li>
+        <li>Leg frames are rigidly attached to the body.</li>
+        <li>Contact confidence is smoothly gated at phase changes.</li>
+        <li>All commands are freshness-checked and saturated.</li>
+      </ul>
+    </div>
+
+    <div class="callout gold"><strong>Interpretation.</strong> The mathematics through the stance-foot velocity map is geometry. The conversion from foot motion to body torque is dynamics. Keeping those layers separate prevents a clean kinematic derivation from being mistaken for a whole-robot stability proof.</div>
+  </div>
+  <div class="footer"><span>LittleMooMoo Quadruped Project</span><span>2</span></div>
+</section>
+
+<section class="page">
+  <div class="running-head">Geometric posture correction for a quadruped robot</div>
+  <div class="body">
+    <span class="chapter-label">Chapter 1</span>
+    <h1>Frames, points, and free vectors</h1>
+    <p class="subtitle">A frame label is part of the mathematical object, not decoration</p>
+
+    <p>A physical vector is independent of coordinates, but its numerical components depend on the basis used to describe it. Superscripts identify the coordinate frame. Thus <span class="math inline">v^B</span> and <span class="math inline">v^W</span> are two coordinate representations of the same free vector.</p>
+
+    <table class="symbol-table">
+      <tr><th>Symbol</th><th>Meaning</th></tr>
+      <tr><td><span class="math inline">\{W\},\{B\},\{L_i\}</span></td><td>World, body, and leg frame for leg <span class="math inline">i</span>.</td></tr>
+      <tr><td><span class="math inline">R_{WB}\in SO(3)</span></td><td>Maps body-frame components into world-frame components: <span class="math inline">v^W=R_{WB}v^B</span>.</td></tr>
+      <tr><td><span class="math inline">p_B^W</span></td><td>World position of the body-frame origin.</td></tr>
+      <tr><td><span class="math inline">r_i^B</span></td><td>Vector from the body origin to foot contact <span class="math inline">i</span>, expressed in <span class="math inline">\{B\}</span>.</td></tr>
+      <tr><td><span class="math inline">\omega^B,\alpha^B</span></td><td>Body angular velocity and angular acceleration, expressed in <span class="math inline">\{B\}</span>.</td></tr>
+      <tr><td><span class="math inline">a^\wedge,\;A^\vee</span></td><td>Hat and vee maps between vectors in <span class="math inline">\mathbb R^3</span> and skew-symmetric matrices.</td></tr>
+    </table>
+
+    <h2>1.1 Point transformation</h2>
+    <p>Let <span class="math inline">p_{BL_i}^B</span> be the leg-origin position in body coordinates, and let <span class="math inline">R_{BL_i}</span> map leg coordinates into body coordinates. A foot <em>point</em> transforms by rotation plus translation:</p>
+    <div class="eqrow shaded"><div class="math display" data-display="true">p_{F_i}^{B}=p_{BL_i}^{B}+R_{BL_i}p_{F_i}^{L_i}.</div><div class="eqno">(2)</div></div>
+
+    <h2>1.2 Velocity transformation</h2>
+    <p>Because the leg frame is fixed to the body, both <span class="math inline">p_{BL_i}^B</span> and <span class="math inline">R_{BL_i}</span> are constant when differentiated in body coordinates. Therefore</p>
+    <div class="eqrow"><div class="math display" data-display="true">\dot p_{F_i}^{B}=R_{BL_i}\dot p_{F_i}^{L_i},\qquad \dot p_{F_i}^{L_i}=R_{BL_i}^{T}\dot p_{F_i}^{B}.</div><div class="eqno">(3)</div></div>
+    <p>A velocity is a free vector, so no hip translation is added. This is why a point-position conversion function cannot be reused unchanged for velocity or acceleration.</p>
+
+    <h2>1.3 Hat and vee operators</h2>
+    <div class="eqrow"><div class="math display" data-display="true">a^\wedge=\begin{bmatrix}0&amp;-a_3&amp;a_2\\a_3&amp;0&amp;-a_1\\-a_2&amp;a_1&amp;0\end{bmatrix},\qquad a^\wedge b=a\times b,\qquad (a^\wedge)^\vee=a.</div><div class="eqno">(4)</div></div>
+    <div class="callout"><strong>Frame discipline.</strong> A cross product is meaningful only after both operands are expressed in the same right-handed frame. A single-axis sign flip has determinant <span class="math inline">-1</span>; it is a reflection, not a rotation.</div>
+  </div>
+  <div class="footer"><span>LittleMooMoo Quadruped Project</span><span>3</span></div>
+</section>
+
+<section class="page">
+  <div class="running-head">Geometric posture correction for a quadruped robot</div>
+  <div class="body">
+    <span class="chapter-label">Chapter 2</span>
+    <h1>Why rotations form a Lie group</h1>
+    <p class="subtitle">The subtle geometry behind a three-dimensional orientation error</p>
+
+    <h2>2.1 Group, manifold, and Lie group</h2>
+    <div class="three-col small">
+      <div class="mini-card"><h3>Group</h3><p>A set with composition, identity, inverse, and associativity. Rotation composition is matrix multiplication.</p></div>
+      <div class="mini-card"><h3>Manifold</h3><p>A curved space that is locally Euclidean. Near one orientation, a three-vector can serve as a local coordinate.</p></div>
+      <div class="mini-card"><h3>Lie group</h3><p>A group that is also a smooth manifold, with smooth composition and inversion.</p></div>
+    </div>
+
+    <p>The special orthogonal group is</p>
+    <div class="eqrow shaded"><div class="math display" data-display="true">SO(3)=\{R\in\mathbb R^{3\times3}\mid R^TR=I,\;\det R=1\}.</div><div class="eqno">(5)</div></div>
+    <p>The six orthogonality constraints are not all independent; together with the determinant condition they leave three rotational degrees of freedom. Yet <span class="math inline">SO(3)</span> is not a vector space: generally, <span class="math inline">R_1+R_2\notin SO(3)</span>. This is the precise reason an attitude error should not be formed by subtracting rotation matrices or quaternions as if they were ordinary coordinates.</p>
+
+    <h2>2.2 The tangent space and Lie algebra</h2>
+    <p>Consider a differentiable rotation curve <span class="math inline">R(t)</span>. Differentiate the identity <span class="math inline">R^TR=I</span>:</p>
+    <div class="eqrow"><div class="math display" data-display="true">\dot R^TR+R^T\dot R=0.</div><div class="eqno">(6)</div></div>
+    <p>Hence <span class="math inline">R^T\dot R</span> is skew-symmetric. Every <span class="math inline">3\times3</span> skew-symmetric matrix is the hat image of one vector, so</p>
+    <div class="eqrow"><div class="math display" data-display="true">R^T\dot R=(\omega^B)^\wedge\in\mathfrak{so}(3),\qquad \dot R=R(\omega^B)^\wedge.</div><div class="eqno">(7)</div></div>
+    <p>The Lie algebra <span class="math inline">\mathfrak{so}(3)</span> is the tangent space at the identity:</p>
+    <div class="eqrow"><div class="math display" data-display="true">\mathfrak{so}(3)=\{A\in\mathbb R^{3\times3}\mid A^T=-A\}.</div><div class="eqno">(8)</div></div>
+
+    <div class="map">
+      <div class="node"><strong>Vector coordinates</strong><br><span class="math inline">\phi\in\mathbb R^3</span></div>
+      <div class="arrow">→</div>
+      <div class="node"><strong>Lie algebra</strong><br><span class="math inline">\phi^\wedge\in\mathfrak{so}(3)</span></div>
+      <div class="arrow">→</div>
+      <div class="node"><strong>Rotation group</strong><br><span class="math inline">R=\exp(\phi^\wedge)\in SO(3)</span></div>
+    </div>
+
+    <div class="callout teal"><strong>Plain-language picture.</strong> <span class="math inline">SO(3)</span> is the curved space of orientations. <span class="math inline">\mathfrak{so}(3)</span> is the flat tangent space where infinitesimal rotations and angular velocities live. The exponential and logarithm maps move between them locally.</div>
+  </div>
+  <div class="footer"><span>LittleMooMoo Quadruped Project</span><span>4</span></div>
+</section>
+
+<section class="page">
+  <div class="running-head">Geometric posture correction for a quadruped robot</div>
+  <div class="body">
+    <span class="chapter-label">Chapter 2 continued</span>
+    <h1>Exponential and logarithm maps</h1>
+    <p class="subtitle">From a rotation vector to a rotation matrix, and back</p>
+
+    <h2>2.3 Exponential map and Rodrigues' formula</h2>
+    <p>Let <span class="math inline">\phi=\theta u</span>, where <span class="math inline">\|u\|=1</span>. The matrix exponential is defined by its convergent power series:</p>
+    <div class="eqrow"><div class="math display" data-display="true">\exp(\phi^\wedge)=I+\phi^\wedge+\frac{(\phi^\wedge)^2}{2!}+\frac{(\phi^\wedge)^3}{3!}+\cdots.</div><div class="eqno">(9)</div></div>
+    <p>Using <span class="math inline">(u^\wedge)^3=-u^\wedge</span> and <span class="math inline">(u^\wedge)^4=-(u^\wedge)^2</span>, collect odd and even powers. The sine and cosine series appear, yielding Rodrigues' formula:</p>
+    <div class="eqrow shaded"><div class="math display" data-display="true">\operatorname{Exp}(\phi)=I+\frac{\sin\theta}{\theta}\phi^\wedge+\frac{1-\cos\theta}{\theta^2}(\phi^\wedge)^2.</div><div class="eqno">(10)</div></div>
+    <p>At <span class="math inline">\theta=0</span>, the coefficients are defined by continuity. For small <span class="math inline">\phi</span>,</p>
+    <div class="eqrow"><div class="math display" data-display="true">\operatorname{Exp}(\phi)=I+\phi^\wedge+\mathcal O(\|\phi\|^2).</div><div class="eqno">(11)</div></div>
+
+    <h2>2.4 Logarithm map</h2>
+    <p>For <span class="math inline">R\in SO(3)</span>, taking the trace of Rodrigues' formula gives <span class="math inline">\operatorname{tr}(R)=1+2\cos\theta</span>. On the principal branch <span class="math inline">\theta\in[0,\pi]</span>,</p>
+    <div class="eqrow"><div class="math display" data-display="true">\theta=\cos^{-1}\!\left(\frac{\operatorname{tr}(R)-1}{2}\right),\qquad \operatorname{Log}(R)^\vee=\frac{\theta}{2\sin\theta}(R-R^T)^\vee.</div><div class="eqno">(12)</div></div>
+    <p>Near zero, use a series expansion to avoid division by a small <span class="math inline">\sin\theta</span>. Near <span class="math inline">\pi</span>, the rotation axis is sign-ambiguous and numerical extraction needs a dedicated branch.</p>
+
+    <h2>2.5 Why the logarithm is an error coordinate</h2>
+    <p>If <span class="math inline">R_e=R^TR_d</span> is the rotation from the measured body frame to the desired body frame, then</p>
+    <div class="eqrow shaded"><div class="math display" data-display="true">e_R=\operatorname{Log}(R_e)^\vee\in\mathbb R^3</div><div class="eqno">(13)</div></div>
+    <p>is a minimal local coordinate whose direction is the correction axis and whose norm is the correction angle. It is exact on the selected branch, but it is not a globally unique Euclidean coordinate.</p>
+
+    <div class="callout gold"><strong>Topological limit.</strong> No smooth, globally nonsingular three-parameter attitude coordinate exists for all of <span class="math inline">SO(3)</span>. The logarithm is therefore a local chart with a branch boundary at <span class="math inline">\theta=\pi</span>, not a magical global subtraction operator.</div>
+  </div>
+  <div class="footer"><span>LittleMooMoo Quadruped Project</span><span>5</span></div>
+</section>
+
+<section class="page compact">
+  <div class="running-head">Geometric posture correction for a quadruped robot</div>
+  <div class="body">
+    <span class="chapter-label">Chapter 3</span>
+    <h1>Quaternions as a double cover of SO(3)</h1>
+    <p class="subtitle">A compact representation with a sign ambiguity that control code must respect</p>
+
+    <p>A unit quaternion is <span class="math inline">q=(\eta,\epsilon)</span>, with scalar part <span class="math inline">\eta\in\mathbb R</span>, vector part <span class="math inline">\epsilon\in\mathbb R^3</span>, and <span class="math inline">\eta^2+\epsilon^T\epsilon=1</span>. An axis-angle rotation has</p>
+    <div class="eqrow shaded"><div class="math display" data-display="true">q=\left(\cos\frac{\theta}{2},\;u\sin\frac{\theta}{2}\right),\qquad \|u\|=1.</div><div class="eqno">(14)</div></div>
+
+    <h2>3.1 Hamilton product and inverse</h2>
+    <p>For <span class="math inline">q_1=(\eta_1,\epsilon_1)</span> and <span class="math inline">q_2=(\eta_2,\epsilon_2)</span>,</p>
+    <div class="eqrow"><div class="math display" data-display="true">q_1\otimes q_2=\left(\eta_1\eta_2-\epsilon_1^T\epsilon_2,\;\eta_1\epsilon_2+\eta_2\epsilon_1+\epsilon_1\times\epsilon_2\right).</div><div class="eqno">(15)</div></div>
+    <p>For a unit quaternion, <span class="math inline">q^{-1}=q^*=(\eta,-\epsilon)</span>. Composition is quaternion multiplication; component-wise subtraction has no invariant rotational meaning.</p>
+
+    <h2>3.2 Quaternion-to-rotation map</h2>
+    <div class="eqrow"><div class="math display" data-display="true">R(q)=(\eta^2-\epsilon^T\epsilon)I+2\epsilon\epsilon^T+2\eta\epsilon^\wedge.</div><div class="eqno">(16)</div></div>
+    <p>Replacing <span class="math inline">q</span> with <span class="math inline">-q</span> leaves every term in (16) unchanged. Thus <span class="math inline">q</span> and <span class="math inline">-q</span> represent the same element of <span class="math inline">SO(3)</span>. This is the double-cover property.</p>
+
+    <h2>3.3 Relative quaternion and shortest branch</h2>
+    <p>Assume <span class="math inline">q_{WB}</span> and <span class="math inline">q_{WD}</span> both map body or desired-frame coordinates into world coordinates. The body-to-desired relative rotation is</p>
+    <div class="eqrow shaded"><div class="math display" data-display="true">q_e=q_{WB}^{-1}\otimes q_{WD},\qquad R(q_e)=R_{WB}^TR_{WD}=R_e.</div><div class="eqno">(17)</div></div>
+    <p>Choose the physically equivalent representative with scalar part <span class="math inline">\eta_e\ge0</span>. If <span class="math inline">\eta_e&lt;0</span>, negate all four coefficients. Then the principal angle is in <span class="math inline">[0,\pi]</span>, avoiding quaternion unwinding.</p>
+
+    <h2>3.4 Exact quaternion logarithm</h2>
+    <div class="eqrow"><div class="math display" data-display="true">e_R=\begin{cases}2\operatorname{atan2}(\|\epsilon_e\|,\eta_e)\dfrac{\epsilon_e}{\|\epsilon_e\|},&amp;\|\epsilon_e\|&gt;\varepsilon,\\[6pt]2\epsilon_e,&amp;\text{otherwise.}\end{cases}</div><div class="eqno">(18)</div></div>
+    <p>The second branch is the small-angle limit, not an arbitrary fallback. Because <span class="math inline">\sin(\theta/2)=\theta/2+\mathcal O(\theta^3)</span>,</p>
+    <div class="eqrow"><div class="math display" data-display="true">2\epsilon_e=\theta u+\mathcal O(\theta^3)=e_R+\mathcal O(\theta^3).</div><div class="eqno">(19)</div></div>
+    <div class="callout"><strong>Implementation rule.</strong> Normalize each measured quaternion. For temporal continuity, also flip the new sample if its dot product with the previous sample is negative. That continuity operation is separate from choosing the shortest error branch.</div>
+  </div>
+  <div class="footer"><span>LittleMooMoo Quadruped Project</span><span>6</span></div>
+</section>
+
+<section class="page compact">
+  <div class="running-head">Geometric posture correction for a quadruped robot</div>
+  <div class="body">
+    <span class="chapter-label">Chapter 4</span>
+    <h1>Error conventions and angular velocity</h1>
+    <p class="subtitle">Left and right errors are both valid, but their coordinates cannot be mixed</p>
+
+    <h2>4.1 Two invariant relative rotations</h2>
+    <div class="two-col small">
+      <div class="mini-card"><h3>Body-resolved error</h3><div class="math display" data-display="true">R_e^B=R^TR_d</div><p>Invariant to a common change of world frame. Its logarithm is expressed in the measured body frame.</p></div>
+      <div class="mini-card"><h3>World-resolved error</h3><div class="math display" data-display="true">R_e^W=R_dR^T</div><p>Invariant to a common change of body coordinates. Its logarithm is expressed in the world or desired-side frame.</p></div>
+    </div>
+    <p>This guide uses <span class="math inline">R_e=R^TR_d</span> for the kinematic correction. It points from the measured orientation toward the desired orientation in current body coordinates.</p>
+
+    <h2>4.2 Rotation-matrix kinematics</h2>
+    <p>For body-resolved angular velocities <span class="math inline">\omega</span> and <span class="math inline">\omega_d</span>,</p>
+    <div class="eqrow"><div class="math display" data-display="true">\dot R=R\omega^\wedge,\qquad \dot R_d=R_d\omega_d^\wedge.</div><div class="eqno">(20)</div></div>
+    <p>Differentiate <span class="math inline">R_e=R^TR_d</span> and use <span class="math inline">\dot R^T=-\omega^\wedge R^T</span>:</p>
+    <div class="eqrow"><div class="math display" data-display="true">\dot R_e=-\omega^\wedge R_e+R_e\omega_d^\wedge.</div><div class="eqno">(21)</div></div>
+    <p>Transport desired angular velocity into the measured body frame and define</p>
+    <div class="eqrow shaded"><div class="math display" data-display="true">e_\omega=R_e\omega_d-\omega.</div><div class="eqno">(22)</div></div>
+    <p>Because <span class="math inline">(Ra)^\wedge=Ra^\wedge R^T</span>, equation (21) becomes</p>
+    <div class="eqrow"><div class="math display" data-display="true">\dot R_e=e_\omega^\wedge R_e.</div><div class="eqno">(23)</div></div>
+
+    <h2>4.3 Exact derivative of the logarithmic coordinate</h2>
+    <p>Write <span class="math inline">R_e=\operatorname{Exp}(e_R)</span>. Since (23) is a left-trivialized tangent velocity,</p>
+    <div class="eqrow"><div class="math display" data-display="true">e_\omega=J_l(e_R)\dot e_R,\qquad \dot e_R=J_l(e_R)^{-1}e_\omega.</div><div class="eqno">(24)</div></div>
+    <p>The left Jacobian of <span class="math inline">SO(3)</span> is</p>
+    <div class="eqrow"><div class="math display" data-display="true">J_l(\phi)=I+\frac{1-\cos\theta}{\theta^2}\phi^\wedge+\frac{\theta-\sin\theta}{\theta^3}(\phi^\wedge)^2,\quad \theta=\|\phi\|.</div><div class="eqno">(25)</div></div>
+    <p>Near the identity, <span class="math inline">J_l(e_R)^{-1}=I-\tfrac12 e_R^\wedge+\mathcal O(\|e_R\|^2)</span>. Therefore <span class="math inline">\dot e_R=e_\omega+\mathcal O(\|e_R\|\|e_\omega\|)</span>. This states precisely when the familiar linear error relation is justified.</p>
+
+    <div class="callout teal"><strong>Fixed desired posture.</strong> If <span class="math inline">\omega_d=0</span>, then <span class="math inline">e_\omega=-\omega</span>. Raw gyroscope subtraction is valid only after the sensor measurement has been rotated into the same body frame used by the attitude error.</div>
+  </div>
+  <div class="footer"><span>LittleMooMoo Quadruped Project</span><span>7</span></div>
+</section>
+
+<section class="page">
+  <div class="running-head">Geometric posture correction for a quadruped robot</div>
+  <div class="body">
+    <span class="chapter-label">Chapter 5</span>
+    <h1>Virtual PD correction and stability</h1>
+    <p class="subtitle">A rigorous local result, followed by the exact rigid-body controller it approximates</p>
+
+    <h2>5.1 Virtual angular-acceleration law</h2>
+    <p>Using the body-to-desired errors from Chapter 4, define</p>
+    <div class="eqrow shaded"><div class="math display" data-display="true">\alpha_c=K_Re_R+K_\omega e_\omega,\qquad K_R\succ0,\;K_\omega\succ0.</div><div class="eqno">(26)</div></div>
+    <p>Here <span class="math inline">K_R</span> has units <span class="math inline">\mathrm{s}^{-2}</span> and <span class="math inline">K_\omega</span> has units <span class="math inline">\mathrm{s}^{-1}</span>. For a fixed desired attitude, <span class="math inline">e_\omega=-\omega</span>.</p>
+
+    <h2>5.2 Local error dynamics</h2>
+    <p>Assume the physical body realizes <span class="math inline">\dot\omega=\alpha_c</span> and the error is small enough that <span class="math inline">J_l(e_R)^{-1}\approx I</span>. Then</p>
+    <div class="eqrow"><div class="math display" data-display="true">\dot e_R=e_\omega,\qquad \dot e_\omega=-K_Re_R-K_\omega e_\omega.</div><div class="eqno">(27)</div></div>
+    <p>Choose the positive-definite candidate</p>
+    <div class="eqrow"><div class="math display" data-display="true">V(e_R,e_\omega)=\frac12e_\omega^Te_\omega+\frac12e_R^TK_Re_R.</div><div class="eqno">(28)</div></div>
+    <p>Differentiation along (27) gives</p>
+    <div class="eqrow shaded"><div class="math display" data-display="true">\dot V=e_\omega^T(-K_Re_R-K_\omega e_\omega)+e_R^TK_Re_\omega=-e_\omega^TK_\omega e_\omega\le0.</div><div class="eqno">(29)</div></div>
+    <p>The cross terms cancel. Locally, the largest invariant subset of <span class="math inline">\{\dot V=0\}</span> has <span class="math inline">e_\omega=0</span> and then <span class="math inline">K_Re_R=0</span>, hence <span class="math inline">e_R=0</span>. LaSalle's invariance principle therefore establishes local asymptotic stability of this <em>virtual</em> subsystem.</p>
+
+    <h2>5.3 Exact torque-level geometric control</h2>
+    <p>For rigid-body torque control, a standard geometric convention defines</p>
+    <div class="eqrow"><div class="math display" data-display="true">E=R_d^TR,\quad e_R^{\mathrm{Lee}}=\frac12(E-E^T)^\vee,\quad e_\Omega=\Omega-R^TR_d\Omega_d.</div><div class="eqno">(30)</div></div>
+    <p>With body inertia <span class="math inline">J</span>, Lee's computed-torque structure is</p>
+    <div class="eqrow"><div class="math display" data-display="true">\tau=-k_Re_R^{\mathrm{Lee}}-k_\Omega e_\Omega+\Omega\times J\Omega-J\!\left(\Omega^\wedge R^TR_d\Omega_d-R^TR_d\dot\Omega_d\right).</div><div class="eqno">(31)</div></div>
+    <div class="callout gold"><strong>Do not mix signs.</strong> Equations (26) and (31) use different error definitions. Their signs are both correct inside their own conventions. Copying one error formula into the other control law without re-derivation can reverse the correction.</div>
+  </div>
+  <div class="footer"><span>LittleMooMoo Quadruped Project</span><span>8</span></div>
+</section>
+
+<section class="page">
+  <div class="running-head">Geometric posture correction for a quadruped robot</div>
+  <div class="body">
+    <span class="chapter-label">Chapter 6</span>
+    <h1>Stationary-contact foot kinematics</h1>
+    <p class="subtitle">The exact velocity and acceleration constraints for a moving body frame</p>
+
+    <h2>6.1 Position identity</h2>
+    <p>For contact <span class="math inline">i</span>, let <span class="math inline">p_{F_i}^W</span> be the world foot position, <span class="math inline">p_B^W</span> the world body-origin position, and <span class="math inline">r_i^B</span> the body-to-foot vector in body coordinates:</p>
+    <div class="eqrow shaded"><div class="math display" data-display="true">p_{F_i}^W=p_B^W+R_{WB}r_i^B.</div><div class="eqno">(32)</div></div>
+
+    <h2>6.2 Velocity transport theorem</h2>
+    <p>Differentiate (32), using <span class="math inline">\dot R_{WB}=R_{WB}(\omega^B)^\wedge</span>:</p>
+    <div class="eqrow"><div class="math display" data-display="true">v_{F_i}^W=v_B^W+R_{WB}\left(\omega^B\times r_i^B+\dot r_i^B\right).</div><div class="eqno">(33)</div></div>
+    <p>For ideal no-slip stance, <span class="math inline">v_{F_i}^W=0</span>. Premultiply by <span class="math inline">R_{WB}^T</span> and define <span class="math inline">v_B^B=R_{WB}^Tv_B^W</span>:</p>
+    <div class="eqrow shaded"><div class="math display" data-display="true">\dot r_i^B=-v_B^B-\omega^B\times r_i^B.</div><div class="eqno">(34)</div></div>
+    <p>The signs are consequences of stationary contact. If the body moves forward over a fixed foot, the foot coordinates move backward relative to the body.</p>
+
+    <h2>6.3 Exact acceleration constraint</h2>
+    <p>Differentiate (33) in the world frame. A point moving relative to a rotating frame obeys</p>
+    <div class="eqrow"><div class="math display" data-display="true">a_{F_i}^W=a_B^W+R_{WB}\!\left(\alpha^B\times r_i^B+\omega^B\times(\omega^B\times r_i^B)+2\omega^B\times\dot r_i^B+\ddot r_i^B\right).</div><div class="eqno">(35)</div></div>
+    <p>For a stationary contact, <span class="math inline">a_{F_i}^W=0</span>. Defining <span class="math inline">a_B^B=R_{WB}^Ta_B^W</span> gives</p>
+    <div class="eqrow shaded"><div class="math display" data-display="true">\ddot r_i^B=-a_B^B-\alpha^B\times r_i^B-\omega^B\times(\omega^B\times r_i^B)-2\omega^B\times\dot r_i^B.</div><div class="eqno">(36)</div></div>
+    <p>Equation (36) exposes the terms that disappear in a low-speed approximation: centrifugal acceleration and the Coriolis term caused by relative leg motion. At low angular speed with <span class="math inline">v_B^B=0</span>, the leading relation is <span class="math inline">\ddot r_i^B\approx-\alpha^B\times r_i^B</span>.</p>
+
+    <div class="callout teal"><strong>Recommended realization.</strong> Integrate one bounded corrective body angular velocity, then recompute every stance-foot velocity from (34). Do not independently integrate four foot accelerations; those states can drift away from any single rigid-body motion.</div>
+  </div>
+  <div class="footer"><span>LittleMooMoo Quadruped Project</span><span>9</span></div>
+</section>
+
+<section class="page">
+  <div class="running-head">Geometric posture correction for a quadruped robot</div>
+  <div class="body">
+    <span class="chapter-label">Chapter 7</span>
+    <h1>From body correction to joint commands</h1>
+    <p class="subtitle">Leg-frame transformation, resolved-rate control, and damped inversion</p>
+
+    <h2>7.1 Body-to-leg velocity</h2>
+    <p>Transform the body-frame stance correction with rotation only:</p>
+    <div class="eqrow shaded"><div class="math display" data-display="true">\dot p_{F_i,c}^{L_i}=R_{BL_i}^T\dot r_{i,c}^{B}=R_{BL_i}^T\left(-v_c^B-\omega_c^B\times r_i^B\right).</div><div class="eqno">(37)</div></div>
+    <p>The hip-origin translation belongs to point positions, not free velocities. Each <span class="math inline">R_{BL_i}</span> must satisfy <span class="math inline">R_{BL_i}^TR_{BL_i}=I</span> and <span class="math inline">\det R_{BL_i}=1</span>.</p>
+
+    <h2>7.2 Differential leg kinematics</h2>
+    <p>For leg joints <span class="math inline">q_i\in\mathbb R^3</span> and forward kinematics <span class="math inline">p_i^{L_i}=f_i(q_i)</span>,</p>
+    <div class="eqrow"><div class="math display" data-display="true">\dot p_i^{L_i}=J_i(q_i)\dot q_i,\qquad J_i(q_i)=\frac{\partial f_i}{\partial q_i}.</div><div class="eqno">(38)</div></div>
+    <p>A robust resolved-rate command combines desired task velocity with task-space position feedback:</p>
+    <div class="eqrow shaded"><div class="math display" data-display="true">\dot q_{i,c}=J_i^{\#}\!\left[\dot p_{i,d}^{L_i}+K_x\left(p_{i,d}^{L_i}-p_i^{L_i}\right)\right].</div><div class="eqno">(39)</div></div>
+    <p>The bracketed quantity has units of velocity: <span class="math inline">K_x</span> has units <span class="math inline">\mathrm{s}^{-1}</span>. The Jacobian therefore converts one task-space velocity into joint velocity; it is not mixing position and velocity dimensions.</p>
+
+    <h2>7.3 Damped least-squares inverse</h2>
+    <div class="eqrow"><div class="math display" data-display="true">J_i^{\#}=J_i^T\left(J_iJ_i^T+\lambda^2I\right)^{-1},\qquad \lambda&gt;0.</div><div class="eqno">(40)</div></div>
+    <p>This is the minimizer of the regularized least-squares problem</p>
+    <div class="eqrow"><div class="math display" data-display="true">\min_{\dot q_i}\;\|J_i\dot q_i-\dot p_{i,c}\|^2+\lambda^2\|\dot q_i\|^2.</div><div class="eqno">(41)</div></div>
+    <p>The damping term prevents joint velocity from diverging near a singular configuration, at the price of task-space tracking bias.</p>
+
+    <h2>7.4 Position-only motor interface</h2>
+    <p>If firmware consumes position targets but no velocity feedforward, integrate with measured loop time:</p>
+    <div class="eqrow shaded"><div class="math display" data-display="true">q_{i,c}[k+1]=q_{i,c}[k]+\operatorname{sat}_{\dot q}\!\left(\dot q_{i,c}[k]\right)\Delta t_k.</div><div class="eqno">(42)</div></div>
+    <div class="callout gold"><strong>Drift warning.</strong> Integrating joint velocity creates state. Anchor the resolved-rate correction to the current desired foot trajectory and measured foot position as in (39), reset safely at mode changes, and clamp the integrated command to joint and workspace limits.</div>
+  </div>
+  <div class="footer"><span>LittleMooMoo Quadruped Project</span><span>10</span></div>
+</section>
+
+<section class="page">
+  <div class="running-head">Geometric posture correction for a quadruped robot</div>
+  <div class="body">
+    <span class="chapter-label">Chapter 8</span>
+    <h1>Controller construction</h1>
+    <p class="subtitle">A mathematically consistent discrete-time contract</p>
+
+    <div class="algo small">
+      <div class="n">1</div><div class="step"><strong>Read synchronized state.</strong> Acquire timestamped quaternion <span class="math inline">q_{WB}</span>, body gyro <span class="math inline">\omega^B</span>, joint positions, and contact confidence <span class="math inline">c_i\in[0,1]</span>. Reject stale data.</div>
+      <div class="n">2</div><div class="step"><strong>Normalize and align frames.</strong> Normalize the quaternion and apply the fixed sensor-to-body rotation to attitude and gyro.</div>
+      <div class="n">3</div><div class="step"><strong>Build the group error.</strong> Compute <span class="math inline">R_e=R_{WB}^TR_{WD}</span> or the equivalent <span class="math inline">q_e=q_{WB}^{-1}\otimes q_{WD}</span>.</div>
+      <div class="n">4</div><div class="step"><strong>Choose the branch.</strong> Select the quaternion representative with nonnegative scalar part, then compute the exact log vector <span class="math inline">e_R</span>.</div>
+      <div class="n">5</div><div class="step"><strong>Transport rate.</strong> Compute <span class="math inline">e_\omega=R_e\omega_d-\omega</span>. For level hold, <span class="math inline">e_\omega=-\omega</span>.</div>
+      <div class="n">6</div><div class="step"><strong>Virtual correction.</strong> Evaluate and saturate <span class="math inline">\alpha_c=K_Re_R+K_\omega e_\omega</span>.</div>
+      <div class="n">7</div><div class="step"><strong>Bounded integration.</strong> Update a leaky corrective angular velocity:</div>
+    </div>
+    <div class="eqrow shaded"><div class="math display" data-display="true">\omega_c[k+1]=\operatorname{sat}_{\omega}\!\left((1-\gamma\Delta t_k)\omega_c[k]+\alpha_c[k]\Delta t_k\right),\qquad \gamma\ge0.</div><div class="eqno">(43)</div></div>
+    <div class="algo small">
+      <div class="n">8</div><div class="step"><strong>Contact-aware foot command.</strong> Blend correction only into stance feet:</div>
+    </div>
+    <div class="eqrow"><div class="math display" data-display="true">\dot r_{i,cmd}^{B}=\dot r_{i,gait}^{B}+c_i\left(-v_c^B-\omega_c^B\times r_i^B\right).</div><div class="eqno">(44)</div></div>
+    <div class="algo small">
+      <div class="n">9</div><div class="step"><strong>Map to joints.</strong> Rotate into <span class="math inline">\{L_i\}</span>, apply (39)-(40), limit joint rates and accelerations, then integrate position targets.</div>
+      <div class="n">10</div><div class="step"><strong>Supervise.</strong> Stop on stale feedback, CAN faults, impossible quaternion norm, workspace violation, excessive tracking error, or user emergency input.</div>
+    </div>
+
+    <h2>Mode-transition rules</h2>
+    <div class="two-col small">
+      <div class="mini-card"><h3>Entering correction</h3><p>Initialize <span class="math inline">\omega_c=0</span>; ramp contact weights and gains; preserve the current nominal gait phase.</p></div>
+      <div class="mini-card"><h3>Leaving correction</h3><p>Ramp correction to zero before resetting integrators; keep the nominal trajectory continuous.</p></div>
+    </div>
+
+    <div class="callout teal"><strong>Roll and pitch first.</strong> For early hardware tests, set yaw gain to zero. Magnetometer disturbances and heading drift can make yaw correction fight a mechanically sound gait, while roll and pitch are directly observable from gravity-referenced attitude fusion.</div>
+  </div>
+  <div class="footer"><span>LittleMooMoo Quadruped Project</span><span>11</span></div>
+</section>
+
+<section class="page">
+  <div class="running-head">Geometric posture correction for a quadruped robot</div>
+  <div class="body">
+    <span class="chapter-label">Chapter 9</span>
+    <h1>Why kinematics alone cannot guarantee posture</h1>
+    <p class="subtitle">Ground-reaction forces are the physical actuator of floating-body motion</p>
+
+    <h2>9.1 Centroidal Newton-Euler dynamics</h2>
+    <p>Let <span class="math inline">p_C</span> be the center of mass, <span class="math inline">m</span> the total mass, <span class="math inline">f_i</span> the stance-foot forces, and <span class="math inline">\tau_i</span> any contact moments. Then</p>
+    <div class="eqrow shaded"><div class="math display" data-display="true">m\ddot p_C=mg+\sum_{i\in\mathcal S}f_i,</div><div class="eqno">(45)</div></div>
+    <div class="eqrow shaded"><div class="math display" data-display="true">\dot h_C=\sum_{i\in\mathcal S}(p_{F_i}-p_C)\times f_i+\sum_{i\in\mathcal S}\tau_i.</div><div class="eqno">(46)</div></div>
+    <p>The stance set <span class="math inline">\mathcal S</span> changes with gait phase. A swing foot has no ground-reaction force and cannot directly create body wrench.</p>
+
+    <h2>9.2 Contact feasibility</h2>
+    <p>A unilateral point contact must satisfy</p>
+    <div class="eqrow"><div class="math display" data-display="true">f_{i,z}\ge0,\qquad \sqrt{f_{i,x}^2+f_{i,y}^2}\le\mu_i f_{i,z}.</div><div class="eqno">(47)</div></div>
+    <p>If the requested horizontal force exceeds the friction cone, the foot slips no matter how accurate the posture kinematics are. If the center of pressure or feasible contact wrench cannot create the requested moment, the body tilts.</p>
+
+    <h2>9.3 What a position servo actually realizes</h2>
+    <p>When a joint position controller moves a stance leg against the ground, contact force emerges through closed-chain position error, gearbox stiffness and backlash, structural compliance, tire or floor deformation, motor saturation, and controller bandwidth. Therefore the map</p>
+    <div class="eqrow"><div class="math display" data-display="true">\dot r_{i,cmd}\longmapsto f_i\longmapsto(\ddot p_C,\dot h_C)</div><div class="eqno">(48)</div></div>
+    <p>is state-dependent and generally unknown. The virtual acceleration <span class="math inline">\alpha_c</span> is a shaping signal, not a measured body acceleration command.</p>
+
+    <div class="callout gold"><strong>Consequent claim.</strong> The Lyapunov proof in Chapter 5 certifies the ideal virtual error dynamics under the assumption <span class="math inline">\dot\omega=\alpha_c</span>. It does not certify the complete quadruped with position servos and intermittent contact.</div>
+
+    <h2>9.4 Path toward force-based control</h2>
+    <p>A future whole-body or MPC layer can choose feasible stance forces that realize a desired centroidal wrench, then map them to joint torque by <span class="math inline">\tau_i=J_i(q_i)^Tf_i</span>. Until the firmware and sensing support that layer reliably, the kinematic correction should remain slow, bounded, stance-gated, and experimentally identified.</p>
+  </div>
+  <div class="footer"><span>LittleMooMoo Quadruped Project</span><span>12</span></div>
+</section>
+
+<section class="page compact">
+  <div class="running-head">Geometric posture correction for a quadruped robot</div>
+  <div class="body">
+    <span class="chapter-label">Chapter 10</span>
+    <h1>Discrete implementation and numerical safety</h1>
+    <p class="subtitle">The sampled controller is part of the plant</p>
+
+    <h2>10.1 Use measured loop time</h2>
+    <p>Let timestamps be generated by a monotonic clock. Use</p>
+    <div class="eqrow shaded"><div class="math display" data-display="true">\Delta t_k=t_k-t_{k-1}</div><div class="eqno">(49)</div></div>
+    <p>in every integration. Clamp or reject implausible <span class="math inline">\Delta t_k</span>. A nominal <span class="math inline">1/f_{loop}</span> is appropriate for planning, but substituting it for measured time under CAN or scheduler jitter causes integration drift.</p>
+
+    <h2>10.2 Filter what is noisy, not what is geometric</h2>
+    <ul>
+      <li>Normalize the quaternion, but do not independently low-pass its four components without re-normalization.</li>
+      <li>Use the BNO055 fused orientation as orientation; use the gyro as angular rate. Do not numerically differentiate quaternion samples to recreate a noisier gyro.</li>
+      <li>Low-pass gyro bias and high-frequency noise only enough to preserve posture-control phase margin.</li>
+      <li>Do not depend on double integration of consumer-IMU acceleration for global body position.</li>
+    </ul>
+
+    <h2>10.3 Saturation hierarchy</h2>
+    <table>
+      <tr><th>Layer</th><th>Required limit</th><th>Reason</th></tr>
+      <tr><td>Attitude error</td><td><span class="math inline">\|e_R\|\le e_{R,max}</span></td><td>Avoid commanding a large recovery from a local posture layer.</td></tr>
+      <tr><td>Virtual acceleration</td><td><span class="math inline">\|\alpha_c\|\le\alpha_{max}</span></td><td>Bounds the integrator input.</td></tr>
+      <tr><td>Corrective twist</td><td><span class="math inline">\|\omega_c\|\le\omega_{max}</span></td><td>Bounds foot-coordinate velocity.</td></tr>
+      <tr><td>Foot correction</td><td><span class="math inline">\|\dot p_c\|\le v_{foot,max}</span></td><td>Limits contact disturbance and Jacobian demand.</td></tr>
+      <tr><td>Joint command</td><td><span class="math inline">|\dot q_j|,|\ddot q_j|,q_j</span></td><td>Protects the mechanism and motor interface.</td></tr>
+    </table>
+
+    <h2>10.4 Data validity</h2>
+    <div class="codeblock">if imu_age &gt; imu_timeout or pdo_age &gt; pdo_timeout:
+    ramp_gains_to_zero()
+    command_idle()
+
+if not finite(q, omega, joint_state) or abs(norm(q) - 1) &gt; tolerance:
+    emergency_stop()</div>
+
+    <div class="callout teal"><strong>Bandwidth separation.</strong> Keep the inner motor position loop fastest, the joint/trajectory loop slower, and the posture correction slower again. An outer loop that commands faster than the inner loop can realize adds phase lag and may amplify oscillation instead of damping it.</div>
+  </div>
+  <div class="footer"><span>LittleMooMoo Quadruped Project</span><span>13</span></div>
+</section>
+
+<section class="page">
+  <div class="running-head">Geometric posture correction for a quadruped robot</div>
+  <div class="body">
+    <span class="chapter-label">Chapter 11</span>
+    <h1>Verification before hardware</h1>
+    <p class="subtitle">Numerical tests that isolate geometry, frames, and timing</p>
+
+    <table class="check-table">
+      <tr><th>Test</th><th>Procedure</th><th>Pass condition</th></tr>
+      <tr><td>Identity</td><td>Set measured attitude equal to desired.</td><td><span class="math inline">R_e=I</span>, <span class="math inline">e_R=0</span>, no NaN.</td></tr>
+      <tr><td>Quaternion double cover</td><td>Replace <span class="math inline">q_d</span> by <span class="math inline">-q_d</span>.</td><td>Physical error and correction are unchanged.</td></tr>
+      <tr><td>Exp-log round trip</td><td>Sample <span class="math inline">\|\phi\|&lt;\pi</span>; compute <span class="math inline">\operatorname{Log}(\operatorname{Exp}(\phi))</span>.</td><td>Returns <span class="math inline">\phi</span> within numerical tolerance.</td></tr>
+      <tr><td>One-axis sign</td><td>Apply small positive roll, pitch, and yaw separately.</td><td>Error and foot correction oppose the imposed tilt.</td></tr>
+      <tr><td>Rate transport</td><td>Use a moving desired frame with known <span class="math inline">\omega_d</span>.</td><td>Equation (23) matches a finite difference of <span class="math inline">R_e</span>.</td></tr>
+      <tr><td>Rigid stance</td><td>Choose known <span class="math inline">r,v,\omega</span>; apply (34).</td><td>Substitution into (33) yields <span class="math inline">v_F^W=0</span>.</td></tr>
+      <tr><td>Frame round trip</td><td>Transform random vectors <span class="math inline">B\to L_i\to B</span>.</td><td>Vector is recovered; <span class="math inline">\det R_{BL_i}=1</span>.</td></tr>
+      <tr><td>Jacobian finite difference</td><td>Compare <span class="math inline">J(q)\delta q</span> with <span class="math inline">f(q+\delta q)-f(q)</span>.</td><td>Error decreases quadratically as <span class="math inline">\|\delta q\|</span> shrinks.</td></tr>
+      <tr><td>Contact gating</td><td>Sweep <span class="math inline">c_i</span> from 0 to 1 at touchdown.</td><td>No discontinuity in foot or joint command.</td></tr>
+      <tr><td>Timing fault</td><td>Inject a delayed IMU or PDO sample.</td><td>Command ramps down and motors enter the safe state.</td></tr>
+    </table>
+
+    <h2>11.1 Project-specific frame audit</h2>
+    <p>The current project must explicitly document the axis directions of the body frame, all four leg frames, the IMU sensor frame, positive joint rotations, and whether foot <span class="math inline">z</span> increases upward or downward. A mapping that adds body offsets is valid for points. A mapping that flips only one axis is a reflection and cannot be used as a right-handed rotation for angular quantities or cross products.</p>
+
+    <h2>11.2 Numerical diagnostic plots</h2>
+    <p>Before hardware, plot <span class="math inline">e_R</span>, <span class="math inline">e_\omega</span>, <span class="math inline">\alpha_c</span>, <span class="math inline">\omega_c</span>, each contact weight, each body-frame foot correction, Jacobian condition number, and final joint command. A sign error should be visible in a one-axis test before it becomes a body motion.</p>
+
+    <div class="callout gold"><strong>Near-pi test.</strong> The log map is least numerically comfortable near <span class="math inline">180^\circ</span>. The hardware posture layer should never be expected to recover a fallen robot through that branch; reject or separately handle such large errors.</div>
+  </div>
+  <div class="footer"><span>LittleMooMoo Quadruped Project</span><span>14</span></div>
+</section>
+
+<section class="page">
+  <div class="running-head">Geometric posture correction for a quadruped robot</div>
+  <div class="body">
+    <span class="chapter-label">Chapter 12</span>
+    <h1>Staged hardware validation</h1>
+    <p class="subtitle">Build evidence one assumption at a time</p>
+
+    <div class="algo">
+      <div class="n">1</div><div class="step"><strong>Offline geometry.</strong> Pass every test in Chapter 11 with saved IMU and joint data. Confirm frame signs with CAD and one-axis numerical cases.</div>
+      <div class="n">2</div><div class="step"><strong>Robot on stand.</strong> Motors hold a modest neutral pose. Log attitude error and predicted foot corrections without applying them.</div>
+      <div class="n">3</div><div class="step"><strong>Command preview.</strong> Apply very small correction while suspended. Verify each foot moves in the direction predicted by the stationary-contact thought experiment.</div>
+      <div class="n">4</div><div class="step"><strong>Restrained four-foot stance.</strong> Use low roll and pitch gains, zero yaw gain, low correction limits, and a physical support or handle.</div>
+      <div class="n">5</div><div class="step"><strong>Contact blending.</strong> Enable stance weights at slow stepping speed. Confirm no command jump at liftoff or touchdown.</div>
+      <div class="n">6</div><div class="step"><strong>Walking experiment.</strong> Compare baseline gait and corrected gait using repeatable floor, battery voltage, payload, and initial pose. Measure improvement rather than judging one run.</div>
+    </div>
+
+    <h2>12.1 Minimum telemetry</h2>
+    <div class="two-col small">
+      <ul>
+        <li>Monotonic timestamp and measured <span class="math inline">\Delta t</span></li>
+        <li>Raw and normalized quaternion</li>
+        <li>Body-frame gyro</li>
+        <li><span class="math inline">e_R,e_\omega,\alpha_c,\omega_c</span></li>
+        <li>Gait phase and contact weights</li>
+      </ul>
+      <ul>
+        <li>Desired and measured foot positions</li>
+        <li>Jacobian singular values or condition number</li>
+        <li>Desired and measured joint positions</li>
+        <li>Tracking-error and saturation flags</li>
+        <li>CAN/PDO age and motor fault state</li>
+      </ul>
+    </div>
+
+    <h2>12.2 What success means</h2>
+    <p>For this first layer, success is not dynamic optimality. Success means that small roll and pitch disturbances produce correctly signed, bounded, contact-aware leg corrections; the corrections reduce attitude error without increasing slip, tracking error, or mode-transition impacts; and every limit or stale-data event reaches a deterministic safe state.</p>
+
+    <div class="callout teal"><strong>Engineering conclusion.</strong> The posture layer is a bridge between open-loop foot trajectories and future whole-body control. It is valuable precisely because its geometric portion can be verified independently, while its unmodeled contact realization is kept experimentally modest and visibly bounded.</div>
+
+    <h2>12.3 Future extension</h2>
+    <p>Once force sensing, actuator characterization, and state estimation are trustworthy, equations (45)-(47) can become constraints in a force-distribution quadratic program or MPC. That future controller would choose contact forces directly instead of hoping that foot-position error creates the desired wrench.</p>
+  </div>
+  <div class="footer"><span>LittleMooMoo Quadruped Project</span><span>15</span></div>
+</section>
+
+<section class="page">
+  <div class="running-head">Geometric posture correction for a quadruped robot</div>
+  <div class="body">
+    <span class="chapter-label">References</span>
+    <h1>Sources and notation authorities</h1>
+    <p class="subtitle">Primary references used to check the geometric and legged-control claims</p>
+
+    <div class="references">
+      <p>[1] J. Sola, J. Deray, and D. Atchuthan, "A micro Lie theory for state estimation in robotics," <em>arXiv:1812.01537</em>, version 9, 2021. <a href="https://arxiv.org/abs/1812.01537">https://arxiv.org/abs/1812.01537</a>.</p>
+      <p>[2] K. M. Lynch and F. C. Park, <em>Modern Robotics: Mechanics, Planning, and Control</em>. Cambridge University Press, 2017. Official preprint and resources: <a href="https://modernrobotics.org">https://modernrobotics.org</a>.</p>
+      <p>[3] T. Lee, "Geometric tracking control of the attitude dynamics of a rigid body on SO(3)," <em>American Control Conference</em>, 2011. <a href="https://arxiv.org/abs/1010.1725">https://arxiv.org/abs/1010.1725</a>.</p>
+      <p>[4] J. Sola, "Quaternion kinematics for the error-state Kalman filter," <em>arXiv:1711.02508</em>, 2017. <a href="https://arxiv.org/abs/1711.02508">https://arxiv.org/abs/1711.02508</a>.</p>
+      <p>[5] C. G. Mayhew, R. G. Sanfelice, and A. R. Teel, "On quaternion-based attitude control and the unwinding phenomenon," <em>American Control Conference</em>, 2011, doi: 10.1109/ACC.2011.5991127.</p>
+      <p>[6] M. Bloesch, M. Hutter, M. A. Hoepflinger, S. Leutenegger, C. Gehring, C. D. Remy, and R. Siegwart, "State estimation for legged robots - consistent fusion of leg kinematics and IMU," <em>Robotics: Science and Systems</em>, 2012, doi: 10.3929/ethz-a-010137526.</p>
+      <p>[7] G. Bledt, M. J. Powell, B. Katz, J. Di Carlo, P. M. Wensing, and S. Kim, "MIT Cheetah 3: Design and control of a robust, dynamic quadruped robot," <em>IEEE/RSJ IROS</em>, 2018.</p>
+      <p>[8] D. Kim, J. Di Carlo, B. Katz, G. Bledt, and S. Kim, "Highly dynamic quadruped locomotion via whole-body impulse control and model predictive control," <em>arXiv:1909.06586</em>, 2019.</p>
+      <p>[9] Eigen Project, "Eigen::AngleAxis and Eigen::Quaternion class references," official API documentation. <a href="https://eigen.tuxfamily.org/dox/">https://eigen.tuxfamily.org/dox/</a>.</p>
+    </div>
+
+    <h2>Notation statement</h2>
+    <p>Superscripts denote the frame in which vector components are expressed. Subscripts identify objects or mappings. The hat map sends vectors to skew-symmetric matrices; the vee map is its inverse. <span class="math inline">\operatorname{Exp}</span> and <span class="math inline">\operatorname{Log}</span> denote the <span class="math inline">SO(3)</span> exponential and principal logarithm. Quaternion products use the Hamilton convention, and all rotation mappings are stated explicitly before use.</p>
+
+    <h2>Final result</h2>
+    <p>The attitude error must be formed by group composition and mapped into the tangent space before PD feedback. The stance-foot correction follows from a stationary-contact constraint, and body-to-leg conversion uses rotation only for velocities. These results are mathematically rigorous within their kinematic assumptions. The remaining question - whether the physical body realizes the requested motion - belongs to contact dynamics, actuator behavior, and state estimation.</p>
+
+    <div class="callout"><strong>One-line controller contract.</strong> Geometry computes a consistent correction; contact and actuator dynamics decide whether the robot can realize it.</div>
+  </div>
+  <div class="footer"><span>LittleMooMoo Quadruped Project</span><span>16</span></div>
+</section>
+
+<script src="./katex-dist/katex.min.js"></script>
+<script>
+  document.querySelectorAll('.math').forEach((node) => {
+    katex.render(node.textContent.trim(), node, {
+      displayMode: node.dataset.display === 'true',
+      throwOnError: false,
+      strict: false,
+      trust: false
+    });
+  });
+</script>
+</body>
+</html>
