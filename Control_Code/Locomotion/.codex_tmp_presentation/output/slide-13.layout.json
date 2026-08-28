@@ -1,0 +1,1615 @@
+{
+  "schema": "openai.presentation.layout/v4",
+  "unit": "px",
+  "slide": {
+    "aid": "sl/3ho3iv",
+    "id": "3ho3iv",
+    "slide": 13,
+    "layoutId": "1e44272f-780d-4db4-bf0d-b6b78bbc586e",
+    "layoutName": "Title Slide",
+    "layoutType": "title",
+    "masterLayoutId": "52718103-4830-42c6-9231-28d7866988bd",
+    "masterLayoutName": "Master",
+    "backgroundColor": "#F8FAFC",
+    "frame": {
+      "left": 0,
+      "top": 0,
+      "width": 1600,
+      "height": 900
+    }
+  },
+  "theme": {
+    "colorSchemeName": "ChatGPT",
+    "colors": {
+      "accent1": "#156082",
+      "accent2": "#E97132",
+      "accent3": "#196B24",
+      "accent4": "#0F9ED5",
+      "accent5": "#A02B93",
+      "accent6": "#4EA72E",
+      "bg1": "#FFFFFF",
+      "bg2": "#000000",
+      "tx1": "#1F1F1F",
+      "tx2": "#FFFFFF",
+      "dk1": "#000000",
+      "lt1": "#FFFFFF",
+      "dk2": "#0E2841",
+      "lt2": "#E8E8E8",
+      "hlink": "#467886",
+      "folHlink": "#96607D"
+    },
+    "typefaces": [
+      "+mn-lt"
+    ]
+  },
+  "inheritedLayers": [
+    {
+      "scope": "layout",
+      "id": "1e44272f-780d-4db4-bf0d-b6b78bbc586e",
+      "name": "Title Slide",
+      "type": "title",
+      "parentLayoutId": "52718103-4830-42c6-9231-28d7866988bd",
+      "elements": []
+    },
+    {
+      "scope": "master",
+      "id": "52718103-4830-42c6-9231-28d7866988bd",
+      "name": "Master",
+      "type": "master",
+      "elements": []
+    }
+  ],
+  "elements": [
+    {
+      "order": 1,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/wnupcb25",
+      "id": "1",
+      "bbox": [
+        80,
+        0,
+        0,
+        900
+      ],
+      "geometry": "line",
+      "lineColor": "#E2E8F0",
+      "lineWidth": 0.8
+    },
+    {
+      "order": 2,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/bmlo3q10",
+      "id": "2",
+      "bbox": [
+        240,
+        0,
+        0,
+        900
+      ],
+      "geometry": "line",
+      "lineColor": "#E2E8F0",
+      "lineWidth": 0.8
+    },
+    {
+      "order": 3,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/als7alkf",
+      "id": "3",
+      "bbox": [
+        400,
+        0,
+        0,
+        900
+      ],
+      "geometry": "line",
+      "lineColor": "#E2E8F0",
+      "lineWidth": 0.8
+    },
+    {
+      "order": 4,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/lc3q90j2",
+      "id": "4",
+      "bbox": [
+        560,
+        0,
+        0,
+        900
+      ],
+      "geometry": "line",
+      "lineColor": "#E2E8F0",
+      "lineWidth": 0.8
+    },
+    {
+      "order": 5,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/kbupgv2h",
+      "id": "5",
+      "bbox": [
+        720,
+        0,
+        0,
+        900
+      ],
+      "geometry": "line",
+      "lineColor": "#E2E8F0",
+      "lineWidth": 0.8
+    },
+    {
+      "order": 6,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/jal87q1w",
+      "id": "6",
+      "bbox": [
+        880,
+        0,
+        0,
+        900
+      ],
+      "geometry": "line",
+      "lineColor": "#E2E8F0",
+      "lineWidth": 0.8
+    },
+    {
+      "order": 7,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/ypc7elkb",
+      "id": "7",
+      "bbox": [
+        1040,
+        0,
+        0,
+        900
+      ],
+      "geometry": "line",
+      "lineColor": "#E2E8F0",
+      "lineWidth": 0.8
+    },
+    {
+      "order": 8,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/1gj6xwji",
+      "id": "8",
+      "bbox": [
+        1200,
+        0,
+        0,
+        900
+      ],
+      "geometry": "line",
+      "lineColor": "#E2E8F0",
+      "lineWidth": 0.8
+    },
+    {
+      "order": 9,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/0fap4r2d",
+      "id": "9",
+      "bbox": [
+        1360,
+        0,
+        0,
+        900
+      ],
+      "geometry": "line",
+      "lineColor": "#E2E8F0",
+      "lineWidth": 0.8
+    },
+    {
+      "order": 10,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/m1472pkf",
+      "id": "10",
+      "bbox": [
+        1520,
+        0,
+        0,
+        900
+      ],
+      "geometry": "line",
+      "lineColor": "#E2E8F0",
+      "lineWidth": 0.8
+    },
+    {
+      "order": 11,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/n2dobu10",
+      "id": "11",
+      "bbox": [
+        0,
+        90,
+        1600,
+        0
+      ],
+      "geometry": "line",
+      "lineColor": "#E2E8F0",
+      "lineWidth": 0.8
+    },
+    {
+      "order": 12,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/83mp4z2l",
+      "id": "12",
+      "bbox": [
+        0,
+        225,
+        1600,
+        0
+      ],
+      "geometry": "line",
+      "lineColor": "#E2E8F0",
+      "lineWidth": 0.8
+    },
+    {
+      "order": 13,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/94v6d4j6",
+      "id": "13",
+      "bbox": [
+        0,
+        360,
+        1600,
+        0
+      ],
+      "geometry": "line",
+      "lineColor": "#E2E8F0",
+      "lineWidth": 0.8
+    },
+    {
+      "order": 14,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/a54769kb",
+      "id": "14",
+      "bbox": [
+        0,
+        495,
+        1600,
+        0
+      ],
+      "geometry": "line",
+      "lineColor": "#E2E8F0",
+      "lineWidth": 0.8
+    },
+    {
+      "order": 15,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/v6d8fu1w",
+      "id": "15",
+      "bbox": [
+        0,
+        630,
+        1600,
+        0
+      ],
+      "geometry": "line",
+      "lineColor": "#E2E8F0",
+      "lineWidth": 0.8
+    },
+    {
+      "order": 16,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/wr6p8z2h",
+      "id": "16",
+      "bbox": [
+        0,
+        765,
+        1600,
+        0
+      ],
+      "geometry": "line",
+      "lineColor": "#E2E8F0",
+      "lineWidth": 0.8
+    },
+    {
+      "order": 17,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/xsfqh4j2",
+      "id": "17",
+      "bbox": [
+        80,
+        54,
+        520,
+        30
+      ],
+      "geometry": "rect",
+      "text": "FUTURE PLAN",
+      "textPreview": "FUTURE PLAN",
+      "resolvedFontSize": 14,
+      "resolvedTextStyle": {
+        "fontSize": 14,
+        "typeface": "+mn-lt",
+        "color": "#007595",
+        "bold": true,
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "FUTURE PLAN"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "FUTURE PLAN",
+          "resolvedTextStyle": {
+            "fontSize": 14,
+            "color": "#007595",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "FUTURE PLAN",
+              "fontSize": 14,
+              "color": "#007595",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 18,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/ito7a9kn",
+      "id": "18",
+      "bbox": [
+        80,
+        92,
+        1100,
+        76
+      ],
+      "geometry": "rect",
+      "text": "Stage 2 roadmap",
+      "textPreview": "Stage 2 roadmap",
+      "resolvedFontSize": 42,
+      "resolvedTextStyle": {
+        "fontSize": 42,
+        "typeface": "+mn-lt",
+        "color": "#020618",
+        "bold": true,
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Stage 2 roadmap"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Stage 2 roadmap",
+          "resolvedTextStyle": {
+            "fontSize": 42,
+            "color": "#020618",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Stage 2 roadmap",
+              "fontSize": 42,
+              "color": "#020618",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 19,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/jux8je18",
+      "id": "19",
+      "bbox": [
+        82,
+        160,
+        1180,
+        48
+      ],
+      "geometry": "rect",
+      "text": "Make the robot lighter, safer, and more dynamic. Advance only when evidence gates pass: source review, simulation, bench test, then hardware walking.",
+      "textPreview": "Make the robot lighter, safer, and more dynamic. Advance only when evidence gates pass: source review, simulation, bench test, then hardw...",
+      "resolvedFontSize": 20,
+      "resolvedTextStyle": {
+        "fontSize": 20,
+        "typeface": "+mn-lt",
+        "color": "#45556C",
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 2,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Make the robot lighter, safer, and more dynamic. Advance only when evidence gates pass: source review, simulation, bench test, then"
+          },
+          {
+            "index": 2,
+            "text": "hardware walking."
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Make the robot lighter, safer, and more dynamic. Advance only when evidence gates pass: source review, simulation, bench test, then hardware walking.",
+          "resolvedTextStyle": {
+            "fontSize": 20,
+            "color": "#45556C",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Make the robot lighter, safer, and more dynamic. Advance only when evidence gates pass: source review, simulation, bench test, then hardware walking.",
+              "fontSize": 20,
+              "color": "#45556C",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 20,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/fyho7eh0",
+      "id": "20",
+      "bbox": [
+        120,
+        270,
+        230,
+        310
+      ],
+      "geometry": "roundRect",
+      "resolvedFontSize": 20,
+      "resolvedTextStyle": {
+        "fontSize": 20,
+        "typeface": "+mn-lt",
+        "color": "#1D293D",
+        "alignment": "center",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": ""
+          }
+        ]
+      },
+      "fillColor": "#FFFFFF",
+      "lineColor": "#CAD5E2",
+      "lineWidth": 1.2
+    },
+    {
+      "order": 21,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/uxony90v",
+      "id": "21",
+      "bbox": [
+        140,
+        300,
+        190,
+        34
+      ],
+      "geometry": "rect",
+      "text": "1. Baseline",
+      "textPreview": "1. Baseline",
+      "resolvedFontSize": 22,
+      "resolvedTextStyle": {
+        "fontSize": 22,
+        "typeface": "+mn-lt",
+        "color": "#020618",
+        "bold": true,
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "1. Baseline"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "1. Baseline",
+          "resolvedTextStyle": {
+            "fontSize": 22,
+            "color": "#020618",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "1. Baseline",
+              "fontSize": 22,
+              "color": "#020618",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 22,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/h0z69oz6",
+      "id": "22",
+      "bbox": [
+        140,
+        360,
+        190,
+        160
+      ],
+      "geometry": "rect",
+      "text": "Repeat reverse walking; log telemetry; define pass/fail criteria.",
+      "textPreview": "Repeat reverse walking; log telemetry; define pass/fail criteria.",
+      "resolvedFontSize": 17,
+      "resolvedTextStyle": {
+        "fontSize": 17,
+        "typeface": "+mn-lt",
+        "color": "#314158",
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 3,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Repeat reverse walking;"
+          },
+          {
+            "index": 2,
+            "text": "log telemetry; define"
+          },
+          {
+            "index": 3,
+            "text": "pass/fail criteria."
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Repeat reverse walking; log telemetry; define pass/fail criteria.",
+          "resolvedTextStyle": {
+            "fontSize": 17,
+            "color": "#314158",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Repeat reverse walking; log telemetry; define pass/fail criteria.",
+              "fontSize": 17,
+              "color": "#314158",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 23,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/gzqp0jil",
+      "id": "23",
+      "bbox": [
+        406,
+        270,
+        230,
+        310
+      ],
+      "geometry": "roundRect",
+      "resolvedFontSize": 20,
+      "resolvedTextStyle": {
+        "fontSize": 20,
+        "typeface": "+mn-lt",
+        "color": "#1D293D",
+        "alignment": "center",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": ""
+          }
+        ]
+      },
+      "fillColor": "#FFFFFF",
+      "lineColor": "#CAD5E2",
+      "lineWidth": 1.2
+    },
+    {
+      "order": 24,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/7uxo3eh4",
+      "id": "24",
+      "bbox": [
+        426,
+        300,
+        190,
+        34
+      ],
+      "geometry": "rect",
+      "text": "2. Hardware",
+      "textPreview": "2. Hardware",
+      "resolvedFontSize": 22,
+      "resolvedTextStyle": {
+        "fontSize": 22,
+        "typeface": "+mn-lt",
+        "color": "#020618",
+        "bold": true,
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "2. Hardware"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "2. Hardware",
+          "resolvedTextStyle": {
+            "fontSize": 22,
+            "color": "#020618",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "2. Hardware",
+              "fontSize": 22,
+              "color": "#020618",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 25,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/6tonu90j",
+      "id": "25",
+      "bbox": [
+        426,
+        360,
+        190,
+        160
+      ],
+      "geometry": "rect",
+      "text": "Reduce mass/inertia; characterize actuators; validate gear ratios, signs, limits, and thermal behavior.",
+      "textPreview": "Reduce mass/inertia; characterize actuators; validate gear ratios, signs, limits, and thermal behavior.",
+      "resolvedFontSize": 17,
+      "resolvedTextStyle": {
+        "fontSize": 17,
+        "typeface": "+mn-lt",
+        "color": "#314158",
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 5,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Reduce mass/inertia;"
+          },
+          {
+            "index": 2,
+            "text": "characterize actuators;"
+          },
+          {
+            "index": 3,
+            "text": "validate gear ratios,"
+          },
+          {
+            "index": 4,
+            "text": "signs, limits, and"
+          },
+          {
+            "index": 5,
+            "text": "thermal behavior."
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Reduce mass/inertia; characterize actuators; validate gear ratios, signs, limits, and thermal behavior.",
+          "resolvedTextStyle": {
+            "fontSize": 17,
+            "color": "#314158",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Reduce mass/inertia; characterize actuators; validate gear ratios, signs, limits, and thermal behavior.",
+              "fontSize": 17,
+              "color": "#314158",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 26,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/twf654za",
+      "id": "26",
+      "bbox": [
+        692,
+        270,
+        230,
+        310
+      ],
+      "geometry": "roundRect",
+      "resolvedFontSize": 20,
+      "resolvedTextStyle": {
+        "fontSize": 20,
+        "typeface": "+mn-lt",
+        "color": "#1D293D",
+        "alignment": "center",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": ""
+          }
+        ]
+      },
+      "fillColor": "#ECFEFF",
+      "lineColor": "#53EAFD",
+      "lineWidth": 1.2
+    },
+    {
+      "order": 27,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/sv65wzip",
+      "id": "27",
+      "bbox": [
+        712,
+        300,
+        190,
+        34
+      ],
+      "geometry": "rect",
+      "text": "3. Low-level control",
+      "textPreview": "3. Low-level control",
+      "resolvedFontSize": 22,
+      "resolvedTextStyle": {
+        "fontSize": 22,
+        "typeface": "+mn-lt",
+        "color": "#020618",
+        "bold": true,
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 2,
+        "lines": [
+          {
+            "index": 1,
+            "text": "3. Low-level"
+          },
+          {
+            "index": 2,
+            "text": "control"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "3. Low-level control",
+          "resolvedTextStyle": {
+            "fontSize": 22,
+            "color": "#020618",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "3. Low-level control",
+              "fontSize": 22,
+              "color": "#020618",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 28,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/j6dozuh8",
+      "id": "28",
+      "bbox": [
+        712,
+        360,
+        190,
+        160
+      ],
+      "geometry": "rect",
+      "text": "Bring up validated MIT-style torque/impedance mode with watchdogs and stale-target clearing.",
+      "textPreview": "Bring up validated MIT-style torque/impedance mode with watchdogs and stale-target clearing.",
+      "resolvedFontSize": 17,
+      "resolvedTextStyle": {
+        "fontSize": 17,
+        "typeface": "+mn-lt",
+        "color": "#314158",
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 6,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Bring up validated"
+          },
+          {
+            "index": 2,
+            "text": "MIT-style"
+          },
+          {
+            "index": 3,
+            "text": "torque/impedance"
+          },
+          {
+            "index": 4,
+            "text": "mode with watchdogs"
+          },
+          {
+            "index": 5,
+            "text": "and stale-target"
+          },
+          {
+            "index": 6,
+            "text": "clearing."
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Bring up validated MIT-style torque/impedance mode with watchdogs and stale-target clearing.",
+          "resolvedTextStyle": {
+            "fontSize": 17,
+            "color": "#314158",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Bring up validated MIT-style torque/impedance mode with watchdogs and stale-target clearing.",
+              "fontSize": 17,
+              "color": "#314158",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 29,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/i54nqp0n",
+      "id": "29",
+      "bbox": [
+        978,
+        270,
+        230,
+        310
+      ],
+      "geometry": "roundRect",
+      "resolvedFontSize": 20,
+      "resolvedTextStyle": {
+        "fontSize": 20,
+        "typeface": "+mn-lt",
+        "color": "#1D293D",
+        "alignment": "center",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": ""
+          }
+        ]
+      },
+      "fillColor": "#ECFEFF",
+      "lineColor": "#53EAFD",
+      "lineWidth": 1.2
+    },
+    {
+      "order": 30,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/8b2l0vy5",
+      "id": "30",
+      "bbox": [
+        998,
+        300,
+        190,
+        34
+      ],
+      "geometry": "rect",
+      "text": "4. Model control",
+      "textPreview": "4. Model control",
+      "resolvedFontSize": 22,
+      "resolvedTextStyle": {
+        "fontSize": 22,
+        "typeface": "+mn-lt",
+        "color": "#020618",
+        "bold": true,
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "4. Model control"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "4. Model control",
+          "resolvedTextStyle": {
+            "fontSize": 22,
+            "color": "#020618",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "4. Model control",
+              "fontSize": 22,
+              "color": "#020618",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 31,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/9cbmt0fq",
+      "id": "31",
+      "bbox": [
+        998,
+        360,
+        190,
+        160
+      ],
+      "geometry": "rect",
+      "text": "Add state estimation, body dynamics, contact assumptions, and MPC preview planning.",
+      "textPreview": "Add state estimation, body dynamics, contact assumptions, and MPC preview planning.",
+      "resolvedFontSize": 17,
+      "resolvedTextStyle": {
+        "fontSize": 17,
+        "typeface": "+mn-lt",
+        "color": "#314158",
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 4,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Add state estimation,"
+          },
+          {
+            "index": 2,
+            "text": "body dynamics, contact"
+          },
+          {
+            "index": 3,
+            "text": "assumptions, and MPC"
+          },
+          {
+            "index": 4,
+            "text": "preview planning."
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Add state estimation, body dynamics, contact assumptions, and MPC preview planning.",
+          "resolvedTextStyle": {
+            "fontSize": 17,
+            "color": "#314158",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Add state estimation, body dynamics, contact assumptions, and MPC preview planning.",
+              "fontSize": 17,
+              "color": "#314158",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 32,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/m9k3ylgf",
+      "id": "32",
+      "bbox": [
+        1264,
+        270,
+        230,
+        310
+      ],
+      "geometry": "roundRect",
+      "resolvedFontSize": 20,
+      "resolvedTextStyle": {
+        "fontSize": 20,
+        "typeface": "+mn-lt",
+        "color": "#1D293D",
+        "alignment": "center",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": ""
+          }
+        ]
+      },
+      "fillColor": "#FFFBEB",
+      "lineColor": "#FFD230",
+      "lineWidth": 1.2
+    },
+    {
+      "order": 33,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/natkrqx0",
+      "id": "33",
+      "bbox": [
+        1284,
+        300,
+        190,
+        34
+      ],
+      "geometry": "rect",
+      "text": "5. Expand gaits",
+      "textPreview": "5. Expand gaits",
+      "resolvedFontSize": 22,
+      "resolvedTextStyle": {
+        "fontSize": 22,
+        "typeface": "+mn-lt",
+        "color": "#020618",
+        "bold": true,
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "5. Expand gaits"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "5. Expand gaits",
+          "resolvedTextStyle": {
+            "fontSize": 22,
+            "color": "#020618",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "5. Expand gaits",
+              "fontSize": 22,
+              "color": "#020618",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 34,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/wzml4fyh",
+      "id": "34",
+      "bbox": [
+        1284,
+        360,
+        190,
+        160
+      ],
+      "geometry": "rect",
+      "text": "Reverse -> forward -> lateral -> yaw -> transitions -> disturbance tests.",
+      "textPreview": "Reverse -> forward -> lateral -> yaw -> transitions -> disturbance tests.",
+      "resolvedFontSize": 17,
+      "resolvedTextStyle": {
+        "fontSize": 17,
+        "typeface": "+mn-lt",
+        "color": "#314158",
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 4,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Reverse -> forward ->"
+          },
+          {
+            "index": 2,
+            "text": "lateral -> yaw ->"
+          },
+          {
+            "index": 3,
+            "text": "transitions ->"
+          },
+          {
+            "index": 4,
+            "text": "disturbance tests."
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Reverse -> forward -> lateral -> yaw -> transitions -> disturbance tests.",
+          "resolvedTextStyle": {
+            "fontSize": 17,
+            "color": "#314158",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Reverse -> forward -> lateral -> yaw -> transitions -> disturbance tests.",
+              "fontSize": 17,
+              "color": "#314158",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 35,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/x0vmx0f2",
+      "id": "35",
+      "bbox": [
+        175,
+        665,
+        1250,
+        108
+      ],
+      "geometry": "roundRect",
+      "resolvedFontSize": 20,
+      "resolvedTextStyle": {
+        "fontSize": 20,
+        "typeface": "+mn-lt",
+        "color": "#1D293D",
+        "alignment": "center",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": ""
+          }
+        ]
+      },
+      "fillColor": "#FFFBEB",
+      "lineColor": "#FFD230",
+      "lineWidth": 1.2
+    },
+    {
+      "order": 36,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/adk325gb",
+      "id": "36",
+      "bbox": [
+        197,
+        683,
+        1206,
+        26
+      ],
+      "geometry": "rect",
+      "text": "Stage 2 decision rule",
+      "textPreview": "Stage 2 decision rule",
+      "resolvedFontSize": 16,
+      "resolvedTextStyle": {
+        "fontSize": 16,
+        "typeface": "+mn-lt",
+        "color": "#BB4D00",
+        "bold": true,
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Stage 2 decision rule"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Stage 2 decision rule",
+          "resolvedTextStyle": {
+            "fontSize": 16,
+            "color": "#BB4D00",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Stage 2 decision rule",
+              "fontSize": 16,
+              "color": "#BB4D00",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 37,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/vet4vaxw",
+      "id": "37",
+      "bbox": [
+        197,
+        719,
+        1206,
+        38
+      ],
+      "geometry": "rect",
+      "text": "Do not upgrade the controller faster than the evidence: compile -> simulate -> bench -> tethered hardware -> untethered demo.",
+      "textPreview": "Do not upgrade the controller faster than the evidence: compile -> simulate -> bench -> tethered hardware -> untethered demo.",
+      "resolvedFontSize": 18,
+      "resolvedTextStyle": {
+        "fontSize": 18,
+        "typeface": "+mn-lt",
+        "color": "#0F172B",
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Do not upgrade the controller faster than the evidence: compile -> simulate -> bench -> tethered hardware -> untethered demo."
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Do not upgrade the controller faster than the evidence: compile -> simulate -> bench -> tethered hardware -> untethered demo.",
+          "resolvedTextStyle": {
+            "fontSize": 18,
+            "color": "#0F172B",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Do not upgrade the controller faster than the evidence: compile -> simulate -> bench -> tethered hardware -> untethered demo.",
+              "fontSize": 18,
+              "color": "#0F172B",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 38,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/c3ilsbyd",
+      "id": "38",
+      "bbox": [
+        80,
+        848,
+        760,
+        24
+      ],
+      "geometry": "rect",
+      "text": "C++ repo snapshot f3c5199 | teammate onboarding | Aug 29, 2026",
+      "textPreview": "C++ repo snapshot f3c5199 | teammate onboarding | Aug 29, 2026",
+      "resolvedFontSize": 12,
+      "resolvedTextStyle": {
+        "fontSize": 12,
+        "typeface": "+mn-lt",
+        "color": "#62748E",
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "C++ repo snapshot f3c5199 | teammate onboarding | Aug 29, 2026"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "C++ repo snapshot f3c5199 | teammate onboarding | Aug 29, 2026",
+          "resolvedTextStyle": {
+            "fontSize": 12,
+            "color": "#62748E",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "C++ repo snapshot f3c5199 | teammate onboarding | Aug 29, 2026",
+              "fontSize": 12,
+              "color": "#62748E",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    }
+  ],
+  "composeRuns": []
+}

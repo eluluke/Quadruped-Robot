@@ -1,0 +1,1227 @@
+{
+  "schema": "openai.presentation.layout/v4",
+  "unit": "px",
+  "slide": {
+    "aid": "sl/8bt350",
+    "id": "8bt350",
+    "slide": 2,
+    "layoutId": "1e44272f-780d-4db4-bf0d-b6b78bbc586e",
+    "layoutName": "Title Slide",
+    "layoutType": "title",
+    "masterLayoutId": "52718103-4830-42c6-9231-28d7866988bd",
+    "masterLayoutName": "Master",
+    "backgroundColor": "#F8FAFC",
+    "frame": {
+      "left": 0,
+      "top": 0,
+      "width": 1600,
+      "height": 900
+    }
+  },
+  "theme": {
+    "colorSchemeName": "ChatGPT",
+    "colors": {
+      "accent1": "#156082",
+      "accent2": "#E97132",
+      "accent3": "#196B24",
+      "accent4": "#0F9ED5",
+      "accent5": "#A02B93",
+      "accent6": "#4EA72E",
+      "bg1": "#FFFFFF",
+      "bg2": "#000000",
+      "tx1": "#1F1F1F",
+      "tx2": "#FFFFFF",
+      "dk1": "#000000",
+      "lt1": "#FFFFFF",
+      "dk2": "#0E2841",
+      "lt2": "#E8E8E8",
+      "hlink": "#467886",
+      "folHlink": "#96607D"
+    },
+    "typefaces": [
+      "+mn-lt"
+    ]
+  },
+  "inheritedLayers": [
+    {
+      "scope": "layout",
+      "id": "1e44272f-780d-4db4-bf0d-b6b78bbc586e",
+      "name": "Title Slide",
+      "type": "title",
+      "parentLayoutId": "52718103-4830-42c6-9231-28d7866988bd",
+      "elements": []
+    },
+    {
+      "scope": "master",
+      "id": "52718103-4830-42c6-9231-28d7866988bd",
+      "name": "Master",
+      "type": "master",
+      "elements": []
+    }
+  ],
+  "elements": [
+    {
+      "order": 1,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/s7el83it",
+      "id": "1",
+      "bbox": [
+        80,
+        0,
+        0,
+        900
+      ],
+      "geometry": "line",
+      "lineColor": "#E2E8F0",
+      "lineWidth": 0.8
+    },
+    {
+      "order": 2,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/765kzy18",
+      "id": "2",
+      "bbox": [
+        240,
+        0,
+        0,
+        900
+      ],
+      "geometry": "line",
+      "lineColor": "#E2E8F0",
+      "lineWidth": 0.8
+    },
+    {
+      "order": 3,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/65c36t0n",
+      "id": "3",
+      "bbox": [
+        400,
+        0,
+        0,
+        900
+      ],
+      "geometry": "line",
+      "lineColor": "#E2E8F0",
+      "lineWidth": 0.8
+    },
+    {
+      "order": 4,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/5432xoji",
+      "id": "4",
+      "bbox": [
+        560,
+        0,
+        0,
+        900
+      ],
+      "geometry": "line",
+      "lineColor": "#E2E8F0",
+      "lineWidth": 0.8
+    },
+    {
+      "order": 5,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/k3ul4jix",
+      "id": "5",
+      "bbox": [
+        720,
+        0,
+        0,
+        900
+      ],
+      "geometry": "line",
+      "lineColor": "#E2E8F0",
+      "lineWidth": 0.8
+    },
+    {
+      "order": 6,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/j2lkve1c",
+      "id": "6",
+      "bbox": [
+        880,
+        0,
+        0,
+        900
+      ],
+      "geometry": "line",
+      "lineColor": "#E2E8F0",
+      "lineWidth": 0.8
+    },
+    {
+      "order": 7,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/i1c32t0r",
+      "id": "7",
+      "bbox": [
+        1040,
+        0,
+        0,
+        900
+      ],
+      "geometry": "line",
+      "lineColor": "#E2E8F0",
+      "lineWidth": 0.8
+    },
+    {
+      "order": 8,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/x032toj6",
+      "id": "8",
+      "bbox": [
+        1200,
+        0,
+        0,
+        900
+      ],
+      "geometry": "line",
+      "lineColor": "#E2E8F0",
+      "lineWidth": 0.8
+    },
+    {
+      "order": 9,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/wzul0jil",
+      "id": "9",
+      "bbox": [
+        1360,
+        0,
+        0,
+        900
+      ],
+      "geometry": "line",
+      "lineColor": "#E2E8F0",
+      "lineWidth": 0.8
+    },
+    {
+      "order": 10,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/up03mt0r",
+      "id": "10",
+      "bbox": [
+        1520,
+        0,
+        0,
+        900
+      ],
+      "geometry": "line",
+      "lineColor": "#E2E8F0",
+      "lineWidth": 0.8
+    },
+    {
+      "order": 11,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/vq9kvyhc",
+      "id": "11",
+      "bbox": [
+        0,
+        90,
+        1600,
+        0
+      ],
+      "geometry": "line",
+      "lineColor": "#E2E8F0",
+      "lineWidth": 0.8
+    },
+    {
+      "order": 12,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/grilo3ih",
+      "id": "12",
+      "bbox": [
+        0,
+        225,
+        1600,
+        0
+      ],
+      "geometry": "line",
+      "lineColor": "#E2E8F0",
+      "lineWidth": 0.8
+    },
+    {
+      "order": 13,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/hsr2xoz2",
+      "id": "13",
+      "bbox": [
+        0,
+        360,
+        1600,
+        0
+      ],
+      "geometry": "line",
+      "lineColor": "#E2E8F0",
+      "lineWidth": 0.8
+    },
+    {
+      "order": 14,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/6lg3i90f",
+      "id": "14",
+      "bbox": [
+        0,
+        495,
+        1600,
+        0
+      ],
+      "geometry": "line",
+      "lineColor": "#E2E8F0",
+      "lineWidth": 0.8
+    },
+    {
+      "order": 15,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/7mpkreh0",
+      "id": "15",
+      "bbox": [
+        0,
+        630,
+        1600,
+        0
+      ],
+      "geometry": "line",
+      "lineColor": "#E2E8F0",
+      "lineWidth": 0.8
+    },
+    {
+      "order": 16,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/8nylkjil",
+      "id": "16",
+      "bbox": [
+        0,
+        765,
+        1600,
+        0
+      ],
+      "geometry": "line",
+      "lineColor": "#E2E8F0",
+      "lineWidth": 0.8
+    },
+    {
+      "order": 17,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/to72toz6",
+      "id": "17",
+      "bbox": [
+        80,
+        54,
+        520,
+        30
+      ],
+      "geometry": "rect",
+      "text": "INTRODUCTION",
+      "textPreview": "INTRODUCTION",
+      "resolvedFontSize": 14,
+      "resolvedTextStyle": {
+        "fontSize": 14,
+        "typeface": "+mn-lt",
+        "color": "#007595",
+        "bold": true,
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "INTRODUCTION"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "INTRODUCTION",
+          "resolvedTextStyle": {
+            "fontSize": 14,
+            "color": "#007595",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "INTRODUCTION",
+              "fontSize": 14,
+              "color": "#007595",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 18,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/yxwje90j",
+      "id": "18",
+      "bbox": [
+        80,
+        92,
+        1100,
+        76
+      ],
+      "geometry": "rect",
+      "text": "What we are building",
+      "textPreview": "What we are building",
+      "resolvedFontSize": 42,
+      "resolvedTextStyle": {
+        "fontSize": 42,
+        "typeface": "+mn-lt",
+        "color": "#020618",
+        "bold": true,
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "What we are building"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "What we are building",
+          "resolvedTextStyle": {
+            "fontSize": 42,
+            "color": "#020618",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "What we are building",
+              "fontSize": 42,
+              "color": "#020618",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 19,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/jypkneh4",
+      "id": "19",
+      "bbox": [
+        82,
+        160,
+        1180,
+        48
+      ],
+      "geometry": "rect",
+      "text": "A physical quadruped platform where mechanical design, embedded sensing, CAN control, and locomotion software meet.",
+      "textPreview": "A physical quadruped platform where mechanical design, embedded sensing, CAN control, and locomotion software meet.",
+      "resolvedFontSize": 20,
+      "resolvedTextStyle": {
+        "fontSize": 20,
+        "typeface": "+mn-lt",
+        "color": "#45556C",
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "A physical quadruped platform where mechanical design, embedded sensing, CAN control, and locomotion software meet."
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "A physical quadruped platform where mechanical design, embedded sensing, CAN control, and locomotion software meet.",
+          "resolvedTextStyle": {
+            "fontSize": 20,
+            "color": "#45556C",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "A physical quadruped platform where mechanical design, embedded sensing, CAN control, and locomotion software meet.",
+              "fontSize": 20,
+              "color": "#45556C",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 20,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/n2l0vaxw",
+      "id": "20",
+      "bbox": [
+        110,
+        270,
+        610,
+        152
+      ],
+      "geometry": "roundRect",
+      "resolvedFontSize": 20,
+      "resolvedTextStyle": {
+        "fontSize": 20,
+        "typeface": "+mn-lt",
+        "color": "#1D293D",
+        "alignment": "center",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": ""
+          }
+        ]
+      },
+      "fillColor": "#FFFFFF",
+      "lineColor": "#53EAFD",
+      "lineWidth": 1.2
+    },
+    {
+      "order": 21,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/21czm5gb",
+      "id": "21",
+      "bbox": [
+        138,
+        294,
+        540,
+        30
+      ],
+      "geometry": "rect",
+      "text": "Mechanical body",
+      "textPreview": "Mechanical body",
+      "resolvedFontSize": 24,
+      "resolvedTextStyle": {
+        "fontSize": 24,
+        "typeface": "+mn-lt",
+        "color": "#020618",
+        "bold": true,
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Mechanical body"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Mechanical body",
+          "resolvedTextStyle": {
+            "fontSize": 24,
+            "color": "#020618",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Mechanical body",
+              "fontSize": 24,
+              "color": "#020618",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 22,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/p43ix0fm",
+      "id": "22",
+      "bbox": [
+        138,
+        338,
+        540,
+        58
+      ],
+      "geometry": "rect",
+      "text": "CAD / URDF / MuJoCo model, four legs, custom actuator assemblies.",
+      "textPreview": "CAD / URDF / MuJoCo model, four legs, custom actuator assemblies.",
+      "resolvedFontSize": 19,
+      "resolvedTextStyle": {
+        "fontSize": 19,
+        "typeface": "+mn-lt",
+        "color": "#45556C",
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 2,
+        "lines": [
+          {
+            "index": 1,
+            "text": "CAD / URDF / MuJoCo model, four legs, custom actuator"
+          },
+          {
+            "index": 2,
+            "text": "assemblies."
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "CAD / URDF / MuJoCo model, four legs, custom actuator assemblies.",
+          "resolvedTextStyle": {
+            "fontSize": 19,
+            "color": "#45556C",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "CAD / URDF / MuJoCo model, four legs, custom actuator assemblies.",
+              "fontSize": 19,
+              "color": "#45556C",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 23,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/o3uhofy1",
+      "id": "23",
+      "bbox": [
+        810,
+        270,
+        610,
+        152
+      ],
+      "geometry": "roundRect",
+      "resolvedFontSize": 20,
+      "resolvedTextStyle": {
+        "fontSize": 20,
+        "typeface": "+mn-lt",
+        "color": "#1D293D",
+        "alignment": "center",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": ""
+          }
+        ]
+      },
+      "fillColor": "#FFFFFF",
+      "lineColor": "#FFD230",
+      "lineWidth": 1.2
+    },
+    {
+      "order": 24,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/bq50zaxs",
+      "id": "24",
+      "bbox": [
+        838,
+        294,
+        540,
+        30
+      ],
+      "geometry": "rect",
+      "text": "Whole-robot C++",
+      "textPreview": "Whole-robot C++",
+      "resolvedFontSize": 24,
+      "resolvedTextStyle": {
+        "fontSize": 24,
+        "typeface": "+mn-lt",
+        "color": "#020618",
+        "bold": true,
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Whole-robot C++"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Whole-robot C++",
+          "resolvedTextStyle": {
+            "fontSize": 24,
+            "color": "#020618",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Whole-robot C++",
+              "fontSize": 24,
+              "color": "#020618",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 25,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/a5czq5g7",
+      "id": "25",
+      "bbox": [
+        838,
+        338,
+        540,
+        58
+      ],
+      "geometry": "rect",
+      "text": "Linux process centered on quadruped_robot_locomotion_v3.",
+      "textPreview": "Linux process centered on quadruped_robot_locomotion_v3.",
+      "resolvedFontSize": 19,
+      "resolvedTextStyle": {
+        "fontSize": 19,
+        "typeface": "+mn-lt",
+        "color": "#45556C",
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Linux process centered on quadruped_robot_locomotion_v3."
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Linux process centered on quadruped_robot_locomotion_v3.",
+          "resolvedTextStyle": {
+            "fontSize": 19,
+            "color": "#45556C",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Linux process centered on quadruped_robot_locomotion_v3.",
+              "fontSize": 19,
+              "color": "#45556C",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 26,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/xsni1kfy",
+      "id": "26",
+      "bbox": [
+        110,
+        490,
+        610,
+        152
+      ],
+      "geometry": "roundRect",
+      "resolvedFontSize": 20,
+      "resolvedTextStyle": {
+        "fontSize": 20,
+        "typeface": "+mn-lt",
+        "color": "#1D293D",
+        "alignment": "center",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": ""
+          }
+        ]
+      },
+      "fillColor": "#FFFFFF",
+      "lineColor": "#53EAFD",
+      "lineWidth": 1.2
+    },
+    {
+      "order": 27,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/crehsfyd",
+      "id": "27",
+      "bbox": [
+        138,
+        514,
+        540,
+        30
+      ],
+      "geometry": "rect",
+      "text": "Motor network",
+      "textPreview": "Motor network",
+      "resolvedFontSize": 24,
+      "resolvedTextStyle": {
+        "fontSize": 24,
+        "typeface": "+mn-lt",
+        "color": "#020618",
+        "bold": true,
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Motor network"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Motor network",
+          "resolvedTextStyle": {
+            "fontSize": 24,
+            "color": "#020618",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Motor network",
+              "fontSize": 24,
+              "color": "#020618",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 28,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/ru1gnqxo",
+      "id": "28",
+      "bbox": [
+        138,
+        558,
+        540,
+        58
+      ],
+      "geometry": "rect",
+      "text": "SocketCAN routes commands and feedback for twelve motor drivers.",
+      "textPreview": "SocketCAN routes commands and feedback for twelve motor drivers.",
+      "resolvedFontSize": 19,
+      "resolvedTextStyle": {
+        "fontSize": 19,
+        "typeface": "+mn-lt",
+        "color": "#45556C",
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 2,
+        "lines": [
+          {
+            "index": 1,
+            "text": "SocketCAN routes commands and feedback for twelve motor"
+          },
+          {
+            "index": 2,
+            "text": "drivers."
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "SocketCAN routes commands and feedback for twelve motor drivers.",
+          "resolvedTextStyle": {
+            "fontSize": 19,
+            "color": "#45556C",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "SocketCAN routes commands and feedback for twelve motor drivers.",
+              "fontSize": 19,
+              "color": "#45556C",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 29,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/q9szelg3",
+      "id": "29",
+      "bbox": [
+        810,
+        490,
+        610,
+        152
+      ],
+      "geometry": "roundRect",
+      "resolvedFontSize": 20,
+      "resolvedTextStyle": {
+        "fontSize": 20,
+        "typeface": "+mn-lt",
+        "color": "#1D293D",
+        "alignment": "center",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": ""
+          }
+        ]
+      },
+      "fillColor": "#FFFFFF",
+      "lineColor": "#FFD230",
+      "lineWidth": 1.2
+    },
+    {
+      "order": 30,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/gfqxore1",
+      "id": "30",
+      "bbox": [
+        838,
+        514,
+        540,
+        30
+      ],
+      "geometry": "rect",
+      "text": "Learning platform",
+      "textPreview": "Learning platform",
+      "resolvedFontSize": 24,
+      "resolvedTextStyle": {
+        "fontSize": 24,
+        "typeface": "+mn-lt",
+        "color": "#020618",
+        "bold": true,
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Learning platform"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Learning platform",
+          "resolvedTextStyle": {
+            "fontSize": 24,
+            "color": "#020618",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Learning platform",
+              "fontSize": 24,
+              "color": "#020618",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 31,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/hgzehwv6",
+      "id": "31",
+      "bbox": [
+        838,
+        558,
+        540,
+        58
+      ],
+      "geometry": "rect",
+      "text": "Each teammate can own a sub-system and produce measurable evidence.",
+      "textPreview": "Each teammate can own a sub-system and produce measurable evidence.",
+      "resolvedFontSize": 19,
+      "resolvedTextStyle": {
+        "fontSize": 19,
+        "typeface": "+mn-lt",
+        "color": "#45556C",
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 2,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Each teammate can own a sub-system and produce measurable"
+          },
+          {
+            "index": 2,
+            "text": "evidence."
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Each teammate can own a sub-system and produce measurable evidence.",
+          "resolvedTextStyle": {
+            "fontSize": 19,
+            "color": "#45556C",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Each teammate can own a sub-system and produce measurable evidence.",
+              "fontSize": 19,
+              "color": "#45556C",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 32,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/udofmhwv",
+      "id": "32",
+      "bbox": [
+        80,
+        848,
+        760,
+        24
+      ],
+      "geometry": "rect",
+      "text": "C++ repo snapshot f3c5199 | teammate onboarding | Aug 29, 2026",
+      "textPreview": "C++ repo snapshot f3c5199 | teammate onboarding | Aug 29, 2026",
+      "resolvedFontSize": 12,
+      "resolvedTextStyle": {
+        "fontSize": 12,
+        "typeface": "+mn-lt",
+        "color": "#62748E",
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "C++ repo snapshot f3c5199 | teammate onboarding | Aug 29, 2026"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "C++ repo snapshot f3c5199 | teammate onboarding | Aug 29, 2026",
+          "resolvedTextStyle": {
+            "fontSize": 12,
+            "color": "#62748E",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "C++ repo snapshot f3c5199 | teammate onboarding | Aug 29, 2026",
+              "fontSize": 12,
+              "color": "#62748E",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    }
+  ],
+  "composeRuns": []
+}
